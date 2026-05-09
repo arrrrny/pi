@@ -270,11 +270,15 @@ void main() {
       );
       agent.subscribe((e) => events.add(e));
 
+      agent.prompt('test');
+
+      await Future<void>.delayed(const Duration(milliseconds: 10));
+
       controller.add(MessageEnd(
         message: AssistantMessage(content: [const TextBlock('first')]),
       ));
 
-      await Future<void>.delayed(const Duration(milliseconds: 5));
+      await Future<void>.delayed(const Duration(milliseconds: 10));
 
       agent.abort();
 

@@ -113,9 +113,7 @@ void main() {
     });
 
     test('handles empty stream', () async {
-      final controller = StreamController<List<int>>();
-      await controller.close();
-      final events = await parseSSE(controller.stream).toList();
+      final events = await parseSSE(const Stream.empty()).toList();
       expect(events, isEmpty);
     });
 
