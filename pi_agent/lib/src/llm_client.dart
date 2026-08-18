@@ -117,7 +117,9 @@ Stream<AgentEvent> streamLLM({
   AgentLoopConfig config,
   String apiKey,
 ) {
-  final url = Uri.parse('https://api.openai.com/v1/chat/completions');
+  final baseUrl = config.model.extra?['baseUrl'] as String? ??
+      'https://api.openai.com/v1/chat/completions';
+  final url = Uri.parse(baseUrl);
   final headers = <String, String>{
     'Authorization': 'Bearer $apiKey',
     'Content-Type': 'application/json',
@@ -148,7 +150,9 @@ Stream<AgentEvent> streamLLM({
   AgentLoopConfig config,
   String apiKey,
 ) {
-  final url = Uri.parse('https://api.anthropic.com/v1/messages');
+  final baseUrl = config.model.extra?['baseUrl'] as String? ??
+      'https://api.anthropic.com/v1/messages';
+  final url = Uri.parse(baseUrl);
   final headers = <String, String>{
     'x-api-key': apiKey,
     'anthropic-version': '2023-06-01',
