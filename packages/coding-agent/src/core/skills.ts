@@ -1,12 +1,11 @@
 import { existsSync, readdirSync, readFileSync, statSync } from "fs";
 import ignore from "ignore";
-import { homedir } from "os";
-import { basename, dirname, isAbsolute, join, relative, resolve, sep } from "path";
-import { CONFIG_DIR_NAME, getAgentDir } from "../config.js";
-import { parseFrontmatter } from "../utils/frontmatter.js";
-import { canonicalizePath } from "../utils/paths.js";
-import type { ResourceDiagnostic } from "./diagnostics.js";
-import { createSyntheticSourceInfo, type SourceInfo } from "./source-info.js";
+import { basename, dirname, join, relative, resolve, sep } from "path";
+import { CONFIG_DIR_NAME, getAgentDir } from "../config.ts";
+import { parseFrontmatter } from "../utils/frontmatter.ts";
+import { canonicalizePath, resolvePath } from "../utils/paths.ts";
+import type { ResourceDiagnostic } from "./diagnostics.ts";
+import { createSyntheticSourceInfo, type SourceInfo } from "./source-info.ts";
 
 /** Max name length per spec */
 const MAX_NAME_LENGTH = 64;
@@ -90,12 +89,8 @@ export interface LoadSkillsResult {
  * Validate skill name per Agent Skills spec.
  * Returns array of validation error messages (empty if valid).
  */
-function validateName(name: string, parentDirName: string): string[] {
+function validateName(name: string): string[] {
 	const errors: string[] = [];
-
-	if (name !== parentDirName) {
-		errors.push(`name "${name}" does not match parent directory "${parentDirName}"`);
-	}
 
 	if (name.length > MAX_NAME_LENGTH) {
 		errors.push(`name exceeds ${MAX_NAME_LENGTH} characters (${name.length})`);
@@ -119,10 +114,10 @@ function validateName(name: string, parentDirName: string): string[] {
 /**
  * Validate description per Agent Skills spec.
  */
-function validateDescription(description: string | undefined): string[] {
+function validateDescription(description: unknown): string[] {
 	const errors: string[] = [];
 
-	if (!description || description.trim() === "") {
+	if (typeof description !== "string" || description.trim() === "") {
 		errors.push("description is required");
 	} else if (description.length > MAX_DESCRIPTION_LENGTH) {
 		errors.push(`description exceeds ${MAX_DESCRIPTION_LENGTH} characters (${description.length})`);
@@ -284,49 +279,69 @@ function loadSkillFromFile(
 	source: string,
 ): { skill: Skill | null; diagnostics: ResourceDiagnostic[] } {
 	const diagnostics: ResourceDiagnostic[] = [];
+	const isDeclaredSkill = basename(filePath) === "SKILL.md";
 
+	let rawContent: string;
 	try {
-		const rawContent = readFileSync(filePath, "utf-8");
-		const { frontmatter } = parseFrontmatter<SkillFrontmatter>(rawContent);
-		const skillDir = dirname(filePath);
-		const parentDirName = basename(skillDir);
-
-		// Validate description
-		const descErrors = validateDescription(frontmatter.description);
-		for (const error of descErrors) {
-			diagnostics.push({ type: "warning", message: error, path: filePath });
-		}
-
-		// Use name from frontmatter, or fall back to parent directory name
-		const name = frontmatter.name || parentDirName;
-
-		// Validate name
-		const nameErrors = validateName(name, parentDirName);
-		for (const error of nameErrors) {
-			diagnostics.push({ type: "warning", message: error, path: filePath });
-		}
-
-		// Still load the skill even with warnings (unless description is completely missing)
-		if (!frontmatter.description || frontmatter.description.trim() === "") {
-			return { skill: null, diagnostics };
-		}
-
-		return {
-			skill: {
-				name,
-				description: frontmatter.description,
-				filePath,
-				baseDir: skillDir,
-				sourceInfo: createSkillSourceInfo(filePath, skillDir, source),
-				disableModelInvocation: frontmatter["disable-model-invocation"] === true,
-			},
-			diagnostics,
-		};
+		rawContent = readFileSync(filePath, "utf-8");
 	} catch (error) {
-		const message = error instanceof Error ? error.message : "failed to parse skill file";
+		const message = error instanceof Error ? error.message : "failed to read skill file";
 		diagnostics.push({ type: "warning", message, path: filePath });
 		return { skill: null, diagnostics };
 	}
+
+	let frontmatter: SkillFrontmatter;
+	try {
+		({ frontmatter } = parseFrontmatter<SkillFrontmatter>(rawContent));
+	} catch (error) {
+		if (isDeclaredSkill) {
+			const message = error instanceof Error ? error.message : "failed to parse skill file";
+			diagnostics.push({ type: "warning", message, path: filePath });
+		}
+		return { skill: null, diagnostics };
+	}
+
+	const description = frontmatter.description;
+	const hasDescription = typeof description === "string" && description.trim() !== "";
+	if (!isDeclaredSkill && !hasDescription) {
+		return { skill: null, diagnostics };
+	}
+
+	const skillDir = dirname(filePath);
+	const parentDirName = basename(skillDir);
+
+	// Validate description
+	const descErrors = validateDescription(description);
+	for (const error of descErrors) {
+		diagnostics.push({ type: "warning", message: error, path: filePath });
+	}
+
+	// Use name from frontmatter, or fall back to parent directory name
+	const frontmatterName = typeof frontmatter.name === "string" ? frontmatter.name : undefined;
+	const name = frontmatterName || parentDirName;
+
+	// Validate name
+	const nameErrors = validateName(name);
+	for (const error of nameErrors) {
+		diagnostics.push({ type: "warning", message: error, path: filePath });
+	}
+
+	// Still load the skill even with warnings, unless description is missing or empty.
+	if (!hasDescription) {
+		return { skill: null, diagnostics };
+	}
+
+	return {
+		skill: {
+			name,
+			description,
+			filePath,
+			baseDir: skillDir,
+			sourceInfo: createSkillSourceInfo(filePath, skillDir, source),
+			disableModelInvocation: frontmatter["disable-model-invocation"] === true,
+		},
+		diagnostics,
+	};
 }
 
 /**
@@ -385,28 +400,16 @@ export interface LoadSkillsOptions {
 	includeDefaults: boolean;
 }
 
-function normalizePath(input: string): string {
-	const trimmed = input.trim();
-	if (trimmed === "~") return homedir();
-	if (trimmed.startsWith("~/")) return join(homedir(), trimmed.slice(2));
-	if (trimmed.startsWith("~")) return join(homedir(), trimmed.slice(1));
-	return trimmed;
-}
-
-function resolveSkillPath(p: string, cwd: string): string {
-	const normalized = normalizePath(p);
-	return isAbsolute(normalized) ? normalized : resolve(cwd, normalized);
-}
-
 /**
  * Load skills from all configured locations.
  * Returns skills and any validation diagnostics.
  */
 export function loadSkills(options: LoadSkillsOptions): LoadSkillsResult {
-	const { cwd, agentDir, skillPaths, includeDefaults } = options;
+	const { agentDir, skillPaths, includeDefaults } = options;
 
 	// Resolve agentDir - if not provided, use default from config
-	const resolvedAgentDir = agentDir ?? getAgentDir();
+	const resolvedCwd = resolvePath(options.cwd);
+	const resolvedAgentDir = resolvePath(agentDir ?? getAgentDir());
 
 	const skillMap = new Map<string, Skill>();
 	const realPathSet = new Set<string>();
@@ -446,11 +449,11 @@ export function loadSkills(options: LoadSkillsOptions): LoadSkillsResult {
 
 	if (includeDefaults) {
 		addSkills(loadSkillsFromDirInternal(join(resolvedAgentDir, "skills"), "user", true));
-		addSkills(loadSkillsFromDirInternal(resolve(cwd, CONFIG_DIR_NAME, "skills"), "project", true));
+		addSkills(loadSkillsFromDirInternal(resolve(resolvedCwd, CONFIG_DIR_NAME, "skills"), "project", true));
 	}
 
 	const userSkillsDir = join(resolvedAgentDir, "skills");
-	const projectSkillsDir = resolve(cwd, CONFIG_DIR_NAME, "skills");
+	const projectSkillsDir = resolve(resolvedCwd, CONFIG_DIR_NAME, "skills");
 
 	const isUnderPath = (target: string, root: string): boolean => {
 		const normalizedRoot = resolve(root);
@@ -470,7 +473,7 @@ export function loadSkills(options: LoadSkillsOptions): LoadSkillsResult {
 	};
 
 	for (const rawPath of skillPaths) {
-		const resolvedPath = resolveSkillPath(rawPath, cwd);
+		const resolvedPath = resolvePath(rawPath, resolvedCwd, { trim: true });
 		if (!existsSync(resolvedPath)) {
 			allDiagnostics.push({ type: "warning", message: "skill path does not exist", path: resolvedPath });
 			continue;
