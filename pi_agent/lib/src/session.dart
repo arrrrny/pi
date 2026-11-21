@@ -124,14 +124,34 @@ class Session {
   }
 
   /// Reconstructs the session context from the current branch.
+  ///
+  /// When the branch contains a compaction entry, only its summary plus the
+  /// entries from its `firstKeptEntryId` onward are returned — the summarized
+  /// older entries are dropped from the context.
   Future<SessionContext> buildContext() async {
-    final branch = await getBranch();
+    final branch = await getBranch(); // leaf → root
+    final chronological = branch.reversed.toList(); // root → leaf
     final messages = <AgentMessage>[];
     ThinkingLevel thinkingLevel = ThinkingLevel.off;
     Model? model;
 
-    for (final entry in branch.reversed) {
-      switch (entry) {
+    final compactionIndex =
+        chronological.lastIndexWhere((e) => e is CompactionEntry);
+    var start = 0;
+    if (compactionIndex >= 0) {
+      final compaction = chronological[compactionIndex] as CompactionEntry;
+      messages.add(CustomMessage(
+        type: 'compaction',
+        data: const {},
+        display: compaction.summary,
+      ));
+      final keptIndex = chronological
+          .indexWhere((e) => e.id == compaction.firstKeptEntryId);
+      start = keptIndex >= 0 ? keptIndex : chronological.length;
+    }
+
+    for (var i = start; i < chronological.length; i++) {
+      switch (chronological[i]) {
         case MessageEntry(message: final msg):
           messages.add(msg);
         case ThinkingLevelChangeEntry(level: final lvl):

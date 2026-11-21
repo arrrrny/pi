@@ -6,6 +6,9 @@ library;
 import 'dart:async';
 
 import 'types.dart';
+import 'agent_loop.dart';
+import 'llm_client.dart';
+import 'conversion.dart' as conversion;
 
 /// Callback type for agent event listeners.
 typedef AgentEventListener = FutureOr<void> Function(AgentEvent event);
@@ -102,6 +105,7 @@ class Agent {
   final String? _sessionId;
   Stream<AgentEvent> Function(AgentContext context, AgentLoopConfig config)?
       _streamFn;
+  final LoopStreamFn? _loopStreamFn;
   Future<List<Map<String, dynamic>>> Function(List<AgentMessage>)?
       _convertToLlm;
   Future<List<AgentMessage>> Function(List<AgentMessage>,
@@ -140,6 +144,7 @@ class Agent {
     String? sessionId,
     Stream<AgentEvent> Function(AgentContext context, AgentLoopConfig config)?
         streamFn,
+    LoopStreamFn? loopStreamFn,
     Future<List<Map<String, dynamic>>> Function(List<AgentMessage>)?
         convertToLlm,
     Future<List<AgentMessage>> Function(List<AgentMessage>,
@@ -159,6 +164,7 @@ class Agent {
     Map<String, String>? extraHeaders,
   })  : _sessionId = options?.sessionId ?? sessionId,
         _streamFn = options?.streamFn ?? streamFn,
+        _loopStreamFn = loopStreamFn,
         _convertToLlm = options?.convertToLlm ?? convertToLlm,
         _transformContext = options?.transformContext ?? transformContext,
         _getApiKey = options?.getApiKey ?? getApiKey,
@@ -263,7 +269,8 @@ class Agent {
 
     final msgs = _inputToMessages(input);
     _state.internalMessages.addAll(msgs);
-    await _run();
+    _activeRun = _run();
+    await _activeRun;
   }
 
   /// Continue the conversation from the current transcript.
@@ -279,7 +286,8 @@ class Agent {
       throw StateError('Cannot continue: transcript is empty.');
     }
 
-    await _run();
+    _activeRun = _run();
+    await _activeRun;
   }
 
   /// Queue a steering message to be injected during the next turn.
@@ -422,18 +430,15 @@ class Agent {
 
   Stream<AgentEvent> _defaultStreamFn(
       AgentContext context, AgentLoopConfig config) {
-    return Stream.empty();
+    return turnLoop(
+      context,
+      config,
+      streamFn: _loopStreamFn ?? streamLLM,
+      abortSignal: _abortCompleter,
+    );
   }
 
   Future<List<Map<String, dynamic>>> _defaultConvertToLlm(
-      List<AgentMessage> msgs) async {
-    return msgs
-        .whereType<UserMessage>()
-        .map((m) => {
-              'role': 'user',
-              'content':
-                  m.content.whereType<TextBlock>().map((b) => b.text).join(),
-            })
-        .toList();
-  }
+      List<AgentMessage> msgs) =>
+      conversion.convertToLlm(msgs);
 }

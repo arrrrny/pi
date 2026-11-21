@@ -1,7 +1,11 @@
 /// Context compaction utilities.
 library;
 
+import 'dart:async';
+
 import 'types.dart';
+import 'agent_loop.dart';
+import 'conversion.dart' as conversion;
 
 /// Default compaction settings.
 const CompactionSettings defaultCompactionSettings = CompactionSettings();
@@ -164,5 +168,62 @@ String _generatePlaceholderSummary(String serialized, String? previousSummary) {
   buffer.writeln(serialized.length > 2000
       ? '${serialized.substring(0, 2000)}...'
       : serialized);
+  return buffer.toString();
+}
+
+/// Instructions used when summarizing a conversation for compaction.
+const String defaultCompactionInstructions =
+    'Summarize the following conversation. Preserve the key facts, decisions, '
+    'file paths, and open questions needed to continue the work. Be concise.';
+
+/// Summarizes [messages] into a compact context summary using [loopStreamFn].
+///
+/// The transcript is serialized and sent to the model as a single user prompt;
+/// the model's text response is the summary. Returns an empty string for an
+/// empty transcript.
+Future<String> summarizeMessages(
+  List<AgentMessage> messages,
+  Model model, {
+  required LoopStreamFn loopStreamFn,
+  String? apiKey,
+  String? instructions,
+  Completer<void>? abortSignal,
+}) async {
+  if (messages.isEmpty) return '';
+
+  final config = AgentLoopConfig(
+    model: model,
+    convertToLlm: conversion.convertToLlm,
+  );
+  final transcript = serializeConversation(messages);
+  final promptText =
+      '${instructions ?? defaultCompactionInstructions}\n\n---\n$transcript';
+  final context = AgentContext(
+    systemPrompt: '',
+    messages: [UserMessage.text(promptText)],
+    tools: null,
+  );
+
+  final buffer = StringBuffer();
+  await for (final event in loopStreamFn(
+    context: context,
+    config: config,
+    apiKey: apiKey ?? '',
+    abortSignal: abortSignal,
+  )) {
+    switch (event) {
+      case MessageUpdate(message: final m):
+        if (m is AssistantMessage) {
+          buffer
+            ..clear()
+            ..write(m.text);
+        }
+      case MessageEnd(message: final m):
+        if (m is AssistantMessage && m.text.isNotEmpty) return m.text;
+        return buffer.toString();
+      default:
+        break;
+    }
+  }
   return buffer.toString();
 }

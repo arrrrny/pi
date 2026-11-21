@@ -79,15 +79,15 @@ A developer wants conversation history to persist across application restarts. T
 
 ### User Story 5 - Configure and Integrate with LLM Providers (Priority: P2)
 
-A developer selects an LLM provider (e.g., OpenAI-compatible, Anthropic) and model. The package manages API key resolution, streaming token generation, and provider-specific request formatting transparently.
+A developer selects an OpenAI-compatible model endpoint and model. The package manages API key resolution, streaming token generation, and request formatting transparently. Only the OpenAI chat-completions API is supported (any base URL); per-provider adapters are intentionally out of scope.
 
-**Why this priority**: LLM integration is necessary but a developer can start with a single provider before needing multi-provider support.
+**Why this priority**: LLM integration is necessary; a single, slim, OpenAI-compatible client covers local runtimes, proxies, and hosted providers alike.
 
-**Independent Test**: Configure an Agent with different model identifiers, verify that stream events are emitted correctly, and that provider-specific options are applied.
+**Independent Test**: Configure an Agent with a model and `baseUrl`, verify that stream events are emitted correctly, and that request options are applied.
 
 **Acceptance Scenarios**:
 
-1. **Given** an Agent configured with a specific model and API key, **When** a prompt is sent, **Then** the package formats the request for the correct provider and streams the response back as events.
+1. **Given** an Agent configured with a model, `baseUrl`, and API key, **When** a prompt is sent, **Then** the package formats an OpenAI-compatible request and streams the response back as events.
 
 2. **Given** an Agent with thinking/reasoning capability enabled, **When** a prompt is sent, **Then** thinking content blocks are emitted alongside text content in message events.
 
@@ -200,7 +200,17 @@ A developer provides an execution environment abstraction that the agent uses to
 - Tool parameter schemas use a JSON Schema-compatible description format
 - Skills are stored as markdown files with YAML frontmatter, following the same format as the source pi agent package
 - Session storage uses JSON Lines (JSONL) format for file-based persistence, matching the source package
-- The Dart project will not have its own `ai` subpackage; the agent package will directly consume LLM APIs or depend on a Dart AI client library
-- The package does not need to mirror the AgentHarness class (which is a higher-level orchestrator specific to the pi CLI application)
+- The Dart project will not have its own `ai` subpackage; the agent package ships a single, slim, OpenAI-compatible streaming client (`baseUrl`-configurable) and defines no per-provider adapters
+- **The harness IS in scope** (reconciled 2026-11-21): a Dart-native harness layer — sessions, forks, compaction, subagents, and crash-recovery durability — modeled on the behavior of `@earendil-works/pi-durable` (its `docs/spec.md` is the behavioral blueprint) but backed by a simple Dart durability model (JSONL / in-memory), NOT a port of `chord`
+- The agent-core (`@earendil-works/pi-agent-core`) is the engine pi actually runs and is the first porting target; the harness layers on top of it
 - The package does not need to mirror the proxy streaming functionality (which is server-side routing logic)
 - YAML frontmatter parsing uses the public `yaml` package from pub.dev
+
+## Scope Reconciliation (2026-11-21)
+
+The original Draft excluded the harness and allowed multiple providers. The refined objective is: **a faithful Dart port of pi's agent-core plus a Dart-native harness, with an extremely slim OpenAI-only provider.** Decisions:
+
+- **LLM provider**: OpenAI-compatible only (`/chat/completions`, any `baseUrl`). No Anthropic or per-provider code.
+- **agent-core**: port of `@earendil-works/pi-agent-core` — the Agent loop, tool execution (parallel/sequential), hooks, steering/follow-up, abort, sessions, skills, compaction, execution env. This is what the shipping pi CLI runs.
+- **harness**: a Dart-native layer modeled on `@earendil-works/pi-durable`'s behavior (durable conversations, forks, subagents, task graph, crash recovery) using a simple Dart storage model (JSONL / memory) rather than porting `chord` (67k LOC). "Exactly like pi" is interpreted as behavioral parity of the engine + harness experience, not a line-for-line port of durable's chord internals.
+- **Out of scope**: `chord`, `pi-ai`'s provider zoo, `pi-codemode`, proxy streaming.

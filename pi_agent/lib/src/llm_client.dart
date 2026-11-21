@@ -1,4 +1,4 @@
-/// LLM client for streaming completions.
+/// LLM client for OpenAI-compatible streaming completions.
 library;
 
 import 'dart:async';
@@ -9,75 +9,83 @@ import 'package:http/http.dart' as http;
 import 'types.dart';
 import 'sse_parser.dart';
 
-/// Streams an LLM completion request and returns parsed events.
+/// Default base URL for the official OpenAI API.
+const String defaultOpenAiBaseUrl = 'https://api.openai.com/v1';
+
+/// Streams a completion from an OpenAI-compatible `/chat/completions` endpoint.
 ///
-/// Supports OpenAI-compatible and Anthropic API formats.
-/// Uses [AbortableRequest] for cancellation support.
+/// The model's [Model.baseUrl] selects the endpoint (defaulting to OpenAI),
+/// so any server implementing the OpenAI chat-completions API works. Emits
+/// [MessageUpdate] as content streams in and a final [MessageEnd] carrying the
+/// assembled assistant message (text, tool calls, stop reason, usage).
 Stream<AgentEvent> streamLLM({
   required AgentContext context,
   required AgentLoopConfig config,
   required String apiKey,
   required Completer<void>? abortSignal,
 }) async* {
-  final isAnthropic = config.model.provider.toLowerCase() == 'anthropic';
-  final (url, headers, body) = isAnthropic
-      ? _buildAnthropicRequest(context, config, apiKey)
-      : _buildOpenAIRequest(context, config, apiKey);
+  final (url, headers, body) = await _buildRequest(context, config, apiKey);
 
   final client = http.Client();
+  StreamSubscription<void>? abortSub;
+  var aborted = false;
   try {
-    final request = http.Request('POST', url);
-    request.headers.addAll(headers);
-    request.body = body;
+    if (abortSignal != null) {
+      abortSub = abortSignal.future.asStream().listen((_) {
+        aborted = true;
+        client.close();
+      });
+    }
 
-    final responseStream = client.send(request);
+    final request = http.Request('POST', url)
+      ..headers.addAll(headers)
+      ..body = body;
 
-    final response = await responseStream;
+    final response = await client.send(request);
 
     if (response.statusCode != 200) {
       final errorBody = await response.stream.bytesToString();
-      yield AgentEnd(
-        messages: [
-          AssistantMessage(
-            content: [
-              TextBlock('LLM error: ${response.statusCode} - $errorBody')
-            ],
-          ),
-        ],
+      yield MessageEnd(
+        message: AssistantMessage(
+          content: [
+            TextBlock('LLM error: ${response.statusCode} - $errorBody'),
+          ],
+          stopReason: StopReason.refused,
+        ),
       );
       return;
     }
 
-    var currentContent = <dynamic>[];
-    String? currentMessageId;
+    final content = <dynamic>[];
+    String? messageId;
     StopReason? stopReason;
     Usage? usage;
-    final toolCallBuffers = <String, _ToolCallBuffer>{};
+    final toolCallBuffers = <int, _ToolCallBuffer>{};
 
     await for (final event in parseSSE(response.stream)) {
+      if (aborted || (abortSignal?.isCompleted ?? false)) break;
+
       final data = event['data'];
-      if (data == null || data == '[DONE]') continue;
+      if (data == null || data.isEmpty || data == '[DONE]') continue;
 
       try {
-        final json = jsonDecode(data) as Map<String, dynamic>;
+        final changed = _applyChunk(
+          jsonDecode(data) as Map<String, dynamic>,
+          content: content,
+          toolCallBuffers: toolCallBuffers,
+          onMessageId: (id) => messageId = id,
+          onStopReason: (sr) => stopReason = sr,
+          onUsage: (u) => usage = u,
+        );
 
-        if (isAnthropic) {
-          yield* _handleAnthropicEvent(
-            json,
-            currentContent,
-            toolCallBuffers,
-            (id) => currentMessageId = id,
-            (sr) => stopReason = sr,
-            (u) => usage = u,
-          );
-        } else {
-          yield* _handleOpenAIEvent(
-            json,
-            currentContent,
-            toolCallBuffers,
-            (id) => currentMessageId = id,
-            (sr) => stopReason = sr,
-            (u) => usage = u,
+        // Surface a message update only when the content actually changed, so
+        // trailing keep-alive / usage-only chunks don't emit duplicate updates.
+        if (changed) {
+          yield MessageUpdate(
+            message: AssistantMessage(
+              id: messageId,
+              content: List<dynamic>.from(content),
+            ),
           );
         }
       } catch (_) {
@@ -85,258 +93,184 @@ Stream<AgentEvent> streamLLM({
       }
     }
 
-    final finalContent = <dynamic>[...currentContent];
+    if (aborted) return;
+
+    final finalContent = <dynamic>[...content];
     for (final tcb in toolCallBuffers.values) {
-      if (tcb.name != null) {
-        final args = tcb.argumentsBuffer.isNotEmpty
-            ? (jsonDecode(tcb.argumentsBuffer) as Map<String, dynamic>)
-            : <String, dynamic>{};
-        finalContent
-            .add(ToolCallBlock(id: tcb.id, name: tcb.name!, arguments: args));
+      if (tcb.name != null && tcb.name!.isNotEmpty) {
+        finalContent.add(
+          ToolCallBlock(
+            id: tcb.id,
+            name: tcb.name!,
+            arguments: _decodeArguments(tcb.argumentsBuffer),
+          ),
+        );
       }
     }
 
-    final assistantMessage = AssistantMessage(
-      id: currentMessageId,
-      content: finalContent,
-      stopReason: stopReason,
-      usage: usage,
+    yield MessageEnd(
+      message: AssistantMessage(
+        id: messageId,
+        content: finalContent,
+        stopReason: stopReason ?? StopReason.endTurn,
+        usage: usage,
+      ),
     );
-
-    yield MessageEnd(message: assistantMessage);
+  } on http.RequestAbortedException {
+    // The request was cancelled; emit nothing further.
   } catch (e) {
-    if (e is http.RequestAbortedException) return;
-    yield AgentEnd(messages: []);
+    yield MessageEnd(
+      message: AssistantMessage(
+        content: [TextBlock('LLM error: $e')],
+        stopReason: StopReason.refused,
+      ),
+    );
   } finally {
+    await abortSub?.cancel();
     client.close();
   }
 }
 
-(Uri, Map<String, String>, String) _buildOpenAIRequest(
+/// Builds the POST target, headers, and JSON body for one completion request.
+Future<(Uri, Map<String, String>, String)> _buildRequest(
   AgentContext context,
   AgentLoopConfig config,
   String apiKey,
-) {
-  final url = Uri.parse('https://api.openai.com/v1/chat/completions');
+) async {
+  final base =
+      (config.model.baseUrl != null && config.model.baseUrl!.isNotEmpty)
+          ? config.model.baseUrl!
+          : defaultOpenAiBaseUrl;
+  final normalized =
+      base.endsWith('/') ? base.substring(0, base.length - 1) : base;
+  final url = Uri.parse('$normalized/chat/completions');
+
   final headers = <String, String>{
     'Authorization': 'Bearer $apiKey',
     'Content-Type': 'application/json',
     'Accept': 'text/event-stream',
+    ...?config.extraHeaders,
   };
 
+  final converted = await config.convertToLlm(context.messages);
+  final messages = <Map<String, dynamic>>[
+    if (context.systemPrompt.isNotEmpty)
+      {'role': 'system', 'content': context.systemPrompt},
+    ...converted,
+  ];
+
+  final tools = context.tools;
   final body = jsonEncode({
     'model': config.model.modelId,
-    'messages': [
-      {'role': 'system', 'content': context.systemPrompt},
-      ...?context.tools != null && context.tools!.isNotEmpty ? null : null,
-    ],
+    'messages': messages,
     'stream': true,
+    'stream_options': {'include_usage': true},
     if (config.maxTokens != null) 'max_tokens': config.maxTokens,
     if (config.temperature != null) 'temperature': config.temperature,
     if (config.topP != null) 'top_p': config.topP,
-    if (context.tools != null && context.tools!.isNotEmpty)
-      'tools': context.tools!
-          .map((t) => (t as dynamic).toApiFormat() as Map<String, dynamic>)
-          .toList(),
+    if (tools != null && tools.isNotEmpty)
+      'tools': tools.map((t) => t.toApiFormat()).toList(),
   });
 
   return (url, headers, body);
 }
 
-(Uri, Map<String, String>, String) _buildAnthropicRequest(
-  AgentContext context,
-  AgentLoopConfig config,
-  String apiKey,
-) {
-  final url = Uri.parse('https://api.anthropic.com/v1/messages');
-  final headers = <String, String>{
-    'x-api-key': apiKey,
-    'anthropic-version': '2023-06-01',
-    'Content-Type': 'application/json',
-    'Accept': 'text/event-stream',
-  };
+/// Applies one SSE chunk to the accumulating assistant content.
+///
+/// Returns whether the assistant content changed (text appended or a tool-call
+/// argument accumulated), so the caller can emit a message update only then.
+bool _applyChunk(
+  Map<String, dynamic> json, {
+  required List<dynamic> content,
+  required Map<int, _ToolCallBuffer> toolCallBuffers,
+  required void Function(String?) onMessageId,
+  required void Function(StopReason) onStopReason,
+  required void Function(Usage) onUsage,
+}) {
+  var changed = false;
+  final id = json['id'];
+  if (id is String && id.isNotEmpty) onMessageId(id);
 
-  final body = jsonEncode({
-    'model': config.model.modelId,
-    'max_tokens': config.maxTokens ?? 4096,
-    'system': context.systemPrompt,
-    'messages': [],
-    'stream': true,
-    if (config.temperature != null) 'temperature': config.temperature,
-    if (config.topP != null) 'top_p': config.topP,
-    if (context.tools != null && context.tools!.isNotEmpty)
-      'tools': context.tools!
-          .map((t) => (t as dynamic).toApiFormat() as Map<String, dynamic>)
-          .toList(),
-  });
-
-  return (url, headers, body);
-}
-
-Stream<AgentEvent> _handleOpenAIEvent(
-  Map<String, dynamic> json,
-  List<dynamic> currentContent,
-  Map<String, _ToolCallBuffer> toolCallBuffers,
-  void Function(String?) setId,
-  void Function(StopReason) setStopReason,
-  void Function(Usage) setUsage,
-) async* {
-  final choices = json['choices'] as List<dynamic>?;
-  if (choices == null || choices.isEmpty) return;
-
-  final choice = choices[0] as Map<String, dynamic>;
-  final delta = choice['delta'] as Map<String, dynamic>?;
-  if (delta == null) return;
-
-  if (delta.containsKey('content') && delta['content'] != null) {
-    final text = delta['content'] as String;
-    final textBlock = TextBlock(text);
-    currentContent.add(textBlock);
-
-    final msg = AssistantMessage(content: List.from(currentContent));
-    yield MessageUpdate(message: msg);
-  }
-
-  final toolCalls = delta['tool_calls'] as List<dynamic>?;
-  if (toolCalls != null) {
-    for (final tc in toolCalls) {
-      final tcMap = tc as Map<String, dynamic>;
-      final index = tcMap['index'] as int;
-      final id = tcMap['id'] as String?;
-      final function = tcMap['function'] as Map<String, dynamic>?;
-
-      final key = '$index';
-      toolCallBuffers.putIfAbsent(
-          key, () => _ToolCallBuffer(id: id ?? '', argumentsBuffer: ''));
-      final buffer = toolCallBuffers[key]!;
-
-      if (id != null) buffer.id = id;
-      if (function != null) {
-        if (function.containsKey('name') && function['name'] != null) {
-          buffer.name = function['name'] as String;
+  final choices = json['choices'];
+  if (choices is List && choices.isNotEmpty) {
+    final choice = choices.first;
+    if (choice is Map<String, dynamic>) {
+      final delta = choice['delta'];
+      if (delta is Map<String, dynamic>) {
+        final textDelta = delta['content'];
+        if (textDelta is String && textDelta.isNotEmpty) {
+          content.add(TextBlock(textDelta));
+          changed = true;
         }
-        if (function.containsKey('arguments') &&
-            function['arguments'] != null) {
-          buffer.argumentsBuffer += function['arguments'] as String;
+        final toolCalls = delta['tool_calls'];
+        if (toolCalls is List) {
+          for (final tc in toolCalls) {
+            if (tc is Map<String, dynamic>) {
+              _accumulateToolCall(tc, toolCallBuffers);
+              changed = true;
+            }
+          }
         }
       }
+      final finishReason = choice['finish_reason'];
+      if (finishReason is String) onStopReason(_parseStopReason(finishReason));
     }
   }
 
-  final finishReason = choice['finish_reason'] as String?;
-  if (finishReason != null) {
-    setStopReason(_parseStopReason(finishReason));
+  final usageJson = json['usage'];
+  if (usageJson is Map<String, dynamic>) {
+    onUsage(
+      Usage(
+        inputTokens: (usageJson['prompt_tokens'] as num?)?.toInt() ?? 0,
+        outputTokens: (usageJson['completion_tokens'] as num?)?.toInt() ?? 0,
+      ),
+    );
   }
+  return changed;
+}
 
-  final usage = json['usage'] as Map<String, dynamic>?;
-  if (usage != null) {
-    setUsage(Usage(
-      inputTokens: usage['prompt_tokens'] as int? ?? 0,
-      outputTokens: usage['completion_tokens'] as int? ?? 0,
-    ));
+void _accumulateToolCall(
+  Map<String, dynamic> tc,
+  Map<int, _ToolCallBuffer> buffers,
+) {
+  final index = (tc['index'] as num?)?.toInt() ?? buffers.length;
+  final buffer = buffers.putIfAbsent(index, () => _ToolCallBuffer());
+
+  final id = tc['id'];
+  if (id is String && id.isNotEmpty) buffer.id = id;
+
+  final fn = tc['function'];
+  if (fn is Map<String, dynamic>) {
+    final name = fn['name'];
+    if (name is String && name.isNotEmpty) buffer.name = name;
+    final args = fn['arguments'];
+    if (args is String) buffer.argumentsBuffer += args;
   }
 }
 
-Stream<AgentEvent> _handleAnthropicEvent(
-  Map<String, dynamic> json,
-  List<dynamic> currentContent,
-  Map<String, _ToolCallBuffer> toolCallBuffers,
-  void Function(String?) setId,
-  void Function(StopReason) setStopReason,
-  void Function(Usage) setUsage,
-) async* {
-  final type = json['type'] as String;
-
-  switch (type) {
-    case 'message_start':
-      final message = json['message'] as Map<String, dynamic>?;
-      if (message != null) {
-        setId(message['id'] as String?);
-        final msgUsage = message['usage'] as Map<String, dynamic>?;
-        if (msgUsage != null) {
-          setUsage(Usage(
-            inputTokens: msgUsage['input_tokens'] as int? ?? 0,
-            outputTokens: msgUsage['output_tokens'] as int? ?? 0,
-          ));
-        }
-      }
-
-    case 'content_block_start':
-      final index = json['index'] as int;
-      final contentBlock = json['content_block'] as Map<String, dynamic>?;
-      if (contentBlock != null) {
-        final blockType = contentBlock['type'] as String;
-        if (blockType == 'tool_use') {
-          final id = contentBlock['id'] as String;
-          final name = contentBlock['name'] as String;
-          toolCallBuffers['$index'] = _ToolCallBuffer(
-            id: id,
-            name: name,
-            argumentsBuffer: '',
-          );
-        }
-      }
-
-    case 'content_block_delta':
-      final delta = json['delta'] as Map<String, dynamic>?;
-      final index = json['index'] as int;
-      if (delta != null) {
-        final deltaType = delta['type'] as String;
-        if (deltaType == 'text_delta') {
-          final text = delta['text'] as String;
-          currentContent.add(TextBlock(text));
-          yield MessageUpdate(
-            message: AssistantMessage(content: List.from(currentContent)),
-          );
-        } else if (deltaType == 'thinking_delta') {
-          final thinking = delta['thinking'] as String;
-          currentContent.add(ThinkingBlock(thinking));
-        } else if (deltaType == 'input_json_delta') {
-          final partialJson = delta['partial_json'] as String;
-          final key = '$index';
-          toolCallBuffers.putIfAbsent(
-              key, () => _ToolCallBuffer(id: '', argumentsBuffer: ''));
-          toolCallBuffers[key]!.argumentsBuffer += partialJson;
-        }
-      }
-
-    case 'message_delta':
-      final delta = json['delta'] as Map<String, dynamic>?;
-      if (delta != null) {
-        final stopReasonStr = delta['stop_reason'] as String?;
-        if (stopReasonStr != null) {
-          setStopReason(_parseStopReason(stopReasonStr));
-        }
-      }
-      final msgUsage = json['usage'] as Map<String, dynamic>?;
-      if (msgUsage != null) {
-        setUsage(Usage(
-          inputTokens: 0,
-          outputTokens: msgUsage['output_tokens'] as int? ?? 0,
-        ));
-      }
-
-    case 'message_stop':
-      break;
+Map<String, dynamic> _decodeArguments(String buffer) {
+  if (buffer.isEmpty) return <String, dynamic>{};
+  try {
+    final decoded = jsonDecode(buffer);
+    return decoded is Map<String, dynamic> ? decoded : <String, dynamic>{};
+  } catch (_) {
+    return <String, dynamic>{};
   }
 }
 
 StopReason _parseStopReason(String reason) => switch (reason) {
-      'stop' || 'end_turn' => StopReason.endTurn,
       'length' || 'max_tokens' => StopReason.maxTokens,
-      'tool_calls' || 'tool_use' => StopReason.toolUse,
-      'content_filter' || 'refusal' => StopReason.refused,
+      'tool_calls' || 'function_call' => StopReason.toolUse,
+      'content_filter' => StopReason.refused,
+      'stop' || 'stop_sequence' || 'end_turn' => StopReason.endTurn,
       _ => StopReason.endTurn,
     };
 
 class _ToolCallBuffer {
-  String id;
+  String id = '';
   String? name;
-  String argumentsBuffer;
+  String argumentsBuffer = '';
 
-  _ToolCallBuffer({
-    required this.id,
-    this.name,
-    required this.argumentsBuffer,
-  });
+  @override
+  String toString() => 'id: $id, name: $name, args: $argumentsBuffer';
 }

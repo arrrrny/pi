@@ -270,6 +270,9 @@ void main() {
       );
       agent.subscribe((e) => events.add(e));
 
+      agent.prompt('go');
+      await Future<void>.delayed(const Duration(milliseconds: 5));
+
       controller.add(MessageEnd(
         message: AssistantMessage(content: [const TextBlock('first')]),
       ));

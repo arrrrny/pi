@@ -1,0 +1,239 @@
+import 'dart:async';
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:test/test.dart';
+import 'package:pi/src/types.dart' hide AgentTool;
+import 'package:pi/src/tools.dart';
+import 'package:pi/src/conversion.dart';
+import 'package:pi/src/llm_client.dart';
+
+/// A minimal OpenAI-compatible SSE server for hermetic client tests.
+///
+/// Records the last request it received and streams back a canned set of
+/// `data:` frames, so the client's request building and response parsing can be
+/// verified without any real network access.
+class _FakeOpenAIServer {
+  _FakeOpenAIServer(this.frames);
+
+  final List<String> frames;
+  HttpServer? _server;
+  Map<String, dynamic>? lastBody;
+  String? lastAuth;
+  String? lastPath;
+
+  Uri get url => Uri.parse('http://127.0.0.1:${_server!.port}/v1');
+
+  Future<void> start() async {
+    _server = await HttpServer.bind(InternetAddress.loopbackIPv4, 0);
+    _server!.listen((request) async {
+      lastPath = request.uri.path;
+      lastAuth = request.headers.value('authorization');
+      final raw = await utf8.decoder.bind(request).join();
+      lastBody = raw.isEmpty ? null : jsonDecode(raw) as Map<String, dynamic>;
+      request.response.statusCode = 200;
+      request.response.headers.set('content-type', 'text/event-stream');
+      for (final frame in frames) {
+        request.response.write('data: $frame\n\n');
+      }
+      request.response.write('data: [DONE]\n\n');
+      await request.response.close();
+    });
+  }
+
+  Future<void> stop() => _server!.close(force: true);
+}
+
+AgentLoopConfig makeConfig(Model model) =>
+    AgentLoopConfig(model: model, convertToLlm: convertToLlm);
+
+Model makeModel(String baseUrl) => Model(
+      provider: 'openai',
+      modelId: 'gpt-test',
+      contextWindow: 8000,
+      baseUrl: baseUrl,
+    );
+
+MessageEnd singleEnd(List<AgentEvent> events) =>
+    events.whereType<MessageEnd>().single;
+
+void main() {
+  group('streamLLM (OpenAI-compatible)', () {
+    late _FakeOpenAIServer server;
+
+    setUp(() async {
+      server = _FakeOpenAIServer([]);
+      await server.start();
+    });
+
+    tearDown(() async {
+      await server.stop();
+    });
+
+    test('posts to /chat/completions with bearer auth', () async {
+      server.frames.addAll([
+        jsonEncode({
+          'id': 'cmpl-1',
+          'choices': [
+            {'delta': {'content': 'Hello'}, 'finish_reason': null},
+          ],
+        }),
+        jsonEncode({
+          'id': 'cmpl-1',
+          'choices': [
+            {'delta': {}, 'finish_reason': 'stop'},
+          ],
+          'usage': {'prompt_tokens': 5, 'completion_tokens': 2},
+        }),
+      ]);
+
+      final events = await streamLLM(
+        context: AgentContext(
+            systemPrompt: 'sys', messages: [UserMessage.text('hi')]),
+        config: makeConfig(makeModel(server.url.toString())),
+        apiKey: 'secret-key',
+        abortSignal: null,
+      ).toList();
+
+      expect(server.lastPath, '/v1/chat/completions');
+      expect(server.lastAuth, 'Bearer secret-key');
+
+      final body = server.lastBody!;
+      expect(body['model'], 'gpt-test');
+      expect(body['stream'], true);
+      final messages = body['messages'] as List<dynamic>;
+      expect(messages.first, {'role': 'system', 'content': 'sys'});
+      expect(messages[1]['role'], 'user');
+      expect(messages[1]['content'], 'hi');
+
+      expect(events.whereType<MessageUpdate>(), isNotEmpty);
+      final msg = singleEnd(events).message as AssistantMessage;
+      expect(msg.text, 'Hello');
+      expect(msg.stopReason, StopReason.endTurn);
+      expect(msg.usage?.inputTokens, 5);
+      expect(msg.usage?.outputTokens, 2);
+    });
+
+    test('accumulates streamed tool calls', () async {
+      server.frames.addAll([
+        jsonEncode({
+          'id': 'cmpl-2',
+          'choices': [
+            {
+              'delta': {
+                'tool_calls': [
+                  {
+                    'index': 0,
+                    'id': 'call_a',
+                    'function': {'name': 'read_file', 'arguments': '{"p'},
+                  },
+                ],
+              },
+              'finish_reason': null,
+            },
+          ],
+        }),
+        jsonEncode({
+          'id': 'cmpl-2',
+          'choices': [
+            {
+              'delta': {
+                'tool_calls': [
+                  {
+                    'index': 0,
+                    'function': {
+                      'arguments': 'ath":"x"}',
+                    },
+                  },
+                ],
+              },
+              'finish_reason': 'tool_calls',
+            },
+          ],
+        }),
+      ]);
+
+      final events = await streamLLM(
+        context: AgentContext(
+            systemPrompt: '', messages: [UserMessage.text('go')]),
+        config: makeConfig(makeModel(server.url.toString())),
+        apiKey: 'k',
+        abortSignal: null,
+      ).toList();
+
+      final msg = singleEnd(events).message as AssistantMessage;
+      final calls = msg.toolCalls;
+      expect(calls, hasLength(1));
+      expect(calls.single.id, 'call_a');
+      expect(calls.single.name, 'read_file');
+      expect(calls.single.arguments, {'path': 'x'});
+      expect(msg.stopReason, StopReason.toolUse);
+    });
+
+    test('surfaces non-200 as a refused message', () async {
+      final bad = await HttpServer.bind(InternetAddress.loopbackIPv4, 0);
+      bad.listen((request) {
+        request.response.statusCode = 401;
+        request.response.write('unauthorized');
+        request.response.close();
+      });
+      addTearDown(() => bad.close(force: true));
+
+      final events = await streamLLM(
+        context: AgentContext(
+            systemPrompt: '', messages: [UserMessage.text('hi')]),
+        config: makeConfig(makeModel('http://127.0.0.1:${bad.port}/v1')),
+        apiKey: 'bad',
+        abortSignal: null,
+      ).toList();
+
+      final msg = singleEnd(events).message as AssistantMessage;
+      expect(msg.stopReason, StopReason.refused);
+      expect(msg.text, contains('401'));
+    });
+
+    test('sends serialized tools in the request', () async {
+      server.frames.addAll([
+        jsonEncode({
+          'id': 'cmpl-3',
+          'choices': [
+            {'delta': {'content': 'ok'}, 'finish_reason': 'stop'},
+          ],
+        }),
+      ]);
+
+      final tool = AgentTool(
+        name: 'echo',
+        description: 'Echo input',
+        parameters: {
+          'type': 'object',
+          'properties': {
+            'text': {'type': 'string'},
+          },
+          'required': ['text'],
+        },
+        execute: (id, params, {onUpdate, isAborted}) async =>
+            AgentToolResult(content: [const TextBlock('ok')], details: null),
+      );
+
+      await streamLLM(
+        context: AgentContext(
+          systemPrompt: '',
+          messages: [UserMessage.text('hi')],
+          tools: [tool],
+        ),
+        config: makeConfig(makeModel(server.url.toString())),
+        apiKey: 'k',
+        abortSignal: null,
+      ).toList();
+
+      final tools = server.lastBody!['tools'] as List<dynamic>;
+      expect(tools, hasLength(1));
+      final fn =
+          (tools.single as Map<String, dynamic>)['function'] as Map<String, dynamic>;
+      expect(fn['name'], 'echo');
+      expect(fn['description'], 'Echo input');
+      expect(fn['parameters'], isA<Map<String, dynamic>>());
+    });
+  });
+}

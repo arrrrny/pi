@@ -93,6 +93,13 @@ class Model {
   /// Whether the model supports tool/function calling.
   final bool supportsTools;
 
+  /// Base URL of the OpenAI-compatible API.
+  ///
+  /// When null, defaults to the official OpenAI endpoint. Point this at any
+  /// OpenAI-compatible server (a local runtime, a proxy, or another provider
+  /// that implements the `/chat/completions` API).
+  final String? baseUrl;
+
   /// Additional provider-specific configuration.
   final Map<String, dynamic>? extra;
 
@@ -104,6 +111,7 @@ class Model {
     this.supportsVision = false,
     this.supportsThinking = false,
     this.supportsTools = true,
+    this.baseUrl,
     this.extra,
   });
 

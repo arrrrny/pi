@@ -201,10 +201,11 @@ Map<String, dynamic> _entryToJson(SessionTreeEntry entry) {
   };
 
   return switch (entry) {
-    MessageEntry(:final role) => {
+    MessageEntry(:final role, :final message) => {
         ...base,
         'type': 'message',
         'role': role,
+        'message': _messageToJson(message),
       },
     ThinkingLevelChangeEntry(:final level) => {
         ...base,
@@ -268,7 +269,7 @@ SessionTreeEntry? _entryFromJson(Map<String, dynamic> json) {
         parentId: parentId,
         timestamp: timestamp,
         role: json['role'] as String? ?? 'user',
-        message: UserMessage.text(json['role'] as String? ?? ''),
+        message: _messageFromJson(json['message'] as Map<String, dynamic>?),
       ),
     'thinkingLevelChange' => ThinkingLevelChangeEntry(
         id: id,
@@ -316,4 +317,144 @@ SessionTreeEntry? _entryFromJson(Map<String, dynamic> json) {
       ),
     _ => null,
   };
+}
+
+// --- Message serialization (full round-trip for durable recovery) ---
+
+Map<String, dynamic> _messageToJson(AgentMessage message) => switch (message) {
+      UserMessage(:final content) => {
+          'kind': 'user',
+          'content': content.map(_contentBlockToJson).toList(),
+        },
+      AssistantMessage(
+        :final id,
+        :final content,
+        :final stopReason,
+        :final usage,
+      ) =>
+        {
+          'kind': 'assistant',
+          if (id != null) 'id': id,
+          'content': content.map(_contentBlockToJson).toList(),
+          if (stopReason != null) 'stopReason': stopReason.name,
+          if (usage != null) 'usage': _usageToJson(usage),
+        },
+      ToolResultMessage(
+        :final toolCallId,
+        :final toolName,
+        :final content,
+        :final isError,
+      ) =>
+        {
+          'kind': 'toolResult',
+          'toolCallId': toolCallId,
+          'toolName': toolName,
+          'content': content.map(_contentBlockToJson).toList(),
+          'isError': isError,
+        },
+      CustomMessage(:final type, :final data, :final display) => {
+          'kind': 'custom',
+          'type': type,
+          'data': data,
+          'display': display,
+        },
+    };
+
+AgentMessage _messageFromJson(Map<String, dynamic>? json) {
+  if (json == null) return UserMessage.text('');
+  final rawContent = json['content'] as List<dynamic>? ?? const [];
+  final content = rawContent
+      .whereType<Map<String, dynamic>>()
+      .map((e) => _contentBlockFromJson(e))
+      .toList();
+
+  switch (json['kind']) {
+    case 'assistant':
+      return AssistantMessage(
+        id: json['id'] as String?,
+        content: content,
+        stopReason: _stopReasonFromName(json['stopReason'] as String?),
+        usage: json['usage'] == null
+            ? null
+            : _usageFromJson(json['usage'] as Map<String, dynamic>),
+      );
+    case 'toolResult':
+      return ToolResultMessage(
+        toolCallId: json['toolCallId'] as String? ?? '',
+        toolName: json['toolName'] as String? ?? '',
+        content: content.whereType<ContentBlock>().toList(),
+        isError: json['isError'] as bool? ?? false,
+      );
+    case 'custom':
+      return CustomMessage(
+        type: json['type'] as String? ?? '',
+        data: json['data'] == null
+            ? const {}
+            : Map<String, dynamic>.from(
+                json['data'] as Map<String, dynamic>),
+        display: json['display'] as String? ?? '',
+      );
+    case 'user':
+    default:
+      return UserMessage(content: content.whereType<ContentBlock>().toList());
+  }
+}
+
+Map<String, dynamic> _contentBlockToJson(dynamic block) => switch (block) {
+      TextBlock(:final text) => {'type': 'text', 'text': text},
+      ImageBlock(:final base64Data, :final mediaType) => {
+          'type': 'image',
+          'base64Data': base64Data,
+          'mediaType': mediaType,
+        },
+      ToolCallBlock(:final id, :final name, :final arguments) => {
+          'type': 'toolCall',
+          'id': id,
+          'name': name,
+          'arguments': arguments,
+        },
+      ThinkingBlock(:final text) => {'type': 'thinking', 'text': text},
+      _ => const {'type': 'text', 'text': ''},
+    };
+
+dynamic _contentBlockFromJson(Map<String, dynamic> json) => switch (json['type']) {
+      'image' => ImageBlock(
+          base64Data: json['base64Data'] as String? ?? '',
+          mediaType: json['mediaType'] as String? ?? 'image/png',
+        ),
+      'toolCall' => ToolCallBlock(
+          id: json['id'] as String? ?? '',
+          name: json['name'] as String? ?? '',
+          arguments: json['arguments'] == null
+              ? const {}
+              : Map<String, dynamic>.from(
+                  json['arguments'] as Map<String, dynamic>),
+        ),
+      'thinking' => ThinkingBlock(json['text'] as String? ?? ''),
+      'text' => TextBlock(json['text'] as String? ?? ''),
+      _ => TextBlock(json['text'] as String? ?? ''),
+    };
+
+Map<String, dynamic> _usageToJson(Usage usage) => {
+      'inputTokens': usage.inputTokens,
+      'outputTokens': usage.outputTokens,
+      if (usage.cacheCreationInputTokens != null)
+        'cacheCreationInputTokens': usage.cacheCreationInputTokens,
+      if (usage.cacheReadInputTokens != null)
+        'cacheReadInputTokens': usage.cacheReadInputTokens,
+    };
+
+Usage _usageFromJson(Map<String, dynamic> json) => Usage(
+      inputTokens: json['inputTokens'] as int? ?? 0,
+      outputTokens: json['outputTokens'] as int? ?? 0,
+      cacheCreationInputTokens: json['cacheCreationInputTokens'] as int?,
+      cacheReadInputTokens: json['cacheReadInputTokens'] as int?,
+    );
+
+StopReason? _stopReasonFromName(String? name) {
+  if (name == null) return null;
+  for (final r in StopReason.values) {
+    if (r.name == name) return r;
+  }
+  return null;
 }
