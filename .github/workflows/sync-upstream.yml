@@ -1,0 +1,296 @@
+# Sync upstream (earendil-works/pi) changes into master daily.
+#
+# This fork's value-add over upstream is the Dart port under pi_agent/. The fork
+# does not modify the TypeScript packages, so a sync from upstream is expected to
+# merge cleanly — there are no fork-owned TS edits to conflict with upstream.
+#
+# The contract (see AGENTS.md "Fork Upstream Sync Policy"):
+#
+#   1. Every daily sync merges upstream/main into master. On a clean merge the
+#      sync pushes master and opens a deduped `dart-port` issue listing the
+#      upstream TypeScript source changes that now need porting into pi_agent/.
+#      The issue is the hand-off: TS lands here automatically; the Dart port of
+#      those changes is the tracked follow-up.
+#   2. On any merge conflict, abort, open a `sync`-labeled issue listing the
+#      conflicted files, and FAIL the job. Never auto-resolve in favor of
+#      upstream — a conflict means the fork touched a file upstream also changed,
+#      and a human must reconcile it on a `sync/fork-sync-resolution` branch.
+#   3. If nothing changed upstream, the run is a no-op (no issue, no push).
+#
+# Issues are filed by github-actions[bot], which .github/workflows/issue-gate.yml
+# skips, so they are never auto-closed. Setting a SYNC_PAT secret makes the
+# checkout/push run as the maintainer and lets the push trigger downstream CI;
+# without it the default GITHUB_TOKEN is used (same-repo push still works).
+
+name: Sync Upstream
+
+on:
+  schedule:
+    # Daily at 04:23 UTC — after the 03:00 fleet syncs (herdr, kimi-code-sync).
+    - cron: "23 4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: sync-upstream
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    name: Sync upstream to master
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.SYNC_PAT || github.token }}
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Add upstream remote
+        run: git remote add upstream https://github.com/earendil-works/pi.git || true
+
+      - name: Fetch upstream
+        run: git fetch upstream main
+
+      - name: Switch to master
+        run: git checkout master || git checkout -b master origin/master
+
+      - name: Check if already up to date
+        id: check
+        run: |
+          LOCAL=$(git rev-parse HEAD)
+          UPSTREAM=$(git rev-parse upstream/main)
+          if [ "$LOCAL" = "$UPSTREAM" ]; then
+            echo "up_to_date=true" >> "$GITHUB_OUTPUT"
+            echo "Already up to date with upstream/main ($UPSTREAM)."
+          else
+            echo "up_to_date=false" >> "$GITHUB_OUTPUT"
+            echo "local=$LOCAL" >> "$GITHUB_OUTPUT"
+            echo "upstream=$UPSTREAM" >> "$GITHUB_OUTPUT"
+            echo "behind by: $(git rev-list --count HEAD..upstream/main) commit(s)"
+          fi
+
+      - name: Merge upstream changes (no auto-resolve)
+        id: merge
+        if: steps.check.outputs.up_to_date == 'false'
+        run: |
+          set +e
+          git merge upstream/main --no-edit \
+            -m "chore: sync upstream $(date +%Y-%m-%d)"
+          rc=$?
+          set -e
+          if [ $rc -eq 0 ]; then
+            echo "merge_state=clean" >> "$GITHUB_OUTPUT"
+          else
+            echo "merge_state=conflicts" >> "$GITHUB_OUTPUT"
+            CONFLICTS=$(git diff --name-only --diff-filter=U | sort)
+            echo "conflicts<<EOF" >> "$GITHUB_OUTPUT"
+            echo "$CONFLICTS" >> "$GITHUB_OUTPUT"
+            echo "EOF" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Compute TypeScript changes to port
+        id: diff
+        if: steps.merge.outputs.merge_state == 'clean'
+        run: |
+          OLD="${{ steps.check.outputs.local }}"
+          # Upstream TypeScript source files changed by this sync (packages/**),
+          # excluding tests and generated files — those are what need porting
+          # into pi_agent/. package:agent and package:ai (the agent-core + LLM
+          # layer) are the priority; the rest are informational.
+          CHANGED=$(git diff --name-only "$OLD" HEAD -- 'packages/**' \
+            | grep -E '\.(ts|tsx)$' \
+            | grep -vE '(\.test\.|\.spec\.|/test/|/tests/|\.d\.ts$|\.generated\.ts$)' \
+            || true)
+          echo "changed_ts<<EOF" >> "$GITHUB_OUTPUT"
+          echo "$CHANGED" >> "$GITHUB_OUTPUT"
+          echo "EOF" >> "$GITHUB_OUTPUT"
+          echo "changed_count=$(printf '%s' "$CHANGED" | grep -c . || true)" >> "$GITHUB_OUTPUT"
+          git log --no-merges --pretty='- %s (%h)' "$OLD..HEAD" > /tmp/pi-sync-commits.txt || true
+          echo "commit_subjects<<EOF" >> "$GITHUB_OUTPUT"
+          cat /tmp/pi-sync-commits.txt >> "$GITHUB_OUTPUT"
+          echo "EOF" >> "$GITHUB_OUTPUT"
+
+      - name: Open Dart port issue
+        if: steps.merge.outputs.merge_state == 'clean'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const changed = `${{ steps.diff.outputs.changed_ts }}`.trim().split('\n').filter(Boolean);
+            const commits = `${{ steps.diff.outputs.commit_subjects }}`.trim().split('\n').filter(Boolean);
+            const local = '${{ steps.check.outputs.local }}';
+            const upstream = '${{ steps.check.outputs.upstream }}';
+            const date = new Date().toISOString().split('T')[0];
+
+            if (changed.length === 0) {
+              core.info('No upstream TypeScript source changes to port.');
+              return;
+            }
+
+            const agentCore = changed.filter((f) => f.startsWith('packages/agent/'));
+            const aiLayer = changed.filter((f) => f.startsWith('packages/ai/'));
+            const others = changed.filter((f) => !f.startsWith('packages/agent/') && !f.startsWith('packages/ai/'));
+
+            const section = (title, files) =>
+              files.length ? ['## ' + title, '', ...files.map((f) => '- `' + f + '`'), ''].join('\n') : '';
+
+            const body = [
+              'The daily upstream sync merged **' + commits.length + '** upstream commit(s) into `master`.',
+              'This fork does not modify the TypeScript packages, so the merge was clean — but the',
+              '**Dart port under `pi_agent/` must be updated to match these upstream changes.**',
+              '',
+              'The sync already landed the TypeScript in `master`; this issue tracks porting the',
+              'behavioral changes into the Dart agent-core / harness (the LLM provider stays',
+              'OpenAI-compatible-only and intentionally slim).',
+              '',
+              section('Priority: agent-core (packages/agent)', agentCore),
+              section('Priority: LLM layer (packages/ai)', aiLayer),
+              section('Other packages (context)', others),
+              '## Upstream commits in this sync',
+              '',
+              commits.length ? commits.join('\n') : '_none_',
+              '',
+              '## Commit refs',
+              '',
+              '- pre-sync master: `' + local + '`',
+              '- upstream/main: `' + upstream + '`',
+              '',
+              '## How to port',
+              '',
+              '1. `git switch -c dart/port-sync-' + date + ' master`',
+              '2. Port each behavioral change into `pi_agent/lib/src/` (agent-core: `agent_loop.dart`,',
+              '   `agent.dart`; harness: `harness.dart`; LLM: `llm_client.dart`).',
+              '3. Keep the provider OpenAI-compatible-only; do not add per-provider adapters.',
+              '4. Run `dart analyze` and `flutter test --concurrency=2` in `pi_agent/` until green.',
+              '5. Open a PR referencing this issue.',
+              '',
+              'cc: the arrrrny fork maintainer.',
+            ].filter(Boolean).join('\n');
+
+            // Dedup: keep one open port issue, comment new syncs onto it.
+            const issues = await github.rest.issues.listForRepo({
+              owner: context.repo.owner, repo: context.repo.repo,
+              state: 'open', labels: 'dart-port', per_page: 5,
+            });
+            const existing = issues.data.find((i) => i.title.startsWith('Port upstream TypeScript changes'));
+            if (existing) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner, repo: context.repo.repo,
+                issue_number: existing.number,
+                body: '🔄 Sync ' + date + ' — ' + commits.length + ' new commit(s), '
+                  + changed.length + ' TS file(s) to port.\n\n' + body,
+              });
+              core.info('Commented on existing port issue #' + existing.number);
+            } else {
+              const created = await github.rest.issues.create({
+                owner: context.repo.owner, repo: context.repo.repo,
+                title: 'Port upstream TypeScript changes into pi_agent (Dart) — ' + date,
+                labels: ['sync', 'dart-port'],
+                body,
+              });
+              core.info('Opened port issue #' + created.data.number);
+            }
+
+      - name: Open sync-conflict issue
+        id: conflict_issue
+        if: steps.merge.outputs.merge_state == 'conflicts'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const conflicts = `${{ steps.merge.outputs.conflicts }}`.trim().split('\n').filter(Boolean);
+            const local = '${{ steps.check.outputs.local }}';
+            const upstream = '${{ steps.check.outputs.upstream }}';
+            const date = new Date().toISOString().split('T')[0];
+            const body = [
+              'The daily upstream sync hit **' + conflicts.length + '** merge conflict(s) and aborted.',
+              'This fork does not modify TypeScript, so a conflict means a shared file',
+              '(e.g. `AGENTS.md`, `README.md`, `.pi/`) was changed on both sides.',
+              '',
+              '## Conflicted files',
+              '',
+              ...conflicts.map((f) => '- `' + f + '`'),
+              '',
+              '## Resolution',
+              '',
+              '1. `git switch -c sync/fork-sync-resolution master`',
+              '2. `git merge upstream/main`',
+              '3. Resolve each conflict, keeping the fork additions (fleet AGENTS.md blocks,',
+              '   README Zuraffa promo, pi_agent/, specs/, .specify/) and taking upstream TS as-is.',
+              '4. Open a PR referencing this issue; the next sync becomes a no-op.',
+              '',
+              '- pre-sync master: `' + local + '`',
+              '- upstream/main: `' + upstream + '`',
+            ].join('\n');
+
+            const issues = await github.rest.issues.listForRepo({
+              owner: context.repo.owner, repo: context.repo.repo,
+              state: 'open', labels: 'sync', per_page: 5,
+            });
+            const existing = issues.data.find((i) => i.title.includes('merge conflicts'));
+            if (existing) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner, repo: context.repo.repo,
+                issue_number: existing.number,
+                body: '🔄 New sync conflict on ' + date + '.\n\n' + body,
+              });
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner, repo: context.repo.repo,
+                title: 'sync: upstream merge conflicts require manual resolution',
+                labels: ['sync'], body,
+              });
+            }
+
+      - name: Fail job on conflict
+        if: steps.merge.outputs.merge_state == 'conflicts'
+        run: |
+          echo "::error::merge conflicts detected; sync aborted. See the sync-labeled issue."
+          exit 1
+
+      - name: Push
+        if: steps.merge.outputs.merge_state == 'clean'
+        run: git push origin master
+
+      - name: Open failure issue (catch-all)
+        if: failure() && steps.conflict_issue.outcome != 'success'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const body = [
+              'The daily upstream sync failed unexpectedly (not a merge conflict — that path files its own issue).',
+              '',
+              '## Run', '', runUrl, '',
+              '## What to check', '',
+              '1. Open the run log above and find the failing step.',
+              '2. If it is a **push rejection**, the token needs `workflows` permission — set a `SYNC_PAT` secret.',
+              '3. Otherwise resolve manually.',
+            ].join('\n');
+            const issues = await github.rest.issues.listForRepo({
+              owner: context.repo.owner, repo: context.repo.repo,
+              state: 'open', labels: 'sync', per_page: 10,
+            });
+            const existing = issues.data.find((i) =>
+              i.title.includes('failed') && !i.title.includes('conflicts'));
+            if (existing) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner, repo: context.repo.repo,
+                issue_number: existing.number,
+                body: '🔄 Another sync failure on ' + new Date().toISOString().split('T')[0] + '.\n\n' + body,
+              });
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner, repo: context.repo.repo,
+                title: 'sync: upstream sync failed (' + new Date().toISOString().split('T')[0] + ')',
+                labels: ['sync'], body,
+              });
+            }

@@ -383,3 +383,30 @@ This applies to every Dart/Flutter repo in the fleet. A repo whose publish
 flow already runs the lockfile dance (see each repo's `PUBLISH.md`) still owes
 the chore issue for whatever `pub outdated` reports.
 <!-- dependency-bump-rule:end -->
+<!-- fork-upstream-sync:begin -->
+## Fork Upstream Sync Policy
+
+This repo is a fork of `earendil-works/pi`. The fork's value-add is the Dart
+port under `pi_agent/`; the fork does **not** modify the TypeScript packages, so
+upstream syncs are expected to merge cleanly.
+
+`.github/workflows/sync-upstream.yml` runs daily (and on `workflow_dispatch`):
+
+1. Merges `upstream/main` into `master`. On a **clean** merge it pushes `master`
+   and opens a deduped **`dart-port`** issue listing the upstream TypeScript
+   source changes (priority: `packages/agent` agent-core, then `packages/ai`) that
+   now need porting into `pi_agent/`. The TypeScript lands automatically; the Dart
+   port of those changes is the tracked follow-up.
+2. On a **conflict** it aborts, opens a `sync`-labeled issue listing the conflicted
+   files, and fails the job. Never auto-resolve in favor of upstream — a conflict
+   means a shared file (e.g. `AGENTS.md`, `README.md`, `.pi/`) changed on both
+   sides; reconcile it on a `sync/fork-sync-resolution` branch, keeping the fork
+   additions (fleet AGENTS.md blocks, README Zuraffa promo, `pi_agent/`, `specs/`,
+   `.specify/`) and taking upstream TypeScript as-is.
+3. If nothing changed upstream, it is a no-op.
+
+Issues are filed by `github-actions[bot]`, which `issue-gate.yml` skips, so they
+are never auto-closed. Set a `SYNC_PAT` secret to run the checkout/push as the
+maintainer (and let the push trigger downstream CI); without it the default
+`GITHUB_TOKEN` is used.
+<!-- fork-upstream-sync:end -->
