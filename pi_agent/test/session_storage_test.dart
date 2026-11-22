@@ -160,6 +160,31 @@ void main() {
       await storage2.close();
     });
 
+    test('round-trips a provider error message (#6)', () async {
+      await storage.appendEntry(MessageEntry(
+        id: 'e1',
+        parentId: '',
+        timestamp: DateTime.now(),
+        role: 'assistant',
+        message: const AssistantMessage(
+          content: [],
+          stopReason: StopReason.error,
+          errorMessage: '401 - unauthorized',
+        ),
+      ));
+      await storage.close();
+
+      final storage2 = JsonlSessionStorage(tempPath);
+      await storage2.init();
+      final entries = await storage2.loadEntries();
+      final message = (entries.single as MessageEntry).message;
+      expect(message, isA<AssistantMessage>());
+      final assistant = message as AssistantMessage;
+      expect(assistant.stopReason, StopReason.error);
+      expect(assistant.errorMessage, '401 - unauthorized');
+      await storage2.close();
+    });
+
     test('findEntry finds by id', () async {
       await storage.appendEntry(MessageEntry(
         id: 'e1',

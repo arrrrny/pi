@@ -389,6 +389,11 @@ class Agent {
       case MessageEnd(message: final msg):
         _state.internalMessages.add(msg);
         _state.streamingMessage = null;
+        // Mirrors upstream agent.ts:605-606: a terminal assistant message's
+        // diagnostic is the run's error, reachable as AgentState.errorMessage.
+        if (msg is AssistantMessage && msg.errorMessage != null) {
+          _state.errorMessage = msg.errorMessage;
+        }
       case ToolExecutionStart(toolCallId: final id):
         _state.internalPendingToolCalls.add(id);
       case ToolExecutionEnd(toolCallId: final id):

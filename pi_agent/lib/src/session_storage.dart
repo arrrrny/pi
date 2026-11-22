@@ -330,6 +330,7 @@ Map<String, dynamic> _messageToJson(AgentMessage message) => switch (message) {
         :final id,
         :final content,
         :final stopReason,
+        :final errorMessage,
         :final usage,
       ) =>
         {
@@ -337,6 +338,7 @@ Map<String, dynamic> _messageToJson(AgentMessage message) => switch (message) {
           if (id != null) 'id': id,
           'content': content.map(_contentBlockToJson).toList(),
           if (stopReason != null) 'stopReason': stopReason.name,
+          if (errorMessage != null) 'errorMessage': errorMessage,
           if (usage != null) 'usage': _usageToJson(usage),
         },
       ToolResultMessage(
@@ -374,6 +376,7 @@ AgentMessage _messageFromJson(Map<String, dynamic>? json) {
         id: json['id'] as String?,
         content: content,
         stopReason: _stopReasonFromName(json['stopReason'] as String?),
+        errorMessage: json['errorMessage'] as String?,
         usage: json['usage'] == null
             ? null
             : _usageFromJson(json['usage'] as Map<String, dynamic>),

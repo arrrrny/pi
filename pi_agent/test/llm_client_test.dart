@@ -170,7 +170,7 @@ void main() {
       expect(msg.stopReason, StopReason.toolUse);
     });
 
-    test('surfaces non-200 as a refused message', () async {
+    test('surfaces non-200 as a provider error outcome (#6)', () async {
       final bad = await HttpServer.bind(InternetAddress.loopbackIPv4, 0);
       bad.listen((request) {
         request.response.statusCode = 401;
@@ -188,8 +188,121 @@ void main() {
       ).toList();
 
       final msg = singleEnd(events).message as AssistantMessage;
+      expect(msg.stopReason, StopReason.error);
+      expect(msg.errorMessage, contains('401'));
+      expect(msg.errorMessage, contains('unauthorized'));
+      // The failure is a diagnostic, not model-authored content.
+      expect(msg.content, isEmpty);
+      expect(msg.text, isEmpty);
+    });
+
+    test('maps transport failures to an error outcome (#6)', () async {
+      // A bound-then-closed port gives a connection failure without a server.
+      final closed = await HttpServer.bind(InternetAddress.loopbackIPv4, 0);
+      final deadPort = closed.port;
+      await closed.close(force: true);
+
+      final events = await streamLLM(
+        context: AgentContext(
+            systemPrompt: '', messages: [UserMessage.text('hi')]),
+        config: makeConfig(makeModel('http://127.0.0.1:$deadPort/v1')),
+        apiKey: 'k',
+        abortSignal: null,
+      ).toList();
+
+      final msg = singleEnd(events).message as AssistantMessage;
+      expect(msg.stopReason, StopReason.error);
+      expect(msg.errorMessage, isNotNull);
+      expect(msg.errorMessage, isNotEmpty);
+      expect(msg.content, isEmpty);
+    });
+
+    test('maps malformed SSE frames to an error outcome (#6)', () async {
+      server.frames.addAll(['{not json']);
+      // Frames after the malformed one must not become model output.
+      server.frames.add(jsonEncode({
+        'choices': [
+          {'delta': {'content': 'should not appear'}, 'finish_reason': 'stop'},
+        ],
+      }));
+
+      final events = await streamLLM(
+        context: AgentContext(
+            systemPrompt: '', messages: [UserMessage.text('hi')]),
+        config: makeConfig(makeModel(server.url.toString())),
+        apiKey: 'k',
+        abortSignal: null,
+      ).toList();
+
+      final msg = singleEnd(events).message as AssistantMessage;
+      expect(msg.stopReason, StopReason.error);
+      expect(msg.errorMessage, isNotNull);
+      expect(msg.text, isNot(contains('should not appear')));
+    });
+
+    test('maps a stream ending without a finish reason to an error (#6)',
+        () async {
+      server.frames.add(jsonEncode({
+        'choices': [
+          {'delta': {'content': 'partial'}, 'finish_reason': null},
+        ],
+      }));
+
+      final events = await streamLLM(
+        context: AgentContext(
+            systemPrompt: '', messages: [UserMessage.text('hi')]),
+        config: makeConfig(makeModel(server.url.toString())),
+        apiKey: 'k',
+        abortSignal: null,
+      ).toList();
+
+      final msg = singleEnd(events).message as AssistantMessage;
+      expect(msg.stopReason, StopReason.error);
+      expect(msg.errorMessage, contains('finish reason'));
+    });
+
+    test('distinguishes a caller abort from a provider error (#6)', () async {
+      final abort = Completer<void>();
+      server.frames.add(jsonEncode({
+        'choices': [
+          {'delta': {'content': 'partial'}, 'finish_reason': null},
+        ],
+      }));
+
+      final future = streamLLM(
+        context: AgentContext(
+            systemPrompt: '', messages: [UserMessage.text('hi')]),
+        config: makeConfig(makeModel(server.url.toString())),
+        apiKey: 'k',
+        abortSignal: abort,
+      ).toList();
+
+      abort.complete();
+      final events = await future;
+
+      final msg = singleEnd(events).message as AssistantMessage;
+      expect(msg.stopReason, StopReason.aborted);
+      expect(msg.content, isEmpty);
+    });
+
+    test('keeps a content filter as a refusal, not an error (#6)', () async {
+      server.frames.add(jsonEncode({
+        'choices': [
+          {'delta': {}, 'finish_reason': 'content_filter'},
+        ],
+      }));
+
+      final events = await streamLLM(
+        context: AgentContext(
+            systemPrompt: '', messages: [UserMessage.text('hi')]),
+        config: makeConfig(makeModel(server.url.toString())),
+        apiKey: 'k',
+        abortSignal: null,
+      ).toList();
+
+      final msg = singleEnd(events).message as AssistantMessage;
       expect(msg.stopReason, StopReason.refused);
-      expect(msg.text, contains('401'));
+      expect(msg.errorMessage, isNull);
     });
 
     test('sends serialized tools in the request', () async {

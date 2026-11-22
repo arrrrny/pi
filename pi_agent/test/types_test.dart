@@ -171,7 +171,15 @@ void main() {
     });
 
     test('StopReason has correct values', () {
-      expect(StopReason.values, hasLength(5));
+      expect(StopReason.values, [
+        StopReason.endTurn,
+        StopReason.maxTokens,
+        StopReason.toolUse,
+        StopReason.stopSequence,
+        StopReason.refused,
+        StopReason.error,
+        StopReason.aborted,
+      ]);
     });
 
     test('ToolExecutionMode values', () {
