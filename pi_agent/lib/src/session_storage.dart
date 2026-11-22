@@ -407,11 +407,18 @@ Map<String, dynamic> _contentBlockToJson(dynamic block) => switch (block) {
           'base64Data': base64Data,
           'mediaType': mediaType,
         },
-      ToolCallBlock(:final id, :final name, :final arguments) => {
+      ToolCallBlock(
+        :final id,
+        :final name,
+        :final arguments,
+        :final argumentsError
+      ) =>
+        {
           'type': 'toolCall',
           'id': id,
           'name': name,
           'arguments': arguments,
+          if (argumentsError != null) 'argumentsError': argumentsError,
         },
       ThinkingBlock(:final text) => {'type': 'thinking', 'text': text},
       _ => const {'type': 'text', 'text': ''},
@@ -429,6 +436,7 @@ dynamic _contentBlockFromJson(Map<String, dynamic> json) => switch (json['type']
               ? const {}
               : Map<String, dynamic>.from(
                   json['arguments'] as Map<String, dynamic>),
+          argumentsError: json['argumentsError'] as String?,
         ),
       'thinking' => ThinkingBlock(json['text'] as String? ?? ''),
       'text' => TextBlock(json['text'] as String? ?? ''),
