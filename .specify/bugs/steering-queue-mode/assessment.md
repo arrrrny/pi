@@ -53,50 +53,55 @@ The port stores the two `QueueMode`-like enums but never introduces the `Pending
 
 ## Proposed Remediation
 
-**Preferred**: Introduce a `PendingMessageQueue` class (or equivalent) in Dart mirroring upstream `packages/agent/src/agent.ts:149-180`:
+**Preferred**: Introduce a `PendingMessageQueue` class in Dart mirroring upstream `packages/agent/src/agent.ts:149-180`:
 
-- Fields: `List<AgentMessage> _messages` and a `mode` field (`SteeringMode` / `FollowUpMode`, or a shared `QueueMode`).
+- Fields: `List<AgentMessage> _messages` and a mutable `QueueMode mode`.
 - Methods: `enqueue(AgentMessage)`, `hasItems()`, `peek()` (returns all when mode is `all`, else the first only), `drain()` (calls `peek()` then removes the drained prefix), `clear()`.
-- Mode is a mutable field on the queue so existing enqueued messages are affected by a runtime mode switch.
+- Mode changes affect messages already queued, matching upstream.
+
+Replace the Dart-only `SteeringMode` and `FollowUpMode` enums with one exported `QueueMode` enum containing `all` and `oneAtATime`, corresponding to upstream `packages/agent/src/types.ts:49-55`. Use that type in `AgentOptions`, constructor arguments, and both `steeringMode` and `followUpMode` setters/getters. Do not retain parallel enum names as a compatibility layer: the package's governing contract is strict upstream API/behavior parity.
 
 Then wire `Agent` to use it:
 - `_steeringQueue` / `_followUpQueue` become `PendingMessageQueue` instances.
 - Constructor passes `steeringMode` / `followUpMode` into the respective queues.
-- `steeringMode` / `followUpMode` setters mutate the queue's `mode`.
+- `steeringMode` / `followUpMode` setters mutate the queue's `mode`, and new getters return it.
 - `_drainQueue` (or its callers) call `queue.drain()` so the mode is honored.
 - `steer()` / `followUp()` call `queue.enqueue()`.
 - `clearSteeringQueue()` / `clearFollowUpQueue()` call `queue.clear()`.
 - `hasQueuedMessages()` checks `steeringQueue.hasItems() || followUpQueue.hasItems()`.
-- Add `peekQueuedMessages()` for upstream parity (returns steering peek if non-empty, else follow-up peek; honors mode).
-- Remove the `// ignore: unused_field` annotations once the fields are read.
+- Expose public `peekQueuedMessages()` with upstream semantics: return the steering peek when non-empty, otherwise the follow-up peek, without consuming either queue.
+- Remove the obsolete `// ignore: unused_field` annotations and raw mode/list fields.
 
 **Alternatives**:
 - Inline a mode check inside `_drainQueue` (branch on `mode == all ? queue : [queue.first]`). Trade-off: smaller diff but no reusable queue object, no `peek`/`clear`/`hasItems` parity, and the mode still lives on `Agent` rather than on the queue — the upstream shape the port is targeting is lost. Not recommended.
 
 **Files likely to change**:
-- `pi_agent/lib/src/agent.dart` (primary; or a new `pi_agent/lib/src/pending_queue.dart` plus `agent.dart` wiring).
+- `pi_agent/lib/src/types.dart` (shared exported `QueueMode`).
+- `pi_agent/lib/src/agent.dart` (queue wiring and public API).
+- `pi_agent/lib/src/pending_queue.dart` (queue implementation, if not colocated).
 - `pi_agent/test/agent_test.dart` (mode-honoring tests).
 - `pi_agent/test/agent_loop_test.dart` (mode-dependent drain across turns).
 
 **Tests to add or update**:
 1. One-at-a-time steering: queue 2 messages, run a turn, assert only the first is injected; run another turn, assert the second.
-2. `all` steering: queue 2 messages with `steeringMode = all`, run one turn, assert both injected.
+2. `all` steering: queue 2 messages with `steeringMode = QueueMode.all`, run one turn, assert both injected.
 3. One-at-a-time follow-up across turns.
 4. `all` follow-up in one turn.
 5. Steering precedence over follow-up when both queues are non-empty.
 6. Follow-up placement after the agent would otherwise stop.
 7. Queue clearing via `clearSteeringQueue` / `clearFollowUpQueue` / `clearAllQueues` reflected in `hasQueuedMessages()`.
 8. Continuation from an assistant tail drains queued steering/follow-up.
-9. Constructor mode configuration (`Agent(steeringMode: SteeringMode.all, followUpMode: FollowUpMode.all)`).
-10. Runtime mode switch (`oneAtATime` → `all` via setter) affects the next drain.
+9. Constructor and `AgentOptions` mode configuration using `QueueMode` for both queues.
+10. Runtime mode switch (`oneAtATime` → `all` via setter) affects the next drain and is visible through the corresponding getter.
+11. `peekQueuedMessages()` returns steering first, falls back to follow-up, honors each mode, and never consumes messages.
 
 ## Risks & Considerations
 
 - **Behavioral change for any caller relying on the (incorrect) always-drain-all behavior** — but that is the defect; callers that set `one-at-a-time` today get all messages, which is wrong. Severity medium because the default mode is `oneAtATime`, so today's behavior contradicts the documented default for every user who queues more than one steering/follow-up message.
-- **`peekQueuedMessages()` is new public API** — additive, but must be documented to match upstream semantics.
-- **No cross-cutting concerns** — single-file change in `agent.dart` (plus optional new file), no migrations, no wire-format changes.
+- **Public API alignment** — `peekQueuedMessages()` and the mode getters are additive; replacing the split enums with upstream's shared `QueueMode` is an intentional parity correction, not a new compatibility abstraction. Update call sites and API documentation in the same fix.
+- **No cross-cutting concerns** — the change is confined to the agent queue API and its tests, with no migrations or wire-format changes.
 
-## Open Questions
+## Resolved Scope Decisions
 
-- [NEEDS CLARIFICATION: Should `peekQueuedMessages()` be exposed publicly on `Agent` in Dart, or kept internal until a caller needs it? Upstream exposes it; matching upstream favors public.]
-- [NEEDS CLARIFICATION: Should the Dart `QueueMode` enums be unified with upstream's `QueueMode` type name, or kept as the existing `SteeringMode` / `FollowUpMode` split? Current split mirrors the existing fields; unification is a larger refactor.]
+- `peekQueuedMessages()` is public on `Agent`, matching upstream's public method and its steering-first, non-consuming behavior.
+- One exported `QueueMode` replaces both Dart-only mode enums everywhere, matching upstream `packages/agent/src/types.ts:55` and `Agent` at `packages/agent/src/agent.ts:289-305`.
