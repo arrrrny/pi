@@ -1,0 +1,79 @@
+# Release (explicitly parity-labeled only)
+#
+# The full-parity release gate runs ONLY for an explicitly parity-labeled
+# release: a push of a `v*` tag, or a `workflow_dispatch` with the
+# `parity_release` boolean input checked. It MUST NOT run on an ordinary push or
+# pull request — the routine `coverage.yml` run is intentionally red while known
+# rows are unported, and this gate is what a parity claim actually requires.
+#
+# A parity-labeled release fails when `verified_upstream_sha` is null, the target
+# is ahead of verified, any applicable row is not verified, or any exclusion is
+# unapproved. The gate never runs implicitly on an ordinary push or pull request.
+
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      parity_release:
+        description: "Run the full-parity release gate (only for an explicitly parity-labeled release)"
+        type: boolean
+        required: false
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    name: Parity release gate
+    if: ${{ startsWith(github.ref, 'refs/tags/v') || inputs.parity_release == true }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22.19"
+
+      - name: Resolve pinned upstream SHA
+        id: sha
+        run: |
+          SHA=$(node -e "process.stdout.write(require('./coverage/state.json').target_upstream_sha)")
+          echo "sha=$SHA" >> "$GITHUB_OUTPUT"
+          echo "target_upstream_sha=$SHA"
+
+      - name: Generate coverage manifest
+        run: |
+          node scripts/coverage/generate-coverage-manifest.mjs \
+            --upstream . --sha "${{ steps.sha.outputs.sha }}" \
+            --registry coverage/registry/behavior-registry.json \
+            --out coverage/upstream/${{ steps.sha.outputs.sha }}
+
+      - name: Check coverage ledger
+        run: |
+          node scripts/coverage/check-coverage.mjs \
+            --manifest coverage/upstream/${{ steps.sha.outputs.sha }}/manifest.json
+
+      - name: Purity check
+        run: node scripts/coverage/check-purity.mjs
+
+      - name: Full-parity release gate
+        run: |
+          set -o pipefail
+          node scripts/coverage/check-release-evidence.mjs --json \
+            | tee coverage/release-evidence.json
+
+      - name: Upload release evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-evidence
+          path: coverage/release-evidence.json

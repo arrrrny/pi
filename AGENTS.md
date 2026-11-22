@@ -393,10 +393,15 @@ upstream syncs are expected to merge cleanly.
 `.github/workflows/sync-upstream.yml` runs daily (and on `workflow_dispatch`):
 
 1. Merges `upstream/main` into `master`. On a **clean** merge it pushes `master`
-   and opens a deduped **`dart-port`** issue listing the upstream TypeScript
-   source changes (priority: `packages/agent` agent-core, then `packages/ai`) that
-   now need porting into `pi_agent/`. The TypeScript lands automatically; the Dart
-   port of those changes is the tracked follow-up.
+   and opens a deduped **`dart-port`** issue **per affected package area** —
+   all 12 areas (`schema`, `telemetry`, `chord`, `ai`, `agent`, `durable`,
+   `codemode`, `env`, `mcp`, `coding-agent`, `tui`, `evals`) plus an `apps`
+   bucket — listing every changed source, test, export, asset, migration, and
+   manifest file with its class label, the upstream commit range, and the new
+   `target_upstream_sha`. Each issue carries the exact command to regenerate the
+   coverage ledger and the row ids the slice must move to `verified`. The
+   TypeScript lands automatically; the Dart port of those changes is the tracked
+   follow-up.
 2. On a **conflict** it aborts, opens a `sync`-labeled issue listing the conflicted
    files, and fails the job. Never auto-resolve in favor of upstream — a conflict
    means a shared file (e.g. `AGENTS.md`, `README.md`, `.pi/`) changed on both
@@ -404,6 +409,9 @@ upstream syncs are expected to merge cleanly.
    additions (fleet AGENTS.md blocks, README Zuraffa promo, `pi_agent/`, `specs/`,
    `.specify/`) and taking upstream TypeScript as-is.
 3. If nothing changed upstream, it is a no-op.
+
+The sync advances `target_upstream_sha` in `coverage/state.json` and commits it
+with the artifacts-only rule (`git add coverage/state.json` — never `git add -A`).
 
 Issues are filed by `github-actions[bot]`, which `issue-gate.yml` skips, so they
 are never auto-closed. Set a `SYNC_PAT` secret to run the checkout/push as the

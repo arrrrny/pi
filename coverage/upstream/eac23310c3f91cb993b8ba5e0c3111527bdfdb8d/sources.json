@@ -1,0 +1,5308 @@
+{
+  "schema_version": 1,
+  "upstream": {
+    "repo": "earendil-works/pi",
+    "sha": "eac23310c3f91cb993b8ba5e0c3111527bdfdb8d",
+    "packages": {
+      "@earendil-works/pi-schema": "1.6.0",
+      "@earendil-works/pi-telemetry": "1.6.0",
+      "@earendil-works/chord": "1.6.0",
+      "@earendil-works/pi-ai": "1.6.0",
+      "@earendil-works/pi-agent-core": "1.6.0",
+      "@earendil-works/pi-durable": "1.6.0",
+      "@earendil-works/pi-codemode": "1.6.0",
+      "@earendil-works/pi-env": "1.6.0",
+      "@earendil-works/pi-mcp": "1.6.0",
+      "@earendil-works/pi-coding-agent": "1.6.0",
+      "@earendil-works/pi-tui": "1.6.0",
+      "@earendil-works/pi-evals": "1.6.0"
+    }
+  },
+  "sources": [
+    {
+      "area": "agent",
+      "path": "packages/agent/src/agent-loop.ts",
+      "exported": true
+    },
+    {
+      "area": "agent",
+      "path": "packages/agent/src/agent.ts",
+      "exported": true
+    },
+    {
+      "area": "agent",
+      "path": "packages/agent/src/index.ts",
+      "exported": true
+    },
+    {
+      "area": "agent",
+      "path": "packages/agent/src/proxy.ts",
+      "exported": true
+    },
+    {
+      "area": "agent",
+      "path": "packages/agent/src/stream-fn.ts",
+      "exported": true
+    },
+    {
+      "area": "agent",
+      "path": "packages/agent/src/types.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/api/anthropic-messages.lazy.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/api/anthropic-messages.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/api/azure-openai-config.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/api/azure-openai-responses.lazy.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/api/azure-openai-responses.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/api/bedrock-converse-stream.lazy.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/api/bedrock-converse-stream.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/api/classifier-shared.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/api/cloudflare-ai-binding.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/api/cloudflare-workers-ai-system-one.lazy.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/api/cloudflare-workers-ai-system-one.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/api/cloudflare.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/api/constrained-sampling.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/api/github-copilot-headers.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/api/google-generative-ai.lazy.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/api/google-generative-ai.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/api/google-shared.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/api/google-vertex.lazy.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/api/google-vertex.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/api/lazy.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/api/llama-cpp-classify.lazy.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/api/llama-cpp-classify.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/api/mistral-conversations.lazy.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/api/mistral-conversations.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/api/openai-codex-responses.lazy.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/api/openai-codex-responses.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/api/openai-completions.lazy.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/api/openai-completions.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/api/openai-decisions.lazy.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/api/openai-decisions.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/api/openai-prompt-cache.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/api/openai-responses-shared.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/api/openai-responses.lazy.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/api/openai-responses.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/api/openrouter-images.lazy.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/api/openrouter-images.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/api/pi-messages.lazy.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/api/pi-messages.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/api/simple-options.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/api/strict-tool-limits.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/api/system-one-shared.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/api/transform-messages.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/api/typesafe-system-one.lazy.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/api/typesafe-system-one.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/auth/context.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/auth/credential-store.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/auth/helpers.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/auth/oauth/anthropic.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/auth/oauth/callback-server.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/auth/oauth/device-code.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/auth/oauth/github-copilot.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/auth/oauth/kimi-coding.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/auth/oauth/load.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/auth/oauth/meta.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/auth/oauth/openai-chatgpt.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/auth/oauth/openai-codex.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/auth/oauth/openrouter.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/auth/oauth/pkce.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/auth/oauth/radius.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/auth/oauth/trusted-url.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/auth/oauth/xai.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/auth/resolve.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/auth/types.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/bedrock-provider.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/bun-oauth.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/cache-warming.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/cli.ts",
+      "exported": false
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/compat.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/compat/extension-oauth-types.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/env-api-keys.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/image-models.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/images-api-registry.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/images.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/index.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/lazy-bedrock-provider.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/lazy-oauth.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/legacy-api-aliases.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/model-catalog.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/models-store.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/models.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/oauth.ts",
+      "exported": false
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/all.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/amazon-bedrock.models.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/amazon-bedrock.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/ant-ling.models.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/ant-ling.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/anthropic.models.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/anthropic.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/azure.models.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/azure.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/baseten.models.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/baseten.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/cerebras.models.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/cerebras.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/cloudflare-ai-gateway.models.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/cloudflare-ai-gateway.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/cloudflare-auth.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/cloudflare-stream.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/cloudflare-workers-ai.models.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/cloudflare-workers-ai.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/compat-schema.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/deepseek.models.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/deepseek.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/faux.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/fireworks.models.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/fireworks.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/github-copilot.models.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/github-copilot.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/google-vertex.models.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/google-vertex.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/google.models.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/google.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/groq.models.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/groq.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/huggingface.models.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/huggingface.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/images/register-builtins.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/kimi-coding.models.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/kimi-coding.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/meta.models.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/meta.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/minimax-cn.models.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/minimax-cn.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/minimax.models.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/minimax.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/mistral.models.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/mistral.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/model-schema.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/moonshotai-cn.models.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/moonshotai-cn.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/moonshotai.models.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/moonshotai.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/nvidia.models.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/nvidia.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/openai-codex.models.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/openai-codex.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/openai.models.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/openai.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/opencode-go.models.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/opencode-go.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/opencode-headers.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/opencode.models.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/opencode.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/openrouter-api.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/openrouter.models.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/openrouter.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/qwen-token-plan-cn.models.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/qwen-token-plan-cn.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/qwen-token-plan-individual-cn.models.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/qwen-token-plan-individual-cn.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/qwen-token-plan-individual.models.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/qwen-token-plan-individual.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/qwen-token-plan.models.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/qwen-token-plan.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/radius-config.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/radius.models.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/radius.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/schema-builders.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/together.models.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/together.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/typesafe.models.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/typesafe.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/vercel-ai-gateway.models.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/vercel-ai-gateway.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/xai.models.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/xai.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/xiaomi-token-plan-ams.models.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/xiaomi-token-plan-ams.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/xiaomi-token-plan-cn.models.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/xiaomi-token-plan-cn.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/xiaomi-token-plan-sgp.models.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/xiaomi-token-plan-sgp.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/xiaomi.models.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/xiaomi.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/zai-coding-cn.models.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/zai-coding-cn.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/zai.models.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/providers/zai.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/session-resources.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/telemetry.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/types.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/utils/abort-signals.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/utils/abort.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/utils/diagnostics.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/utils/error-body.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/utils/estimate.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/utils/event-stream.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/utils/hash.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/utils/headers.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/utils/identity.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/utils/json-parse.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/utils/model-operations.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/utils/models-error.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/utils/node-http-proxy.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/utils/oauth-page.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/utils/openrouter-cost.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/utils/overflow.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/utils/provider-env.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/utils/provider-retry.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/utils/retry.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/utils/sanitize-unicode.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/utils/sleep.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/utils/streaming-json.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/utils/string-enum.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/utils/text.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/utils/transcript.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/utils/uuid.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/utils/validation.ts",
+      "exported": true
+    },
+    {
+      "area": "ai",
+      "path": "packages/ai/src/utils/version.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/context/index.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/contracts/accepts.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/contracts/contract.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/contracts/declare.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/contracts/evolve.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/contracts/fingerprint.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/contracts/history.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/contracts/host-kind.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/contracts/index.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/contracts/internal.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/contracts/names.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/contracts/params.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/contracts/schema.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/contracts/snapshot.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/data/args.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/data/errors.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/data/failure.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/data/index.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/data/internal.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/data/params.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/data/principal.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/data/validator.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/delta/apply-immutable-trusted.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/delta/diff.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/delta/draft.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/delta/index.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/delta/pending.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/delta/revision-validator.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/delta/tracker.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/documents/address-source.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/documents/definition.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/documents/documents.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/documents/fence.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/documents/handles.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/documents/index.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/documents/internal.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/documents/keyed-slot.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/documents/line.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/documents/persistence.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/documents/residency.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/documents/slot.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/documents/transaction.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/host/activity.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/host/adapted.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/host/admission.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/host/attempt.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/host/backoff.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/host/ctx.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/host/deadline.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/host/dependencies.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/host/destination.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/host/events.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/host/facet.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/host/follow.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/host/host-data.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/host/host.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/host/index.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/host/internal.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/host/list.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/host/members.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/host/named-query.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/host/native.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/host/object.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/host/old-work.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/host/parked.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/host/presence.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/host/query-reader.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/host/read-declarations.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/host/readiness.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/host/ref-state.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/host/reference-events.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/host/reference-keys.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/host/reference-source.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/host/reference.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/host/reload-cycle.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/host/retry-on.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/host/revocation.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/host/root.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/host/route-admission.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/host/route.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/host/routines.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/host/sleep.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/host/staging.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/host/tiling.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/host/unbound-clock.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/host/unbound.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/host/uuid.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/index.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/jobs/definition.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/jobs/index.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/jobs/internal.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/jobs/job.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/jobs/persisted.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/jobs/records.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/jobs/run-states.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/jobs/run.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/jobs/running.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/jobs/stored.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/json.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/link/binary.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/link/channel.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/link/errors.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/link/index.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/link/internal.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/link/ipc.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/link/link.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/link/message.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/link/part.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/link/text.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/link/values.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/link/websocket.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/app/app.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/app/archive.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/app/blobs.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/app/data.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/app/ephemeral-sign-ins.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/app/ephemeral.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/app/files-copy.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/app/files-entry.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/app/files-index.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/app/files.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/app/folder-views.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/app/index.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/app/info.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/app/invite.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/app/layout.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/app/owner.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/app/pairing.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/app/secrets.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/app/sign-ins.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/app/tar.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/app/uploads.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/app/users.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/app/worker.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/compression.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/http/admission.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/http/authenticate.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/http/cookies.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/http/file.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/http/headers.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/http/http.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/http/incoming.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/http/index.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/http/node.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/http/request.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/http/response.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/http/router.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/http/upgrades.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/plugins/base-inputs.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/plugins/build.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/plugins/css-modules.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/plugins/discover.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/plugins/evaluate.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/plugins/index.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/plugins/install.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/plugins/plugins.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/plugins/runtime.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/plugins/stack.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/plugins/testing.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/plugins/watcher.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/surfaces/bundle.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/surfaces/current.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/surfaces/index.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/surfaces/published.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/surfaces/served.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/surfaces/surface-build.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/surfaces/tui.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/surfaces/web.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/tui/actions.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/tui/credentials.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/tui/filter.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/tui/index.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/tui/launcher.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/tui/pipe.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/tui/sandbox.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/workers/base.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/workers/child.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/workers/control.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/workers/index.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/workers/lock.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/workers/main.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/workers/process.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/node/workers/workers.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/output.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/react/hooks.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/react/index.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/react/stores.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/registries/contribution.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/registries/entries.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/registries/index.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/registries/internal.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/registries/record.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/registries/registry.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/registries/value.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/remote/calls.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/remote/consumer.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/remote/hold.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/remote/host-link.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/remote/internal.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/remote/path.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/remote/provider.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/remote/relay.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/remote/remote-object.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/remote/replica.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/sqlite/cloudflare.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/sqlite/database.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/sqlite/index.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/sqlite/migrations.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/sqlite/node.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/sqlite/schema.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/state/batch.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/state/derive.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/state/framed.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/state/index.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/state/internal.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/state/native-source.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/state/watchable.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/state/writable.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/store/adapter.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/store/allocator.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/store/applier.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/store/apply-batch.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/store/archive.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/store/backend.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/store/catalog.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/store/claims.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/store/column-set.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/store/columns.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/store/engine.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/store/evaluate.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/store/export.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/store/expression.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/store/host-column.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/store/host-data.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/store/import-migration.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/store/import.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/store/index.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/store/json-column.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/store/jsonl.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/store/live-query.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/store/open-query.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/store/outbox.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/store/page.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/store/query.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/store/read-plan.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/store/read.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/store/reads.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/store/refusal.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/store/rows.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/store/schema.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/store/skip.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/store/sql.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/store/step.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/store/store.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/store/table-changes.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/store/table-evolve.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/store/table-handle.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/store/table-history.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/store/table-migration.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/store/table-writes.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/store/table.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/store/text.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/store/writes.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/surfaces/active-language.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/surfaces/active-theme.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/surfaces/client.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/surfaces/connection.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/surfaces/format.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/surfaces/index.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/surfaces/language.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/surfaces/loaded.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/surfaces/locale-choice.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/surfaces/messages.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/surfaces/page-state.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/surfaces/preference.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/surfaces/registered.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/surfaces/scripts.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/surfaces/theme-choice.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/surfaces/themes.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/surfaces/translations.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/surfaces/variant.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/sync/batch.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/sync/client.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/sync/files.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/sync/filesystem.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/sync/index.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/sync/lines.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/sync/remote.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/sync/state.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/telemetry-ingest/batch.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/telemetry-ingest/facet.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/telemetry-ingest/index.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/telemetry-ingest/recorder.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/telemetry-ingest/sender.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/telemetry-sqlite/index.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/telemetry-sqlite/node.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/telemetry-sqlite/schema.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/telemetry-sqlite/store.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/telemetry.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/tui/bridge.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/tui/channel.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/tui/frames.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/tui/index.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/tui/runtime.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/tui/scope.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/tui/terminal.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/tui/theme.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/watch.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/web/environment.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/web/index.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/web/language.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/web/page.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/web/scripts.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/web/styles.ts",
+      "exported": true
+    },
+    {
+      "area": "chord",
+      "path": "packages/chord/src/web/themes.ts",
+      "exported": true
+    },
+    {
+      "area": "codemode",
+      "path": "packages/codemode/src/cloudflare.ts",
+      "exported": true
+    },
+    {
+      "area": "codemode",
+      "path": "packages/codemode/src/declarations.ts",
+      "exported": true
+    },
+    {
+      "area": "codemode",
+      "path": "packages/codemode/src/identifier.ts",
+      "exported": true
+    },
+    {
+      "area": "codemode",
+      "path": "packages/codemode/src/index.ts",
+      "exported": true
+    },
+    {
+      "area": "codemode",
+      "path": "packages/codemode/src/portable.ts",
+      "exported": true
+    },
+    {
+      "area": "codemode",
+      "path": "packages/codemode/src/runtime/execution.ts",
+      "exported": true
+    },
+    {
+      "area": "codemode",
+      "path": "packages/codemode/src/runtime/host.ts",
+      "exported": true
+    },
+    {
+      "area": "codemode",
+      "path": "packages/codemode/src/runtime/inline.ts",
+      "exported": true
+    },
+    {
+      "area": "codemode",
+      "path": "packages/codemode/src/runtime/prelude-source.ts",
+      "exported": true
+    },
+    {
+      "area": "codemode",
+      "path": "packages/codemode/src/runtime/protocol.ts",
+      "exported": true
+    },
+    {
+      "area": "codemode",
+      "path": "packages/codemode/src/runtime/remote.ts",
+      "exported": true
+    },
+    {
+      "area": "codemode",
+      "path": "packages/codemode/src/runtime/vm.ts",
+      "exported": true
+    },
+    {
+      "area": "codemode",
+      "path": "packages/codemode/src/runtime/worker.ts",
+      "exported": false
+    },
+    {
+      "area": "codemode",
+      "path": "packages/codemode/src/source.ts",
+      "exported": true
+    },
+    {
+      "area": "codemode",
+      "path": "packages/codemode/src/types.ts",
+      "exported": true
+    },
+    {
+      "area": "codemode",
+      "path": "packages/codemode/src/wasm.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/bun/cli.ts",
+      "exported": false
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/bun/restore-sandbox-env.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/bun/runtime-setup.ts",
+      "exported": false
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/bun/sandbox-env-setup.ts",
+      "exported": false
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/cli.ts",
+      "exported": false
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/cli/args.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/cli/auth-check.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/cli/auth-command.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/cli/auth-login.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/cli/auth-logout.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/cli/auth-terminal.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/cli/config-selector.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/cli/credential-print.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/cli/file-processor.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/cli/initial-message.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/cli/list-models.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/cli/project-trust.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/cli/session-picker.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/cli/setup.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/cli/startup-ui.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/config.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/agent-session-runtime.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/agent-session-services.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/agent-session.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/auth-guidance.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/auth-storage.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/bash-executor.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/bug-report-upload.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/bug-report.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/cache-stats.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/cache-warmer.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/client-identity.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/compaction/branch-summarization.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/compaction/compaction.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/compaction/index.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/compaction/utils.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/crash-log.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/defaults.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/diagnostics.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/event-bus.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/exec.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/experimental.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/export-html/ansi-to-html.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/export-html/index.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/export-html/template.js",
+      "exported": false
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/export-html/tool-renderer.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/export-html/vendor/highlight.min.js",
+      "exported": false
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/export-html/vendor/marked-cjk-friendly.min.js",
+      "exported": false
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/export-html/vendor/marked.min.js",
+      "exported": false
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/extensions/index.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/extensions/jiti-loader.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/extensions/jiti-static-loader.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/extensions/loader.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/extensions/pi-ai-extension-view.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/extensions/runner.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/extensions/types.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/extensions/virtual-modules.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/extensions/wrapper.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/footer-data-provider.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/http-dispatcher.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/index.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/key-id-schema.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/keybindings-schema.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/keybindings.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/mcp-servers.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/messages.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/model-config.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/model-registry.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/model-resolver.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/model-runtime.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/models-store.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/nested-tool-calls.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/output-guard.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/package-manager.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/pi-ai-schemas.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/pi-manifest.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/preferred-providers.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/project-trust.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/prompt-templates.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/provider-composer.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/provider-matching.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/radius-mcp.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/radius.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/remote-catalog-provider.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/resolve-config-value.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/resource-loader.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/runtime-credentials.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/sdk.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/session-cwd.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/session-export.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/session-manager.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/settings-defaults.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/settings-diagnostics.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/settings-manager.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/settings-schema.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/skills.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/slash-commands.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/source-info.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/system-prompt.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/telemetry.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/timings.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/tools/bash.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/tools/edit-diff.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/tools/edit.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/tools/file-mutation-queue.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/tools/find.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/tools/grep.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/tools/index.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/tools/ls.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/tools/output-accumulator.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/tools/path-utils.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/tools/powershell.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/tools/read.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/tools/render-utils.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/tools/renderers/bash.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/tools/renderers/edit.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/tools/renderers/find.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/tools/renderers/grep.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/tools/renderers/index.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/tools/renderers/ls.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/tools/renderers/read.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/tools/renderers/write.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/tools/tool-definition-wrapper.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/tools/truncate.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/tools/write.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/trust-manager.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/usage-totals.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/core/virtual-models.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/experimental/source-resolver.ts",
+      "exported": false
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/extensions/codemode/execute.lazy.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/extensions/codemode/execute.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/extensions/codemode/index.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/extensions/codemode/renderer.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/extensions/codemode/tool.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/extensions/codemode/worker.ts",
+      "exported": false
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/extensions/index.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/extensions/llama/client.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/extensions/llama/huggingface.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/extensions/llama/index.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/extensions/llama/provider.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/extensions/llama/ui.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/extensions/mcp/cli.lazy.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/extensions/mcp/cli.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/extensions/mcp/config.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/extensions/mcp/index.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/extensions/mcp/log.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/extensions/mcp/oauth.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/extensions/mcp/resources.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/extensions/mcp/runtime.lazy.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/extensions/mcp/runtime.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/extensions/mcp/tools.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/extensions/mcp/ui.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/extensions/tool-search/index.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/extensions/tool-search/tool.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/index.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/main.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/migrations.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/diagnostics-stderr.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/index.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/bug-report.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/chat-viewport.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/components/armin.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/components/assistant-message.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/components/auth-url.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/components/bash-execution.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/components/bordered-loader.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/components/branch-summary-message.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/components/compaction-summary-message.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/components/config-selector.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/components/countdown-timer.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/components/custom-editor.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/components/custom-entry.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/components/custom-message.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/components/diff.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/components/dynamic-border.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/components/earendil-announcement.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/components/easter-egg-3d.lazy.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/components/easter-egg-3d.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/components/extension-editor.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/components/extension-input.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/components/extension-selector.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/components/first-time-setup.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/components/footer.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/components/index.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/components/keybinding-hints.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/components/login-dialog.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/components/markdown-transform.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/components/mermaid.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/components/model-selector.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/components/oauth-selector.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/components/pi-logo.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/components/provider-brand.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/components/radius-login-selector.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/components/scoped-models-selector.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/components/session-selector-search.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/components/session-selector.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/components/settings-selector.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/components/settings-submenu.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/components/show-images-selector.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/components/skill-invocation-message.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/components/status-indicator.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/components/theme-selector.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/components/themed-text.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/components/thinking-selector.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/components/tool-execution.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/components/tree-selector.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/components/trust-selector.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/components/user-message-selector.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/components/user-message.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/components/visual-truncate.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/external-editor.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/interactive-mode.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/model-catalog-refresh.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/model-search.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/program-status-reporter.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/session-share.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/theme/system-theme.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/theme/theme-controller.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/theme/theme-schema.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/theme/theme-tokens.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/theme/theme.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/interactive/tui-renderer.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/json-event.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/print-mode.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/rpc/jsonl.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/rpc/rpc-client.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/rpc/rpc-mode.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/modes/rpc/rpc-types.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/package-manager-cli.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/rpc-entry.ts",
+      "exported": false
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/utils/abort.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/utils/ansi.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/utils/changelog.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/utils/child-process.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/utils/clipboard-command.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/utils/clipboard-image.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/utils/clipboard.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/utils/exif-orientation.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/utils/flush-stdout.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/utils/frontmatter.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/utils/fs-watch.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/utils/git.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/utils/html.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/utils/image-convert.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/utils/image-process.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/utils/image-resize-core.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/utils/image-resize-worker.ts",
+      "exported": false
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/utils/image-resize.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/utils/json.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/utils/management-http.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/utils/mime.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/utils/open-browser.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/utils/output-files.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/utils/paths.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/utils/photon.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/utils/pi-user-agent.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/utils/shell.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/utils/sleep.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/utils/syntax-highlight.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/utils/terminal-question.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/utils/text.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/utils/tool-result-images.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/utils/tools-manager.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/utils/version-check.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/utils/web-url.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/utils/windows-self-update.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/utils/wsl.ts",
+      "exported": true
+    },
+    {
+      "area": "coding-agent",
+      "path": "packages/coding-agent/src/utils/zip.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/codemode/codemode.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/codemode/describe.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/codemode/index.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/codemode/models.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/codemode/output.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/documents.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/entries.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/env/decode.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/env/index.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/env/line-scan.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/env/node-watch.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/env/node.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/errors.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/harness/agent.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/harness/compaction.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/harness/context.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/harness/define.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/harness/generation.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/harness/harness.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/harness/inbox.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/harness/json.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/harness/live.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/harness/parks.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/harness/partial-changes.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/harness/prompt.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/harness/provider.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/harness/registry-reader.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/harness/registry.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/harness/scheduler.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/harness/submissions.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/harness/task-graph.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/harness/telemetry.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/harness/tool.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/harness/transcript.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/harness/types.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/harness/usage.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/harness/util.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/harness/view.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/ids.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/images/cloudflare.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/images/exif.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/images/fit.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/images/index.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/images/node-worker.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/images/node.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/index.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/search.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/session/cached-storage.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/session/conversation-tails.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/session/forks.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/session/keys.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/session/session.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/session/transaction.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/session/writer.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/signals.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/storage/indexeddb.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/storage/jsonl/index.ts",
+      "exported": false
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/storage/jsonl/node.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/storage/jsonl/storage.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/storage/memory.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/storage/scan.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/storage/sqlite/cloudflare.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/storage/sqlite/commit.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/storage/sqlite/database.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/storage/sqlite/index.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/storage/sqlite/migrations.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/storage/sqlite/node.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/storage/sqlite/rows.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/storage/sqlite/schema.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/storage/sqlite/statements.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/storage/sqlite/storage.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/storage/store/commit.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/storage/store/documents.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/storage/store/index.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/storage/store/queries.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/storage/store/storage.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/storage/store/tables.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/tasks.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/testing/assertions.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/testing/commit-writes.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/testing/env-conformance.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/testing/index.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/testing/runner.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/testing/storage-benchmark.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/testing/storage-conformance.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/testing/types.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/timers.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/tool-search/index.ts",
+      "exported": false
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/tool-search/tool-search.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/tools/bash.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/tools/edit-diff.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/tools/edit.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/tools/env.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/tools/file-mutation-queue.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/tools/image-processor.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/tools/image.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/tools/index.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/tools/path-utils.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/tools/read.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/tools/write.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/truncate.ts",
+      "exported": true
+    },
+    {
+      "area": "durable",
+      "path": "packages/durable/src/types.ts",
+      "exported": true
+    },
+    {
+      "area": "env",
+      "path": "packages/env/src/connection.ts",
+      "exported": true
+    },
+    {
+      "area": "env",
+      "path": "packages/env/src/errors.ts",
+      "exported": true
+    },
+    {
+      "area": "env",
+      "path": "packages/env/src/index.ts",
+      "exported": true
+    },
+    {
+      "area": "env",
+      "path": "packages/env/src/list-files.ts",
+      "exported": true
+    },
+    {
+      "area": "env",
+      "path": "packages/env/src/process.ts",
+      "exported": true
+    },
+    {
+      "area": "env",
+      "path": "packages/env/src/remote-env.ts",
+      "exported": true
+    },
+    {
+      "area": "env",
+      "path": "packages/env/src/ssh.ts",
+      "exported": true
+    },
+    {
+      "area": "env",
+      "path": "packages/env/src/terminal.ts",
+      "exported": true
+    },
+    {
+      "area": "env",
+      "path": "packages/env/src/watch.ts",
+      "exported": true
+    },
+    {
+      "area": "evals",
+      "path": "packages/evals/src/cli.ts",
+      "exported": false
+    },
+    {
+      "area": "evals",
+      "path": "packages/evals/src/docker.ts",
+      "exported": true
+    },
+    {
+      "area": "evals",
+      "path": "packages/evals/src/harness.ts",
+      "exported": true
+    },
+    {
+      "area": "evals",
+      "path": "packages/evals/src/plan.ts",
+      "exported": true
+    },
+    {
+      "area": "evals",
+      "path": "packages/evals/src/report.ts",
+      "exported": true
+    },
+    {
+      "area": "mcp",
+      "path": "packages/mcp/src/auth-provider.ts",
+      "exported": true
+    },
+    {
+      "area": "mcp",
+      "path": "packages/mcp/src/client.ts",
+      "exported": true
+    },
+    {
+      "area": "mcp",
+      "path": "packages/mcp/src/config.ts",
+      "exported": true
+    },
+    {
+      "area": "mcp",
+      "path": "packages/mcp/src/index.ts",
+      "exported": true
+    },
+    {
+      "area": "mcp",
+      "path": "packages/mcp/src/input-schema.ts",
+      "exported": true
+    },
+    {
+      "area": "mcp",
+      "path": "packages/mcp/src/model-content.ts",
+      "exported": true
+    },
+    {
+      "area": "mcp",
+      "path": "packages/mcp/src/naming.ts",
+      "exported": true
+    },
+    {
+      "area": "mcp",
+      "path": "packages/mcp/src/oauth/auth-provider.ts",
+      "exported": true
+    },
+    {
+      "area": "mcp",
+      "path": "packages/mcp/src/oauth/callback.ts",
+      "exported": true
+    },
+    {
+      "area": "mcp",
+      "path": "packages/mcp/src/oauth/client-settings.ts",
+      "exported": true
+    },
+    {
+      "area": "mcp",
+      "path": "packages/mcp/src/oauth/discovery.ts",
+      "exported": true
+    },
+    {
+      "area": "mcp",
+      "path": "packages/mcp/src/oauth/errors.ts",
+      "exported": true
+    },
+    {
+      "area": "mcp",
+      "path": "packages/mcp/src/oauth/flow.ts",
+      "exported": true
+    },
+    {
+      "area": "mcp",
+      "path": "packages/mcp/src/oauth/index.ts",
+      "exported": true
+    },
+    {
+      "area": "mcp",
+      "path": "packages/mcp/src/oauth/loopback.ts",
+      "exported": true
+    },
+    {
+      "area": "mcp",
+      "path": "packages/mcp/src/oauth/provider.ts",
+      "exported": true
+    },
+    {
+      "area": "mcp",
+      "path": "packages/mcp/src/oauth/sign-in.ts",
+      "exported": true
+    },
+    {
+      "area": "mcp",
+      "path": "packages/mcp/src/oauth/types.ts",
+      "exported": true
+    },
+    {
+      "area": "mcp",
+      "path": "packages/mcp/src/output-limit.ts",
+      "exported": true
+    },
+    {
+      "area": "mcp",
+      "path": "packages/mcp/src/protocol/content.ts",
+      "exported": true
+    },
+    {
+      "area": "mcp",
+      "path": "packages/mcp/src/protocol/jsonrpc.ts",
+      "exported": true
+    },
+    {
+      "area": "mcp",
+      "path": "packages/mcp/src/protocol/types.ts",
+      "exported": true
+    },
+    {
+      "area": "mcp",
+      "path": "packages/mcp/src/result-schema.ts",
+      "exported": true
+    },
+    {
+      "area": "mcp",
+      "path": "packages/mcp/src/testing/index.ts",
+      "exported": true
+    },
+    {
+      "area": "mcp",
+      "path": "packages/mcp/src/transports/in-memory.ts",
+      "exported": true
+    },
+    {
+      "area": "mcp",
+      "path": "packages/mcp/src/transports/lines.ts",
+      "exported": true
+    },
+    {
+      "area": "mcp",
+      "path": "packages/mcp/src/transports/pipe.ts",
+      "exported": true
+    },
+    {
+      "area": "mcp",
+      "path": "packages/mcp/src/transports/stdio.ts",
+      "exported": true
+    },
+    {
+      "area": "mcp",
+      "path": "packages/mcp/src/transports/streamable-http.ts",
+      "exported": true
+    },
+    {
+      "area": "mcp",
+      "path": "packages/mcp/src/transports/transport.ts",
+      "exported": true
+    },
+    {
+      "area": "schema",
+      "path": "packages/schema/src/annotations.ts",
+      "exported": true
+    },
+    {
+      "area": "schema",
+      "path": "packages/schema/src/builders.ts",
+      "exported": true
+    },
+    {
+      "area": "schema",
+      "path": "packages/schema/src/checks.ts",
+      "exported": true
+    },
+    {
+      "area": "schema",
+      "path": "packages/schema/src/coerce.ts",
+      "exported": true
+    },
+    {
+      "area": "schema",
+      "path": "packages/schema/src/compiler.ts",
+      "exported": true
+    },
+    {
+      "area": "schema",
+      "path": "packages/schema/src/explain.ts",
+      "exported": true
+    },
+    {
+      "area": "schema",
+      "path": "packages/schema/src/formats/index.ts",
+      "exported": true
+    },
+    {
+      "area": "schema",
+      "path": "packages/schema/src/formats/typebox/date_time.ts",
+      "exported": true
+    },
+    {
+      "area": "schema",
+      "path": "packages/schema/src/formats/typebox/date.ts",
+      "exported": true
+    },
+    {
+      "area": "schema",
+      "path": "packages/schema/src/formats/typebox/duration.ts",
+      "exported": true
+    },
+    {
+      "area": "schema",
+      "path": "packages/schema/src/formats/typebox/email.ts",
+      "exported": true
+    },
+    {
+      "area": "schema",
+      "path": "packages/schema/src/formats/typebox/hostname.ts",
+      "exported": true
+    },
+    {
+      "area": "schema",
+      "path": "packages/schema/src/formats/typebox/idn_email.ts",
+      "exported": true
+    },
+    {
+      "area": "schema",
+      "path": "packages/schema/src/formats/typebox/idn_hostname.ts",
+      "exported": true
+    },
+    {
+      "area": "schema",
+      "path": "packages/schema/src/formats/typebox/idna/format/bidi.ts",
+      "exported": true
+    },
+    {
+      "area": "schema",
+      "path": "packages/schema/src/formats/typebox/idna/format/puny.ts",
+      "exported": true
+    },
+    {
+      "area": "schema",
+      "path": "packages/schema/src/formats/typebox/idna/hostname.ts",
+      "exported": true
+    },
+    {
+      "area": "schema",
+      "path": "packages/schema/src/formats/typebox/idna/idn-hostname.ts",
+      "exported": true
+    },
+    {
+      "area": "schema",
+      "path": "packages/schema/src/formats/typebox/idna/index.ts",
+      "exported": true
+    },
+    {
+      "area": "schema",
+      "path": "packages/schema/src/formats/typebox/idna/label/ascii.ts",
+      "exported": true
+    },
+    {
+      "area": "schema",
+      "path": "packages/schema/src/formats/typebox/idna/label/puny.ts",
+      "exported": true
+    },
+    {
+      "area": "schema",
+      "path": "packages/schema/src/formats/typebox/idna/label/unicode.ts",
+      "exported": true
+    },
+    {
+      "area": "schema",
+      "path": "packages/schema/src/formats/typebox/idna/pattern/pattern.ts",
+      "exported": true
+    },
+    {
+      "area": "schema",
+      "path": "packages/schema/src/formats/typebox/ipv4.ts",
+      "exported": true
+    },
+    {
+      "area": "schema",
+      "path": "packages/schema/src/formats/typebox/ipv6.ts",
+      "exported": true
+    },
+    {
+      "area": "schema",
+      "path": "packages/schema/src/formats/typebox/iri_reference.ts",
+      "exported": true
+    },
+    {
+      "area": "schema",
+      "path": "packages/schema/src/formats/typebox/iri.ts",
+      "exported": true
+    },
+    {
+      "area": "schema",
+      "path": "packages/schema/src/formats/typebox/json_pointer_uri_fragment.ts",
+      "exported": true
+    },
+    {
+      "area": "schema",
+      "path": "packages/schema/src/formats/typebox/json_pointer.ts",
+      "exported": true
+    },
+    {
+      "area": "schema",
+      "path": "packages/schema/src/formats/typebox/regex.ts",
+      "exported": true
+    },
+    {
+      "area": "schema",
+      "path": "packages/schema/src/formats/typebox/relative_json_pointer.ts",
+      "exported": true
+    },
+    {
+      "area": "schema",
+      "path": "packages/schema/src/formats/typebox/time.ts",
+      "exported": true
+    },
+    {
+      "area": "schema",
+      "path": "packages/schema/src/formats/typebox/uri_reference.ts",
+      "exported": true
+    },
+    {
+      "area": "schema",
+      "path": "packages/schema/src/formats/typebox/uri_template.ts",
+      "exported": true
+    },
+    {
+      "area": "schema",
+      "path": "packages/schema/src/formats/typebox/uri.ts",
+      "exported": true
+    },
+    {
+      "area": "schema",
+      "path": "packages/schema/src/formats/typebox/url.ts",
+      "exported": true
+    },
+    {
+      "area": "schema",
+      "path": "packages/schema/src/formats/typebox/uuid.ts",
+      "exported": true
+    },
+    {
+      "area": "schema",
+      "path": "packages/schema/src/index.ts",
+      "exported": true
+    },
+    {
+      "area": "schema",
+      "path": "packages/schema/src/resolver.ts",
+      "exported": true
+    },
+    {
+      "area": "schema",
+      "path": "packages/schema/src/shared.ts",
+      "exported": true
+    },
+    {
+      "area": "schema",
+      "path": "packages/schema/src/typebox-static.ts",
+      "exported": true
+    },
+    {
+      "area": "schema",
+      "path": "packages/schema/src/types.ts",
+      "exported": true
+    },
+    {
+      "area": "schema",
+      "path": "packages/schema/src/validator.ts",
+      "exported": true
+    },
+    {
+      "area": "telemetry",
+      "path": "packages/telemetry/src/index.ts",
+      "exported": true
+    },
+    {
+      "area": "telemetry",
+      "path": "packages/telemetry/src/memory.ts",
+      "exported": true
+    },
+    {
+      "area": "telemetry",
+      "path": "packages/telemetry/src/metrics.ts",
+      "exported": true
+    },
+    {
+      "area": "telemetry",
+      "path": "packages/telemetry/src/noop.ts",
+      "exported": true
+    },
+    {
+      "area": "telemetry",
+      "path": "packages/telemetry/src/render.ts",
+      "exported": true
+    },
+    {
+      "area": "telemetry",
+      "path": "packages/telemetry/src/testing/conformance.ts",
+      "exported": true
+    },
+    {
+      "area": "telemetry",
+      "path": "packages/telemetry/src/testing/index.ts",
+      "exported": true
+    },
+    {
+      "area": "telemetry",
+      "path": "packages/telemetry/src/testing/types.ts",
+      "exported": true
+    },
+    {
+      "area": "tui",
+      "path": "packages/tui/src/alt-screen-search.ts",
+      "exported": true
+    },
+    {
+      "area": "tui",
+      "path": "packages/tui/src/autocomplete.ts",
+      "exported": true
+    },
+    {
+      "area": "tui",
+      "path": "packages/tui/src/colors.ts",
+      "exported": true
+    },
+    {
+      "area": "tui",
+      "path": "packages/tui/src/components/alt-screen-flash.ts",
+      "exported": true
+    },
+    {
+      "area": "tui",
+      "path": "packages/tui/src/components/box.ts",
+      "exported": true
+    },
+    {
+      "area": "tui",
+      "path": "packages/tui/src/components/cancellable-loader.ts",
+      "exported": true
+    },
+    {
+      "area": "tui",
+      "path": "packages/tui/src/components/editor.ts",
+      "exported": true
+    },
+    {
+      "area": "tui",
+      "path": "packages/tui/src/components/h-stack.ts",
+      "exported": true
+    },
+    {
+      "area": "tui",
+      "path": "packages/tui/src/components/image.ts",
+      "exported": true
+    },
+    {
+      "area": "tui",
+      "path": "packages/tui/src/components/input.ts",
+      "exported": true
+    },
+    {
+      "area": "tui",
+      "path": "packages/tui/src/components/loader.ts",
+      "exported": true
+    },
+    {
+      "area": "tui",
+      "path": "packages/tui/src/components/markdown.ts",
+      "exported": true
+    },
+    {
+      "area": "tui",
+      "path": "packages/tui/src/components/mouse-region.ts",
+      "exported": true
+    },
+    {
+      "area": "tui",
+      "path": "packages/tui/src/components/scroll-view.ts",
+      "exported": true
+    },
+    {
+      "area": "tui",
+      "path": "packages/tui/src/components/select-list.ts",
+      "exported": true
+    },
+    {
+      "area": "tui",
+      "path": "packages/tui/src/components/settings-list.ts",
+      "exported": true
+    },
+    {
+      "area": "tui",
+      "path": "packages/tui/src/components/spacer.ts",
+      "exported": true
+    },
+    {
+      "area": "tui",
+      "path": "packages/tui/src/components/stack.ts",
+      "exported": true
+    },
+    {
+      "area": "tui",
+      "path": "packages/tui/src/components/text.ts",
+      "exported": true
+    },
+    {
+      "area": "tui",
+      "path": "packages/tui/src/components/truncated-text.ts",
+      "exported": true
+    },
+    {
+      "area": "tui",
+      "path": "packages/tui/src/components/v-stack.ts",
+      "exported": true
+    },
+    {
+      "area": "tui",
+      "path": "packages/tui/src/editor-component.ts",
+      "exported": true
+    },
+    {
+      "area": "tui",
+      "path": "packages/tui/src/fuzzy.ts",
+      "exported": true
+    },
+    {
+      "area": "tui",
+      "path": "packages/tui/src/index.ts",
+      "exported": true
+    },
+    {
+      "area": "tui",
+      "path": "packages/tui/src/keybindings.ts",
+      "exported": true
+    },
+    {
+      "area": "tui",
+      "path": "packages/tui/src/keys.ts",
+      "exported": true
+    },
+    {
+      "area": "tui",
+      "path": "packages/tui/src/kill-ring.ts",
+      "exported": true
+    },
+    {
+      "area": "tui",
+      "path": "packages/tui/src/latex.ts",
+      "exported": true
+    },
+    {
+      "area": "tui",
+      "path": "packages/tui/src/layout-node.ts",
+      "exported": true
+    },
+    {
+      "area": "tui",
+      "path": "packages/tui/src/layout.ts",
+      "exported": true
+    },
+    {
+      "area": "tui",
+      "path": "packages/tui/src/native-modifiers.ts",
+      "exported": true
+    },
+    {
+      "area": "tui",
+      "path": "packages/tui/src/native-module-path.ts",
+      "exported": true
+    },
+    {
+      "area": "tui",
+      "path": "packages/tui/src/native-platform.ts",
+      "exported": true
+    },
+    {
+      "area": "tui",
+      "path": "packages/tui/src/oklab.ts",
+      "exported": true
+    },
+    {
+      "area": "tui",
+      "path": "packages/tui/src/program-status.ts",
+      "exported": true
+    },
+    {
+      "area": "tui",
+      "path": "packages/tui/src/stdin-buffer.ts",
+      "exported": true
+    },
+    {
+      "area": "tui",
+      "path": "packages/tui/src/terminal-colors.ts",
+      "exported": true
+    },
+    {
+      "area": "tui",
+      "path": "packages/tui/src/terminal-image.ts",
+      "exported": true
+    },
+    {
+      "area": "tui",
+      "path": "packages/tui/src/terminal.ts",
+      "exported": true
+    },
+    {
+      "area": "tui",
+      "path": "packages/tui/src/tui-alt-screen.ts",
+      "exported": true
+    },
+    {
+      "area": "tui",
+      "path": "packages/tui/src/tui-main-screen.ts",
+      "exported": true
+    },
+    {
+      "area": "tui",
+      "path": "packages/tui/src/tui.ts",
+      "exported": true
+    },
+    {
+      "area": "tui",
+      "path": "packages/tui/src/undo-stack.ts",
+      "exported": true
+    },
+    {
+      "area": "tui",
+      "path": "packages/tui/src/utils.ts",
+      "exported": true
+    },
+    {
+      "area": "tui",
+      "path": "packages/tui/src/wheel-scroll.ts",
+      "exported": true
+    },
+    {
+      "area": "tui",
+      "path": "packages/tui/src/word-navigation.ts",
+      "exported": true
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "name": "tool-arguments-invalid",
+  "sha": "eac23310c3f91cb993b8ba5e0c3111527bdfdb8d",
+  "normalization_version": 1,
+  "equal": true,
+  "row_ids": [
+    "agent.packages-agent-src-agent-loop.ts.agentLoop.validation"
+  ],
+  "left": [
+    {
+      "cache": 0,
+      "input": 0,
+      "output": 0,
+      "seq": 1,
+      "turn": 0,
+      "type": "usage"
+    },
+    {
+      "code": "argumentsError",
+      "message": "tool arguments failed validation",
+      "seq": 2,
+      "turn": 0,
+      "type": "error"
+    },
+    {
+      "path": "$.turns",
+      "seq": 3,
+      "turn": 0,
+      "type": "state",
+      "value": 1
+    },
+    {
+      "name": "agent_start",
+      "seq": 4,
+      "turn": 0,
+      "type": "event"
+    },
+    {
+      "arguments": {
+        "command": ""
+      },
+      "name": "tool_call",
+      "seq": 5,
+      "tool": "shell",
+      "tool_call_id": "<tool-call-1>",
+      "turn": 0,
+      "type": "event"
+    }
+  ],
+  "right": [
+    {
+      "cache": 0,
+      "input": 0,
+      "output": 0,
+      "seq": 1,
+      "turn": 0,
+      "type": "usage"
+    },
+    {
+      "code": "argumentsError",
+      "message": "tool arguments failed validation",
+      "seq": 2,
+      "turn": 0,
+      "type": "error"
+    },
+    {
+      "path": "$.turns",
+      "seq": 3,
+      "turn": 0,
+      "type": "state",
+      "value": 1
+    },
+    {
+      "name": "agent_start",
+      "seq": 4,
+      "turn": 0,
+      "type": "event"
+    },
+    {
+      "arguments": {
+        "command": ""
+      },
+      "name": "tool_call",
+      "seq": 5,
+      "tool": "shell",
+      "tool_call_id": "<tool-call-1>",
+      "turn": 0,
+      "type": "event"
+    }
+  ],
+  "differences": []
+}

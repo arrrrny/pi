@@ -1,0 +1,80 @@
+# Coverage governance (routine push / pull-request)
+#
+# Generates the upstream coverage ledger for the pinned SHA, checks its
+# invariants and completeness, runs the purity guard, and runs the Dart suite.
+#
+# This workflow MUST NOT run `check-release-evidence.mjs`. It generates the
+# manifest and inventories checks and differential evidence, which are
+# intentionally red while known rows are unported, so it is a build-health and
+# inventory signal, never a parity gate. A red routine run blocks nothing that is
+# not already known to be unported.
+
+name: Coverage
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: coverage-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  coverage:
+    name: Coverage ledger and purity
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22.19"
+
+      - name: Resolve pinned upstream SHA
+        id: sha
+        run: |
+          SHA=$(node -e "process.stdout.write(require('./coverage/state.json').target_upstream_sha)")
+          echo "sha=$SHA" >> "$GITHUB_OUTPUT"
+          echo "target_upstream_sha=$SHA"
+
+      - name: Generate coverage manifest
+        run: |
+          node scripts/coverage/generate-coverage-manifest.mjs \
+            --upstream . --sha "${{ steps.sha.outputs.sha }}" \
+            --registry coverage/registry/behavior-registry.json \
+            --out coverage/upstream/${{ steps.sha.outputs.sha }}
+
+      - name: Check coverage ledger
+        run: |
+          node scripts/coverage/check-coverage.mjs \
+            --manifest coverage/upstream/${{ steps.sha.outputs.sha }}/manifest.json
+
+      - name: Purity check
+        run: node scripts/coverage/check-purity.mjs
+
+      - name: Setup Dart
+        uses: dart-lang/setup-dart@v1
+        with:
+          sdk: "3.9"
+
+      - name: Dart analyze
+        run: |
+          cd pi_agent
+          dart pub get
+          dart analyze
+
+      - name: Dart test
+        run: |
+          cd pi_agent
+          dart test -j 2

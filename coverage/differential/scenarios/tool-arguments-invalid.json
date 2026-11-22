@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "name": "tool-arguments-invalid",
+  "kind": "agent-loop.tool-arguments-validated",
+  "area": "agent",
+  "row_ids": ["agent.packages-agent-src-agent-loop.ts.agentLoop.validation"],
+  "provider": { "kind": "scripted", "turns": [] },
+  "clock": { "kind": "virtual", "start": "2026-01-01T00:00:00Z" },
+  "storage": { "kind": "memory" },
+  "crash_points": [],
+  "tool": "shell",
+  "arguments": { "command": "" },
+  "normalization_version": 1
+}
