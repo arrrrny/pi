@@ -1,1 +1,3 @@
-{"feature_directory":"specs/002-upstream-coverage-governance"}
+{
+  "feature_directory": "specs/003-durable-storage-task-foundations"
+}
