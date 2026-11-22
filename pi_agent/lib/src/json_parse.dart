@@ -19,6 +19,9 @@ const Set<String> _validJsonEscapes = {
   't',
 };
 
+/// Matches the four hex digits of a `\uXXXX` escape.
+final RegExp _unicodeEscape = RegExp(r'^[0-9a-fA-F]{4}$');
+
 /// Whether [char] is a raw U+0000–U+001F control character.
 bool _isControlCharacter(String char) {
   final codePoint = char.codeUnitAt(0);
@@ -67,7 +70,7 @@ String repairJson(String json) {
         final unicodeDigits = index + 6 <= json.length
             ? json.substring(index + 2, index + 6)
             : '';
-        if (RegExp(r'^[0-9a-fA-F]{4}$').hasMatch(unicodeDigits)) {
+        if (_unicodeEscape.hasMatch(unicodeDigits)) {
           repaired.write('\\u$unicodeDigits');
           index += 5;
           continue;
@@ -92,6 +95,10 @@ String repairJson(String json) {
 }
 
 /// Decodes [json], retrying once against [repairJson] when the first parse fails.
+///
+/// [T] must be `dynamic`: a narrower type throws a [TypeError] instead of a
+/// [FormatException] when the payload does not match. Callers that want an
+/// argument map should use [parseToolCallArguments].
 T parseJsonWithRepair<T>(String json) {
   try {
     return jsonDecode(json) as T;
@@ -143,6 +150,10 @@ ParsedToolArguments parseToolCallArguments(String? json) {
   }
 }
 
-/// The human-readable message of [error], without the type prefix Dart adds.
-String _messageOf(Object error) =>
-    error is FormatException ? error.message : error.toString();
+/// The human-readable message of [error], without the type prefix Dart adds,
+/// plus the offset when the JSON parser reported one so the model can locate
+/// the fault in the echoed text.
+String _messageOf(Object error) => error is FormatException
+    ? '${error.message}'
+        '${error.offset == null ? '' : ' (at character ${error.offset! + 1})'}'
+    : error.toString();

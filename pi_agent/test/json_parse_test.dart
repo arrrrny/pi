@@ -37,10 +37,11 @@ void main() {
     });
 
     test('uses empty arguments for empty text', () {
-      expect(parseToolCallArguments(null).arguments, {});
-      expect(parseToolCallArguments(null).argumentsError, isNull);
-      expect(parseToolCallArguments('').arguments, {});
-      expect(parseToolCallArguments('   ').argumentsError, isNull);
+      for (final raw in [null, '', '   ']) {
+        final result = parseToolCallArguments(raw);
+        expect(result.arguments, isEmpty, reason: '$raw');
+        expect(result.argumentsError, isNull, reason: '$raw');
+      }
     });
 
     test('does not keep the valid prefix of malformed JSON', () {
@@ -49,6 +50,14 @@ void main() {
       expect(result.arguments, {});
       expect(result.argumentsError, contains('\n\nReceived arguments:\n'));
       expect(result.argumentsError!.endsWith(raw), isTrue);
+    });
+
+    test('reports the parse position in the diagnostic', () {
+      // `$json` is `{}` on failure, so the echoed text is the model's only view
+      // of where the parser stopped.
+      final result = parseToolCallArguments('{"a":.5}');
+      expect(result.arguments, {});
+      expect(result.argumentsError, contains('(at character 6)'));
     });
 
     test('does not complete cut-off JSON', () {
