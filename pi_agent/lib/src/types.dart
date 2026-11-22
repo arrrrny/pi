@@ -52,21 +52,16 @@ enum StopReason {
   refused,
 }
 
-/// Steering message dispatch mode.
-enum SteeringMode {
-  /// Inject all queued steering messages at once.
+/// Controls how many queued user messages are injected when the agent loop
+/// reaches a queue drain point.
+///
+/// Mirrors upstream `packages/agent/src/types.ts` `QueueMode`.
+enum QueueMode {
+  /// Drain and inject every queued message at that point.
   all,
 
-  /// Inject one steering message at a time.
-  oneAtATime,
-}
-
-/// Follow-up message dispatch mode.
-enum FollowUpMode {
-  /// Inject all queued follow-up messages at once.
-  all,
-
-  /// Inject one follow-up message at a time.
+  /// Drain and inject only the oldest queued message, leaving the rest queued
+  /// for later drain points.
   oneAtATime,
 }
 

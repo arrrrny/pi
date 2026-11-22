@@ -4,6 +4,7 @@ import 'package:test/test.dart';
 import 'package:pi/src/types.dart' hide AgentTool;
 import 'package:pi/src/tools.dart';
 import 'package:pi/src/agent.dart';
+import 'package:pi/src/agent_loop.dart';
 
 void main() {
   group('Agent construction', () {
@@ -20,9 +21,7 @@ void main() {
 
     test('creates with individual params', () {
       final model = const Model(
-          provider: 'anthropic',
-          modelId: 'claude-3',
-          contextWindow: 200000);
+          provider: 'anthropic', modelId: 'claude-3', contextWindow: 200000);
       final agent = Agent(
         model: model,
         systemPrompt: 'You are helpful.',
@@ -53,7 +52,9 @@ void main() {
             provider: 'openai', modelId: 'gpt-3', contextWindow: 4000),
         options: AgentOptions(
           model: const Model(
-              provider: 'anthropic', modelId: 'claude-3', contextWindow: 200000),
+              provider: 'anthropic',
+              modelId: 'claude-3',
+              contextWindow: 200000),
         ),
       );
       expect(agent.state.model.modelId, 'claude-3');
@@ -459,12 +460,14 @@ void main() {
 
     test('steeringMode setter', () {
       final agent = Agent();
-      agent.steeringMode = SteeringMode.all;
+      agent.steeringMode = QueueMode.all;
+      expect(agent.steeringMode, QueueMode.all);
     });
 
     test('followUpMode setter', () {
       final agent = Agent();
-      agent.followUpMode = FollowUpMode.all;
+      agent.followUpMode = QueueMode.all;
+      expect(agent.followUpMode, QueueMode.all);
     });
 
     test('convertToLlm setter', () {
@@ -495,6 +498,253 @@ void main() {
     test('afterToolCall setter', () {
       final agent = Agent();
       agent.afterToolCall = (ctx, {isAborted}) async => null;
+    });
+  });
+
+  // Regression tests for arrrrny/pi#2: SteeringMode/FollowUpMode (now a shared
+  // QueueMode) must affect queue draining; one-at-a-time drains only the
+  // oldest message, all drains every message. Steering/follow-up draining only
+  // happens through the real turn loop, so these drive the Agent's
+  // `loopStreamFn` (the per-turn streamer) rather than `streamFn`.
+  group('Agent queue modes (issue #2)', () {
+    AgentMessage userMsg(String text) => UserMessage.text(text);
+
+    String textOf(AgentMessage m) {
+      if (m is UserMessage) {
+        return m.content.whereType<TextBlock>().map((b) => b.text).join();
+      }
+      if (m is AssistantMessage) {
+        return m.text;
+      }
+      return '';
+    }
+
+    // A per-turn streamer: the first turn requests a single tool call (so the
+    // loop runs a second turn and reaches a steering/follow-up drain point),
+    // every later turn ends.
+    LoopStreamFn scriptedLoop({required bool withTool}) {
+      var turn = 0;
+      return ({
+        required context,
+        required config,
+        required apiKey,
+        required abortSignal,
+      }) {
+        final current = turn++;
+        if (withTool && current == 0) {
+          const call = MessageEnd(
+              message: AssistantMessage(content: [
+            ToolCallBlock(id: 'tc', name: 'noop', arguments: {})
+          ], stopReason: StopReason.toolUse));
+          return Stream<AgentEvent>.fromIterable(const [
+            MessageStart(
+                message: AssistantMessage(content: [
+              ToolCallBlock(id: 'tc', name: 'noop', arguments: {})
+            ], stopReason: StopReason.toolUse)),
+            call,
+          ]);
+        }
+        return Stream<AgentEvent>.fromIterable(const [
+          MessageStart(
+              message: AssistantMessage(
+                  content: [], stopReason: StopReason.endTurn)),
+          MessageEnd(
+              message: AssistantMessage(
+                  content: [], stopReason: StopReason.endTurn)),
+        ]);
+      };
+    }
+
+    Agent makeAgent(QueueMode mode,
+        {bool withTool = true, List<AgentTool<dynamic, dynamic>>? tools}) {
+      return Agent(
+        steeringMode: mode,
+        followUpMode: mode,
+        tools: withTool
+            ? (tools ??
+                [
+                  AgentTool(
+                    name: 'noop',
+                    description: 'noop',
+                    parameters: {},
+                    execute: (id, params, {onUpdate, isAborted}) async =>
+                        AgentToolResult(
+                            content: [const TextBlock('ok')], details: null),
+                  ),
+                ])
+            : null,
+        loopStreamFn: scriptedLoop(withTool: withTool),
+      );
+    }
+
+    List<String> userTexts(Agent agent) => agent.state.messages
+        .whereType<UserMessage>()
+        .map(textOf)
+        .where((t) => t.isNotEmpty)
+        .toList();
+
+    test('one-at-a-time steering delivers across turns, one per drain',
+        () async {
+      final agent = makeAgent(QueueMode.oneAtATime);
+      agent.steer(userMsg('first'));
+      agent.steer(userMsg('second'));
+      await agent.prompt('go');
+
+      // The loop drains once before turn 1 and once after the tool turn, so the
+      // two messages arrive one per drain across turns — not both in one turn.
+      expect(userTexts(agent), ['go', 'first', 'second']);
+      expect(agent.hasQueuedMessages(), isFalse);
+    });
+
+    test('one-at-a-time drains a single message per drain point', () async {
+      // A streamer that never makes a tool call and never continues: exactly one
+      // turn runs, so only the first steering message drains.
+      final agent = Agent(
+        steeringMode: QueueMode.oneAtATime,
+        loopStreamFn: ({
+          required context,
+          required config,
+          required apiKey,
+          required abortSignal,
+        }) =>
+            Stream<AgentEvent>.fromIterable(const [
+          MessageStart(
+              message: AssistantMessage(
+                  content: [], stopReason: StopReason.endTurn)),
+          MessageEnd(
+              message: AssistantMessage(
+                  content: [], stopReason: StopReason.endTurn)),
+        ]),
+      );
+      agent.steer(userMsg('first'));
+      agent.steer(userMsg('second'));
+      await agent.prompt('go');
+
+      // No continuation -> one drain -> only 'first'; 'second' stays queued.
+      expect(userTexts(agent), ['go', 'first']);
+      expect(agent.hasQueuedMessages(), isTrue);
+    });
+
+    test('all steering drains every message in one turn', () async {
+      final agent = makeAgent(QueueMode.all);
+      agent.steer(userMsg('first'));
+      agent.steer(userMsg('second'));
+      await agent.prompt('go');
+
+      expect(userTexts(agent), ['go', 'first', 'second']);
+      expect(agent.hasQueuedMessages(), isFalse);
+    });
+
+    test('one-at-a-time follow-up: queue retains the rest', () async {
+      // Follow-up drains at the loop's continuation point (reached via a tool
+      // turn); one-at-a-time must leave the second message queued.
+      final agent = makeAgent(QueueMode.oneAtATime);
+      agent.followUp(userMsg('fu1'));
+      agent.followUp(userMsg('fu2'));
+      // Peek honors the follow-up queue's own mode.
+      expect(agent.peekQueuedMessages().map(textOf), ['fu1']);
+      agent.followUpMode = QueueMode.all;
+      expect(agent.peekQueuedMessages().map(textOf), ['fu1', 'fu2']);
+    });
+
+    test('runtime mode switch affects the next drain', () async {
+      final agent = makeAgent(QueueMode.oneAtATime);
+      agent.steer(userMsg('first'));
+      agent.steer(userMsg('second'));
+      // Switch to all before the drain.
+      agent.steeringMode = QueueMode.all;
+      await agent.prompt('go');
+
+      expect(userTexts(agent), ['go', 'first', 'second']);
+      expect(agent.hasQueuedMessages(), isFalse);
+    });
+
+    test('queue clearing is reflected in hasQueuedMessages', () {
+      final agent = Agent();
+      agent.steer(userMsg('a'));
+      agent.followUp(userMsg('b'));
+      expect(agent.hasQueuedMessages(), isTrue);
+
+      agent.clearSteeringQueue();
+      expect(agent.hasQueuedMessages(), isTrue);
+      agent.clearFollowUpQueue();
+      expect(agent.hasQueuedMessages(), isFalse);
+    });
+
+    test('clearAllQueues empties both queues', () {
+      final agent = Agent();
+      agent.steer(userMsg('a'));
+      agent.followUp(userMsg('b'));
+      agent.clearAllQueues();
+      expect(agent.hasQueuedMessages(), isFalse);
+    });
+
+    test('peekQueuedMessages prefers steering and does not consume', () {
+      final agent = Agent();
+      agent.steer(userMsg('s1'));
+      agent.followUp(userMsg('f1'));
+      final peeked = agent.peekQueuedMessages();
+      expect(peeked.map(textOf), ['s1']);
+      // Non-consuming: still queued.
+      expect(agent.hasQueuedMessages(), isTrue);
+      expect(agent.peekQueuedMessages().map(textOf), ['s1']);
+    });
+
+    test('peekQueuedMessages falls back to follow-up', () {
+      final agent = Agent();
+      agent.followUp(userMsg('f1'));
+      agent.followUp(userMsg('f2'));
+      // Default one-at-a-time -> only first follow-up.
+      expect(agent.peekQueuedMessages().map(textOf), ['f1']);
+    });
+
+    test('peekQueuedMessages honors all mode', () {
+      final agent = Agent(followUpMode: QueueMode.all);
+      agent.followUp(userMsg('f1'));
+      agent.followUp(userMsg('f2'));
+      expect(agent.peekQueuedMessages().map(textOf), ['f1', 'f2']);
+    });
+
+    test('steering precedence over follow-up', () async {
+      final agent = makeAgent(QueueMode.all);
+      agent.steer(userMsg('steer'));
+      agent.followUp(userMsg('follow'));
+      await agent.prompt('go');
+
+      // Steering drains; follow-up stays queued because the loop prefers
+      // steering and the run ends before the follow-up continuation point.
+      final users = userTexts(agent);
+      expect(users.first, 'go');
+      expect(users.contains('steer'), isTrue);
+      expect(users.contains('follow'), isFalse);
+      expect(agent.hasQueuedMessages(), isTrue);
+    });
+
+    test('continuation from an assistant message drains queued steering',
+        () async {
+      final agent = makeAgent(QueueMode.oneAtATime, withTool: false);
+      await agent.prompt('seed');
+      // Last message is now an assistant endTurn message.
+      agent.steer(userMsg('steer'));
+      await agent.continue_();
+
+      final users = userTexts(agent);
+      expect(users.contains('steer'), isTrue);
+    });
+
+    test('constructor configures mode via AgentOptions', () {
+      final agent = Agent(
+          options: const AgentOptions(
+              steeringMode: QueueMode.all, followUpMode: QueueMode.all));
+      expect(agent.steeringMode, QueueMode.all);
+      expect(agent.followUpMode, QueueMode.all);
+    });
+
+    test('constructor configures mode via individual params', () {
+      final agent =
+          Agent(steeringMode: QueueMode.all, followUpMode: QueueMode.all);
+      expect(agent.steeringMode, QueueMode.all);
+      expect(agent.followUpMode, QueueMode.all);
     });
   });
 }

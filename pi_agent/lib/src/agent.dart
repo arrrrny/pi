@@ -9,6 +9,7 @@ import 'types.dart';
 import 'agent_loop.dart';
 import 'llm_client.dart';
 import 'conversion.dart' as conversion;
+import 'pending_queue.dart';
 
 /// Callback type for agent event listeners.
 typedef AgentEventListener = FutureOr<void> Function(AgentEvent event);
@@ -60,10 +61,10 @@ class AgentOptions {
   final ToolExecutionMode? toolExecution;
 
   /// Steering mode.
-  final SteeringMode? steeringMode;
+  final QueueMode? steeringMode;
 
   /// Follow-up mode.
-  final FollowUpMode? followUpMode;
+  final QueueMode? followUpMode;
 
   /// Thinking budget tokens per level.
   final Map<ThinkingLevel, int>? thinkingBudgets;
@@ -116,17 +117,13 @@ class Agent {
   Future<AfterToolCallResult?> Function(AfterToolCallContext,
       {bool Function()? isAborted})? _afterToolCall;
   ToolExecutionMode _toolExecution;
-  // ignore: unused_field
-  SteeringMode _steeringMode;
-  // ignore: unused_field
-  FollowUpMode _followUpMode;
+  final PendingMessageQueue _steeringQueue;
+  final PendingMessageQueue _followUpQueue;
   // ignore: unused_field
   final Map<ThinkingLevel, int>? _thinkingBudgets;
   final Map<String, String>? _extraHeaders;
 
   final List<AgentEventListener> _listeners = [];
-  final List<AgentMessage> _steeringQueue = [];
-  final List<AgentMessage> _followUpQueue = [];
   Completer<void>? _abortCompleter;
   bool _isRunning = false;
   Future<void>? _activeRun;
@@ -158,8 +155,8 @@ class Agent {
             {bool Function()? isAborted})?
         afterToolCall,
     ToolExecutionMode? toolExecution,
-    SteeringMode? steeringMode,
-    FollowUpMode? followUpMode,
+    QueueMode? steeringMode,
+    QueueMode? followUpMode,
     Map<ThinkingLevel, int>? thinkingBudgets,
     Map<String, String>? extraHeaders,
   })  : _sessionId = options?.sessionId ?? sessionId,
@@ -173,10 +170,10 @@ class Agent {
         _toolExecution = options?.toolExecution ??
             toolExecution ??
             ToolExecutionMode.parallel,
-        _steeringMode =
-            options?.steeringMode ?? steeringMode ?? SteeringMode.oneAtATime,
-        _followUpMode =
-            options?.followUpMode ?? followUpMode ?? FollowUpMode.oneAtATime,
+        _steeringQueue = PendingMessageQueue(
+            options?.steeringMode ?? steeringMode ?? QueueMode.oneAtATime),
+        _followUpQueue = PendingMessageQueue(
+            options?.followUpMode ?? followUpMode ?? QueueMode.oneAtATime),
         _thinkingBudgets = options?.thinkingBudgets ?? thinkingBudgets,
         _extraHeaders = options?.extraHeaders ?? extraHeaders,
         _state = AgentState(
@@ -241,11 +238,17 @@ class Agent {
   /// Sets tool execution mode.
   set toolExecution(ToolExecutionMode mode) => _toolExecution = mode;
 
-  /// Sets steering mode.
-  set steeringMode(SteeringMode mode) => _steeringMode = mode;
+  /// Controls how queued steering messages are drained.
+  set steeringMode(QueueMode mode) => _steeringQueue.mode = mode;
 
-  /// Sets follow-up mode.
-  set followUpMode(FollowUpMode mode) => _followUpMode = mode;
+  /// The current steering drain mode.
+  QueueMode get steeringMode => _steeringQueue.mode;
+
+  /// Controls how queued follow-up messages are drained.
+  set followUpMode(QueueMode mode) => _followUpQueue.mode = mode;
+
+  /// The current follow-up drain mode.
+  QueueMode get followUpMode => _followUpQueue.mode;
 
   /// Subscribe to agent events.
   ///
@@ -291,10 +294,10 @@ class Agent {
   }
 
   /// Queue a steering message to be injected during the next turn.
-  void steer(AgentMessage message) => _steeringQueue.add(message);
+  void steer(AgentMessage message) => _steeringQueue.enqueue(message);
 
   /// Queue a follow-up message to be injected after the current turn.
-  void followUp(AgentMessage message) => _followUpQueue.add(message);
+  void followUp(AgentMessage message) => _followUpQueue.enqueue(message);
 
   /// Clear all queued steering messages.
   void clearSteeringQueue() => _steeringQueue.clear();
@@ -310,7 +313,17 @@ class Agent {
 
   /// Whether there are any queued messages.
   bool hasQueuedMessages() =>
-      _steeringQueue.isNotEmpty || _followUpQueue.isNotEmpty;
+      _steeringQueue.hasItems() || _followUpQueue.hasItems();
+
+  /// Returns the messages the next drain would inject, without consuming them.
+  ///
+  /// Steering takes precedence: when the steering queue holds messages its
+  /// peek is returned, otherwise the follow-up peek. Each queue honors its own
+  /// [QueueMode].
+  List<AgentMessage> peekQueuedMessages() {
+    final steering = _steeringQueue.peek();
+    return steering.isNotEmpty ? steering : _followUpQueue.peek();
+  }
 
   /// Abort the current agent run.
   void abort() {
@@ -413,20 +426,14 @@ class Agent {
         beforeToolCall: _beforeToolCall,
         afterToolCall: _afterToolCall,
         shouldStopAfterTurn: null,
-        getSteeringMessages: _steeringQueue.isNotEmpty
-            ? () async => _drainQueue(_steeringQueue)
+        getSteeringMessages: _steeringQueue.hasItems()
+            ? () async => _steeringQueue.drain()
             : null,
-        getFollowUpMessages: _followUpQueue.isNotEmpty
-            ? () async => _drainQueue(_followUpQueue)
+        getFollowUpMessages: _followUpQueue.hasItems()
+            ? () async => _followUpQueue.drain()
             : null,
         extraHeaders: _extraHeaders,
       );
-
-  List<AgentMessage> _drainQueue(List<AgentMessage> queue) {
-    final msgs = List<AgentMessage>.from(queue);
-    queue.clear();
-    return msgs;
-  }
 
   Stream<AgentEvent> _defaultStreamFn(
       AgentContext context, AgentLoopConfig config) {
@@ -439,6 +446,6 @@ class Agent {
   }
 
   Future<List<Map<String, dynamic>>> _defaultConvertToLlm(
-      List<AgentMessage> msgs) =>
+          List<AgentMessage> msgs) =>
       conversion.convertToLlm(msgs);
 }

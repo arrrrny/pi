@@ -1,3 +1,9 @@
+## [Unreleased]
+
+### Fixed
+
+- Steering and follow-up queue modes now affect draining: `one-at-a-time` injects only the oldest queued message per drain, `all` injects every queued message. Both modes are now a single shared `QueueMode` (replacing the Dart-only `SteeringMode`/`FollowUpMode`), backed by a `PendingMessageQueue` ported from upstream; `Agent` gained `peekQueuedMessages()` and mode getters. ([#2](https://github.com/arrrrny/pi/issues/2))
+
 ## 0.2.0
 
 - Real agent loop: multi-turn tool execution (parallel and sequential), steering/follow-up injection, abort, before/after tool hooks, and max-tokens truncated-call safety — wired to the default path (previously a stub).
