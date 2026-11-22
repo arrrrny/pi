@@ -260,7 +260,7 @@ If the user's instructions conflict with any rule in this document, ask for expl
 <!-- SPECKIT START -->
 For additional context about technologies to be used, project structure,
 shell commands, and other important information, read the current plan:
-`specs/002-upstream-coverage-governance/plan.md`
+`specs/005-durable-parity-audit/plan.md`
 <!-- SPECKIT END -->
 
 <!-- local-ci:begin -->
