@@ -1,7 +1,7 @@
 name: pi
 description: A Dart agent framework for building AI-powered applications with tool execution, streaming events, and session persistence.
 version: 0.2.0
-repository: https://github.com/arrrrny/pi-mono
+repository: https://github.com/arrrrny/pi
 topics:
   - ai
   - agent
