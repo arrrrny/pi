@@ -1,31 +1,6 @@
 {
   "schema_version": "1.0",
   "extensions": {
-    "git": {
-      "version": "1.0.0",
-      "source": "local",
-      "manifest_hash": "sha256:9731aa8143a72fbebfdb440f155038ab42642517c2b2bdbbf67c8fdbe076ed79",
-      "enabled": true,
-      "priority": 10,
-      "registered_commands": {
-        "opencode": [
-          "speckit.git.feature",
-          "speckit.git.validate",
-          "speckit.git.remote",
-          "speckit.git.initialize",
-          "speckit.git.commit"
-        ],
-        "pi": [
-          "speckit.git.feature",
-          "speckit.git.validate",
-          "speckit.git.remote",
-          "speckit.git.initialize",
-          "speckit.git.commit"
-        ]
-      },
-      "registered_skills": [],
-      "installed_at": "2026-05-09T18:39:00.231593+00:00"
-    },
     "bug": {
       "version": "1.1.0",
       "source": "local",
@@ -40,10 +15,18 @@
           "speckit.bug.fix",
           "speckit.bug.pr",
           "speckit.bug.test"
+        ],
+        "zed": [
+          "speckit.bug.assess",
+          "speckit.bug.issue",
+          "speckit.bug.fetch",
+          "speckit.bug.fix",
+          "speckit.bug.pr",
+          "speckit.bug.test"
         ]
       },
       "registered_skills": [],
-      "installed_at": "2026-10-07T09:09:01.945286+00:00"
+      "installed_at": "2026-11-22T09:59:51.145909+00:00"
     },
     "chore": {
       "version": "1.0.0",
@@ -58,10 +41,17 @@
           "speckit.chore.fetch",
           "speckit.chore.implement",
           "speckit.chore.pr"
+        ],
+        "zed": [
+          "speckit.chore.assess",
+          "speckit.chore.issue",
+          "speckit.chore.fetch",
+          "speckit.chore.implement",
+          "speckit.chore.pr"
         ]
       },
       "registered_skills": [],
-      "installed_at": "2026-10-07T09:09:02.314745+00:00"
+      "installed_at": "2026-11-22T09:59:51.621626+00:00"
     },
     "gh-triage": {
       "version": "1.2.0",
@@ -73,10 +63,14 @@
         "pi": [
           "speckit.gh-triage.triage",
           "speckit.gh-triage.feature"
+        ],
+        "zed": [
+          "speckit.gh-triage.triage",
+          "speckit.gh-triage.feature"
         ]
       },
       "registered_skills": [],
-      "installed_at": "2026-10-07T09:09:02.667200+00:00"
+      "installed_at": "2026-11-22T09:59:52.091061+00:00"
     },
     "gym": {
       "version": "1.0.0",
@@ -91,10 +85,17 @@
           "speckit.gym.warmup",
           "speckit.gym.gate",
           "speckit.gym.drop"
+        ],
+        "zed": [
+          "speckit.gym.init",
+          "speckit.gym.run",
+          "speckit.gym.warmup",
+          "speckit.gym.gate",
+          "speckit.gym.drop"
         ]
       },
       "registered_skills": [],
-      "installed_at": "2026-10-07T09:09:03.036986+00:00"
+      "installed_at": "2026-11-22T09:59:52.559329+00:00"
     },
     "tdd": {
       "version": "1.1.2",
@@ -108,10 +109,16 @@
           "speckit.tdd.plan",
           "speckit.tdd.run",
           "speckit.tdd.verify"
+        ],
+        "zed": [
+          "speckit.tdd.setup",
+          "speckit.tdd.plan",
+          "speckit.tdd.run",
+          "speckit.tdd.verify"
         ]
       },
       "registered_skills": [],
-      "installed_at": "2026-10-07T09:09:03.422811+00:00"
+      "installed_at": "2026-11-22T09:59:53.014735+00:00"
     },
     "spec-stats": {
       "version": "1.2.0",
@@ -126,10 +133,42 @@
           "speckit.spec-stats.not-green",
           "speckit.spec-stats.reconcile",
           "speckit.spec-stats.runs"
+        ],
+        "zed": [
+          "speckit.spec-stats.report",
+          "speckit.spec-stats.open",
+          "speckit.spec-stats.not-green",
+          "speckit.spec-stats.reconcile",
+          "speckit.spec-stats.runs"
         ]
       },
       "registered_skills": [],
-      "installed_at": "2026-10-07T09:09:03.813763+00:00"
+      "installed_at": "2026-11-22T09:59:53.490487+00:00"
+    },
+    "git": {
+      "version": "1.0.0",
+      "source": "local",
+      "manifest_hash": "sha256:89711dec9716473fba4afc54f7224bcb28ebd3c55fb5aaa30df854ab02b07a75",
+      "enabled": true,
+      "priority": 10,
+      "registered_commands": {
+        "pi": [
+          "speckit.git.feature",
+          "speckit.git.validate",
+          "speckit.git.remote",
+          "speckit.git.initialize",
+          "speckit.git.commit"
+        ],
+        "zed": [
+          "speckit.git.feature",
+          "speckit.git.validate",
+          "speckit.git.remote",
+          "speckit.git.initialize",
+          "speckit.git.commit"
+        ]
+      },
+      "registered_skills": [],
+      "installed_at": "2026-11-22T09:59:53.924705+00:00"
     }
   }
 }
