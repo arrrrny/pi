@@ -27,24 +27,33 @@ rather than remembered.
 pinned SHA) and `--out coverage/upstream/<sha>`. It records its own version and the `typescript` version in
 a header so a manifest can be traced to the tool that produced it.
 
-## Decision 2: Public exports are enumerated through the TypeScript compiler API
+## Decision 2: A human-reviewed behavior registry is the input; exports are one inventory
 
-**Decision**: For each upstream package, load its entry points (from the `exports` map, falling back to
-`src/index.ts`) with the TypeScript compiler API and record every exported symbol: name, declaration kind,
-source path, whether it is type-only, and its JSON schema when one is attached.
+**Decision**: A versioned, human-reviewed `coverage/registry/behavior-registry.json` declares which behaviors
+exist (each with its upstream coordinate, behavior kind, normative refs, Dart coordinate, status, and
+evidence). The generator resolves that registry against compiler-derived inventories — public exports,
+source files, and upstream test/spec/example references — and emits the manifest. Public-export enumeration is
+one completeness input, not the behavior source.
 
-**Rationale**: Barrel files hide re-exports, `export *`, and type-only exports; a regex over `index.ts`
-misses all three, which is exactly how an upstream addition disappears unnoticed. The compiler API resolves
-aliases and re-exports correctly and is already a dev dependency.
+**Rationale**: Public-export enumeration alone cannot construct a behavior ledger: a symbol is not a behavior,
+one symbol has many behaviors, and internal behavior has no symbol at all. Inferring behavior from a filename
+is unsound and silent. A registry makes the behavior set an explicit, reviewable artifact, while the compiler
+API still provides the sound export graph (resolving `export *` and type-only exports) and the source/asset
+inventory the completeness check needs. An unmapped export or asset fails coverage, so upstream additions
+cannot disappear unnoticed.
 
 **Alternatives considered**:
-- *Regex/glob over `index.ts`* — fast but unsound; `export * from './x'` is invisible.
+- *Treat the public-export list as the ledger* — an export is not a behavior; internal behavior is invisible,
+  and one export hides many behaviors.
+- *Synthesize behaviors from filenames* — unsound and unreviewable; the exact failure this replaces.
+- *Regex/glob over `index.ts` for exports* — misses `export *` and type-only exports.
 - *`tsc --declaration` + `.d.ts` parsing* — correct but requires a full build of all 12 packages before the
   inventory can be produced, and the build itself becomes a failure mode for a governance tool.
-- *Runtime import and `Object.keys`* — misses type-only exports and fails for packages with side effects.
 
-**Implementation notes**: The compiler is created once per run and reused across packages. Parse failures on
-a single package fail the run (a package that cannot be inventoried is a gap, not a skip).
+**Implementation notes**: The compiler is created once per run and reused across packages. The registry is
+validated against its schema (`lib/registry.mjs`); parse failures on a single package fail the run (a package
+that cannot be inventoried is a gap, not a skip). The completeness check joins the registry to `exports.json`,
+`sources.json`, and `assets.json`, honoring explicit `unmapped_rationales`.
 
 ## Decision 3: The differential harness talks to both implementations over stdin/stdout JSON
 
@@ -87,25 +96,30 @@ compared under v2.
 produced them; a version bump requires regenerating goldens, and the diff reports a version mismatch rather
 than a false divergence.
 
-## Decision 5: Two SHAs, advanced by different actors
+## Decision 5: Two SHAs, advanced by different actors, global parity only
 
 **Decision**: `coverage/state.json` holds `target_upstream_sha` (advanced by the daily sync) and
-`verified_upstream_sha` (advanced only when a slice's rows pass). The generator never writes either.
+`verified_upstream_sha` (which may be `null` until the first complete baseline). `verified_upstream_sha`
+advances only when full parity holds **globally at one SHA** — every applicable row `verified`, every exclusion
+approved, no known divergence. A vertical slice marks only its own rows `verified`; it never advances the
+verified SHA on its own. The generator never writes either value.
 
 **Rationale**: Collapsing the two is exactly the failure the architecture plan calls out — a generic "Dart
-port of pi" statement that hides how far the verified point trails the target. Separating them makes the gap
-a first-class, reportable object, and makes "release evidence fails when unresolved changes exist between
-target and verified" a mechanical check rather than a judgment call.
+port of pi" statement that hides how far the verified point trails the target. Letting a single slice advance
+the verified SHA is the same lie at smaller granularity: a slice is not full parity. Separating them and
+requiring global completeness makes the gap a first-class, reportable object, and makes "release evidence fails
+when unresolved changes exist between target and verified" a mechanical check rather than a judgment call.
 
 **Alternatives considered**:
 - *A single SHA* — the false-parity generator.
+- *Advancing verified-SHA on slice completion* — implies parity the whole does not have.
 - *Deriving verified-SHA from the last release tag* — a tag records that a merge happened, not that every
   row passed at that commit.
 - *Deriving it from CI status* — CI status is per-commit and does not encode row-level evidence.
 
-**Implementation notes**: The sync advances the target and files porting work; a slice advances the verified
-SHA only after its rows are `verified` with passing evidence. Both values are recorded in the release
-evidence artifact.
+**Implementation notes**: The sync advances the target and files porting work; a slice marks its own rows
+`verified` with passing evidence. The verified SHA moves only when the complete global condition holds at one
+SHA. Both values (and a `null` verified SHA) are recorded in the release evidence artifact.
 
 ## Decision 6: Application decisions are data, not inference
 

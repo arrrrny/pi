@@ -28,66 +28,96 @@ slice at a time.
 ### User Story 1 - Machine-Readable Coverage Ledger at a Pinned Upstream SHA (Priority: P1)
 
 A maintainer wants to know, for any given upstream commit, exactly which upstream behaviors are covered by
-the Dart port, which are not, and what evidence exists for each. A generated JSON manifest enumerates every
-upstream package and public export, and every row carries: the upstream SHA and package version, the source
-path and behavior kind, the normative reference (README, spec, test, or example), the Dart entrypoint and
-implementation path, the upstream-derived test and the Dart test, supported platforms and adapter
-requirements, the verification status, and — for anything not fully ported — a divergence rationale plus a
-tracking issue. A companion generated report renders the same ledger for humans. Line counts and file counts
-are never used as parity evidence.
+the Dart port, which are not, and what evidence exists for each. A versioned, human-reviewed **behavior
+registry** is the input that defines what behaviors exist; a generator combines that registry with
+compiler-derived public-export and source inventories and the upstream test/spec/example references to emit a
+generated JSON manifest. Every public export and every applicable upstream source/test/spec/example asset
+MUST map to at least one behavior row or carry an explicit reviewed rationale — an unmapped item fails
+coverage. Behavior is never inferred from a filename, and implementation status is never inferred from a
+missing Dart path. Each row carries: the upstream SHA and package version, the source path and behavior kind,
+the normative reference (README, spec, test, or example), the Dart entrypoint and implementation path, the
+upstream-derived test and the Dart test, supported platforms and adapter requirements, the verification
+status, and — for anything not fully ported — a divergence rationale plus a tracking issue. A companion
+generated report renders the same ledger for humans. Line counts and file counts are never used as parity
+evidence.
 
 **Why this priority**: Every other story depends on this one. Without a shared, pinned inventory there is no
 way to say what is covered, so no parity claim can be true or false. It is the foundation the sync, the
 differential harness, and the release gate all read.
 
-**Independent Test**: Generate the manifest for a pinned upstream SHA and assert it lists all 12 upstream
-package areas plus every upstream `apps/*` entry with an explicit port/adapt/not-applicable decision; assert
-every row resolves to a real upstream path at that SHA and to a real or explicitly absent Dart path; assert
-every non-`verified` row carries a divergence rationale and an issue reference.
+**Independent Test**: Generate the manifest for a pinned upstream SHA from a reviewed registry and assert
+it lists all 12 upstream package areas plus every upstream `apps/*` entry with an explicit
+port/adapt/not-applicable decision; assert every row resolves to a real upstream path at that SHA and to a
+real or explicitly absent Dart path; assert every public export and every applicable upstream
+source/test/spec/example asset maps to at least one behavior row or carries an explicit reviewed rationale
+(add an unmapped export and confirm the check fails); assert every non-`verified` row carries a divergence
+rationale and an issue reference.
 
 **Acceptance Scenarios**:
 
-1. **Given** a pinned upstream SHA, **When** the manifest is generated, **Then** it inventories `schema`,
-   `telemetry`, `chord`, `ai`, `agent`, `durable`, `codemode`, `env`, `mcp`, `coding-agent`, `tui`, and
-   `evals`, and each row names its upstream package, source path, public export, and behavior kind.
-2. **Given** the same pinned SHA, **When** the manifest is generated, **Then** every upstream `apps/*`
+1. **Given** a pinned upstream SHA and a reviewed behavior registry, **When** the manifest is generated,
+   **Then** it inventories `schema`, `telemetry`, `chord`, `ai`, `agent`, `durable`, `codemode`, `env`,
+   `mcp`, `coding-agent`, `tui`, and `evals`, and each row names its upstream package, source path, public
+   export (or an explicit internal marker), and behavior kind.
+2. **Given** the compiler-derived export and source inventories plus the upstream test/spec/example
+   references, **When** completeness is checked, **Then** every public export and every applicable upstream
+   source/test/spec/example asset maps to at least one behavior row or carries an explicit reviewed
+   rationale, and any unmapped item fails the check and is named.
+3. **Given** the same pinned SHA, **When** the manifest is generated, **Then** every upstream `apps/*`
    target receives exactly one of `port`, `adapt`, or `not_applicable`, each with an approved reason.
-3. **Given** a row with status `unported`, `in_progress`, or `implemented_unverified`, **When** the human
+4. **Given** a row with status `unported`, `in_progress`, or `implemented_unverified`, **When** the human
    report is rendered, **Then** the row shows its missing evidence and its tracking issue, not a checkmark.
-4. **Given** the upstream tree changed since the last generation, **When** the export inventory is
+5. **Given** the upstream tree changed since the last generation, **When** the export inventory is
    compared, **Then** added, removed, and renamed public exports are reported per package.
-5. **Given** the generated artifacts, **When** the generator is re-run unchanged, **Then** the output is
-   byte-identical (deterministic ordering, no timestamps in the ledger).
+6. **Given** the generated artifacts and the same registry, **When** the generator is re-run unchanged,
+   **Then** the output is byte-identical (deterministic ordering, no timestamps in the ledger).
 
 ---
 
 ### User Story 2 - Target vs Verified SHA Governance and Release Gate (Priority: P1)
 
 A maintainer advances the porting target by syncing upstream, but only claims parity for a SHA they have
-actually verified. The system keeps two values — `target_upstream_sha` and `verified_upstream_sha` — and a
-generated report shows exactly what lies between them. A parity-labeled release fails when unresolved
-changes exist between the two, or when any applicable row is not `verified`, or when any exclusion is not
-approved.
+actually verified. The system keeps two values — `target_upstream_sha` (advanced by sync) and
+`verified_upstream_sha` (which may be `null` until the first complete baseline) — and a generated report shows
+exactly what lies between them. **Full parity is global at one declared SHA**: it holds only when every
+applicable behavior row is `verified`, every exclusion is approved, and no known divergence remains. A
+vertical slice marks only its own rows `verified`; it MUST NOT advance `verified_upstream_sha` or imply full
+parity unless that complete condition holds at a single SHA. The release-evidence check is the only thing that
+runs the full-parity gate, and it runs **only for an explicitly parity-labeled release** (the release
+workflow, or `workflow_dispatch` with an explicit parity-release input) — never on an ordinary push or
+pull-request coverage run, which is intentionally red while known rows are unported. A parity-labeled release
+fails when unresolved changes exist between the two SHAs, when any applicable row is not `verified`, or when
+any exclusion is not approved.
 
 **Why this priority**: This is the anti-false-claim mechanism. It converts "we are a Dart port of pi" into
-"we match upstream at SHA X, and here is what we have not verified at SHA Y".
+"we match upstream at SHA X, and here is what we have not verified at SHA Y". Keeping the global gate off the
+routine coverage run is deliberate: routine CI is red by design while rows are unported, so the gate lives
+only where a parity claim is actually being made.
 
 **Independent Test**: Point the target at a newer SHA than verified, run the release-evidence check, and
-confirm it fails and names every unresolved package/behavior. Mark every applicable row `verified` with an
-approved exclusion set and confirm the same check passes and names the exact verified SHA.
+confirm it fails and names every unresolved package/behavior. Mark a single slice's rows `verified` and
+confirm `verified_upstream_sha` does not move and no parity is implied. Mark every applicable row `verified`
+with an approved exclusion set at one SHA and confirm the same check passes and names the exact verified SHA.
 
 **Acceptance Scenarios**:
 
 1. **Given** a `target_upstream_sha` newer than `verified_upstream_sha`, **When** release evidence is
    generated, **Then** the run fails and the report lists each package area and behavior between the two SHAs.
-2. **Given** all applicable rows `verified` and every exclusion approved, **When** release evidence is
-   generated, **Then** the run succeeds and states the exact `verified_upstream_sha` it verified against.
+2. **Given** all applicable rows `verified` and every exclusion approved at one SHA, **When** release
+   evidence is generated, **Then** the run succeeds and states the exact `verified_upstream_sha` it verified
+   against.
 3. **Given** an unresolved behavioral divergence, **When** release evidence is generated, **Then** the run
    fails even if every other row is green.
 4. **Given** release documentation, **When** it states a parity claim, **Then** it names the exact verified
    upstream SHA and never implies parity with a newer upstream commit.
-5. **Given** a slice completes, **When** its rows move to `verified`, **Then** `verified_upstream_sha`
-   advances only to a SHA at which every applicable row passes.
+5. **Given** a slice completes and marks only its own rows `verified`, **When** the slice lands, **Then**
+   `verified_upstream_sha` does not advance and no full-parity claim is implied unless every applicable row at
+   one SHA is `verified`, every exclusion is approved, and no known divergence remains.
+6. **Given** `verified_upstream_sha` is `null` (no complete baseline yet), **When** release evidence is
+   generated, **Then** the run fails and states that no verified baseline exists.
+7. **Given** an ordinary push or pull-request coverage run, **When** it executes, **Then** it generates and
+   inventories checks and differential evidence but does NOT run the full-parity release gate; the release
+   gate runs only for an explicitly parity-labeled release.
 
 ---
 
@@ -218,14 +248,18 @@ and names the offending file; remove it and assert the check passes.
 #### Coverage Ledger
 
 - **FR-001**: The system MUST maintain a machine-readable coverage manifest pinned to a single upstream SHA
-  and package versions, generated deterministically from the upstream tree.
+  and package versions, generated deterministically by combining a versioned, human-reviewed behavior
+  registry with compiler-derived public-export and source inventories and the upstream test/spec/example
+  references.
 - **FR-002**: The manifest MUST inventory every upstream package area: `schema`, `telemetry`, `chord`, `ai`,
   `agent`, `durable`, `codemode`, `env`, `mcp`, `coding-agent`, `tui`, and `evals`.
 - **FR-003**: Every row MUST carry: upstream SHA and package version, upstream package, source path, public
-  export, behavior kind, normative reference (README/spec/test/example), Dart entrypoint, Dart implementation
-  path, upstream-derived test, Dart test, supported platforms, and adapter requirements.
+  export (or an explicit internal-behavior marker), behavior kind, normative reference (README/spec/test/
+  example), Dart entrypoint, Dart implementation path, upstream-derived test, Dart test, supported platforms,
+  and adapter requirements.
 - **FR-004**: Every row MUST carry exactly one status: `unported`, `in_progress`, `implemented_unverified`,
-  `verified`, or `not_applicable`.
+  `verified`, or `not_applicable`. Status is a human-reviewed field; it MUST NOT be inferred from the presence
+  or absence of a Dart path.
 - **FR-005**: Every row that is not `verified` MUST carry a divergence rationale and a tracking issue.
 - **FR-006**: Every `not_applicable` row MUST carry an approved platform or scope reason.
 - **FR-007**: The system MUST NOT use line counts or file counts as parity evidence.
@@ -234,18 +268,32 @@ and names the offending file; remove it and assert the check passes.
 - **FR-009**: The manifest MUST be accompanied by a generated human-readable report derived from it.
 - **FR-010**: The generator MUST compare public export inventories and JSON schemas per package and report
   added, removed, and renamed exports so upstream additions cannot disappear unnoticed.
+- **FR-010a**: The behavior registry MUST be a versioned, human-reviewed input distinct from the generated
+  manifest; the generator MUST NOT synthesize behavior rows from filenames.
+- **FR-010b**: Every public export and every applicable upstream source/test/spec/example asset MUST map to
+  at least one behavior row or carry an explicit reviewed rationale; an unmapped item MUST fail coverage.
+- **FR-010c**: Internal, non-exported behavior MUST be covered by registry rows that target internal source
+  paths (with an explicit internal marker) and by the source-asset completeness check, not only by the public
+  export surface.
 
 #### SHA Governance and Release Gate
 
-- **FR-011**: The system MUST maintain distinct `target_upstream_sha` and `verified_upstream_sha` values.
-- **FR-012**: Advancing the target on sync MUST NOT advance the verified SHA; the verified SHA advances only
-  after all affected rows pass.
+- **FR-011**: The system MUST maintain distinct `target_upstream_sha` and `verified_upstream_sha` values;
+  `verified_upstream_sha` MAY be `null` until the first complete baseline exists.
+- **FR-012**: Advancing the target on sync MUST NOT advance the verified SHA. A vertical slice marks only its
+  own rows `verified` and MUST NOT advance `verified_upstream_sha`; the verified SHA advances only to a single
+  SHA at which every applicable row is `verified`, every exclusion is approved, and no known divergence
+  remains (global full parity).
 - **FR-013**: The release-evidence check MUST fail when unresolved changes exist between the target and
   verified SHAs, naming every affected package area and behavior.
-- **FR-014**: The release-evidence check MUST fail when any applicable row is not `verified` or any
-  exclusion is not approved.
+- **FR-014**: The release-evidence check MUST fail when any applicable row is not `verified`, any exclusion is
+  not approved, or `verified_upstream_sha` is `null`.
 - **FR-015**: A parity-labeled release MUST state the exact verified upstream SHA and MUST NOT imply parity
   with an unverified newer upstream commit.
+- **FR-015a**: The full-parity release gate (release-evidence check) MUST run only for an explicitly
+  parity-labeled release (the release workflow, or `workflow_dispatch` with an explicit parity-release
+  input); ordinary push and pull-request coverage runs MUST NOT run it and MUST instead generate/inventory
+  checks and differential evidence, which are intentionally red while known rows are unported.
 
 #### Differential and Conformance Verification
 
@@ -293,15 +341,20 @@ and names the offending file; remove it and assert the check passes.
   pinned SHA; owns a set of public exports and behaviors.
 - **Public Export**: A named entry point an upstream package exposes, with its source path, declaration kind,
   and (optionally) JSON schema; the unit the export inventory diff compares.
+- **Behavior Registry**: The versioned, human-reviewed input that declares which behaviors exist, each with its
+  upstream coordinate, behavior kind, normative references, Dart coordinate, status, and evidence binding; it
+  is distinct from the generated manifest and is the source the generator reads.
 - **Behavior Row**: The atomic ledger record. Carries the upstream coordinate (SHA, package, source path,
-  export), the normative reference, the Dart coordinate (entrypoint, implementation, tests), platform
-  requirements, verification status, divergence rationale, and tracking issue.
+  export or internal marker), the normative reference, the Dart coordinate (entrypoint, implementation,
+  tests), platform requirements, verification status, divergence rationale, and tracking issue.
 - **Coverage Manifest**: The generated, deterministic, machine-readable set of behavior rows for a pinned
-  SHA, plus its export inventory and app decisions.
+  SHA (resolved from the registry against the generated inventories), plus its export/source inventories and
+  app decisions.
 - **Coverage Report**: The generated human-readable rendering of the manifest, grouped by package and status.
 - **Target Upstream SHA**: The upstream commit the port aims to match; advanced by sync.
-- **Verified Upstream SHA**: The upstream commit at which every applicable row is `verified`; advanced only
-  after evidence passes.
+- **Verified Upstream SHA**: The upstream commit at which full parity holds globally — every applicable row is
+  `verified`, every exclusion is approved, and no known divergence remains; advanced only when that complete
+  condition holds at one SHA, and `null` until the first such baseline.
 - **Divergence Record**: The rationale plus issue for a row that is not fully ported, not applicable, or
   intentionally deferred.
 - **Differential Scenario**: A language-neutral scripted case (scripted provider, virtual clock, storage ops,
@@ -317,13 +370,15 @@ and names the offending file; remove it and assert the check passes.
 ### Measurable Outcomes
 
 - **SC-001**: The generated manifest inventories all 12 upstream package areas and every upstream `apps/*`
-  target with an explicit decision; zero silent omissions.
-- **SC-002**: Re-running the generator on an unchanged pinned SHA produces a byte-identical manifest (no
-  diff).
+  target with an explicit decision, and every public export and applicable upstream source/test/spec/example
+  asset maps to at least one behavior row or an explicit reviewed rationale; zero silent omissions.
+- **SC-002**: Re-running the generator on an unchanged pinned SHA and an unchanged registry produces a
+  byte-identical manifest (no diff).
 - **SC-003**: Every non-`verified` row has a non-empty divergence rationale and a resolvable issue
   reference; zero rows violate this.
-- **SC-004**: The release-evidence check exits non-zero whenever the target SHA is ahead of the verified SHA
-  or any applicable row is not `verified`, and names each cause.
+- **SC-004**: The release-evidence check exits non-zero whenever `verified_upstream_sha` is `null`, the target
+  SHA is ahead of the verified SHA, or any applicable row is not `verified`, and names each cause; this gate
+  runs only on an explicitly parity-labeled release, never on ordinary push/pull-request coverage runs.
 - **SC-005**: The differential harness runs each scripted scenario against both implementations with no live
   provider call, and a deliberately perturbed Dart behavior is reported as a divergence.
 - **SC-006**: The daily sync groups changes by all 12 package areas (not 3) and files one porting issue per
@@ -347,9 +402,12 @@ and names the offending file; remove it and assert the check passes.
 - The Dart port lives under `pi_agent/` and remains one package (`package:pi`) with focused entry libraries;
   this feature governs coverage and does not reorganize the package layout.
 - This feature delivers governance tooling, reports, and policy only. It does not port upstream behavior;
-  porting proceeds through the per-package `dart-port` issues it files.
-- Full parity is a property of an explicit slice at an explicit SHA, not of the whole upstream monorepo; the
-  manifest makes the boundary of each claim visible.
+  porting proceeds through the per-package `dart-port` issues it files. It delivers the behavior-registry
+  schema, completeness checks, generator, differential harness, sync policy, and an explicitly scoped release
+  gate — nothing that itself ports behavior.
+- Full parity is global at a single declared SHA (every applicable row verified, every exclusion approved, no
+  known divergence), not a property of an individual slice; a slice marks only its own rows and the manifest
+  makes the boundary of each claim visible.
 - Upstream `apps/*` decisions (`port` / `adapt` / `not_applicable`) require maintainer approval; the tool
   surfaces them, the human decides them.
 - Exclusions are approved per platform/scope; an approval on one platform does not imply another.

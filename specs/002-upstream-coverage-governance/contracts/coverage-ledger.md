@@ -8,19 +8,25 @@ clean checkout of the pinned SHAs; nothing depends on a local dashboard or a hum
 ```
 node scripts/coverage/generate-coverage-manifest.mjs \
   --upstream <path-to-upstream-checkout> \
+  --registry coverage/registry/behavior-registry.json \
   --sha <full-sha> \
   --out coverage/upstream/<sha>
 ```
 
-- **Reads**: the upstream checkout at `<sha>` (packages' `package.json`, entry points, `src/**`, `test/**`,
-  `README.md`, examples, `apps/*`), plus `coverage/upstream/<sha>/app-decisions.json` if present.
-- **Writes**: `manifest.json`, `exports.json` under `--out`. Does **not** write `report.md`
-  (that is the reporter's job) and does **not** write `state.json`.
-- **Exit 0** when the manifest is written; **exit 2** when the checkout is not at `<sha>`, when a package
-  cannot be parsed, or when an `apps/*` target has no decision entry. The message names the offending path.
-- **Determinism**: two runs over the same checkout produce byte-identical files. The header records
-  `generator.version` and the resolved `typescript` version; no timestamps or absolute paths appear in the
-  body.
+- **Reads**: the human-reviewed behavior registry (`--registry`), the upstream checkout at `<sha>`
+  (packages' `package.json`, entry points, `src/**`, `test/**`, `README.md`, examples, `apps/*`), and
+  `coverage/upstream/<sha>/app-decisions.json` if present.
+- **Produces**: `manifest.json` (behavior rows resolved from the registry against the generated
+  inventories), `exports.json`, `sources.json`, and `assets.json` (the test/spec/example references) under
+  `--out`. Does **not** write `report.md` (that is the reporter's job) and does **not** write `state.json`.
+- **Behavior source**: rows come only from the registry. The generator MUST NOT synthesize a behavior from a
+  filename, and MUST NOT infer a row's `status` from the presence or absence of a Dart path.
+- **Exit 0** when the files are written; **exit 2** when the checkout is not at `<sha>`, when a package
+  cannot be parsed, when the registry does not validate against its schema, or when an `apps/*` target has no
+  decision entry. The message names the offending path.
+- **Determinism**: two runs over the same checkout and the same registry produce byte-identical files. The
+  header records `generator.version` and the resolved `typescript` version; no timestamps or absolute paths
+  appear in the body.
 
 ## 2. Reporter
 
@@ -47,22 +53,30 @@ Fails (exit 1) on any of:
 - a `verified` row without a resolvable `evidence` target, or whose `dart_test` path does not exist;
 - an `apps/*` target missing from `app-decisions.json`, or a decision entry whose path is not an `apps/*`
   target at the pinned SHA;
-- an export present upstream but absent from `exports.json` (inventory incompleteness).
+- an export present upstream but absent from `exports.json` (inventory incompleteness);
+- **completeness**: a public export, or an applicable upstream source/test/spec/example asset (from
+  `sources.json` / `assets.json`), that maps to no behavior row and carries no entry in the registry's
+  reviewed-rationale list (`unmapped_rationales`); the failure names the unmapped item;
+- a behavior row whose `upstream_path` does not resolve to a real file at the pinned SHA.
 
-Each failure is printed as `<row-id>: <reason>` on its own line. Exit 0 prints the counts.
+Each failure is printed as `<item-id>: <reason>` on its own line. Exit 0 prints the counts.
 
-## 4. Release evidence
+## 4. Release evidence (full-parity gate — parity-labeled release only)
 
 ```
 node scripts/coverage/check-release-evidence.mjs [--json]
 ```
 
+- **Scope**: this is the full-parity gate. It runs **only** for an explicitly parity-labeled release (the
+  release workflow, or `workflow_dispatch` with an explicit parity-release input). It MUST NOT run in the
+  ordinary push/pull-request coverage workflow, which is intentionally red while known rows are unported.
 - Reads `coverage/state.json` and the manifest for `verified_upstream_sha` (and the target's, for the gap).
 - **Fails (exit 1)** when any of:
+  - `verified_upstream_sha` is `null` (no complete baseline yet);
   - `verified_upstream_sha` is not an ancestor of `target_upstream_sha`;
   - `target_upstream_sha` ≠ `verified_upstream_sha` and unresolved changes exist between them;
-  - any applicable row is not `verified`;
-  - any exclusion is not approved.
+  - any applicable row is not `verified` (global full parity requires every applicable row verified);
+  - any exclusion is not approved, or any known divergence remains.
 - On success, prints the release-evidence object (see `data-model.md`) including the exact verified SHA, and
   names it as the SHA the parity claim refers to.
 - `--json` emits the object only, for the release workflow to capture as an artifact.
@@ -122,19 +136,33 @@ dart run pi_agent/tool/parity_harness.dart --scenario <file>
 - The strings "OpenAI-compatible-only" and "other packages are informational" MUST NOT appear in the
   workflow or in any documentation it links.
 
-## 8. Coverage workflow
+## 8. Coverage workflow (routine push / pull-request)
 
-`.github/workflows/coverage.yml` runs on push to `master` and on `workflow_dispatch`:
+`.github/workflows/coverage.yml` runs on push to `master` and on pull requests:
 
 1. checkout with enough history to resolve the pinned SHAs;
-2. `node scripts/coverage/generate-coverage-manifest.mjs` for the target SHA;
-3. `node scripts/coverage/check-coverage.mjs`;
-4. `node scripts/coverage/check-release-evidence.mjs --json`;
-5. `node scripts/coverage/check-purity.mjs`;
-6. `dart test -j 2` in `pi_agent/` (existing suite; the governance layer's own tests are Node-side and run
+2. `node scripts/coverage/generate-coverage-manifest.mjs` for the target SHA (registry + inventories);
+3. `node scripts/coverage/check-coverage.mjs` (manifest invariants + registry/inventory completeness);
+4. `node scripts/coverage/check-purity.mjs`;
+5. `dart test -j 2` in `pi_agent/` (existing suite; the governance layer's own tests are Node-side and run
    in the existing `npm run test:scripts`).
 
-A red run is a release blocker for any parity-labeled claim; it is not silently advisory.
+This workflow MUST NOT run `check-release-evidence.mjs`. It generates the manifest and inventories checks and
+differential evidence; it is **intentionally red while known rows are unported**, so it is a build-health and
+inventory signal, never a parity gate. A red routine run blocks nothing that is not already known to be
+unported.
+
+## 8a. Release workflow (explicitly parity-labeled only)
+
+`.github/workflows/release.yml` (and a `workflow_dispatch` with an explicit `parity_release` boolean input,
+defaulting to false) runs the full-parity gate:
+
+1. the same checkout, generation, `check-coverage.mjs`, and purity steps as above;
+2. `node scripts/coverage/check-release-evidence.mjs --json`, captured as a release artifact.
+
+A parity-labeled release fails when `verified_upstream_sha` is `null`, the target is ahead of verified, any
+applicable row is not `verified`, or any exclusion is unapproved. The gate never runs implicitly on an
+ordinary push or pull request.
 
 ## 9. Compatibility rules
 
