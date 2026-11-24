@@ -330,6 +330,7 @@ Map<String, dynamic> _messageToJson(AgentMessage message) => switch (message) {
         :final id,
         :final content,
         :final stopReason,
+        :final errorMessage,
         :final usage,
       ) =>
         {
@@ -337,6 +338,7 @@ Map<String, dynamic> _messageToJson(AgentMessage message) => switch (message) {
           if (id != null) 'id': id,
           'content': content.map(_contentBlockToJson).toList(),
           if (stopReason != null) 'stopReason': stopReason.name,
+          if (errorMessage != null) 'errorMessage': errorMessage,
           if (usage != null) 'usage': _usageToJson(usage),
         },
       ToolResultMessage(
@@ -374,6 +376,7 @@ AgentMessage _messageFromJson(Map<String, dynamic>? json) {
         id: json['id'] as String?,
         content: content,
         stopReason: _stopReasonFromName(json['stopReason'] as String?),
+        errorMessage: json['errorMessage'] as String?,
         usage: json['usage'] == null
             ? null
             : _usageFromJson(json['usage'] as Map<String, dynamic>),
@@ -407,11 +410,18 @@ Map<String, dynamic> _contentBlockToJson(dynamic block) => switch (block) {
           'base64Data': base64Data,
           'mediaType': mediaType,
         },
-      ToolCallBlock(:final id, :final name, :final arguments) => {
+      ToolCallBlock(
+        :final id,
+        :final name,
+        :final arguments,
+        :final argumentsError
+      ) =>
+        {
           'type': 'toolCall',
           'id': id,
           'name': name,
           'arguments': arguments,
+          if (argumentsError != null) 'argumentsError': argumentsError,
         },
       ThinkingBlock(:final text) => {'type': 'thinking', 'text': text},
       _ => const {'type': 'text', 'text': ''},
@@ -429,6 +439,7 @@ dynamic _contentBlockFromJson(Map<String, dynamic> json) => switch (json['type']
               ? const {}
               : Map<String, dynamic>.from(
                   json['arguments'] as Map<String, dynamic>),
+          argumentsError: json['argumentsError'] as String?,
         ),
       'thinking' => ThinkingBlock(json['text'] as String? ?? ''),
       'text' => TextBlock(json['text'] as String? ?? ''),

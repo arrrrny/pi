@@ -518,5 +518,115 @@ void main() {
       // After the tool aborts the run, the loop must not start a second turn.
       expect(events.whereType<TurnEnd>(), hasLength(1));
     });
+
+    for (final reason in [StopReason.error, StopReason.aborted]) {
+      test('terminates on $reason with no tool execution (#6)', () async {
+        var providerCalls = 0;
+        var toolExecuted = false;
+        final tool = AgentTool(
+          name: 'echo',
+          description: 'must never run after a failed provider response',
+          parameters: const {'type': 'object'},
+          execute: (id, params, {onUpdate, isAborted}) async {
+            toolExecuted = true;
+            return AgentToolResult(
+                content: [const TextBlock('x')], details: null);
+          },
+        );
+
+        final events = await agentLoop(
+          _context(tools: [tool]),
+          _config(getFollowUpMessages: () async => [UserMessage.text('again')]),
+          streamFn: ({required context, required config, required apiKey,
+                  required abortSignal}) {
+            providerCalls++;
+            // A failed provider response carries a tool call in some broken
+            // providers; it must never be executed.
+            return Stream.fromIterable([
+              _assistant(AssistantMessage(
+                content: [
+                  ToolCallBlock(id: 'c1', name: 'echo', arguments: const {}),
+                ],
+                stopReason: reason,
+                errorMessage: 'provider failed',
+              )),
+            ]);
+          },
+        ).toList();
+
+        expect(providerCalls, 1);
+        expect(toolExecuted, isFalse);
+        expect(events.whereType<ToolExecutionStart>(), isEmpty);
+        expect(events.whereType<TurnEnd>(), hasLength(1));
+        // Terminal ordering: the run ends right after the failed turn, with no
+        // further turn started.
+        expect(events.whereType<TurnStart>(), hasLength(1));
+        expect(events.last, isA<AgentEnd>());
+        expect(events[events.length - 2], isA<TurnEnd>());
+        expect(events[events.length - 3], isA<MessageEnd>());
+      });
+    }
+
+    // pi#4: malformed tool-call arguments must fail closed, not run as {}.
+    test('does not execute a tool whose arguments failed to parse', () async {
+      var executed = false;
+      var prepared = false;
+      var hooked = false;
+      final tool = AgentTool(
+        name: 'write',
+        description: 'writes',
+        parameters: const {'type': 'object', 'required': ['path']},
+        prepareArguments: (args) {
+          prepared = true;
+          return null;
+        },
+        execute: (id, params, {onUpdate, isAborted}) async {
+          executed = true;
+          return AgentToolResult(content: [const TextBlock('ran')], details: null);
+        },
+      );
+
+      final events = await agentLoop(
+        _context(tools: [tool]),
+        _config(beforeToolCall: (ctx, {isAborted}) async {
+          hooked = true;
+          return null;
+        }),
+        streamFn: scriptedStream((turn) {
+          if (turn == 0) {
+            return [
+              _assistant(AssistantMessage(
+                content: [
+                  ToolCallBlock(
+                    id: 'c1',
+                    name: 'write',
+                    arguments: const {},
+                    argumentsError:
+                        'Unexpected end of input\n\nReceived arguments:\n{"path":',
+                  ),
+                ],
+                stopReason: StopReason.toolUse,
+              )),
+            ];
+          }
+          return [
+            _assistant(AssistantMessage(
+                content: [const TextBlock('done')],
+                stopReason: StopReason.endTurn)),
+          ];
+        }),
+      ).toList();
+
+      expect(executed, isFalse);
+      expect(prepared, isFalse);
+      expect(hooked, isFalse);
+
+      final end = events.last as AgentEnd;
+      final toolResult = end.messages.whereType<ToolResultMessage>().single;
+      expect(toolResult.isError, isTrue);
+      final text = toolResult.content.whereType<TextBlock>().single.text;
+      expect(text, contains('Invalid arguments for tool "write"'));
+      expect(text, contains('Received arguments:'));
+    });
   });
 }

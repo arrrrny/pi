@@ -88,9 +88,18 @@ function main() {
 	const releaseDir = join(temporaryDir, "release");
 	try {
 		console.log(`Checking the model catalog against pi ${release}...`);
-		// The release's source code.
+		// The release's source code. This fork carries no release tags of its
+		// own (releases are cut upstream at earendil-works/pi) and the CI
+		// checkout fetches with --no-tags, so v<release> is absent here and
+		// `git archive` dies with "fatal: not a valid object name". Fetch that
+		// exact tag from upstream when it is missing.
+		const tag = `v${release}`;
+		const haveTag = spawnSync("git", ["rev-parse", "--verify", "--quiet", `refs/tags/${tag}`], { cwd: root });
+		if (haveTag.status !== 0) {
+			run("git", ["fetch", "--depth=1", "https://github.com/earendil-works/pi.git", `refs/tags/${tag}:refs/tags/${tag}`], root);
+		}
 		const archive = join(temporaryDir, "release.tar");
-		run("git", ["archive", "--prefix=release/", "--output", archive, `v${release}`], root);
+		run("git", ["archive", "--prefix=release/", "--output", archive, tag], root);
 		run("tar", ["xf", archive, "-C", temporaryDir], root);
 
 		// The built-in models users have: the data shipped in the published package.

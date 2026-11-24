@@ -50,23 +50,36 @@ enum StopReason {
 
   /// The model refused to respond.
   refused,
+
+  /// The provider request failed (HTTP error, transport failure, malformed
+  /// stream). Never model-authored content: the diagnostic is carried in
+  /// [AssistantMessage.errorMessage].
+  error,
+
+  /// The caller aborted the request.
+  aborted,
 }
 
-/// Steering message dispatch mode.
-enum SteeringMode {
-  /// Inject all queued steering messages at once.
+/// Whether [reason] ends the run without any tool execution.
+///
+/// A provider failure and a caller abort are terminal by contract, exactly
+/// like a model refusal: upstream terminates on all three before looking for
+/// tool calls (`packages/agent/src/agent-loop.ts:254-265`).
+bool isTerminalStopReason(StopReason? reason) =>
+    reason == StopReason.refused ||
+    reason == StopReason.error ||
+    reason == StopReason.aborted;
+
+/// Controls how many queued user messages are injected when the agent loop
+/// reaches a queue drain point.
+///
+/// Mirrors upstream `packages/agent/src/types.ts` `QueueMode`.
+enum QueueMode {
+  /// Drain and inject every queued message at that point.
   all,
 
-  /// Inject one steering message at a time.
-  oneAtATime,
-}
-
-/// Follow-up message dispatch mode.
-enum FollowUpMode {
-  /// Inject all queued follow-up messages at once.
-  all,
-
-  /// Inject one follow-up message at a time.
+  /// Drain and inject only the oldest queued message, leaving the rest queued
+  /// for later drain points.
   oneAtATime,
 }
 
@@ -183,13 +196,24 @@ class ToolCallBlock {
   final String name;
 
   /// Arguments for the tool call as a JSON-compatible map.
+  ///
+  /// Empty when [argumentsError] is set, which is also the placeholder
+  /// upstream uses for a failed parse.
   final Map<String, dynamic> arguments;
+
+  /// Parse failure of the model's argument text, or null when it parsed.
+  ///
+  /// Set when the finished arguments were malformed JSON or were not a JSON
+  /// object; the message names the problem and echoes the received text. Tool
+  /// validation fails closed on it, so the call never executes.
+  final String? argumentsError;
 
   /// Creates a tool call block.
   const ToolCallBlock({
     required this.id,
     required this.name,
     required this.arguments,
+    this.argumentsError,
   });
 }
 
@@ -233,6 +257,13 @@ class AssistantMessage extends AgentMessage {
   /// Reason the assistant stopped generating.
   final StopReason? stopReason;
 
+  /// Diagnostic for a failed provider request.
+  ///
+  /// Set only when [stopReason] is [StopReason.error] or [StopReason.aborted];
+  /// carries the HTTP status/body or the transport exception text. It is never
+  /// model-authored content, so it never appears in [content].
+  final String? errorMessage;
+
   /// Token usage for this response.
   final Usage? usage;
 
@@ -241,6 +272,7 @@ class AssistantMessage extends AgentMessage {
     this.id,
     required this.content,
     this.stopReason,
+    this.errorMessage,
     this.usage,
   });
 
@@ -679,6 +711,10 @@ class AgentLoopConfig {
   final Future<String?> Function(String provider)? getApiKey;
 
   /// Callback to check if the loop should stop after a turn.
+  ///
+  /// Returning `true` ends the run once the turn's tool calls are done.
+  /// An absent hook decides nothing: the loop then ends only when both the
+  /// steering and follow-up queues have nothing left to deliver.
   final bool Function(ShouldStopAfterTurnContext)? shouldStopAfterTurn;
 
   /// Provides steering messages injected mid-turn.

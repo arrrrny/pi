@@ -22,6 +22,7 @@ export 'src/agent.dart';
 export 'src/agent_loop.dart';
 export 'src/harness.dart';
 export 'src/subagent.dart';
+export 'src/json_parse.dart';
 export 'src/tools.dart';
 export 'src/session.dart';
 export 'src/session_storage.dart';

@@ -175,7 +175,7 @@ Future<List<AgentMessage>> _runLoop(
     context = _withMessages(context, [assistant]);
     newMessages.add(assistant);
 
-    if (assistant.stopReason == StopReason.refused ||
+    if (isTerminalStopReason(assistant.stopReason) ||
         (abortSignal?.isCompleted ?? false)) {
       await emit(TurnEnd(message: assistant, toolResults: const []));
       return newMessages;
@@ -207,17 +207,21 @@ Future<List<AgentMessage>> _runLoop(
       continue;
     }
 
+    // An explicit `true` ends the run; an absent hook (the [Agent] default)
+    // decides nothing and falls through to the queue check below.
     final shouldStop = config.shouldStopAfterTurn?.call(
           ShouldStopAfterTurnContext(
             lastMessage: assistant,
             toolResults: toolResults,
             turnCount: turnCount,
           ),
-        ) ??
-        true;
-    if (shouldStop) break;
+        );
+    if (shouldStop ?? false) break;
 
-    // Explicit continuation: prefer steering, then follow-up, else stop.
+    // The agent would stop here, so drain what arrived while it was working:
+    // steering first, then follow-up (upstream `agent-loop.ts:293-311`). Each
+    // non-empty drain buys the message its own turn; only when both queues are
+    // empty does the run end.
     final steering =
         await config.getSteeringMessages?.call() ?? <AgentMessage>[];
     if (steering.isNotEmpty) {
@@ -443,6 +447,15 @@ Future<_Prepared> _prepareToolCall(
   }
   if (tool == null) {
     return _Prepared.immediate(_errorResult('Tool ${toolCall.name} not found'));
+  }
+
+  // Fail closed before argument preparation and the user's hook: a call whose
+  // argument text did not parse as a JSON object must never reach them.
+  final argumentsError = toolCall.argumentsError;
+  if (argumentsError != null) {
+    return _Prepared.immediate(
+        _errorResult('Invalid arguments for tool "${toolCall.name}": '
+            '$argumentsError'));
   }
 
   try {
