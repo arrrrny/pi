@@ -159,8 +159,8 @@ export function checkCompleteness({ registry, exportInventory, sourceInventory, 
 	const rationales = rationaleIndex(registry);
 	const isRationalized = (kind, coordinate) => rationales.has(`${kind}:${coordinate}`);
 
-	const rowCoversExport = (exportItem) =>
-		registry.behaviors.some((row) => row.export === exportItem.name && row.internal !== true);
+	const rowCoversExport = (pkg, exportItem) =>
+		registry.behaviors.some((row) => row.area === pkg.area && row.export === exportItem.name && row.internal !== true);
 	const rowCoversInternalSource = (sourceItem) =>
 		registry.behaviors.some((row) => row.upstream_path === sourceItem.path && row.internal === true);
 	const rowCoversAsset = (assetItem) =>
@@ -173,7 +173,7 @@ export function checkCompleteness({ registry, exportInventory, sourceInventory, 
 	for (const pkg of exportInventory) {
 		for (const exportItem of pkg.exports) {
 			if (exportItem.entry === false) continue;
-			if (!rowCoversExport(exportItem) && !isRationalized("export", `${exportItem.name}@${exportItem.source}`)) {
+			if (!rowCoversExport(pkg, exportItem) && !isRationalized("export", `${exportItem.name}@${exportItem.source}`)) {
 				unmapped.push({ kind: "export", coordinate: `${exportItem.name}@${exportItem.source}`, area: pkg.area });
 			}
 		}

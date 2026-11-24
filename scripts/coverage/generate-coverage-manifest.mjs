@@ -66,8 +66,13 @@ function main() {
 	}
 	const actual = headSha(upstream);
 	if (actual !== sha) {
-		console.error(`generate-coverage-manifest: upstream HEAD ${actual} is not the pinned sha ${sha}`);
-		process.exit(2);
+		// `packages/` is vendored in this fork and the working tree is the
+		// fork's HEAD (which carries the port plus any in-flight changes), not
+		// the upstream commit the pin names. The pin is a provenance label, not
+		// a checkout requirement, so a mismatch is a warning rather than a hard
+		// failure — otherwise every CI run (which checks out the PR/push ref)
+		// fails here before it can generate the manifest.
+		console.warn(`generate-coverage-manifest: upstream HEAD ${actual} is not the pinned sha ${sha}; generating from the working tree (packages/ is vendored, the pin is a provenance label)`);
 	}
 
 	const registry = readJsonIfExists(registryPath);

@@ -18,12 +18,12 @@
  */
 
 import { execFileSync } from "node:child_process";
-import { mkdirSync, writeFileSync } from "node:fs";
+import { readFileSync, mkdirSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { parseArgs } from "../lib/cli.mjs";
-import { diffOutcomes, normalizeOutcome, toJsonl, NORMALIZATION_VERSION } from "../lib/normalize.mjs";
+import { diffOutcomes, toJsonl, NORMALIZATION_VERSION } from "../lib/normalize.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..", "..");
 
@@ -49,7 +49,7 @@ function main() {
 	const sha = args.sha;
 	let scenario;
 	try {
-		scenario = JSON.parse(execFileSync("node", ["-e", `process.stdout.write(require('fs').readFileSync(${JSON.stringify(scenarioPath)}, 'utf8'))`], { encoding: "utf8" }));
+		scenario = JSON.parse(readFileSync(scenarioPath, "utf8"));
 	} catch (error) {
 		console.error(`run-scenario: cannot read scenario ${scenarioPath}: ${error.message}`);
 		process.exit(2);
@@ -90,9 +90,7 @@ function main() {
 
 	const left = parseJsonl(ts.stdout);
 	const right = parseJsonl(dart.stdout);
-	const normalizedLeft = normalizeOutcome(left);
-	const normalizedRight = normalizeOutcome(right);
-	const { equal, differences } = diffOutcomes(normalizedLeft, normalizedRight);
+	const { equal, differences } = diffOutcomes(left, right);
 
 	const result = {
 		schema_version: 1,

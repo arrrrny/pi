@@ -244,11 +244,10 @@ export function buildExportInventory(upstreamRoot) {
 					}
 					continue;
 				}
-				const isAlias = declaration.kind === "alias" && declaration.from;
 				// A declaration is `entry` when its file is a declared entry
 				// point; a named re-export is `entry` only in the entry file that
 				// performs it.
-				const entry = isAlias ? entrySet.has(file) : entrySet.has(file);
+				const entry = entrySet.has(file);
 				exports.push({
 					name: declaration.name,
 					kind: declaration.kind,

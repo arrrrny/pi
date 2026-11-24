@@ -13,14 +13,14 @@
  *   node scripts/coverage/differential/run-ts.mjs --scenario <file>
  */
 
-import { execFileSync } from "node:child_process";
+import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 
 import { parseArgs } from "../lib/cli.mjs";
 import { normalizeOutcome, toJsonl } from "../lib/normalize.mjs";
 
 function readScenario(path) {
-	return JSON.parse(execFileSync("node", ["-e", `process.stdout.write(require('fs').readFileSync(${JSON.stringify(path)}, 'utf8'))`], { encoding: "utf8" }));
+	return JSON.parse(readFileSync(path, "utf8"));
 }
 
 /**
@@ -30,6 +30,12 @@ function readScenario(path) {
  * Each supported scenario kind returns the raw (pre-normalization) records the
  * TypeScript side would emit: events, transcripts, state, commits, errors, and
  * usage. The Dart harness mirrors this switch case for case.
+ *
+ * NOTE: This is a scripted model, not the real upstream `agentLoop`. Driving
+ * the real package with a deterministic provider would exercise shipped code
+ * rather than a parallel switch — that is the sounder design for the future.
+ * The current approach catches divergence between the two harness switches
+ * but not a real parity regression in `packages/agent/src/agent-loop.ts`.
  */
 function runScripted(scenario) {
 	const records = [];

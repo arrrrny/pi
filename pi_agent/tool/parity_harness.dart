@@ -134,6 +134,12 @@ List<Map<String, dynamic>> normalizeOutcome(List<Map<String, dynamic>> rawRecord
 /// Deterministic model of the Dart port's observable behavior for the scripted
 /// scenarios the differential harness supports. Mirrors the switch in
 /// `scripts/coverage/differential/run-ts.mjs` case for case.
+///
+/// NOTE: This is a scripted model, not the real `agentLoop`. Driving the real
+/// `runAgentLoop` with a deterministic provider would exercise shipped code
+/// rather than a parallel switch — that is the sounder design for the future.
+/// The current approach catches divergence between the two harness switches
+/// but not a real parity regression in `pi_agent/lib/src/agent_loop.dart`.
 List<Map<String, dynamic>> runScripted(Map<String, dynamic> scenario) {
   final records = <Map<String, dynamic>>[];
   void push(Map<String, dynamic> record) => records.add({'turn': 0, ...record});

@@ -23,12 +23,13 @@
  */
 
 import { execFileSync } from "node:child_process";
+import { fileURLToPath } from "node:url";
 import { resolve } from "node:path";
 
 import { parseArgs } from "./lib/cli.mjs";
 import { readJsonIfExists } from "./lib/upstream-tree.mjs";
 
-const ROOT = resolve(new URL("..", import.meta.url).pathname, "..", "..");
+const ROOT = resolve(fileURLToPath(new URL("..", import.meta.url)), "..", "..");
 
 function isAncestor(ancestor, descendant) {
 	if (ancestor === descendant) return true;
