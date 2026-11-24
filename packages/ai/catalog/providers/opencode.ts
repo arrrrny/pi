@@ -82,9 +82,12 @@ export function opencodeModels(ctx: ProviderContext): ChatModel[] {
 		api: "openai-completions",
 		// Replaced by the base URL of the API models.dev lists for each model.
 		baseUrl: "",
-		skipDeprecated: true,
-		// Codex Spark is not usable through OpenCode.
-		include: (source) => source.id !== "gpt-5.3-codex-spark",
+		// Codex Spark is not usable through OpenCode. models.dev marks Kimi K2.5/K2.6
+		// deprecated, but OpenCode still serves them and pi keeps per-model overrides
+		// for both, so they stay while every other deprecated model is skipped.
+		include: (source) =>
+			source.id !== "gpt-5.3-codex-spark" &&
+			(source.status !== "deprecated" || source.id === "kimi-k2.5" || source.id === "kimi-k2.6"),
 		map: (model, source) => {
 			const served = opencodeApi(ctx, source);
 			if (!served) return undefined;
