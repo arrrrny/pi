@@ -6,6 +6,7 @@ import 'dart:async';
 import 'types.dart';
 import 'agent_loop.dart';
 import 'conversion.dart' as conversion;
+import 'llm_client.dart';
 
 /// Default compaction settings.
 const CompactionSettings defaultCompactionSettings = CompactionSettings();
@@ -109,15 +110,35 @@ CompactionPreparation prepareCompaction(
 
 /// Runs full compaction: find cut point, generate summary, return result.
 ///
-/// Note: Actual LLM-based summarization requires the LLM client integration.
-/// This implementation uses a placeholder summary.
+/// The entries before the cut point are summarized by [model] through
+/// [loopStreamFn] — the same canonical summarization path
+/// [summarizeMessagesWithUsage] provides for the durable conversation harness,
+/// so the two compaction entry points cannot diverge semantically.
+///
+/// A [previousSummary] switches the request to the update prompt and is
+/// carried in `<previous-summary>` tags; [customInstructions] is appended as an
+/// additional focus.
+///
+/// When [loopStreamFn] is the default [streamLLM] and [apiKey] is null, a
+/// [getApiKey] callback — called with [Model.provider] — is used to resolve the
+/// credential, the same way [Conversation.compact] does, so both entry points
+/// share one credential story.
+///
+/// Throws a [StateError] when there is nothing to summarize — no entries fall
+/// before the cut point — or when the model response cannot be persisted as a
+/// summary: a provider error, an aborted request, a response capped at the
+/// token limit, a response that attempted a tool call, or one whose text is
+/// empty.
 Future<CompactionResult> compact(
   List<SessionTreeEntry> entries,
   Model model, {
+  LoopStreamFn loopStreamFn = streamLLM,
   String? apiKey,
+  Future<String?> Function(String provider)? getApiKey,
   CompactionSettings? settings,
   String? customInstructions,
   String? previousSummary,
+  Completer<void>? abortSignal,
 }) async {
   settings ??= defaultCompactionSettings;
   final preparation = prepareCompaction(
@@ -131,17 +152,35 @@ Future<CompactionResult> compact(
       .map((e) => e.message)
       .toList();
 
-  final serialized = serializeConversation(messages);
-  final summary = _generatePlaceholderSummary(serialized, previousSummary);
+  // Nothing before the cut point: a zero-work call must not be persisted as a
+  // checkpoint. `Conversation.compact` returns `false` for this case; the
+  // exported `compact()` throws, because an empty summary is otherwise
+  // indistinguishable from a finished one and gets written into the session
+  // log permanently.
+  if (messages.isEmpty) {
+    throw StateError('Compaction found nothing to summarize: no entries '
+        'fall before the cut point');
+  }
+
+  final summarized = await summarizeMessagesWithUsage(
+    messages,
+    model,
+    loopStreamFn: loopStreamFn,
+    apiKey: apiKey ?? await getApiKey?.call(model.provider),
+    customInstructions: customInstructions,
+    previousSummary: preparation.previousSummary,
+    abortSignal: abortSignal,
+  );
 
   final firstKeptEntryId = preparation.keptEntries.isNotEmpty
       ? preparation.keptEntries.first.id
       : '';
 
   return CompactionResult(
-    summary: summary,
+    summary: summarized.text,
     firstKeptEntryId: firstKeptEntryId,
     tokensBefore: preparation.tokensCut,
+    usage: summarized.usage,
   );
 }
 
@@ -158,72 +197,227 @@ int _estimateMessageTokens(AgentMessage message) {
   return (text.length / 4).ceil();
 }
 
-String _generatePlaceholderSummary(String serialized, String? previousSummary) {
-  final buffer = StringBuffer();
-  if (previousSummary != null) {
-    buffer.writeln('Previous context: $previousSummary');
-    buffer.writeln();
-  }
-  buffer.writeln('Summary of earlier conversation:');
-  buffer.writeln(serialized.length > 2000
-      ? '${serialized.substring(0, 2000)}...'
-      : serialized);
-  return buffer.toString();
+/// System prompt for a summarization request ([SUMMARIZATION_SYSTEM_PROMPT]).
+const String summarizationSystemPrompt =
+    'You are a context summarization assistant. Your task is to read a '
+    'conversation between a user and an AI assistant, then produce a '
+    'structured summary following the exact format specified.\n\n'
+    'Do NOT continue the conversation. Do NOT respond to any questions in the '
+    'conversation. ONLY output the structured summary.';
+
+/// Instructions for an initial compaction summary ([SUMMARIZATION_PROMPT]).
+const String defaultCompactionInstructions = '''
+The messages above are a conversation to summarize. Create a structured context checkpoint summary that another LLM will use to continue the work.
+
+Use this EXACT format:
+
+## Goal
+[What is the user trying to accomplish? Can be multiple items if the session covers different tasks.]
+
+## Constraints & Preferences
+- [Any constraints, preferences, or requirements mentioned by user]
+- [Or "(none)" if none were mentioned]
+
+## Progress
+### Done
+- [x] [Completed tasks/changes]
+
+### In Progress
+- [ ] [Current work]
+
+### Blocked
+- [Issues preventing progress, if any]
+
+## Key Decisions
+- **[Decision]**: [Brief rationale]
+
+## Next Steps
+1. [Ordered list of what should happen next]
+
+## Critical Context
+- [Any data, examples, or references needed to continue]
+- [Or "(none)" if not applicable]
+
+Keep each section concise. Preserve exact file paths, function names, and error messages.''';
+
+/// Instructions for updating an existing summary ([UPDATE_SUMMARIZATION_PROMPT]).
+const String updateCompactionInstructions = '''
+The messages above are NEW conversation messages to incorporate into the existing summary provided in <previous-summary> tags.
+
+Update the existing structured summary with new information. RULES:
+- PRESERVE all existing information from the previous summary
+- ADD new progress, decisions, and context from the new messages
+- UPDATE the Progress section: move items from "In Progress" to "Done" when completed
+- UPDATE "Next Steps" based on what was accomplished
+- PRESERVE exact file paths, function names, and error messages
+- If something is no longer relevant, you may remove it
+
+Use this EXACT format:
+
+## Goal
+[Preserve existing goals, add new ones if the task expanded]
+
+## Constraints & Preferences
+- [Preserve existing, add new ones discovered]
+
+## Progress
+### Done
+- [x] [Include previously done items AND newly completed items]
+
+### In Progress
+- [ ] [Current work - update based on progress]
+
+### Blocked
+- [Current blockers - remove if resolved]
+
+## Key Decisions
+- **[Decision]**: [Brief rationale] (preserve all previous, add new)
+
+## Next Steps
+1. [Update based on current state]
+
+## Critical Context
+- [Preserve important context, add new if needed]
+
+Keep each section concise. Preserve exact file paths, function names, and error messages.''';
+
+/// A generated summary plus the token usage of the request that produced it.
+class SummaryResult {
+  /// The summary text.
+  final String text;
+
+  /// Usage reported by the summarizing response, when the provider sent any.
+  final Usage? usage;
+
+  /// Creates a summary result.
+  const SummaryResult({required this.text, this.usage});
 }
 
-/// Instructions used when summarizing a conversation for compaction.
-const String defaultCompactionInstructions =
-    'Summarize the following conversation. Preserve the key facts, decisions, '
-    'file paths, and open questions needed to continue the work. Be concise.';
+/// Returns a diagnostic when a summarization [response] cannot be persisted.
+///
+/// A response that failed at the provider, was aborted, or hit the token cap
+/// carries no trustworthy summary: the text is either absent or a partial
+/// generation, so persisting it as a checkpoint would silently lie about the
+/// context ([summarizationFailure]).
+String? summarizationFailure(AssistantMessage response) {
+  switch (response.stopReason) {
+    case StopReason.error:
+      return 'Summarization failed: ${response.errorMessage ?? 'Unknown error'}';
+    case StopReason.aborted:
+      return 'Summarization aborted';
+    case StopReason.maxTokens:
+      return 'Summarization failed: generation hit the token cap and the '
+          'summary is incomplete';
+    default:
+      return null;
+  }
+}
 
 /// Summarizes [messages] into a compact context summary using [loopStreamFn].
 ///
-/// The transcript is serialized and sent to the model as a single user prompt;
-/// the model's text response is the summary. Returns an empty string for an
-/// empty transcript.
+/// Returns an empty string for an empty transcript. Throws a [StateError] for a
+/// response [summarizationFailure] rejects, an empty-text response, or one that
+/// attempted a tool call.
+///
+/// [customInstructions] is appended to the summarization instructions as an
+/// additional focus; it does not replace them. (The parameter was previously
+/// named `instructions`, which suggested replacement; no in-repo caller passed
+/// it, and the exported symbol is renamed to match the lower layer and its
+/// append semantics.)
 Future<String> summarizeMessages(
   List<AgentMessage> messages,
   Model model, {
   required LoopStreamFn loopStreamFn,
   String? apiKey,
-  String? instructions,
+  String? customInstructions,
+  String? previousSummary,
   Completer<void>? abortSignal,
 }) async {
-  if (messages.isEmpty) return '';
+  final result = await summarizeMessagesWithUsage(
+    messages,
+    model,
+    loopStreamFn: loopStreamFn,
+    apiKey: apiKey,
+    customInstructions: customInstructions,
+    previousSummary: previousSummary,
+    abortSignal: abortSignal,
+  );
+  return result.text;
+}
 
+/// Generates or updates a conversation summary and returns its usage.
+///
+/// The transcript is serialized into `<conversation>` tags and sent as a single
+/// user prompt; a [previousSummary] is carried in `<previous-summary>` tags and
+/// selects the update instructions. [customInstructions] is appended as
+/// "Additional focus".
+///
+/// Returns an empty result for an empty transcript. Throws a [StateError] when
+/// the response cannot be persisted as a summary — see
+/// [summarizationFailure] — when it produced empty text, or when it attempted a
+/// tool call. The stream must end with a terminal `MessageEnd` event (the
+/// default [streamLLM] always does); an injector that emits only `MessageUpdate`
+/// events, without a final `MessageEnd`, is rejected as "no response".
+Future<SummaryResult> summarizeMessagesWithUsage(
+  List<AgentMessage> messages,
+  Model model, {
+  required LoopStreamFn loopStreamFn,
+  String? apiKey,
+  String? previousSummary,
+  String? customInstructions,
+  Completer<void>? abortSignal,
+}) async {
+  if (messages.isEmpty) return const SummaryResult(text: '');
+
+  var basePrompt = previousSummary == null
+      ? defaultCompactionInstructions
+      : updateCompactionInstructions;
+  if (customInstructions != null && customInstructions.trim().isNotEmpty) {
+    basePrompt = '$basePrompt\n\nAdditional focus: $customInstructions';
+  }
+
+  final transcript = serializeConversation(messages);
+  final buffer =
+      StringBuffer('<conversation>\n$transcript\n</conversation>\n\n');
+  if (previousSummary != null) {
+    buffer
+        .write('<previous-summary>\n$previousSummary\n</previous-summary>\n\n');
+  }
+  buffer.write(basePrompt);
+
+  final context = AgentContext(
+    systemPrompt: summarizationSystemPrompt,
+    messages: [UserMessage.text(buffer.toString())],
+    tools: null,
+  );
   final config = AgentLoopConfig(
     model: model,
     convertToLlm: conversion.convertToLlm,
   );
-  final transcript = serializeConversation(messages);
-  final promptText =
-      '${instructions ?? defaultCompactionInstructions}\n\n---\n$transcript';
-  final context = AgentContext(
-    systemPrompt: '',
-    messages: [UserMessage.text(promptText)],
-    tools: null,
-  );
 
-  final buffer = StringBuffer();
+  AssistantMessage? response;
   await for (final event in loopStreamFn(
     context: context,
     config: config,
     apiKey: apiKey ?? '',
     abortSignal: abortSignal,
   )) {
-    switch (event) {
-      case MessageUpdate(message: final m):
-        if (m is AssistantMessage) {
-          buffer
-            ..clear()
-            ..write(m.text);
-        }
-      case MessageEnd(message: final m):
-        if (m is AssistantMessage && m.text.isNotEmpty) return m.text;
-        return buffer.toString();
-      default:
-        break;
+    if (event case MessageEnd(message: final AssistantMessage message)) {
+      response = message;
     }
   }
-  return buffer.toString();
+
+  if (response == null) {
+    throw StateError('Summarization failed: the model produced no response');
+  }
+  final failure = summarizationFailure(response);
+  if (failure != null) throw StateError(failure);
+  if (response.toolCalls.isNotEmpty) {
+    throw StateError('Summarization attempted to call a tool');
+  }
+  if (response.text.trim().isEmpty) {
+    throw StateError('Summarization produced an empty summary');
+  }
+
+  return SummaryResult(text: response.text, usage: response.usage);
 }
