@@ -185,6 +185,41 @@ void main() {
       await storage2.close();
     });
 
+    // pi#4: the diagnostic must survive resume, or the fail-open path returns.
+    test('round-trips a tool call argumentsError', () async {
+      await storage.appendEntry(MessageEntry(
+        id: 'e1',
+        parentId: '',
+        timestamp: DateTime.now(),
+        role: 'assistant',
+        message: AssistantMessage(
+          content: [
+            ToolCallBlock(
+              id: 'c1',
+              name: 'write',
+              arguments: const {},
+              argumentsError:
+                  'Unexpected end of input\n\nReceived arguments:\n{"path":',
+            ),
+          ],
+          stopReason: StopReason.toolUse,
+        ),
+      ));
+      await storage.close();
+
+      final storage2 = JsonlSessionStorage(tempPath);
+      await storage2.init();
+      final entries = await storage2.loadEntries();
+      await storage2.close();
+
+      final message =
+          (entries.single as MessageEntry).message as AssistantMessage;
+      final call = message.toolCalls.single;
+      expect(call.arguments, isEmpty);
+      expect(call.argumentsError,
+          'Unexpected end of input\n\nReceived arguments:\n{"path":');
+    });
+
     test('findEntry finds by id', () async {
       await storage.appendEntry(MessageEntry(
         id: 'e1',

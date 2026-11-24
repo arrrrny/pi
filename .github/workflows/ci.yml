@@ -53,10 +53,23 @@ jobs:
         run: npm run check
 
       # The checkout has no tags; the released changelog sections are compared with the newest release tag.
+      # Releases are cut upstream (earendil-works/pi) and this fork pushes no tags of its own, so an
+      # origin-only lookup resolves an empty tag name, fetches `refs/tags/:refs/tags/`, and fails before
+      # the changelog check can run. Try this repository first (it is authoritative once it tags) and
+      # fall back to the upstream release tags.
       - name: Fetch the newest release tag
         run: |
-          tag=$(git ls-remote --tags --sort=-v:refname origin 'v*.*.*' | grep -v '\^{}' | head -1 | sed 's#.*refs/tags/##')
-          git fetch --depth=1 origin "refs/tags/$tag:refs/tags/$tag"
+          set -eu
+          for remote in origin https://github.com/earendil-works/pi.git; do
+            tag=$(git ls-remote --tags --sort=-v:refname "$remote" 'v*.*.*' | grep -v '\^{}' | head -1 | sed 's#.*refs/tags/##' || true)
+            if [ -n "$tag" ]; then
+              echo "Newest release tag: $tag (from $remote)"
+              git fetch --depth=1 "$remote" "refs/tags/$tag:refs/tags/$tag"
+              exit 0
+            fi
+          done
+          echo "::error::No v*.*.* release tag on origin or upstream; the released changelog sections cannot be verified."
+          exit 1
 
       - name: Check released changelog sections
         run: npm run check:released-changelogs

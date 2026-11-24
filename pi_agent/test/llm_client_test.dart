@@ -170,6 +170,87 @@ void main() {
       expect(msg.stopReason, StopReason.toolUse);
     });
 
+    // pi#4: malformed arguments keep their diagnostic instead of a silent {}.
+    test('keeps malformed arguments as a diagnostic, not silent {}', () async {
+      server.frames.addAll([
+        jsonEncode({
+          'id': 'cmpl-bad',
+          'choices': [
+            {
+              'delta': {
+                'tool_calls': [
+                  {
+                    'index': 0,
+                    'id': 'call_bad',
+                    'function': {'name': 'read_file', 'arguments': '{"p'},
+                  },
+                ],
+              },
+              'finish_reason': null,
+            },
+          ],
+        }),
+        jsonEncode({
+          'id': 'cmpl-bad',
+          'choices': [
+            {'delta': const {}, 'finish_reason': 'tool_calls'},
+          ],
+        }),
+      ]);
+
+      final events = await streamLLM(
+        context: AgentContext(
+            systemPrompt: '', messages: [UserMessage.text('go')]),
+        config: makeConfig(makeModel(server.url.toString())),
+        apiKey: 'k',
+        abortSignal: null,
+      ).toList();
+
+      final msg = singleEnd(events).message as AssistantMessage;
+      final call = msg.toolCalls.single;
+      expect(call.arguments, isEmpty);
+      expect(call.argumentsError, isNotNull);
+      expect(call.argumentsError, endsWith('{"p'));
+    });
+
+    // pi#4: a non-object argument root is a parse failure, not {}.
+    test('keeps a non-object argument root as a diagnostic', () async {
+      server.frames.addAll([
+        jsonEncode({
+          'id': 'cmpl-arr',
+          'choices': [
+            {
+              'delta': {
+                'tool_calls': [
+                  {
+                    'index': 0,
+                    'id': 'call_arr',
+                    'function': {'name': 'read_file', 'arguments': '[1,2]'},
+                  },
+                ],
+              },
+              'finish_reason': 'tool_calls',
+            },
+          ],
+        }),
+      ]);
+
+      final events = await streamLLM(
+        context: AgentContext(
+            systemPrompt: '', messages: [UserMessage.text('go')]),
+        config: makeConfig(makeModel(server.url.toString())),
+        apiKey: 'k',
+        abortSignal: null,
+      ).toList();
+
+      final msg = singleEnd(events).message as AssistantMessage;
+      final call = msg.toolCalls.single;
+      expect(call.arguments, isEmpty);
+      expect(call.argumentsError,
+          contains('Tool arguments must be a JSON object'));
+      expect(call.argumentsError, endsWith('[1,2]'));
+    });
+
     test('surfaces non-200 as a provider error outcome (#6)', () async {
       final bad = await HttpServer.bind(InternetAddress.loopbackIPv4, 0);
       bad.listen((request) {

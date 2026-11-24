@@ -445,6 +445,15 @@ Future<_Prepared> _prepareToolCall(
     return _Prepared.immediate(_errorResult('Tool ${toolCall.name} not found'));
   }
 
+  // Fail closed before argument preparation and the user's hook: a call whose
+  // argument text did not parse as a JSON object must never reach them.
+  final argumentsError = toolCall.argumentsError;
+  if (argumentsError != null) {
+    return _Prepared.immediate(
+        _errorResult('Invalid arguments for tool "${toolCall.name}": '
+            '$argumentsError'));
+  }
+
   try {
     var args = toolCall.arguments;
     final prepare = tool.prepareArguments;

@@ -201,13 +201,24 @@ class ToolCallBlock {
   final String name;
 
   /// Arguments for the tool call as a JSON-compatible map.
+  ///
+  /// Empty when [argumentsError] is set, which is also the placeholder
+  /// upstream uses for a failed parse.
   final Map<String, dynamic> arguments;
+
+  /// Parse failure of the model's argument text, or null when it parsed.
+  ///
+  /// Set when the finished arguments were malformed JSON or were not a JSON
+  /// object; the message names the problem and echoes the received text. Tool
+  /// validation fails closed on it, so the call never executes.
+  final String? argumentsError;
 
   /// Creates a tool call block.
   const ToolCallBlock({
     required this.id,
     required this.name,
     required this.arguments,
+    this.argumentsError,
   });
 }
 

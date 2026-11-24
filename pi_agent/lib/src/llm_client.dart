@@ -6,6 +6,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
+import 'json_parse.dart';
 import 'types.dart';
 import 'sse_parser.dart';
 
@@ -103,11 +104,16 @@ Stream<AgentEvent> streamLLM({
     final finalContent = <dynamic>[...content];
     for (final tcb in toolCallBuffers.values) {
       if (tcb.name != null && tcb.name!.isNotEmpty) {
+        // One full parse of the complete buffer: a partial streaming snapshot
+        // never becomes the final arguments, and a malformed one is reported
+        // on the block instead of being silently replaced by {}.
+        final parsed = parseToolCallArguments(tcb.argumentsBuffer);
         finalContent.add(
           ToolCallBlock(
             id: tcb.id,
             name: tcb.name!,
-            arguments: _decodeArguments(tcb.argumentsBuffer),
+            arguments: parsed.arguments,
+            argumentsError: parsed.argumentsError,
           ),
         );
       }
@@ -265,16 +271,6 @@ void _accumulateToolCall(
     if (name is String && name.isNotEmpty) buffer.name = name;
     final args = fn['arguments'];
     if (args is String) buffer.argumentsBuffer += args;
-  }
-}
-
-Map<String, dynamic> _decodeArguments(String buffer) {
-  if (buffer.isEmpty) return <String, dynamic>{};
-  try {
-    final decoded = jsonDecode(buffer);
-    return decoded is Map<String, dynamic> ? decoded : <String, dynamic>{};
-  } catch (_) {
-    return <String, dynamic>{};
   }
 }
 
