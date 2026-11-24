@@ -46,9 +46,14 @@ Stream<AgentEvent> streamLLM({
 
     if (response.statusCode != 200) {
       // A provider failure is a diagnostic, not model-authored content: it goes
-      // into `errorMessage` and must never be rendered as assistant text.
+      // into `errorMessage` and must never be rendered as assistant text. The
+      // body is clamped because it is persisted into JSONL for the message: a
+      // proxy answering with a large HTML error page would otherwise write it
+      // in full on every reload (upstream `error-body.ts:110`).
       final errorBody = await response.stream.bytesToString();
-      yield _errorEnd('${response.statusCode} - $errorBody', StopReason.error);
+      yield _errorEnd(
+          '${response.statusCode} - ${_clampErrorBody(errorBody)}',
+          StopReason.error);
       return;
     }
 
@@ -57,6 +62,7 @@ Stream<AgentEvent> streamLLM({
     StopReason? stopReason;
     Usage? usage;
     final toolCallBuffers = <int, _ToolCallBuffer>{};
+    String? streamError;
 
     await for (final event in parseSSE(response.stream)) {
       if (aborted || (abortSignal?.isCompleted ?? false)) break;
@@ -74,6 +80,7 @@ Stream<AgentEvent> streamLLM({
         onMessageId: (id) => messageId = id,
         onStopReason: (sr) => stopReason = sr,
         onUsage: (u) => usage = u,
+        onErrorMessage: (message) => streamError = message,
       );
 
       // Surface a message update only when the content actually changed, so
@@ -90,6 +97,13 @@ Stream<AgentEvent> streamLLM({
 
     if (aborted || (abortSignal?.isCompleted ?? false)) {
       yield _errorEnd('Request aborted', StopReason.aborted);
+      return;
+    }
+
+    // A reason the provider sent but the vocabulary does not know is the more
+    // precise diagnostic: report it rather than the generic "no finish reason".
+    if (streamError != null) {
+      yield _errorEnd(streamError!, StopReason.error);
       return;
     }
 
@@ -157,6 +171,20 @@ MessageEnd _errorEnd(String message, StopReason reason) => MessageEnd(
       ),
     );
 
+/// Maximum provider error text kept in a diagnostic, matching upstream's
+/// `MAX_PROVIDER_ERROR_BODY_CHARS` (`error-body.ts:18`).
+const int _maxErrorBodyChars = 4000;
+
+/// Caps a provider error body, matching upstream's `truncateErrorText`
+/// (`error-body.ts:166`). The diagnostic is persisted into JSONL for the
+/// message, so a proxy answering with an HTML error page must not write it in
+/// full; a real API error is short and passes through unchanged.
+String _clampErrorBody(String text) {
+  if (text.length <= _maxErrorBodyChars) return text;
+  final kept = text.substring(0, _maxErrorBodyChars);
+  return '$kept... [truncated ${text.length - _maxErrorBodyChars} chars]';
+}
+
 /// Builds the POST target, headers, and JSON body for one completion request.
 Future<(Uri, Map<String, String>, String)> _buildRequest(
   AgentContext context,
@@ -212,6 +240,7 @@ bool _applyChunk(
   required void Function(String?) onMessageId,
   required void Function(StopReason) onStopReason,
   required void Function(Usage) onUsage,
+  required void Function(String) onErrorMessage,
 }) {
   var changed = false;
   final id = json['id'];
@@ -239,7 +268,18 @@ bool _applyChunk(
         }
       }
       final finishReason = choice['finish_reason'];
-      if (finishReason is String) onStopReason(_parseStopReason(finishReason));
+      if (finishReason is String) {
+        final mapped = _parseStopReason(finishReason);
+        if (mapped == null) {
+          // An unrecognized reason is a provider failure, not a clean end: it
+          // carries the raw value as its diagnostic so the caller can report
+          // what the provider actually said (openai-completions.ts:1583-1590).
+          onStopReason(StopReason.error);
+          onErrorMessage('Provider finish_reason: $finishReason');
+        } else {
+          onStopReason(mapped);
+        }
+      }
     }
   }
 
@@ -274,12 +314,15 @@ void _accumulateToolCall(
   }
 }
 
-StopReason _parseStopReason(String reason) => switch (reason) {
+/// Maps an OpenAI `finish_reason` to a stop reason, or null when the value is
+/// not part of the vocabulary — an unknown reason is a provider failure, never
+/// a clean end (upstream `openai-completions.ts:1583-1590`).
+StopReason? _parseStopReason(String reason) => switch (reason) {
       'length' || 'max_tokens' => StopReason.maxTokens,
       'tool_calls' || 'function_call' => StopReason.toolUse,
       'content_filter' => StopReason.refused,
       'stop' || 'stop_sequence' || 'end_turn' => StopReason.endTurn,
-      _ => StopReason.endTurn,
+      _ => null,
     };
 
 class _ToolCallBuffer {

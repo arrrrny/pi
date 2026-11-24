@@ -368,6 +368,22 @@ class Agent {
         await _emitEvent(event);
       }
 
+      // An aborted run ends by cancelling the stream, so the stream's own
+      // terminal message is never delivered: no consumer could tell an
+      // aborted run from an empty one. Synthesize the abort outcome here, as
+      // upstream does in `handleRunFailure` (agent.ts:540-556).
+      if (_abortCompleter?.isCompleted ?? false) {
+        final aborted = AssistantMessage(
+          content: const [],
+          stopReason: StopReason.aborted,
+          errorMessage: 'Request aborted',
+        );
+        _handleEvent(MessageStart(message: aborted));
+        await _emitEvent(MessageStart(message: aborted));
+        _handleEvent(MessageEnd(message: aborted));
+        await _emitEvent(MessageEnd(message: aborted));
+      }
+
       await _emitEvent(AgentEnd(messages: List.from(_state.internalMessages)));
     } catch (e) {
       _state.errorMessage = e.toString();

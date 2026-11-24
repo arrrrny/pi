@@ -288,7 +288,24 @@ void main() {
       await controller.close();
       await agent.waitForIdle();
 
-      expect(events.whereType<MessageEnd>(), hasLength(1));
+      // The post-abort "second" message is never processed, and exactly one
+      // abort outcome is added on top of the message that preceded the abort.
+      final ends = events.whereType<MessageEnd>().toList();
+      final texts = ends
+          .map((e) => (e.message as AssistantMessage).text)
+          .toList();
+      expect(texts, isNot(contains('second')));
+      expect(texts, contains('first'));
+      expect(ends, hasLength(2));
+
+      // The abort outcome is recorded, not dropped: a consumer can tell an
+      // aborted run from an empty one (upstream handleRunFailure,
+      // agent.ts:540-556).
+      final last = agent.state.messages.last as AssistantMessage;
+      expect(last.stopReason, StopReason.aborted);
+      expect(last.errorMessage, 'Request aborted');
+      expect(last.content, isEmpty);
+      expect(agent.state.errorMessage, 'Request aborted');
     });
   });
 

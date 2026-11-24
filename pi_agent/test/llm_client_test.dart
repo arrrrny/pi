@@ -277,6 +277,60 @@ void main() {
       expect(msg.text, isEmpty);
     });
 
+    test('maps an unrecognized finish_reason to an error outcome (#14)',
+        () async {
+      // A safety guard, a network error and any future vendor value are not
+      // clean ends. Upstream maps them to error with the raw reason
+      // (openai-completions.ts:1583-1590).
+      server.frames.add(jsonEncode({
+        'choices': [
+          {'delta': {'content': 'hello'}, 'finish_reason': 'safety_guard_triggered'},
+        ],
+      }));
+
+      final events = await streamLLM(
+        context: AgentContext(
+            systemPrompt: '', messages: [UserMessage.text('hi')]),
+        config: makeConfig(makeModel(server.url.toString())),
+        apiKey: 'k',
+        abortSignal: null,
+      ).toList();
+
+      final msg = singleEnd(events).message as AssistantMessage;
+      expect(msg.stopReason, StopReason.error);
+      expect(msg.errorMessage, 'Provider finish_reason: safety_guard_triggered');
+      // The failure is a diagnostic, not model-authored content.
+      expect(msg.content, isEmpty);
+      expect(msg.text, isEmpty);
+    });
+
+    test('clamps an oversized provider error body (#14)', () async {
+      // `errorMessage` is persisted into JSONL, so a proxy answering with a
+      // large HTML page must not write it in full (upstream caps at 4000).
+      final big = 'x' * 10000;
+      final bad = await HttpServer.bind(InternetAddress.loopbackIPv4, 0);
+      bad.listen((request) {
+        request.response.statusCode = 502;
+        request.response.write(big);
+        request.response.close();
+      });
+      addTearDown(() => bad.close(force: true));
+
+      final events = await streamLLM(
+        context: AgentContext(
+            systemPrompt: '', messages: [UserMessage.text('hi')]),
+        config: makeConfig(makeModel('http://127.0.0.1:${bad.port}/v1')),
+        apiKey: 'k',
+        abortSignal: null,
+      ).toList();
+
+      final msg = singleEnd(events).message as AssistantMessage;
+      expect(msg.stopReason, StopReason.error);
+      expect(msg.errorMessage, contains('502'));
+      expect(msg.errorMessage, contains('... [truncated 6000 chars]'));
+      expect(msg.errorMessage!.length, lessThan(4100));
+    });
+
     test('maps transport failures to an error outcome (#6)', () async {
       // A bound-then-closed port gives a connection failure without a server.
       final closed = await HttpServer.bind(InternetAddress.loopbackIPv4, 0);
