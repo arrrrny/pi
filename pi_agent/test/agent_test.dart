@@ -646,8 +646,10 @@ void main() {
     });
 
     test('one-at-a-time drains a single message per drain point', () async {
-      // A streamer that never makes a tool call and never continues: exactly one
-      // turn runs, so only the first steering message drains.
+      // A streamer that never makes a tool call: every drain point delivers one
+      // more queued message, so the two arrive in separate turns instead of both
+      // in the first one.
+      var turns = 0;
       final agent = Agent(
         steeringMode: QueueMode.oneAtATime,
         loopStreamFn: ({
@@ -655,23 +657,26 @@ void main() {
           required config,
           required apiKey,
           required abortSignal,
-        }) =>
-            Stream<AgentEvent>.fromIterable(const [
-          MessageStart(
-              message: AssistantMessage(
-                  content: [], stopReason: StopReason.endTurn)),
-          MessageEnd(
-              message: AssistantMessage(
-                  content: [], stopReason: StopReason.endTurn)),
-        ]),
+        }) {
+          turns++;
+          return Stream<AgentEvent>.fromIterable(const [
+            MessageStart(
+                message: AssistantMessage(
+                    content: [], stopReason: StopReason.endTurn)),
+            MessageEnd(
+                message: AssistantMessage(
+                    content: [], stopReason: StopReason.endTurn)),
+          ]);
+        },
       );
       agent.steer(userMsg('first'));
       agent.steer(userMsg('second'));
       await agent.prompt('go');
 
-      // No continuation -> one drain -> only 'first'; 'second' stays queued.
-      expect(userTexts(agent), ['go', 'first']);
-      expect(agent.hasQueuedMessages(), isTrue);
+      // One message per drain, one turn per message: 'second' is not stranded.
+      expect(userTexts(agent), ['go', 'first', 'second']);
+      expect(turns, 2);
+      expect(agent.hasQueuedMessages(), isFalse);
     });
 
     test('all steering drains every message in one turn', () async {
@@ -760,13 +765,14 @@ void main() {
       agent.followUp(userMsg('follow'));
       await agent.prompt('go');
 
-      // Steering drains; follow-up stays queued because the loop prefers
-      // steering and the run ends before the follow-up continuation point.
+      // Steering drains first; the follow-up is then delivered in its own turn
+      // rather than being stranded at the end of the run.
       final users = userTexts(agent);
       expect(users.first, 'go');
       expect(users.contains('steer'), isTrue);
-      expect(users.contains('follow'), isFalse);
-      expect(agent.hasQueuedMessages(), isTrue);
+      expect(users.contains('follow'), isTrue);
+      expect(users.indexOf('steer'), lessThan(users.indexOf('follow')));
+      expect(agent.hasQueuedMessages(), isFalse);
     });
 
     test('continuation from an assistant message drains queued steering',
@@ -794,6 +800,75 @@ void main() {
           Agent(steeringMode: QueueMode.all, followUpMode: QueueMode.all);
       expect(agent.steeringMode, QueueMode.all);
       expect(agent.followUpMode, QueueMode.all);
+    });
+
+    // Review fix on #16: the drain closures used to be installed only when the
+    // queue was already non-empty at config-build time, so a message queued
+    // DURING the run (the normal case) had no drain path and sat forever.
+    test('steer() from a tool body is delivered in the same run', () async {
+      late Agent agent;
+      var turn = 0;
+      agent = Agent(
+        steeringMode: QueueMode.oneAtATime,
+        tools: [
+          AgentTool(
+            name: 'noop',
+            description: 'noop',
+            parameters: {},
+            execute: (id, params, {onUpdate, isAborted}) async {
+              agent.steer(userMsg('midrun'));
+              return AgentToolResult(
+                  content: [const TextBlock('ok')], details: null);
+            },
+          ),
+        ],
+        loopStreamFn: ({
+          required context,
+          required config,
+          required apiKey,
+          required abortSignal,
+        }) {
+          if (turn++ == 0) {
+            return Stream<AgentEvent>.fromIterable(const [
+              MessageStart(
+                  message: AssistantMessage(content: [
+                ToolCallBlock(id: 'tc', name: 'noop', arguments: {})
+              ], stopReason: StopReason.toolUse)),
+              MessageEnd(
+                  message: AssistantMessage(content: [
+                ToolCallBlock(id: 'tc', name: 'noop', arguments: {})
+              ], stopReason: StopReason.toolUse)),
+            ]);
+          }
+          return Stream<AgentEvent>.fromIterable(const [
+            MessageStart(
+                message:
+                    AssistantMessage(content: [], stopReason: StopReason.endTurn)),
+            MessageEnd(
+                message:
+                    AssistantMessage(content: [], stopReason: StopReason.endTurn)),
+          ]);
+        },
+      );
+
+      await agent.prompt('go');
+
+      // The queued message arrives after the turn that queued it, not never.
+      expect(userTexts(agent), ['go', 'midrun']);
+      expect(agent.hasQueuedMessages(), isFalse);
+    });
+
+    // Review fix on #16: `followUp()` queued outside an explicit
+    // shouldStopAfterTurn was never delivered — the loop broke before the
+    // follow-up drain point.
+    test('followUp() is delivered without a shouldStopAfterTurn override',
+        () async {
+      final agent = makeAgent(QueueMode.all);
+      agent.followUp(userMsg('follow'));
+      await agent.prompt('go');
+
+      expect(userTexts(agent), ['go', 'follow']);
+      expect(agent.hasQueuedMessages(), isFalse);
     });
   });
 }

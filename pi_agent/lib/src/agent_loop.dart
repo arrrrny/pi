@@ -207,17 +207,21 @@ Future<List<AgentMessage>> _runLoop(
       continue;
     }
 
+    // An explicit `true` ends the run; an absent hook (the [Agent] default)
+    // decides nothing and falls through to the queue check below.
     final shouldStop = config.shouldStopAfterTurn?.call(
           ShouldStopAfterTurnContext(
             lastMessage: assistant,
             toolResults: toolResults,
             turnCount: turnCount,
           ),
-        ) ??
-        true;
-    if (shouldStop) break;
+        );
+    if (shouldStop ?? false) break;
 
-    // Explicit continuation: prefer steering, then follow-up, else stop.
+    // The agent would stop here, so drain what arrived while it was working:
+    // steering first, then follow-up (upstream `agent-loop.ts:293-311`). Each
+    // non-empty drain buys the message its own turn; only when both queues are
+    // empty does the run end.
     final steering =
         await config.getSteeringMessages?.call() ?? <AgentMessage>[];
     if (steering.isNotEmpty) {

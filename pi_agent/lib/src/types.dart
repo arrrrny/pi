@@ -711,6 +711,10 @@ class AgentLoopConfig {
   final Future<String?> Function(String provider)? getApiKey;
 
   /// Callback to check if the loop should stop after a turn.
+  ///
+  /// Returning `true` ends the run once the turn's tool calls are done.
+  /// An absent hook decides nothing: the loop then ends only when both the
+  /// steering and follow-up queues have nothing left to deliver.
   final bool Function(ShouldStopAfterTurnContext)? shouldStopAfterTurn;
 
   /// Provides steering messages injected mid-turn.

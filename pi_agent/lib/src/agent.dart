@@ -447,12 +447,12 @@ class Agent {
         beforeToolCall: _beforeToolCall,
         afterToolCall: _afterToolCall,
         shouldStopAfterTurn: null,
-        getSteeringMessages: _steeringQueue.hasItems()
-            ? () async => _steeringQueue.drain()
-            : null,
-        getFollowUpMessages: _followUpQueue.hasItems()
-            ? () async => _followUpQueue.drain()
-            : null,
+        // Always wired: `steer()`/`followUp()` may arrive mid-run (from a tool
+        // body, an event listener, or a concurrent task) long after this config
+        // was built, and a null provider makes the loop treat the queue as
+        // empty. `drain()` on an empty queue already returns `[]`.
+        getSteeringMessages: () async => _steeringQueue.drain(),
+        getFollowUpMessages: () async => _followUpQueue.drain(),
         extraHeaders: _extraHeaders,
       );
 

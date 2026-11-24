@@ -32,8 +32,8 @@ Agent({
   BeforeToolCallHook? beforeToolCall,
   AfterToolCallHook? afterToolCall,
   ToolExecutionMode? toolExecution,
-  SteeringMode? steeringMode,
-  FollowUpMode? followUpMode,
+  QueueMode? steeringMode,
+  QueueMode? followUpMode,
   Map<ThinkingLevel, int>? thinkingBudgets,
 });
 
@@ -47,9 +47,16 @@ Future<void> waitForIdle();
 void reset();
 void Function() subscribe(void Function(AgentEvent) listener, {void Function()? onCancel});
 
-// Properties
+// Properties (mode getters read back the live mode)
 AgentState get state;
 bool get isRunning;
+QueueMode get steeringMode;
+QueueMode get followUpMode;
+bool hasQueuedMessages();
+List<AgentMessage> peekQueuedMessages();  // steering first, then follow-up; non-consuming
+void clearSteeringQueue();
+void clearFollowUpQueue();
+void clearAllQueues();
 
 // Setters for configuration that can change at runtime
 set convertToLlm(MessageConverter? fn);
@@ -60,8 +67,8 @@ set beforeToolCall(BeforeToolCallHook? fn);
 set afterToolCall(AfterToolCallHook? fn);
 set sessionId(String? id);
 set toolExecution(ToolExecutionMode mode);
-set steeringMode(SteeringMode mode);
-set followUpMode(FollowUpMode mode);
+set steeringMode(QueueMode mode);
+set followUpMode(QueueMode mode);
 ```
 
 ### types.dart
@@ -152,8 +159,7 @@ class AgentLoopConfig {
 enum ThinkingLevel { off, minimal, low, medium, high, xhigh }
 enum ToolExecutionMode { sequential, parallel }
 enum StopReason { endTurn, maxTokens, toolUse, stopSequence, refused }
-enum SteeringMode { all, oneAtATime }
-enum FollowUpMode { all, oneAtATime }
+enum QueueMode { all, oneAtATime }
 ```
 
 ### agent_loop.dart
