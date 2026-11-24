@@ -553,6 +553,34 @@ void main() {
       expect(last.errorMessage, contains('aborted mid-stream'));
       expect(agent.state.errorMessage, contains('aborted mid-stream'));
     });
+
+    test('a listener throwing at message_start cannot hide the failure (#5)',
+        () async {
+      // The failure sequence used to reduce state only after awaiting the
+      // listeners, so a listener that threw at `message_start` skipped the
+      // `MessageEnd` reduction and dropped `message_end`/`turn_end`/`agent_end`:
+      // the run ended with `state.errorMessage` null — invisible in exactly the
+      // state this change makes observable. Reducing first makes the recording
+      // unconditional.
+      final agent = Agent(
+        streamFn: (ctx, config) => Stream.error(Exception('provider exploded')),
+      );
+      var messageStarts = 0;
+      agent.subscribe((event) {
+        if (event is MessageStart && messageStarts++ == 0) {
+          throw StateError('listener exploded at message_start');
+        }
+      });
+
+      // The listener's own error still propagates to the caller.
+      await expectLater(agent.prompt('hello'), throwsStateError);
+
+      // The failure is recorded anyway.
+      expect(agent.state.errorMessage, contains('provider exploded'));
+      final last = agent.state.messages.last as AssistantMessage;
+      expect(last.stopReason, StopReason.error);
+      expect(last.errorMessage, contains('provider exploded'));
+    });
   });
 
   group('Agent setters', () {

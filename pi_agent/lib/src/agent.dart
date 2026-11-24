@@ -410,9 +410,14 @@ class Agent {
         stopReason: aborted ? StopReason.aborted : StopReason.error,
         errorMessage: e.toString(),
       );
+      // Reduce state before awaiting listeners: a listener that throws at
+      // `message_start` would otherwise skip the `MessageEnd` reduction and
+      // drop the whole terminal sequence, leaving `state.errorMessage` null —
+      // the failure this sequence exists to make observable. The event order
+      // listeners observe is unchanged.
       _handleEvent(MessageStart(message: failure));
-      await _emitEvent(MessageStart(message: failure));
       _handleEvent(MessageEnd(message: failure));
+      await _emitEvent(MessageStart(message: failure));
       await _emitEvent(MessageEnd(message: failure));
       await _emitEvent(TurnEnd(message: failure, toolResults: const []));
       await _emitEvent(AgentEnd(messages: List.from(_state.internalMessages)));

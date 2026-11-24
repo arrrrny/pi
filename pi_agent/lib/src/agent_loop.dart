@@ -671,12 +671,14 @@ Stream<AgentEvent> _streamFromAsync(
       // stream, transformContext, tool internals) can throw, and a discarded
       // error left the run looking like a clean completion: the caller's
       // `await for` finished with no error event and no terminal message (#5).
-      // A cancelled subscription (an aborted run that stopped listening) has no
-      // one left to receive the error, so adding it there would only raise an
-      // unhandled async error — the abort outcome is synthesized by the caller.
-      if (!controller.isClosed && controller.hasListener) {
-        controller.addError(e, st);
-      }
+      //
+      // A single-subscription controller buffers an error added before the
+      // first listen and drops one added after the subscription is cancelled,
+      // so `isClosed` is the only guard needed. Adding `hasListener` would
+      // discard the error for a consumer that subscribes one microtask late —
+      // this body runs in a microtask — which is the same silent completion
+      // (#5) in the late-subscriber case.
+      if (!controller.isClosed) controller.addError(e, st);
     } finally {
       if (!controller.isClosed) await controller.close();
     }
