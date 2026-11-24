@@ -175,7 +175,7 @@ Future<List<AgentMessage>> _runLoop(
     context = _withMessages(context, [assistant]);
     newMessages.add(assistant);
 
-    if (assistant.stopReason == StopReason.refused ||
+    if (isTerminalStopReason(assistant.stopReason) ||
         (abortSignal?.isCompleted ?? false)) {
       await emit(TurnEnd(message: assistant, toolResults: const []));
       return newMessages;

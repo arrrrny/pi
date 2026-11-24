@@ -50,7 +50,25 @@ enum StopReason {
 
   /// The model refused to respond.
   refused,
+
+  /// The provider request failed (HTTP error, transport failure, malformed
+  /// stream). Never model-authored content: the diagnostic is carried in
+  /// [AssistantMessage.errorMessage].
+  error,
+
+  /// The caller aborted the request.
+  aborted,
 }
+
+/// Whether [reason] ends the run without any tool execution.
+///
+/// A provider failure and a caller abort are terminal by contract, exactly
+/// like a model refusal: upstream terminates on all three before looking for
+/// tool calls (`packages/agent/src/agent-loop.ts:254-265`).
+bool isTerminalStopReason(StopReason? reason) =>
+    reason == StopReason.refused ||
+    reason == StopReason.error ||
+    reason == StopReason.aborted;
 
 /// Steering message dispatch mode.
 enum SteeringMode {
@@ -244,6 +262,13 @@ class AssistantMessage extends AgentMessage {
   /// Reason the assistant stopped generating.
   final StopReason? stopReason;
 
+  /// Diagnostic for a failed provider request.
+  ///
+  /// Set only when [stopReason] is [StopReason.error] or [StopReason.aborted];
+  /// carries the HTTP status/body or the transport exception text. It is never
+  /// model-authored content, so it never appears in [content].
+  final String? errorMessage;
+
   /// Token usage for this response.
   final Usage? usage;
 
@@ -252,6 +277,7 @@ class AssistantMessage extends AgentMessage {
     this.id,
     required this.content,
     this.stopReason,
+    this.errorMessage,
     this.usage,
   });
 
