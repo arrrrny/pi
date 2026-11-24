@@ -240,4 +240,211 @@ void main() {
       expect(validateParameters(schema, {'x': 3.14}), isNull);
     });
   });
+
+  group('coerceArguments', () {
+    test('coerces a string number to an integer', () {
+      final schema = {
+        'type': 'object',
+        'properties': {
+          'count': {'type': 'integer'},
+        },
+        'required': ['count'],
+      };
+      expect(coerceArguments(schema, {'count': '42'}), {'count': 42});
+    });
+
+    test('truncates a fractional string for an integer field', () {
+      final schema = {
+        'type': 'object',
+        'properties': {
+          'count': {'type': 'integer'},
+        },
+      };
+      expect(coerceArguments(schema, {'count': '3.5'}), {'count': 3});
+    });
+
+    test('coerces a string boolean', () {
+      final schema = {
+        'type': 'object',
+        'properties': {
+          'active': {'type': 'boolean'},
+        },
+      };
+      expect(coerceArguments(schema, {'active': 'true'}), {'active': true});
+      expect(coerceArguments(schema, {'active': 'false'}), {'active': false});
+    });
+
+    test('wraps a single value into a one-item array', () {
+      final schema = {
+        'type': 'object',
+        'properties': {
+          'tags': {
+            'type': 'array',
+            'items': {'type': 'string'},
+          },
+        },
+      };
+      expect(coerceArguments(schema, {'tags': 'solo'}), {
+        'tags': ['solo']
+      });
+    });
+
+    test('coerces array items', () {
+      final schema = {
+        'type': 'object',
+        'properties': {
+          'sizes': {
+            'type': 'array',
+            'items': {'type': 'integer'},
+          },
+        },
+      };
+      expect(
+          coerceArguments(schema, {
+            'sizes': ['1', '2']
+          }),
+          {
+            'sizes': [1, 2]
+          });
+    });
+
+    test('coerces a number to a string field', () {
+      final schema = {
+        'type': 'object',
+        'properties': {
+          'label': {'type': 'string'},
+        },
+      };
+      expect(coerceArguments(schema, {'label': 7}), {'label': '7'});
+    });
+
+    test('drops null in an optional non-nullable property', () {
+      final schema = {
+        'type': 'object',
+        'properties': {
+          'path': {'type': 'string'},
+        },
+      };
+      expect(coerceArguments(schema, {'path': null}), isEmpty);
+    });
+
+    test('keeps null when the property allows it', () {
+      final schema = {
+        'type': 'object',
+        'properties': {
+          'path': {
+            'type': ['string', 'null'],
+          },
+        },
+      };
+      expect(coerceArguments(schema, {'path': null}), {'path': null});
+    });
+
+    test('never modifies the input map', () {
+      final schema = {
+        'type': 'object',
+        'properties': {
+          'count': {'type': 'integer'},
+        },
+      };
+      final values = <String, dynamic>{'count': '42'};
+      coerceArguments(schema, values);
+      expect(values, {'count': '42'});
+    });
+
+    test('returns the same map when nothing changes', () {
+      final schema = {
+        'type': 'object',
+        'properties': {
+          'count': {'type': 'integer'},
+        },
+      };
+      final values = <String, dynamic>{'count': 42};
+      expect(identical(coerceArguments(schema, values), values), isTrue);
+    });
+
+    test('leaves an uncoercible value for validation to report', () {
+      final schema = {
+        'type': 'object',
+        'properties': {
+          'count': {'type': 'integer'},
+        },
+      };
+      expect(coerceArguments(schema, {'count': 'many'}), {'count': 'many'});
+    });
+
+    test('coerces nested object properties', () {
+      final schema = {
+        'type': 'object',
+        'properties': {
+          'options': {
+            'type': 'object',
+            'properties': {
+              'limit': {'type': 'integer'},
+            },
+          },
+        },
+      };
+      expect(
+          coerceArguments(schema, {
+            'options': {'limit': '5'}
+          }),
+          {
+            'options': {'limit': 5}
+          });
+    });
+  });
+
+  group('validateToolArguments', () {
+    test('returns coerced arguments for a valid call', () {
+      final validation = validateToolArguments(
+        'tag',
+        {
+          'type': 'object',
+          'properties': {
+            'count': {'type': 'integer'},
+          },
+          'required': ['count'],
+        },
+        {'count': '42'},
+      );
+      expect(validation.error, isNull);
+      expect(validation.args, {'count': 42});
+    });
+
+    test('formats a missing required field like upstream', () {
+      final validation = validateToolArguments(
+        'write',
+        {
+          'type': 'object',
+          'properties': {
+            'path': {'type': 'string'},
+          },
+          'required': ['path'],
+        },
+        const {},
+      );
+      expect(validation.args, isNull);
+      final error = validation.error!;
+      expect(error, startsWith('Validation failed for tool "write":'));
+      expect(error, contains('  - path: required field missing'));
+      expect(error, contains('Received arguments:\n{}'));
+    });
+
+    test('reports the coerced arguments in the error body', () {
+      final validation = validateToolArguments(
+        'count',
+        {
+          'type': 'object',
+          'properties': {
+            'value': {'type': 'integer'},
+          },
+          'required': ['value'],
+        },
+        {'value': 'many'},
+      );
+      expect(validation.error, contains('Received arguments:'));
+      expect(validation.error, contains('"value": "many"'));
+    });
+  });
 }
