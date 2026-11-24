@@ -175,7 +175,7 @@ Future<List<AgentMessage>> _runLoop(
     context = _withMessages(context, [assistant]);
     newMessages.add(assistant);
 
-    if (assistant.stopReason == StopReason.refused ||
+    if (isTerminalStopReason(assistant.stopReason) ||
         (abortSignal?.isCompleted ?? false)) {
       await emit(TurnEnd(message: assistant, toolResults: const []));
       return newMessages;
@@ -443,6 +443,15 @@ Future<_Prepared> _prepareToolCall(
   }
   if (tool == null) {
     return _Prepared.immediate(_errorResult('Tool ${toolCall.name} not found'));
+  }
+
+  // Fail closed before argument preparation and the user's hook: a call whose
+  // argument text did not parse as a JSON object must never reach them.
+  final argumentsError = toolCall.argumentsError;
+  if (argumentsError != null) {
+    return _Prepared.immediate(
+        _errorResult('Invalid arguments for tool "${toolCall.name}": '
+            '$argumentsError'));
   }
 
   try {

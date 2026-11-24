@@ -289,7 +289,24 @@ void main() {
       await controller.close();
       await agent.waitForIdle();
 
-      expect(events.whereType<MessageEnd>(), hasLength(1));
+      // The post-abort "second" message is never processed, and exactly one
+      // abort outcome is added on top of the message that preceded the abort.
+      final ends = events.whereType<MessageEnd>().toList();
+      final texts = ends
+          .map((e) => (e.message as AssistantMessage).text)
+          .toList();
+      expect(texts, isNot(contains('second')));
+      expect(texts, contains('first'));
+      expect(ends, hasLength(2));
+
+      // The abort outcome is recorded, not dropped: a consumer can tell an
+      // aborted run from an empty one (upstream handleRunFailure,
+      // agent.ts:540-556).
+      final last = agent.state.messages.last as AssistantMessage;
+      expect(last.stopReason, StopReason.aborted);
+      expect(last.errorMessage, 'Request aborted');
+      expect(last.content, isEmpty);
+      expect(agent.state.errorMessage, 'Request aborted');
     });
   });
 
@@ -440,6 +457,38 @@ void main() {
       );
       await agent.prompt('test');
       expect(agent.state.errorMessage, contains('boom'));
+    });
+
+    test('a provider error outcome sets state.errorMessage (#6)', () async {
+      // `loopStreamFn` drives the real loop, so this covers the whole path:
+      // provider failure -> loop termination -> AgentState mirror.
+      final agent = Agent(
+        loopStreamFn: ({required context, required config, required apiKey,
+                required abortSignal}) =>
+            Stream.fromIterable([
+          MessageEnd(
+            message: const AssistantMessage(
+              content: [],
+              stopReason: StopReason.error,
+              errorMessage: '401 - unauthorized',
+            ),
+          ),
+        ]),
+      );
+
+      final types = <String>[];
+      agent.subscribe((e) => types.add(e.runtimeType.toString()));
+      await agent.prompt('test');
+
+      // The failure is reported as an error outcome, not model text.
+      final last = agent.state.messages.last as AssistantMessage;
+      expect(last.stopReason, StopReason.error);
+      expect(last.errorMessage, '401 - unauthorized');
+      expect(last.text, isEmpty);
+      // AgentState mirrors the terminal message's diagnostic.
+      expect(agent.state.errorMessage, '401 - unauthorized');
+      expect(types, contains('TurnEnd'));
+      expect(types.last, 'AgentEnd');
     });
 
     test('agent is not running after error', () async {

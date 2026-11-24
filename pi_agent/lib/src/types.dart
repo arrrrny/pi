@@ -50,7 +50,25 @@ enum StopReason {
 
   /// The model refused to respond.
   refused,
+
+  /// The provider request failed (HTTP error, transport failure, malformed
+  /// stream). Never model-authored content: the diagnostic is carried in
+  /// [AssistantMessage.errorMessage].
+  error,
+
+  /// The caller aborted the request.
+  aborted,
 }
+
+/// Whether [reason] ends the run without any tool execution.
+///
+/// A provider failure and a caller abort are terminal by contract, exactly
+/// like a model refusal: upstream terminates on all three before looking for
+/// tool calls (`packages/agent/src/agent-loop.ts:254-265`).
+bool isTerminalStopReason(StopReason? reason) =>
+    reason == StopReason.refused ||
+    reason == StopReason.error ||
+    reason == StopReason.aborted;
 
 /// Controls how many queued user messages are injected when the agent loop
 /// reaches a queue drain point.
@@ -178,13 +196,24 @@ class ToolCallBlock {
   final String name;
 
   /// Arguments for the tool call as a JSON-compatible map.
+  ///
+  /// Empty when [argumentsError] is set, which is also the placeholder
+  /// upstream uses for a failed parse.
   final Map<String, dynamic> arguments;
+
+  /// Parse failure of the model's argument text, or null when it parsed.
+  ///
+  /// Set when the finished arguments were malformed JSON or were not a JSON
+  /// object; the message names the problem and echoes the received text. Tool
+  /// validation fails closed on it, so the call never executes.
+  final String? argumentsError;
 
   /// Creates a tool call block.
   const ToolCallBlock({
     required this.id,
     required this.name,
     required this.arguments,
+    this.argumentsError,
   });
 }
 
@@ -228,6 +257,13 @@ class AssistantMessage extends AgentMessage {
   /// Reason the assistant stopped generating.
   final StopReason? stopReason;
 
+  /// Diagnostic for a failed provider request.
+  ///
+  /// Set only when [stopReason] is [StopReason.error] or [StopReason.aborted];
+  /// carries the HTTP status/body or the transport exception text. It is never
+  /// model-authored content, so it never appears in [content].
+  final String? errorMessage;
+
   /// Token usage for this response.
   final Usage? usage;
 
@@ -236,6 +272,7 @@ class AssistantMessage extends AgentMessage {
     this.id,
     required this.content,
     this.stopReason,
+    this.errorMessage,
     this.usage,
   });
 

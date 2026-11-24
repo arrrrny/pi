@@ -6,6 +6,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
+import 'json_parse.dart';
 import 'types.dart';
 import 'sse_parser.dart';
 
@@ -44,15 +45,15 @@ Stream<AgentEvent> streamLLM({
     final response = await client.send(request);
 
     if (response.statusCode != 200) {
+      // A provider failure is a diagnostic, not model-authored content: it goes
+      // into `errorMessage` and must never be rendered as assistant text. The
+      // body is clamped because it is persisted into JSONL for the message: a
+      // proxy answering with a large HTML error page would otherwise write it
+      // in full on every reload (upstream `error-body.ts:110`).
       final errorBody = await response.stream.bytesToString();
-      yield MessageEnd(
-        message: AssistantMessage(
-          content: [
-            TextBlock('LLM error: ${response.statusCode} - $errorBody'),
-          ],
-          stopReason: StopReason.refused,
-        ),
-      );
+      yield _errorEnd(
+          '${response.statusCode} - ${_clampErrorBody(errorBody)}',
+          StopReason.error);
       return;
     }
 
@@ -61,6 +62,7 @@ Stream<AgentEvent> streamLLM({
     StopReason? stopReason;
     Usage? usage;
     final toolCallBuffers = <int, _ToolCallBuffer>{};
+    String? streamError;
 
     await for (final event in parseSSE(response.stream)) {
       if (aborted || (abortSignal?.isCompleted ?? false)) break;
@@ -68,41 +70,64 @@ Stream<AgentEvent> streamLLM({
       final data = event['data'];
       if (data == null || data.isEmpty || data == '[DONE]') continue;
 
-      try {
-        final changed = _applyChunk(
-          jsonDecode(data) as Map<String, dynamic>,
-          content: content,
-          toolCallBuffers: toolCallBuffers,
-          onMessageId: (id) => messageId = id,
-          onStopReason: (sr) => stopReason = sr,
-          onUsage: (u) => usage = u,
-        );
+      // A malformed frame is a broken stream, not content to skip: upstream
+      // lets the parse error terminate the response
+      // (openai-completions.ts:696).
+      final changed = _applyChunk(
+        jsonDecode(data) as Map<String, dynamic>,
+        content: content,
+        toolCallBuffers: toolCallBuffers,
+        onMessageId: (id) => messageId = id,
+        onStopReason: (sr) => stopReason = sr,
+        onUsage: (u) => usage = u,
+        onErrorMessage: (message) => streamError = message,
+      );
 
-        // Surface a message update only when the content actually changed, so
-        // trailing keep-alive / usage-only chunks don't emit duplicate updates.
-        if (changed) {
-          yield MessageUpdate(
-            message: AssistantMessage(
-              id: messageId,
-              content: List<dynamic>.from(content),
-            ),
-          );
-        }
-      } catch (_) {
-        continue;
+      // Surface a message update only when the content actually changed, so
+      // trailing keep-alive / usage-only chunks don't emit duplicate updates.
+      if (changed) {
+        yield MessageUpdate(
+          message: AssistantMessage(
+            id: messageId,
+            content: List<dynamic>.from(content),
+          ),
+        );
       }
     }
 
-    if (aborted) return;
+    if (aborted || (abortSignal?.isCompleted ?? false)) {
+      yield _errorEnd('Request aborted', StopReason.aborted);
+      return;
+    }
+
+    // A reason the provider sent but the vocabulary does not know is the more
+    // precise diagnostic: report it rather than the generic "no finish reason".
+    if (streamError != null) {
+      yield _errorEnd(streamError!, StopReason.error);
+      return;
+    }
+
+    // A stream that ends without a finish reason never reported how it ended,
+    // so it cannot be trusted as a clean end: upstream throws instead of
+    // reporting one (openai-completions.ts:688-692).
+    if (stopReason == null) {
+      yield _errorEnd('Stream ended without a finish reason', StopReason.error);
+      return;
+    }
 
     final finalContent = <dynamic>[...content];
     for (final tcb in toolCallBuffers.values) {
       if (tcb.name != null && tcb.name!.isNotEmpty) {
+        // One full parse of the complete buffer: a partial streaming snapshot
+        // never becomes the final arguments, and a malformed one is reported
+        // on the block instead of being silently replaced by {}.
+        final parsed = parseToolCallArguments(tcb.argumentsBuffer);
         finalContent.add(
           ToolCallBlock(
             id: tcb.id,
             name: tcb.name!,
-            arguments: _decodeArguments(tcb.argumentsBuffer),
+            arguments: parsed.arguments,
+            argumentsError: parsed.argumentsError,
           ),
         );
       }
@@ -112,23 +137,52 @@ Stream<AgentEvent> streamLLM({
       message: AssistantMessage(
         id: messageId,
         content: finalContent,
-        stopReason: stopReason ?? StopReason.endTurn,
+        stopReason: stopReason,
         usage: usage,
       ),
     );
   } on http.RequestAbortedException {
-    // The request was cancelled; emit nothing further.
+    // A cancelled request surfaces through http as this exception; the caller
+    // still gets a modelled abort outcome rather than a silent nothing.
+    yield _errorEnd('Request aborted', StopReason.aborted);
   } catch (e) {
-    yield MessageEnd(
-      message: AssistantMessage(
-        content: [TextBlock('LLM error: $e')],
-        stopReason: StopReason.refused,
-      ),
-    );
+    // `client.close()` from an abort can also land here as a connection
+    // failure, so the abort flag decides the outcome, as upstream does
+    // (openai-completions.ts:697).
+    yield aborted
+        ? _errorEnd('Request aborted', StopReason.aborted)
+        : _errorEnd('$e', StopReason.error);
   } finally {
     await abortSub?.cancel();
     client.close();
   }
+}
+
+/// Builds the terminal [MessageEnd] for a failed request.
+///
+/// The diagnostic lives in [AssistantMessage.errorMessage] and the content
+/// stays empty, so a consumer can never mistake a provider failure for
+/// model-authored text.
+MessageEnd _errorEnd(String message, StopReason reason) => MessageEnd(
+      message: AssistantMessage(
+        content: const [],
+        stopReason: reason,
+        errorMessage: message,
+      ),
+    );
+
+/// Maximum provider error text kept in a diagnostic, matching upstream's
+/// `MAX_PROVIDER_ERROR_BODY_CHARS` (`error-body.ts:18`).
+const int _maxErrorBodyChars = 4000;
+
+/// Caps a provider error body, matching upstream's `truncateErrorText`
+/// (`error-body.ts:166`). The diagnostic is persisted into JSONL for the
+/// message, so a proxy answering with an HTML error page must not write it in
+/// full; a real API error is short and passes through unchanged.
+String _clampErrorBody(String text) {
+  if (text.length <= _maxErrorBodyChars) return text;
+  final kept = text.substring(0, _maxErrorBodyChars);
+  return '$kept... [truncated ${text.length - _maxErrorBodyChars} chars]';
 }
 
 /// Builds the POST target, headers, and JSON body for one completion request.
@@ -186,6 +240,7 @@ bool _applyChunk(
   required void Function(String?) onMessageId,
   required void Function(StopReason) onStopReason,
   required void Function(Usage) onUsage,
+  required void Function(String) onErrorMessage,
 }) {
   var changed = false;
   final id = json['id'];
@@ -213,7 +268,18 @@ bool _applyChunk(
         }
       }
       final finishReason = choice['finish_reason'];
-      if (finishReason is String) onStopReason(_parseStopReason(finishReason));
+      if (finishReason is String) {
+        final mapped = _parseStopReason(finishReason);
+        if (mapped == null) {
+          // An unrecognized reason is a provider failure, not a clean end: it
+          // carries the raw value as its diagnostic so the caller can report
+          // what the provider actually said (openai-completions.ts:1583-1590).
+          onStopReason(StopReason.error);
+          onErrorMessage('Provider finish_reason: $finishReason');
+        } else {
+          onStopReason(mapped);
+        }
+      }
     }
   }
 
@@ -248,22 +314,15 @@ void _accumulateToolCall(
   }
 }
 
-Map<String, dynamic> _decodeArguments(String buffer) {
-  if (buffer.isEmpty) return <String, dynamic>{};
-  try {
-    final decoded = jsonDecode(buffer);
-    return decoded is Map<String, dynamic> ? decoded : <String, dynamic>{};
-  } catch (_) {
-    return <String, dynamic>{};
-  }
-}
-
-StopReason _parseStopReason(String reason) => switch (reason) {
+/// Maps an OpenAI `finish_reason` to a stop reason, or null when the value is
+/// not part of the vocabulary — an unknown reason is a provider failure, never
+/// a clean end (upstream `openai-completions.ts:1583-1590`).
+StopReason? _parseStopReason(String reason) => switch (reason) {
       'length' || 'max_tokens' => StopReason.maxTokens,
       'tool_calls' || 'function_call' => StopReason.toolUse,
       'content_filter' => StopReason.refused,
       'stop' || 'stop_sequence' || 'end_turn' => StopReason.endTurn,
-      _ => StopReason.endTurn,
+      _ => null,
     };
 
 class _ToolCallBuffer {
