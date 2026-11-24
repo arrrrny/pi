@@ -119,14 +119,22 @@ CompactionPreparation prepareCompaction(
 /// carried in `<previous-summary>` tags; [customInstructions] is appended as an
 /// additional focus.
 ///
-/// Throws a [StateError] when the model response cannot be persisted as a
+/// When [loopStreamFn] is the default [streamLLM] and [apiKey] is null, a
+/// [getApiKey] callback — called with [Model.provider] — is used to resolve the
+/// credential, the same way [Conversation.compact] does, so both entry points
+/// share one credential story.
+///
+/// Throws a [StateError] when there is nothing to summarize — no entries fall
+/// before the cut point — or when the model response cannot be persisted as a
 /// summary: a provider error, an aborted request, a response capped at the
-/// token limit, or a response that attempted a tool call.
+/// token limit, a response that attempted a tool call, or one whose text is
+/// empty.
 Future<CompactionResult> compact(
   List<SessionTreeEntry> entries,
   Model model, {
   LoopStreamFn loopStreamFn = streamLLM,
   String? apiKey,
+  Future<String?> Function(String provider)? getApiKey,
   CompactionSettings? settings,
   String? customInstructions,
   String? previousSummary,
@@ -144,11 +152,21 @@ Future<CompactionResult> compact(
       .map((e) => e.message)
       .toList();
 
+  // Nothing before the cut point: a zero-work call must not be persisted as a
+  // checkpoint. `Conversation.compact` returns `false` for this case; the
+  // exported `compact()` throws, because an empty summary is otherwise
+  // indistinguishable from a finished one and gets written into the session
+  // log permanently.
+  if (messages.isEmpty) {
+    throw StateError('Compaction found nothing to summarize: no entries '
+        'fall before the cut point');
+  }
+
   final summarized = await summarizeMessagesWithUsage(
     messages,
     model,
     loopStreamFn: loopStreamFn,
-    apiKey: apiKey,
+    apiKey: apiKey ?? await getApiKey?.call(model.provider),
     customInstructions: customInstructions,
     previousSummary: preparation.previousSummary,
     abortSignal: abortSignal,
@@ -280,7 +298,7 @@ class SummaryResult {
 /// A response that failed at the provider, was aborted, or hit the token cap
 /// carries no trustworthy summary: the text is either absent or a partial
 /// generation, so persisting it as a checkpoint would silently lie about the
-/// context ([getSummarizationFailure]).
+/// context ([summarizationFailure]).
 String? summarizationFailure(AssistantMessage response) {
   switch (response.stopReason) {
     case StopReason.error:
@@ -298,13 +316,20 @@ String? summarizationFailure(AssistantMessage response) {
 /// Summarizes [messages] into a compact context summary using [loopStreamFn].
 ///
 /// Returns an empty string for an empty transcript. Throws a [StateError] for a
-/// response [summarizationFailure] rejects or one that attempted a tool call.
+/// response [summarizationFailure] rejects, an empty-text response, or one that
+/// attempted a tool call.
+///
+/// [customInstructions] is appended to the summarization instructions as an
+/// additional focus; it does not replace them. (The parameter was previously
+/// named `instructions`, which suggested replacement; no in-repo caller passed
+/// it, and the exported symbol is renamed to match the lower layer and its
+/// append semantics.)
 Future<String> summarizeMessages(
   List<AgentMessage> messages,
   Model model, {
   required LoopStreamFn loopStreamFn,
   String? apiKey,
-  String? instructions,
+  String? customInstructions,
   String? previousSummary,
   Completer<void>? abortSignal,
 }) async {
@@ -313,7 +338,7 @@ Future<String> summarizeMessages(
     model,
     loopStreamFn: loopStreamFn,
     apiKey: apiKey,
-    customInstructions: instructions,
+    customInstructions: customInstructions,
     previousSummary: previousSummary,
     abortSignal: abortSignal,
   );
@@ -329,7 +354,10 @@ Future<String> summarizeMessages(
 ///
 /// Returns an empty result for an empty transcript. Throws a [StateError] when
 /// the response cannot be persisted as a summary — see
-/// [summarizationFailure] — or when it attempted a tool call.
+/// [summarizationFailure] — when it produced empty text, or when it attempted a
+/// tool call. The stream must end with a terminal `MessageEnd` event (the
+/// default [streamLLM] always does); an injector that emits only `MessageUpdate`
+/// events, without a final `MessageEnd`, is rejected as "no response".
 Future<SummaryResult> summarizeMessagesWithUsage(
   List<AgentMessage> messages,
   Model model, {
@@ -386,6 +414,9 @@ Future<SummaryResult> summarizeMessagesWithUsage(
   if (failure != null) throw StateError(failure);
   if (response.toolCalls.isNotEmpty) {
     throw StateError('Summarization attempted to call a tool');
+  }
+  if (response.text.trim().isEmpty) {
+    throw StateError('Summarization produced an empty summary');
   }
 
   return SummaryResult(text: response.text, usage: response.usage);

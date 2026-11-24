@@ -214,6 +214,7 @@ void main() {
     LoopStreamFn scripted(
       List<AgentEvent> Function() events, {
       void Function(AgentContext context)? onCall,
+      void Function(String apiKey)? onApiKey,
     }) {
       return ({
         required context,
@@ -222,6 +223,7 @@ void main() {
         required abortSignal,
       }) {
         onCall?.call(context);
+        onApiKey?.call(apiKey);
         return Stream<AgentEvent>.fromIterable(events());
       };
     }
@@ -264,6 +266,84 @@ void main() {
       expect(prompt, contains('older message 0'));
       expect(prompt, contains('older message 2'));
       expect(seen!.systemPrompt, summarizationSystemPrompt);
+    });
+
+    test('throws when there is nothing before the cut point', () async {
+      // Default keepRecentTokens (20000) keeps the whole short transcript, so
+      // no entry falls before the cut point. A zero-work call must not be
+      // mistaken for a finished compaction and persisted as an empty
+      // checkpoint (finding 1).
+      var called = false;
+      await expectLater(
+        compact(
+          [userEntry(0), userEntry(1)],
+          const Model(
+              provider: 'openai', modelId: 'gpt-4o', contextWindow: 128000),
+          loopStreamFn: scripted(
+            () => [
+              endWith(AssistantMessage(
+                content: [const TextBlock('S')],
+                stopReason: StopReason.endTurn,
+              )),
+            ],
+            onCall: (_) => called = true,
+          ),
+        ),
+        throwsA(isA<StateError>().having(
+          (e) => e.message,
+          'message',
+          contains('nothing to summarize'),
+        )),
+      );
+      expect(called, isFalse,
+          reason: 'the model stream must not be touched when nothing to cut');
+    });
+
+    test('rejects an empty-text response', () async {
+      await expectLater(
+        compact(
+          [userEntry(0), userEntry(1)],
+          const Model(
+              provider: 'openai', modelId: 'gpt-4o', contextWindow: 128000),
+          settings: const CompactionSettings(keepRecentTokens: 0),
+          loopStreamFn: scripted(
+            () => [
+              endWith(AssistantMessage(
+                content: const [],
+                stopReason: StopReason.endTurn,
+              )),
+            ],
+          ),
+        ),
+        throwsA(isA<StateError>().having(
+          (e) => e.message,
+          'message',
+          contains('empty summary'),
+        )),
+      );
+    });
+
+    test('resolves the api key through getApiKey when apiKey is null',
+        () async {
+      String? seenApiKey;
+      await compact(
+        [userEntry(0), userEntry(1)],
+        const Model(
+            provider: 'openai', modelId: 'gpt-4o', contextWindow: 128000),
+        settings: const CompactionSettings(keepRecentTokens: 0),
+        getApiKey: (provider) async => 'resolved-key',
+        loopStreamFn: scripted(
+          () => [
+            endWith(AssistantMessage(
+              content: [const TextBlock('OK')],
+              stopReason: StopReason.endTurn,
+            )),
+          ],
+          onApiKey: (k) => seenApiKey = k,
+        ),
+      );
+
+      expect(seenApiKey, 'resolved-key');
     });
 
     test('sends a previous summary in the update prompt', () async {
