@@ -7,10 +7,13 @@
 # The contract (see AGENTS.md "Fork Upstream Sync Policy"):
 #
 #   1. Every daily sync merges upstream/main into master. On a clean merge the
-#      sync pushes master and opens a deduped `dart-port` issue listing the
-#      upstream TypeScript source changes that now need porting into pi_agent/.
-#      The issue is the hand-off: TS lands here automatically; the Dart port of
-#      those changes is the tracked follow-up.
+#      sync pushes master and opens a deduped `dart-port` issue per affected
+#      package area (all 12: schema, telemetry, chord, ai, agent, durable,
+#      codemode, env, mcp, coding-agent, tui, evals, plus the apps/ bucket),
+#      listing every changed source, test, export, asset, migration, and manifest
+#      file with its class label and the new target_upstream_sha. The issue is
+#      the hand-off: TS lands here automatically; the Dart port of those changes
+#      is the tracked follow-up.
 #   2. On any merge conflict, abort, open a `sync`-labeled issue listing the
 #      conflicted files, and FAIL the job. Never auto-resolve in favor of
 #      upstream — a conflict means the fork touched a file upstream also changed,
@@ -98,20 +101,18 @@ jobs:
             echo "EOF" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Compute TypeScript changes to port
+      - name: Compute upstream changes to port
         id: diff
         if: steps.merge.outputs.merge_state == 'clean'
         run: |
           OLD="${{ steps.check.outputs.local }}"
-          # Upstream TypeScript source files changed by this sync (packages/**),
-          # excluding tests and generated files — those are what need porting
-          # into pi_agent/. package:agent and package:ai (the agent-core + LLM
-          # layer) are the priority; the rest are informational.
-          CHANGED=$(git diff --name-only "$OLD" HEAD -- 'packages/**' \
-            | grep -E '\.(ts|tsx)$' \
-            | grep -vE '(\.test\.|\.spec\.|/test/|/tests/|\.d\.ts$|\.generated\.ts$)' \
-            || true)
-          echo "changed_ts<<EOF" >> "$GITHUB_OUTPUT"
+          # Every changed file under packages/** and apps/**, grouped by all 12
+          # package areas (schema, telemetry, chord, ai, agent, durable, codemode,
+          # env, mcp, coding-agent, tui, evals) — not just agent and ai. Each
+          # file is classified as source, test, export, asset, migration, or
+          # manifest so the porting issue can list what actually changed.
+          CHANGED=$(git diff --name-only "$OLD" HEAD -- 'packages/**' 'apps/**' || true)
+          echo "changed<<EOF" >> "$GITHUB_OUTPUT"
           echo "$CHANGED" >> "$GITHUB_OUTPUT"
           echo "EOF" >> "$GITHUB_OUTPUT"
           echo "changed_count=$(printf '%s' "$CHANGED" | grep -c . || true)" >> "$GITHUB_OUTPUT"
@@ -120,85 +121,181 @@ jobs:
           cat /tmp/pi-sync-commits.txt >> "$GITHUB_OUTPUT"
           echo "EOF" >> "$GITHUB_OUTPUT"
 
-      - name: Open Dart port issue
+      - name: Open Dart port issues
         if: steps.merge.outputs.merge_state == 'clean'
         uses: actions/github-script@v7
         with:
           script: |
-            const changed = `${{ steps.diff.outputs.changed_ts }}`.trim().split('\n').filter(Boolean);
+            const changed = `${{ steps.diff.outputs.changed }}`.trim().split('\n').filter(Boolean);
             const commits = `${{ steps.diff.outputs.commit_subjects }}`.trim().split('\n').filter(Boolean);
             const local = '${{ steps.check.outputs.local }}';
             const upstream = '${{ steps.check.outputs.upstream }}';
             const date = new Date().toISOString().split('T')[0];
 
             if (changed.length === 0) {
-              core.info('No upstream TypeScript source changes to port.');
+              core.info('No upstream package changes to port.');
               return;
             }
 
-            const agentCore = changed.filter((f) => f.startsWith('packages/agent/'));
-            const aiLayer = changed.filter((f) => f.startsWith('packages/ai/'));
-            const others = changed.filter((f) => !f.startsWith('packages/agent/') && !f.startsWith('packages/ai/'));
+            // The 12 upstream package areas the ledger inventories, in order.
+            const AREAS = ['schema', 'telemetry', 'chord', 'ai', 'agent', 'durable',
+              'codemode', 'env', 'mcp', 'coding-agent', 'tui', 'evals'];
 
-            const section = (title, files) =>
-              files.length ? ['## ' + title, '', ...files.map((f) => '- `' + f + '`'), ''].join('\n') : '';
-
-            const body = [
-              'The daily upstream sync merged **' + commits.length + '** upstream commit(s) into `master`.',
-              'This fork does not modify the TypeScript packages, so the merge was clean — but the',
-              '**Dart port under `pi_agent/` must be updated to match these upstream changes.**',
-              '',
-              'The sync already landed the TypeScript in `master`; this issue tracks porting the',
-              'behavioral changes into the Dart agent-core / harness (the LLM provider stays',
-              'OpenAI-compatible-only and intentionally slim).',
-              '',
-              section('Priority: agent-core (packages/agent)', agentCore),
-              section('Priority: LLM layer (packages/ai)', aiLayer),
-              section('Other packages (context)', others),
-              '## Upstream commits in this sync',
-              '',
-              commits.length ? commits.join('\n') : '_none_',
-              '',
-              '## Commit refs',
-              '',
-              '- pre-sync master: `' + local + '`',
-              '- upstream/main: `' + upstream + '`',
-              '',
-              '## How to port',
-              '',
-              '1. `git switch -c dart/port-sync-' + date + ' master`',
-              '2. Port each behavioral change into `pi_agent/lib/src/` (agent-core: `agent_loop.dart`,',
-              '   `agent.dart`; harness: `harness.dart`; LLM: `llm_client.dart`).',
-              '3. Keep the provider OpenAI-compatible-only; do not add per-provider adapters.',
-              '4. Run `dart analyze` and `flutter test --concurrency=2` in `pi_agent/` until green.',
-              '5. Open a PR referencing this issue.',
-              '',
-              'cc: the arrrrny fork maintainer.',
-            ].filter(Boolean).join('\n');
-
-            // Dedup: keep one open port issue, comment new syncs onto it.
-            const issues = await github.rest.issues.listForRepo({
-              owner: context.repo.owner, repo: context.repo.repo,
-              state: 'open', labels: 'dart-port', per_page: 5,
-            });
-            const existing = issues.data.find((i) => i.title.startsWith('Port upstream TypeScript changes'));
-            if (existing) {
-              await github.rest.issues.createComment({
-                owner: context.repo.owner, repo: context.repo.repo,
-                issue_number: existing.number,
-                body: '🔄 Sync ' + date + ' — ' + commits.length + ' new commit(s), '
-                  + changed.length + ' TS file(s) to port.\n\n' + body,
-              });
-              core.info('Commented on existing port issue #' + existing.number);
-            } else {
-              const created = await github.rest.issues.create({
-                owner: context.repo.owner, repo: context.repo.repo,
-                title: 'Port upstream TypeScript changes into pi_agent (Dart) — ' + date,
-                labels: ['sync', 'dart-port'],
-                body,
-              });
-              core.info('Opened port issue #' + created.data.number);
+            // Classify a changed file into an area and a file class.
+            function classify(file) {
+              const areaMatch = /^packages\/([^/]+)\//.exec(file);
+              const area = areaMatch ? areaMatch[1] : (file.startsWith('apps/') ? 'apps' : null);
+              if (!area) return null;
+              let kind = 'source';
+              if (/\.(test|spec)\.(ts|tsx|mts|js|mjs)$/.test(file) || /(^|\/)test\//.test(file)) kind = 'test';
+              else if (/(^|\/)spec\//.test(file) || /\.spec\.md$/.test(file)) kind = 'spec';
+              else if (/(^|\/)examples?\//.test(file)) kind = 'example';
+              else if (/package\.json$/.test(file)) kind = 'manifest';
+              else if (/(^|\/)migrations?\//.test(file)) kind = 'migration';
+              else if (/(^|\/)(index|api|exports?)\.(ts|tsx)$/.test(file)) kind = 'export';
+              return { area, kind, file };
             }
+
+            // Group by area; areas without changes are not reported.
+            const groups = new Map();
+            for (const file of changed) {
+              const entry = classify(file);
+              if (!entry) continue;
+              if (!groups.has(entry.area)) groups.set(entry.area, []);
+              groups.get(entry.area).push(entry);
+            }
+
+            // Deterministic per-area porting issue. The issue body lists the
+            // file groups with their class labels, the commit range, the new
+            // target_upstream_sha, and the command to regenerate the ledger.
+            const reportAreas = AREAS.filter((area) => groups.has(area));
+            const created = [];
+            for (const area of reportAreas) {
+              const files = groups.get(area).sort((a, b) => a.file.localeCompare(b.file));
+              const byKind = new Map();
+              for (const entry of files) {
+                if (!byKind.has(entry.kind)) byKind.set(entry.kind, []);
+                byKind.get(entry.kind).push(entry.file);
+              }
+              const section = (kind, list) =>
+                list.length ? ['### ' + kind, '', ...list.map((f) => '- `' + f + '`'), ''].join('\n') : '';
+              const body = [
+                'The daily upstream sync merged **' + commits.length + '** upstream commit(s) into `master`.',
+                'This fork does not modify the TypeScript packages, so the merge was clean — but the',
+                '**Dart port under `pi_agent/` must be updated to match these upstream changes.**',
+                '',
+                'The sync already landed the TypeScript in `master`; this issue tracks porting the',
+                'behavioral changes for the **' + area + '** area into the Dart agent under `pi_agent/`.',
+                '',
+                section('source', byKind.get('source') ?? []),
+                section('export', byKind.get('export') ?? []),
+                section('test', byKind.get('test') ?? []),
+                section('spec', byKind.get('spec') ?? []),
+                section('example', byKind.get('example') ?? []),
+                section('manifest', byKind.get('manifest') ?? []),
+                section('migration', byKind.get('migration') ?? []),
+                '## Upstream commits in this sync',
+                '',
+                commits.length ? commits.join('\n') : '_none_',
+                '',
+                '## Commit refs',
+                '',
+                '- pre-sync master: `' + local + '`',
+                '- upstream/main: `' + upstream + '`',
+                '- target_upstream_sha: `' + upstream + '`',
+                '',
+                '## How to port',
+                '',
+                '1. `git switch -c dart/port-sync-' + date + ' master`',
+                '2. Port each behavioral change for `' + area + '` into `pi_agent/lib/src/`.',
+                '3. Regenerate the coverage ledger for the new target SHA:',
+                '   `node scripts/coverage/generate-coverage-manifest.mjs --upstream . --sha ' + upstream + ' --out coverage/upstream/' + upstream + '`',
+                '   then `node scripts/coverage/check-coverage.mjs --manifest coverage/upstream/' + upstream + '/manifest.json`.',
+                '   The working tree is a merge commit, not `' + upstream + '`; the generator',
+                '   warns on that mismatch and generates from the working tree, because',
+                '   `packages/` is vendored here and the pin is a provenance label.',
+                '4. Move the area\'s rows to `verified` in the registry with passing evidence, and re-run `check-coverage.mjs`.',
+                '5. Run `dart analyze` and `dart test -j 2` in `pi_agent/` until green.',
+                '6. Open a PR referencing this issue.',
+                '',
+                'cc: the arrrrny fork maintainer.',
+              ].filter(Boolean).join('\n');
+
+              // Dedup: keep one open dart-port issue per area, comment new syncs onto it.
+              // Paginate: a single page of 20 can miss an existing area issue once
+              // enough port issues are open, which opens a duplicate instead of
+              // commenting on the one that already exists.
+              const issues = await github.paginate(github.rest.issues.listForRepo, {
+                owner: context.repo.owner, repo: context.repo.repo,
+                state: 'open', labels: 'dart-port', per_page: 100,
+              });
+              const titlePrefix = 'Port upstream ' + area + ' changes into pi_agent (Dart)';
+              const existing = issues.find((i) => i.title.startsWith(titlePrefix));
+              if (existing) {
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner, repo: context.repo.repo,
+                  issue_number: existing.number,
+                  body: 'Sync ' + date + ' — ' + commits.length + ' new commit(s), '
+                    + files.length + ' file(s) in `' + area + '`.\n\n' + body,
+                });
+                core.info('Commented on existing ' + area + ' port issue #' + existing.number);
+                created.push(existing.number);
+              } else {
+                const result = await github.rest.issues.create({
+                  owner: context.repo.owner, repo: context.repo.repo,
+                  title: titlePrefix + ' — ' + date,
+                  labels: ['sync', 'dart-port'],
+                  body,
+                });
+                core.info('Opened ' + area + ' port issue #' + result.data.number);
+                created.push(result.data.number);
+              }
+            }
+
+            // The apps/ bucket: any changed file under apps/** is reported as
+            // its own dart-port issue so an application-shaped change is never
+            // silently dropped from the parity story.
+            if (groups.has('apps')) {
+              const files = groups.get('apps').sort((a, b) => a.file.localeCompare(b.file));
+              const body = [
+                'The daily upstream sync merged **' + commits.length + '** upstream commit(s) into `master`.',
+                'This fork does not modify the TypeScript packages, so the merge was clean.',
+                '',
+                'The sync touched upstream `apps/**`. Each upstream app carries an explicit',
+                'port/adapt/not_applicable decision in `coverage/upstream/<sha>/app-decisions.json`;',
+                'a changed app may need its decision revisited.',
+                '',
+                '### Changed files',
+                '',
+                ...files.map((f) => '- `' + f.file + '`'),
+                '',
+                '- pre-sync master: `' + local + '`',
+                '- upstream/main: `' + upstream + '`',
+              ].join('\n');
+              const issues = await github.paginate(github.rest.issues.listForRepo, {
+                owner: context.repo.owner, repo: context.repo.repo,
+                state: 'open', labels: 'dart-port', per_page: 100,
+              });
+              const existing = issues.find((i) => i.title.startsWith('Port upstream apps changes'));
+              if (existing) {
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner, repo: context.repo.repo,
+                  issue_number: existing.number,
+                  body: 'Sync ' + date + '.\n\n' + body,
+                });
+                created.push(existing.number);
+              } else {
+                const result = await github.rest.issues.create({
+                  owner: context.repo.owner, repo: context.repo.repo,
+                  title: 'Port upstream apps changes into pi_agent (Dart) — ' + date,
+                  labels: ['sync', 'dart-port'],
+                  body,
+                });
+                created.push(result.data.number);
+              }
+            }
+
+            core.info('Dart port issues: ' + (created.join(', ') || 'none'));
 
       - name: Open sync-conflict issue
         id: conflict_issue
@@ -255,6 +352,22 @@ jobs:
         run: |
           echo "::error::merge conflicts detected; sync aborted. See the sync-labeled issue."
           exit 1
+
+      - name: Advance target_upstream_sha
+        if: steps.merge.outputs.merge_state == 'clean'
+        run: |
+          set -e
+          UPSTREAM="${{ steps.check.outputs.upstream }}"
+          node -e '
+            const fs = require("fs");
+            const p = "coverage/state.json";
+            const s = JSON.parse(fs.readFileSync(p, "utf8"));
+            s.target_upstream_sha = process.argv[1];
+            s.target_advanced_at = new Date().toISOString().split("T")[0];
+            fs.writeFileSync(p, JSON.stringify(s, null, 2) + "\n");
+          ' "$UPSTREAM"
+          git add coverage/state.json
+          git diff --cached --quiet || git commit -m "chore: advance target_upstream_sha to ${UPSTREAM}"
 
       - name: Push
         if: steps.merge.outputs.merge_state == 'clean'

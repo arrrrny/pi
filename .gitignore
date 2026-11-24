@@ -26,7 +26,14 @@ packages/ai/src/providers/.model-generation-*/
 
 # Package specific
 .npm/
-coverage/
+# Conventional test-coverage output stays ignored, but the upstream-coverage
+# governance ledger (specs/002-upstream-coverage-governance) is checked in under
+# coverage/ on purpose: registry, pinned state, per-SHA inventories, differentials.
+coverage/*
+!coverage/registry/
+!coverage/state.json
+!coverage/upstream/
+!coverage/differential/
 .nyc_output/
 .pi_config/
 tui-debug.log
