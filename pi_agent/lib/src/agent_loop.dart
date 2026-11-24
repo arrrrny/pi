@@ -202,20 +202,19 @@ Future<List<AgentMessage>> _runLoop(
     // Tool calls always continue the loop so their results feed the next turn,
     // unless every call asked to terminate.
     if (toolCalls.isNotEmpty && !allTerminated) {
-      pending = await config.getSteeringMessages?.call() ??
-          <AgentMessage>[];
+      pending = await config.getSteeringMessages?.call() ?? <AgentMessage>[];
       continue;
     }
 
     // An explicit `true` ends the run; an absent hook (the [Agent] default)
     // decides nothing and falls through to the queue check below.
     final shouldStop = config.shouldStopAfterTurn?.call(
-          ShouldStopAfterTurnContext(
-            lastMessage: assistant,
-            toolResults: toolResults,
-            turnCount: turnCount,
-          ),
-        );
+      ShouldStopAfterTurnContext(
+        lastMessage: assistant,
+        toolResults: toolResults,
+        turnCount: turnCount,
+      ),
+    );
     if (shouldStop ?? false) break;
 
     // The agent would stop here, so drain what arrived while it was working:
@@ -258,8 +257,7 @@ Future<AssistantMessage> _streamAssistant(
     effectiveContext = _withMessages(context, transformed);
   }
 
-  final apiKey =
-      await config.getApiKey?.call(config.model.provider) ?? '';
+  final apiKey = await config.getApiKey?.call(config.model.provider) ?? '';
 
   final stream = streamFn(
     context: effectiveContext,
@@ -310,10 +308,10 @@ Future<_ToolBatch> _executeToolCalls(
   Future<void> Function(AgentEvent) emit,
 ) {
   final toolCalls = assistantMessage.toolCalls;
-  final tools = (context.tools ?? const <dynamic>[])
-      .cast<AgentTool<dynamic, dynamic>>();
-  final hasSequential = toolCalls.any((tc) => tools
-      .any((t) => t.name == tc.name && t.executionMode == ToolExecutionMode.sequential));
+  final tools =
+      (context.tools ?? const <dynamic>[]).cast<AgentTool<dynamic, dynamic>>();
+  final hasSequential = toolCalls.any((tc) => tools.any((t) =>
+      t.name == tc.name && t.executionMode == ToolExecutionMode.sequential));
   if (config.toolExecution == ToolExecutionMode.sequential || hasSequential) {
     return _executeSequential(
         context, assistantMessage, toolCalls, config, abortSignal, emit);
@@ -407,8 +405,8 @@ Future<_Finalized> _runOneToolCall(
   Completer<void>? abortSignal,
   Future<void> Function(AgentEvent) emit,
 ) async {
-  final prepared =
-      await _prepareToolCall(context, assistantMessage, toolCall, config, abortSignal);
+  final prepared = await _prepareToolCall(
+      context, assistantMessage, toolCall, config, abortSignal);
   if (prepared.isImmediate) {
     return _Finalized(toolCall, prepared.result!, prepared.isError!);
   }
@@ -436,8 +434,8 @@ Future<_Prepared> _prepareToolCall(
     return _Prepared.immediate(_errorResult('Operation aborted'));
   }
 
-  final tools = (context.tools ?? const <dynamic>[])
-      .cast<AgentTool<dynamic, dynamic>>();
+  final tools =
+      (context.tools ?? const <dynamic>[]).cast<AgentTool<dynamic, dynamic>>();
   AgentTool<dynamic, dynamic>? tool;
   for (final t in tools) {
     if (t.name == toolCall.name) {
@@ -466,8 +464,21 @@ Future<_Prepared> _prepareToolCall(
       if (preparedArgs != null) args = preparedArgs;
     }
 
+    // Coerce and validate between argument preparation and the hook, in the
+    // same order as upstream's validateToolArguments: an invalid call becomes
+    // an error result and never reaches the hook or the tool body, and a
+    // coercible one is delivered to both with its coerced values.
+    final validation = validateToolArguments(tool.name, tool.parameters, args);
+    final validationError = validation.error;
+    if (validationError != null) {
+      return _Prepared.immediate(_errorResult(validationError));
+    }
+    args = validation.args!;
+
     final before = config.beforeToolCall;
     if (before != null) {
+      // The hook sees the validated arguments; its own override is used as-is,
+      // without revalidation, exactly as upstream does.
       var captured = args;
       final hookContext = BeforeToolCallContext(
         toolCallId: toolCall.id,
@@ -635,8 +646,9 @@ bool _allTerminated(List<_Finalized> finalized) =>
 AgentToolResult<dynamic> _errorResult(String message) =>
     AgentToolResult<dynamic>(content: [TextBlock(message)], details: null);
 
-AssistantMessage _asAssistant(AgentMessage m) =>
-    m is AssistantMessage ? m : AssistantMessage(content: const [TextBlock('')]);
+AssistantMessage _asAssistant(AgentMessage m) => m is AssistantMessage
+    ? m
+    : AssistantMessage(content: const [TextBlock('')]);
 
 String _messageOf(Object e) => e is Error ? e.toString() : e.toString();
 
