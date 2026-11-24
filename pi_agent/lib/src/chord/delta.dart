@@ -67,15 +67,16 @@ final class OpAppend extends Op {
   final String value;
 }
 
-/// `["t", path, number]`: keep only the first `length` characters at `path`.
+/// `["t", path, number]`: drop the first `length` characters at `path`,
+/// keeping the tail (JS `slice(length)`).
 final class OpTruncate extends Op {
-  /// Keep only the first [length] characters at [path].
+  /// Drop the first [length] characters at [path], keeping the tail.
   const OpTruncate(this.path, this.length);
 
   /// The string's location; never empty.
   final NonEmptyPath path;
 
-  /// How many leading characters to keep.
+  /// How many leading characters to drop.
   final int length;
 }
 

@@ -185,6 +185,12 @@ class SqliteStorage implements Storage {
         ? const <Map<String, Object?>>[]
         : await executor.select('SELECT * FROM commits', const <Object?>[]);
     for (final row in commits) {
+      // The row id is the primary key. Replaying the log must advance the
+      // counter past every stored row, or the first commit after reopen reuses
+      // an existing id (silently overwriting it in the fake, or violating the
+      // primary key in a real driver).
+      final rowId = row['id'] as int?;
+      if (rowId != null && rowId >= _rowId) _rowId = rowId + 1;
       final decoded = decodeJsonMap(row['record']! as String);
       await _state.commit(<List<StorageWrite>>[
         <StorageWrite>[

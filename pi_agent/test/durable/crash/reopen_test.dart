@@ -147,6 +147,42 @@ void main() {
           'pi.assistant');
     });
 
+    test('a commit after reopen does not reuse an earlier commit row id',
+        () async {
+      final executor = InMemorySqliteExecutor();
+      final storage = await SqliteStorage(executor: executor).open();
+      await commitWrites(
+          storage,
+          <StorageWrite>[
+            ConversationWrite(const ConversationRecord(id: rootConversationId)),
+          ],
+          backgroundContext);
+      await storage.close(backgroundContext);
+
+      final reopened = await SqliteStorage(executor: executor).open();
+      await commitWrites(
+          reopened,
+          <StorageWrite>[
+            EntryWrite(EntryRecord(
+              id: idFromNumber<EntryKind>(4),
+              conversationId: rootConversationId,
+              kind: 'pi.user',
+            )),
+          ],
+          backgroundContext);
+
+      final rows =
+          await executor.select('SELECT * FROM commits', const <Object?>[]);
+      expect(rows, hasLength(2));
+      expect(<int>[for (final row in rows) row['id']! as int], <int>[1, 2]);
+      expect(
+          (await reopened.entry(
+                  idFromNumber<EntryKind>(4), backgroundContext))!
+              .entry
+              .kind,
+          'pi.user');
+    });
+
     test('a store migrated by a newer schema version is refused', () async {
       final executor = InMemorySqliteExecutor();
       await executor.execute('PRAGMA user_version = ?',

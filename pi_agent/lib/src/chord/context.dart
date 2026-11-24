@@ -56,8 +56,6 @@ class AbortSignal {
 /// Carries cancellation and a [TelemetryCarrier] through one call chain.
 class Context {
   /// A context over [signal] and [carrier].
-  /// A context over [signal] and [carrier].
-  /// A context over [signal] and [carrier].
   const Context({this.signal, this.carrier});
 
   /// Cancellation of this context; absent means "never cancels".

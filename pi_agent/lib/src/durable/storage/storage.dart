@@ -2,7 +2,7 @@
 ///
 /// Port of `packages/durable/src/types.ts` (`Storage`) and
 /// `storage/store/storage.ts` at upstream
-/// `780bf31fcaeb0563-4815-9db3-96e830e0b7df`. One interface, one contract,
+/// `780bf31fcaeb252fa9b68df3964c735eae75bde3`. One interface, one contract,
 /// three backends.
 library;
 

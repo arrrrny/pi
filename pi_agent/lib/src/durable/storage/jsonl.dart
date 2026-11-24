@@ -117,6 +117,7 @@ class JsonlStorage implements Storage {
     // is the durability boundary, and a receipt is only ever given for a batch
     // whose line is out.
     final lines = <String>[];
+    final receipts = <(int, Seq)>[];
     final result = await _state.commit(
       batches,
       (index, seq) {
@@ -127,12 +128,16 @@ class JsonlStorage implements Storage {
               ],
             })}\n');
         if (seq.value >= _nextSeq) _nextSeq = seq.value + 1;
-        receive(index, seq);
+        receipts.add((index, seq));
       },
       context,
     );
-    for (final line in lines) {
-      await _files.append(path, line);
+    // The log line is the durability boundary: publish each receipt only once
+    // its own line is out, never during the in-memory state commit.
+    for (var i = 0; i < lines.length; i++) {
+      await _files.append(path, lines[i]);
+      final (index, seq) = receipts[i];
+      receive(index, seq);
     }
     return result;
   }
