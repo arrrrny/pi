@@ -666,8 +666,17 @@ Stream<AgentEvent> _streamFromAsync(
       await body((event) async {
         if (!controller.isClosed) controller.add(event);
       });
-    } catch (_) {
-      // Surface nothing further; the loop already emitted an error message.
+    } catch (e, st) {
+      // Surface the failure instead of swallowing it. The loop body (LLM
+      // stream, transformContext, tool internals) can throw, and a discarded
+      // error left the run looking like a clean completion: the caller's
+      // `await for` finished with no error event and no terminal message (#5).
+      // A cancelled subscription (an aborted run that stopped listening) has no
+      // one left to receive the error, so adding it there would only raise an
+      // unhandled async error — the abort outcome is synthesized by the caller.
+      if (!controller.isClosed && controller.hasListener) {
+        controller.addError(e, st);
+      }
     } finally {
       if (!controller.isClosed) await controller.close();
     }
