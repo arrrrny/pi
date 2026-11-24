@@ -9,6 +9,7 @@
 
 - Steering and follow-up queue modes now affect draining: `one-at-a-time` injects only the oldest queued message per drain, `all` injects every queued message. Both modes are now a single shared `QueueMode` (replacing the Dart-only `SteeringMode`/`FollowUpMode`), backed by a `PendingMessageQueue` ported from upstream; `Agent` gained `peekQueuedMessages()` and mode getters. ([#2](https://github.com/arrrrny/pi/issues/2))
 - Tool calls whose argument text is malformed JSON or is not a JSON object now carry `argumentsError` instead of being silently decoded as `{}`: the diagnostic names the parse problem and the received text, survives JSONL session reload, and fails the call closed before `prepareArguments`, `beforeToolCall` or execution. Invalid string escapes are repaired rather than rejected, matching upstream `parseToolCallArguments` ([#4](https://github.com/arrrrny/pi/issues/4)).
+- Tool arguments are now coerced and validated against the tool's JSON Schema between argument preparation and the `beforeToolCall` hook, matching upstream `validateToolArguments`: a schema-invalid call becomes an error tool result and never reaches the hook or `AgentTool.execute`, and a coercible call (`"42"` for an integer, a single value for an array, `null` for an omitted optional property) reaches both with the coerced arguments. The recorded tool call keeps the model's raw arguments ([#3](https://github.com/arrrrny/pi/issues/3)).
 
 ## 0.2.0
 

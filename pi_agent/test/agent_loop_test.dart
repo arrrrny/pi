@@ -66,10 +66,10 @@ void main() {
         _context(),
         _config(),
         streamFn: scriptedStream((_) => [
-          _assistant(AssistantMessage(
-              content: [const TextBlock('hi')],
-              stopReason: StopReason.endTurn)),
-        ]),
+              _assistant(AssistantMessage(
+                  content: [const TextBlock('hi')],
+                  stopReason: StopReason.endTurn)),
+            ]),
       ).toList();
 
       expect(events.first, isA<AgentStart>());
@@ -105,7 +105,8 @@ void main() {
             return [
               _assistant(AssistantMessage(
                 content: [
-                  ToolCallBlock(id: 'c1', name: 'echo', arguments: {'text': 'x'}),
+                  ToolCallBlock(
+                      id: 'c1', name: 'echo', arguments: {'text': 'x'}),
                 ],
                 stopReason: StopReason.toolUse,
               )),
@@ -140,7 +141,8 @@ void main() {
         parameters: {'type': 'object'},
         execute: (id, params, {onUpdate, isAborted}) async {
           executed = true;
-          return AgentToolResult(content: [const TextBlock('ran')], details: null);
+          return AgentToolResult(
+              content: [const TextBlock('ran')], details: null);
         },
       );
 
@@ -191,10 +193,10 @@ void main() {
           },
         ),
         streamFn: scriptedStream((_) => [
-          _assistant(AssistantMessage(
-              content: [const TextBlock('ok')],
-              stopReason: StopReason.endTurn)),
-        ]),
+              _assistant(AssistantMessage(
+                  content: [const TextBlock('ok')],
+                  stopReason: StopReason.endTurn)),
+            ]),
       ).toList();
 
       expect(events.whereType<TurnEnd>().length, greaterThanOrEqualTo(2));
@@ -212,10 +214,10 @@ void main() {
           },
         ),
         streamFn: scriptedStream((_) => [
-          _assistant(AssistantMessage(
-              content: [const TextBlock('ok')],
-              stopReason: StopReason.endTurn)),
-        ]),
+              _assistant(AssistantMessage(
+                  content: [const TextBlock('ok')],
+                  stopReason: StopReason.endTurn)),
+            ]),
       ).toList();
 
       expect(steerCalls, greaterThanOrEqualTo(1));
@@ -226,10 +228,10 @@ void main() {
         _context(),
         _config(),
         streamFn: scriptedStream((_) => [
-          _assistant(AssistantMessage(
-              content: [const TextBlock('once')],
-              stopReason: StopReason.endTurn)),
-        ]),
+              _assistant(AssistantMessage(
+                  content: [const TextBlock('once')],
+                  stopReason: StopReason.endTurn)),
+            ]),
       ).toList();
 
       expect(events.whereType<TurnEnd>(), hasLength(1));
@@ -242,10 +244,10 @@ void main() {
         _context(messages: [UserMessage.text('hi')]),
         _config(),
         streamFn: scriptedStream((_) => [
-          _assistant(AssistantMessage(
-              content: [const TextBlock('continued')],
-              stopReason: StopReason.endTurn)),
-        ]),
+              _assistant(AssistantMessage(
+                  content: [const TextBlock('continued')],
+                  stopReason: StopReason.endTurn)),
+            ]),
       ).toList();
 
       expect(events.first, isA<AgentStart>());
@@ -266,10 +268,10 @@ void main() {
         _context(),
         _config(),
         streamFn: scriptedStream((_) => [
-          _assistant(AssistantMessage(
-              content: [const TextBlock('hi')],
-              stopReason: StopReason.endTurn)),
-        ]),
+              _assistant(AssistantMessage(
+                  content: [const TextBlock('hi')],
+                  stopReason: StopReason.endTurn)),
+            ]),
       );
 
       expect(messages, isA<List<AgentMessage>>());
@@ -318,7 +320,8 @@ void main() {
 
     test('a per-tool sequential mode forces sequential execution', () async {
       final order = <String>[];
-      AgentTool<dynamic, dynamic> makeTool(String name, ToolExecutionMode mode) =>
+      AgentTool<dynamic, dynamic> makeTool(
+              String name, ToolExecutionMode mode) =>
           AgentTool(
             name: name,
             description: name,
@@ -446,7 +449,8 @@ void main() {
         parameters: const {'type': 'object'},
         execute: (id, params, {onUpdate, isAborted}) async {
           executed = true;
-          return AgentToolResult(content: [const TextBlock('x')], details: null);
+          return AgentToolResult(
+              content: [const TextBlock('x')], details: null);
         },
       );
 
@@ -488,7 +492,8 @@ void main() {
         parameters: const {'type': 'object'},
         execute: (id, params, {onUpdate, isAborted}) async {
           abort.complete();
-          return AgentToolResult(content: [const TextBlock('x')], details: null);
+          return AgentToolResult(
+              content: [const TextBlock('x')], details: null);
         },
       );
 
@@ -519,6 +524,52 @@ void main() {
       expect(events.whereType<TurnEnd>(), hasLength(1));
     });
 
+    test('propagates a loop-body failure instead of swallowing it (#5)',
+        () async {
+      // `_streamFromAsync` wrapped the loop body in `catch (_) {}`, so a
+      // failure that escaped `_runLoop` (a throwing stream function, a throwing
+      // transformContext, tool internals) never reached the caller: `agentLoop`
+      // completed with only the events emitted before the throw. The stream must
+      // carry the error so `Agent._run` can surface a structured outcome.
+      await expectLater(
+        () => agentLoop(
+          _context(),
+          _config(),
+          streamFn: ({required context, required config, required apiKey,
+                  required abortSignal}) =>
+              Stream<AgentEvent>.error(Exception('loop body exploded')),
+        ).toList(),
+        throwsA(isA<Exception>().having(
+            (e) => e.toString(), 'toString', contains('loop body exploded'))),
+      );
+    });
+
+    test('propagates a loop-body failure to a late subscriber (#5)', () async {
+      // The loop body runs in a microtask, so a consumer that subscribes after
+      // its first suspension reaches the throw with no listener yet attached.
+      // A `hasListener` guard on the `addError` dropped the error for exactly
+      // that consumer — the same silent completion #5 is about, in the
+      // late-subscriber case. A single-subscription controller buffers an error
+      // added before the first listen, so the caller must still see it.
+      final stream = agentLoop(
+        _context(),
+        _config(),
+        streamFn: ({required context, required config, required apiKey,
+                required abortSignal}) =>
+            Stream<AgentEvent>.error(Exception('body exploded')),
+      );
+
+      // Let the microtask run to completion, so the subscription is armed
+      // strictly after the throw.
+      await Future<void>.delayed(Duration.zero);
+
+      await expectLater(
+        stream.toList(),
+        throwsA(isA<Exception>().having(
+            (e) => e.toString(), 'toString', contains('body exploded'))),
+      );
+    });
+
     for (final reason in [StopReason.error, StopReason.aborted]) {
       test('terminates on $reason with no tool execution (#6)', () async {
         var providerCalls = 0;
@@ -537,8 +588,11 @@ void main() {
         final events = await agentLoop(
           _context(tools: [tool]),
           _config(getFollowUpMessages: () async => [UserMessage.text('again')]),
-          streamFn: ({required context, required config, required apiKey,
-                  required abortSignal}) {
+          streamFn: (
+              {required context,
+              required config,
+              required apiKey,
+              required abortSignal}) {
             providerCalls++;
             // A failed provider response carries a tool call in some broken
             // providers; it must never be executed.
@@ -575,14 +629,18 @@ void main() {
       final tool = AgentTool(
         name: 'write',
         description: 'writes',
-        parameters: const {'type': 'object', 'required': ['path']},
+        parameters: const {
+          'type': 'object',
+          'required': ['path']
+        },
         prepareArguments: (args) {
           prepared = true;
           return null;
         },
         execute: (id, params, {onUpdate, isAborted}) async {
           executed = true;
-          return AgentToolResult(content: [const TextBlock('ran')], details: null);
+          return AgentToolResult(
+              content: [const TextBlock('ran')], details: null);
         },
       );
 
@@ -627,6 +685,381 @@ void main() {
       final text = toolResult.content.whereType<TextBlock>().single.text;
       expect(text, contains('Invalid arguments for tool "write"'));
       expect(text, contains('Received arguments:'));
+    });
+  });
+
+  // pi#3: tool arguments are validated (and coerced) between argument
+  // preparation and the beforeToolCall hook, as upstream's
+  // validateToolArguments does. A schema-invalid call becomes an error result
+  // and never reaches the hook or the tool body; a coercible call reaches both
+  // with the coerced values.
+  group('agentLoop tool argument validation (pi#3)', () {
+    /// Runs one scripted tool call and returns every event the loop emitted.
+    Future<List<AgentEvent>> runOneCall({
+      required AgentTool<dynamic, dynamic> tool,
+      required ToolCallBlock toolCall,
+      Future<BeforeToolCallResult?> Function(BeforeToolCallContext,
+              {bool Function()? isAborted})?
+          beforeToolCall,
+      ToolExecutionMode toolExecution = ToolExecutionMode.parallel,
+    }) =>
+        agentLoop(
+          _context(tools: [tool]),
+          _config(
+            beforeToolCall: beforeToolCall,
+            toolExecution: toolExecution,
+          ),
+          streamFn: scriptedStream((turn) {
+            if (turn == 0) {
+              return [
+                _assistant(AssistantMessage(
+                  content: [toolCall],
+                  stopReason: StopReason.toolUse,
+                )),
+              ];
+            }
+            return [
+              _assistant(AssistantMessage(
+                  content: [const TextBlock('done')],
+                  stopReason: StopReason.endTurn)),
+            ];
+          }),
+        ).toList();
+
+    ToolResultMessage singleResult(List<AgentEvent> events) =>
+        (events.last as AgentEnd)
+            .messages
+            .whereType<ToolResultMessage>()
+            .single;
+
+    test('rejects a call missing a required field without executing it',
+        () async {
+      var executed = false;
+      var hooked = false;
+      final tool = AgentTool(
+        name: 'write',
+        description: 'writes',
+        parameters: const {
+          'type': 'object',
+          'properties': {
+            'path': {'type': 'string'},
+          },
+          'required': ['path'],
+        },
+        execute: (id, params, {onUpdate, isAborted}) async {
+          executed = true;
+          return AgentToolResult(
+              content: [const TextBlock('ran')], details: null);
+        },
+      );
+
+      final events = await runOneCall(
+        tool: tool,
+        toolCall: ToolCallBlock(id: 'c1', name: 'write', arguments: const {}),
+        beforeToolCall: (ctx, {isAborted}) async {
+          hooked = true;
+          return null;
+        },
+      );
+
+      expect(executed, isFalse);
+      expect(hooked, isFalse);
+      final result = singleResult(events);
+      expect(result.isError, isTrue);
+      final text = result.content.whereType<TextBlock>().single.text;
+      expect(text, contains('Validation failed for tool "write"'));
+      expect(text, contains('path: required field missing'));
+      expect(text, contains('Received arguments:'));
+    });
+
+    test('rejects wrong types that coercion cannot fix', () async {
+      var executed = false;
+      final tool = AgentTool(
+        name: 'count',
+        description: 'counts',
+        parameters: const {
+          'type': 'object',
+          'properties': {
+            'value': {'type': 'integer'},
+          },
+          'required': ['value'],
+        },
+        execute: (id, params, {onUpdate, isAborted}) async {
+          executed = true;
+          return AgentToolResult(
+              content: [const TextBlock('ran')], details: null);
+        },
+      );
+
+      final events = await runOneCall(
+        tool: tool,
+        toolCall: ToolCallBlock(
+            id: 'c1', name: 'count', arguments: const {'value': 'many'}),
+      );
+
+      expect(executed, isFalse);
+      final result = singleResult(events);
+      expect(result.isError, isTrue);
+      expect(result.content.whereType<TextBlock>().single.text,
+          contains('Validation failed for tool "count"'));
+    });
+
+    test('coerces arguments and delivers the coerced values to hook and tool',
+        () async {
+      Map<String, dynamic>? executedWith;
+      Map<String, dynamic>? hookedWith;
+      final tool = AgentTool(
+        name: 'tag',
+        description: 'tags',
+        parameters: const {
+          'type': 'object',
+          'properties': {
+            'count': {'type': 'integer'},
+            'active': {'type': 'boolean'},
+            'tags': {
+              'type': 'array',
+              'items': {'type': 'string'},
+            },
+          },
+          'required': ['count', 'active', 'tags'],
+        },
+        execute: (id, params, {onUpdate, isAborted}) async {
+          executedWith = params;
+          return AgentToolResult(
+              content: [const TextBlock('ok')], details: null);
+        },
+      );
+
+      final events = await runOneCall(
+        tool: tool,
+        toolCall: ToolCallBlock(
+          id: 'c1',
+          name: 'tag',
+          arguments: const {'count': '42', 'active': 'true', 'tags': 'solo'},
+        ),
+        beforeToolCall: (ctx, {isAborted}) async {
+          hookedWith = ctx.args;
+          return null;
+        },
+      );
+
+      expect(hookedWith, isNotNull);
+      expect(hookedWith!['count'], 42);
+      expect(hookedWith!['active'], isTrue);
+      expect(hookedWith!['tags'], ['solo']);
+      expect(executedWith, isNotNull);
+      expect(executedWith!['count'], 42);
+      expect(executedWith!['active'], isTrue);
+      expect(executedWith!['tags'], ['solo']);
+      expect(singleResult(events).isError, isFalse);
+    });
+
+    test('validates the arguments prepareArguments produced', () async {
+      var executedWith = <Map<String, dynamic>>[];
+      final tool = AgentTool(
+        name: 'edit',
+        description: 'edits',
+        parameters: const {
+          'type': 'object',
+          'properties': {
+            'edits': {
+              'type': 'array',
+              'items': {
+                'type': 'object',
+                'properties': {
+                  'oldText': {'type': 'string'},
+                  'newText': {'type': 'string'},
+                },
+                'required': ['oldText', 'newText'],
+              },
+            },
+          },
+          'required': ['edits'],
+        },
+        // Mirrors upstream's "should prepare tool arguments for validation":
+        // the raw single-edit shape is rewritten into the schema's array shape.
+        prepareArguments: (args) {
+          final input = args;
+          if (input['oldText'] is! String || input['newText'] is! String) {
+            return null;
+          }
+          return {
+            'edits': [
+              {'oldText': input['oldText'], 'newText': input['newText']},
+            ],
+          };
+        },
+        execute: (id, params, {onUpdate, isAborted}) async {
+          executedWith.add(params);
+          return AgentToolResult(
+              content: [const TextBlock('edited')], details: null);
+        },
+      );
+
+      final events = await runOneCall(
+        tool: tool,
+        toolCall: ToolCallBlock(
+          id: 'c1',
+          name: 'edit',
+          arguments: const {'oldText': 'before', 'newText': 'after'},
+        ),
+      );
+
+      expect(executedWith, hasLength(1));
+      expect(singleResult(events).isError, isFalse);
+
+      // The prepared shape is what gets validated: a prepareArguments output
+      // that breaks the schema is rejected instead of executing.
+      final brokenTool = AgentTool(
+        name: 'edit',
+        description: 'edits',
+        parameters: tool.parameters,
+        prepareArguments: (args) => const {'edits': 'not an array'},
+        execute: (id, params, {onUpdate, isAborted}) async {
+          executedWith.add(params);
+          return AgentToolResult(
+              content: [const TextBlock('edited')], details: null);
+        },
+      );
+
+      final brokenEvents = await runOneCall(
+        tool: brokenTool,
+        toolCall: ToolCallBlock(
+          id: 'c2',
+          name: 'edit',
+          arguments: const {'oldText': 'a', 'newText': 'b'},
+        ),
+      );
+
+      expect(executedWith, hasLength(1),
+          reason: 'an invalid prepared shape must not execute');
+      final result = singleResult(brokenEvents);
+      expect(result.isError, isTrue);
+      expect(result.content.whereType<TextBlock>().single.text,
+          contains('Validation failed for tool "edit"'));
+    });
+
+    test('unknown tools stay an error result with no execution', () async {
+      var executed = false;
+      final tool = AgentTool(
+        name: 'known',
+        description: 'known',
+        parameters: const {'type': 'object'},
+        execute: (id, params, {onUpdate, isAborted}) async {
+          executed = true;
+          return AgentToolResult(
+              content: [const TextBlock('ran')], details: null);
+        },
+      );
+
+      final events = await runOneCall(
+        tool: tool,
+        toolCall: ToolCallBlock(id: 'c1', name: 'unknown', arguments: const {}),
+      );
+
+      expect(executed, isFalse);
+      final result = singleResult(events);
+      expect(result.isError, isTrue);
+      expect(result.content.whereType<TextBlock>().single.text,
+          contains('Tool unknown not found'));
+    });
+
+    test('a validated-then-overridden call executes without revalidation',
+        () async {
+      Map<String, dynamic>? executedWith;
+      final tool = AgentTool(
+        name: 'echo',
+        description: 'echoes',
+        parameters: const {
+          'type': 'object',
+          'properties': {
+            'value': {'type': 'string'},
+          },
+          'required': ['value'],
+        },
+        execute: (id, params, {onUpdate, isAborted}) async {
+          executedWith = params;
+          return AgentToolResult(
+              content: [const TextBlock('ran')], details: null);
+        },
+      );
+
+      final events = await runOneCall(
+        tool: tool,
+        toolCall: ToolCallBlock(
+            id: 'c1', name: 'echo', arguments: const {'value': 'hello'}),
+        beforeToolCall: (ctx, {isAborted}) async {
+          // Upstream: the hook's override is not revalidated, even when it no
+          // longer matches the schema.
+          ctx.overrideArgs(const {'value': 123});
+          return null;
+        },
+      );
+
+      expect(executedWith, {'value': 123});
+      expect(singleResult(events).isError, isFalse);
+    });
+
+    test('validation runs in sequential mode too', () async {
+      var executed = false;
+      var hooked = false;
+      final tool = AgentTool(
+        name: 'write',
+        description: 'writes',
+        parameters: const {
+          'type': 'object',
+          'properties': {
+            'path': {'type': 'string'},
+          },
+          'required': ['path'],
+        },
+        execute: (id, params, {onUpdate, isAborted}) async {
+          executed = true;
+          return AgentToolResult(
+              content: [const TextBlock('ran')], details: null);
+        },
+      );
+
+      final events = await runOneCall(
+        tool: tool,
+        toolCall: ToolCallBlock(id: 'c1', name: 'write', arguments: const {}),
+        toolExecution: ToolExecutionMode.sequential,
+        beforeToolCall: (ctx, {isAborted}) async {
+          hooked = true;
+          return null;
+        },
+      );
+
+      expect(executed, isFalse);
+      expect(hooked, isFalse);
+      expect(singleResult(events).isError, isTrue);
+    });
+
+    test('does not mutate the tool call arguments in the transcript', () async {
+      final tool = AgentTool(
+        name: 'tag',
+        description: 'tags',
+        parameters: const {
+          'type': 'object',
+          'properties': {
+            'count': {'type': 'integer'},
+          },
+          'required': ['count'],
+        },
+        execute: (id, params, {onUpdate, isAborted}) async =>
+            AgentToolResult(content: [const TextBlock('ok')], details: null),
+      );
+      final rawArguments = <String, dynamic>{'count': '42'};
+      final toolCall =
+          ToolCallBlock(id: 'c1', name: 'tag', arguments: rawArguments);
+
+      final events = await runOneCall(tool: tool, toolCall: toolCall);
+
+      expect(singleResult(events).isError, isFalse);
+      expect(rawArguments, {'count': '42'},
+          reason: 'coercion must not rewrite the recorded tool call');
+      final start = events.whereType<ToolExecutionStart>().single;
+      expect(start.args, {'count': '42'});
     });
   });
 }
