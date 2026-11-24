@@ -1,5 +1,9 @@
 ## [Unreleased]
 
+### Changed
+
+- The exported `compact()` now generates its summary through the model instead of returning a placeholder: it delegates to the same canonical summarization path as `Conversation.compact()`, accepting an optional `loopStreamFn` (defaulting to `streamLLM`) and threading `previousSummary`, `customInstructions` and `abortSignal`. Prompts mirror upstream (`<conversation>` / `<previous-summary>` tags, initial vs update instructions, system prompt), and `CompactionResult` carries the summarizing response's `usage`. Responses that failed at the provider, were aborted, hit the token cap, or attempted a tool call now throw instead of being persisted as a summary. ([#7](https://github.com/arrrrny/pi/issues/7))
+
 ### Fixed
 
 - Steering and follow-up queue modes now affect draining: `one-at-a-time` injects only the oldest queued message per drain, `all` injects every queued message. Both modes are now a single shared `QueueMode` (replacing the Dart-only `SteeringMode`/`FollowUpMode`), backed by a `PendingMessageQueue` ported from upstream; `Agent` gained `peekQueuedMessages()` and mode getters. ([#2](https://github.com/arrrrny/pi/issues/2))

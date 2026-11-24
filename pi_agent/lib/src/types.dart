@@ -1097,11 +1097,15 @@ class CompactionResult {
   /// Token count before compaction.
   final int tokensBefore;
 
+  /// Usage reported by the summarizing response, when available.
+  final Usage? usage;
+
   /// Creates a compaction result.
   const CompactionResult({
     required this.summary,
     required this.firstKeptEntryId,
     required this.tokensBefore,
+    this.usage,
   });
 }
 

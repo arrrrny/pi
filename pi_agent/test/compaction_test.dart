@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:test/test.dart';
 import 'package:pi/src/types.dart';
+import 'package:pi/src/agent_loop.dart';
 import 'package:pi/src/compaction.dart';
 
 void main() {
@@ -200,51 +203,197 @@ void main() {
   });
 
   group('compact', () {
-    test('returns compaction result', () async {
-      final now = DateTime.now();
-      final entries = List.generate(
-        10,
-        (i) => MessageEntry(
+    SessionTreeEntry userEntry(int i) => MessageEntry(
           id: 'e$i',
           parentId: i > 0 ? 'e${i - 1}' : '',
-          timestamp: now,
+          timestamp: DateTime.now(),
           role: 'user',
-          message: UserMessage.text('a' * 40),
-        ),
-      );
+          message: UserMessage.text('older message $i'),
+        );
 
+    LoopStreamFn scripted(
+      List<AgentEvent> Function() events, {
+      void Function(AgentContext context)? onCall,
+    }) {
+      return ({
+        required context,
+        required config,
+        required apiKey,
+        required abortSignal,
+      }) {
+        onCall?.call(context);
+        return Stream<AgentEvent>.fromIterable(events());
+      };
+    }
+
+    AgentEvent endWith(
+      AssistantMessage message,
+    ) =>
+        MessageEnd(message: message);
+
+    test('summarizes through the model and returns its text', () async {
+      AgentContext? seen;
       final result = await compact(
-        entries,
+        [for (var i = 0; i < 4; i++) userEntry(i)],
         const Model(
             provider: 'openai', modelId: 'gpt-4o', contextWindow: 128000),
-        settings: const CompactionSettings(keepRecentTokens: 40),
+        settings: const CompactionSettings(keepRecentTokens: 0),
+        loopStreamFn: scripted(
+          () => [
+            endWith(AssistantMessage(
+              content: [const TextBlock('MODEL SUMMARY')],
+              stopReason: StopReason.endTurn,
+              usage: const Usage(inputTokens: 30, outputTokens: 7),
+            )),
+          ],
+          onCall: (ctx) => seen = ctx,
+        ),
       );
 
-      expect(result.summary, isNotEmpty);
+      expect(result.summary, 'MODEL SUMMARY');
       expect(result.firstKeptEntryId, isNotEmpty);
+      expect(result.tokensBefore, greaterThan(0));
+      expect(result.usage?.outputTokens, 7);
+
+      final prompt = (seen!.messages.single as UserMessage)
+          .content
+          .whereType<TextBlock>()
+          .single
+          .text;
+      expect(prompt, contains('<conversation>'));
+      expect(prompt, contains('older message 0'));
+      expect(prompt, contains('older message 2'));
+      expect(seen!.systemPrompt, summarizationSystemPrompt);
     });
 
-    test('includes previous summary in placeholder', () async {
-      final now = DateTime.now();
-      final entries = [
-        MessageEntry(
-          id: 'e0',
-          parentId: '',
-          timestamp: now,
-          role: 'user',
-          message: UserMessage.text('hello'),
-        ),
-      ];
-
+    test('sends a previous summary in the update prompt', () async {
+      String? prompt;
       final result = await compact(
-        entries,
+        [userEntry(0), userEntry(1)],
         const Model(
             provider: 'openai', modelId: 'gpt-4o', contextWindow: 128000),
         settings: const CompactionSettings(keepRecentTokens: 0),
         previousSummary: 'old context',
+        loopStreamFn: scripted(
+          () => [
+            endWith(AssistantMessage(
+              content: [const TextBlock('UPDATED')],
+              stopReason: StopReason.endTurn,
+            )),
+          ],
+          onCall: (ctx) => prompt = (ctx.messages.single as UserMessage)
+              .content
+              .whereType<TextBlock>()
+              .single
+              .text,
+        ),
       );
 
-      expect(result.summary, contains('old context'));
+      expect(result.summary, 'UPDATED');
+      expect(prompt, contains('<previous-summary>'));
+      expect(prompt, contains('old context'));
+      expect(prompt, contains('NEW conversation messages'));
+    });
+
+    test('appends custom instructions as an additional focus', () async {
+      String? prompt;
+      await compact(
+        [userEntry(0), userEntry(1)],
+        const Model(
+            provider: 'openai', modelId: 'gpt-4o', contextWindow: 128000),
+        settings: const CompactionSettings(keepRecentTokens: 0),
+        customInstructions: 'keep the migration plan',
+        loopStreamFn: scripted(
+          () => [
+            endWith(AssistantMessage(
+              content: [const TextBlock('S')],
+              stopReason: StopReason.endTurn,
+            )),
+          ],
+          onCall: (ctx) => prompt = (ctx.messages.single as UserMessage)
+              .content
+              .whereType<TextBlock>()
+              .single
+              .text,
+        ),
+      );
+
+      expect(prompt, contains('Additional focus: keep the migration plan'));
+    });
+
+    test('rejects a response capped at the token limit', () async {
+      await expectLater(
+        compact(
+          [userEntry(0), userEntry(1)],
+          const Model(
+              provider: 'openai', modelId: 'gpt-4o', contextWindow: 128000),
+          settings: const CompactionSettings(keepRecentTokens: 0),
+          loopStreamFn: scripted(
+            () => [
+              endWith(AssistantMessage(
+                content: [const TextBlock('partial summar')],
+                stopReason: StopReason.maxTokens,
+              )),
+            ],
+          ),
+        ),
+        throwsA(isA<StateError>().having(
+          (e) => e.message,
+          'message',
+          contains('token cap'),
+        )),
+      );
+    });
+
+    test('rejects a provider error response', () async {
+      await expectLater(
+        compact(
+          [userEntry(0), userEntry(1)],
+          const Model(
+              provider: 'openai', modelId: 'gpt-4o', contextWindow: 128000),
+          settings: const CompactionSettings(keepRecentTokens: 0),
+          loopStreamFn: scripted(
+            () => [
+              endWith(AssistantMessage(
+                content: const [],
+                stopReason: StopReason.error,
+                errorMessage: 'HTTP 500',
+              )),
+            ],
+          ),
+        ),
+        throwsA(isA<StateError>().having(
+          (e) => e.message,
+          'message',
+          allOf(contains('Summarization failed'), contains('HTTP 500')),
+        )),
+      );
+    });
+
+    test('rejects a response that attempted a tool call', () async {
+      await expectLater(
+        compact(
+          [userEntry(0), userEntry(1)],
+          const Model(
+              provider: 'openai', modelId: 'gpt-4o', contextWindow: 128000),
+          settings: const CompactionSettings(keepRecentTokens: 0),
+          loopStreamFn: scripted(
+            () => [
+              endWith(AssistantMessage(
+                content: [
+                  const ToolCallBlock(id: 't1', name: 'read', arguments: {}),
+                ],
+                stopReason: StopReason.toolUse,
+              )),
+            ],
+          ),
+        ),
+        throwsA(isA<StateError>().having(
+          (e) => e.message,
+          'message',
+          contains('attempted to call a tool'),
+        )),
+      );
     });
   });
 }
