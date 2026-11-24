@@ -524,6 +524,52 @@ void main() {
       expect(events.whereType<TurnEnd>(), hasLength(1));
     });
 
+    test('propagates a loop-body failure instead of swallowing it (#5)',
+        () async {
+      // `_streamFromAsync` wrapped the loop body in `catch (_) {}`, so a
+      // failure that escaped `_runLoop` (a throwing stream function, a throwing
+      // transformContext, tool internals) never reached the caller: `agentLoop`
+      // completed with only the events emitted before the throw. The stream must
+      // carry the error so `Agent._run` can surface a structured outcome.
+      await expectLater(
+        () => agentLoop(
+          _context(),
+          _config(),
+          streamFn: ({required context, required config, required apiKey,
+                  required abortSignal}) =>
+              Stream<AgentEvent>.error(Exception('loop body exploded')),
+        ).toList(),
+        throwsA(isA<Exception>().having(
+            (e) => e.toString(), 'toString', contains('loop body exploded'))),
+      );
+    });
+
+    test('propagates a loop-body failure to a late subscriber (#5)', () async {
+      // The loop body runs in a microtask, so a consumer that subscribes after
+      // its first suspension reaches the throw with no listener yet attached.
+      // A `hasListener` guard on the `addError` dropped the error for exactly
+      // that consumer — the same silent completion #5 is about, in the
+      // late-subscriber case. A single-subscription controller buffers an error
+      // added before the first listen, so the caller must still see it.
+      final stream = agentLoop(
+        _context(),
+        _config(),
+        streamFn: ({required context, required config, required apiKey,
+                required abortSignal}) =>
+            Stream<AgentEvent>.error(Exception('body exploded')),
+      );
+
+      // Let the microtask run to completion, so the subscription is armed
+      // strictly after the throw.
+      await Future<void>.delayed(Duration.zero);
+
+      await expectLater(
+        stream.toList(),
+        throwsA(isA<Exception>().having(
+            (e) => e.toString(), 'toString', contains('body exploded'))),
+      );
+    });
+
     for (final reason in [StopReason.error, StopReason.aborted]) {
       test('terminates on $reason with no tool execution (#6)', () async {
         var providerCalls = 0;

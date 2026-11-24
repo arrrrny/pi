@@ -499,6 +499,88 @@ void main() {
       expect(agent.isRunning, isFalse);
       expect(agent.state.isStreaming, isFalse);
     });
+
+    test('a throwing default-path stream surfaces a structured error (#5)',
+        () async {
+      // The real conversation path runs through `_defaultStreamFn` ->
+      // `turnLoop` -> `_streamFromAsync`. A loop-body failure there used to be
+      // swallowed, so the caller saw a normal-looking completion with no error.
+      final agent = Agent(
+        loopStreamFn: ({required context, required config, required apiKey,
+                required abortSignal}) =>
+            Stream.error(Exception('provider exploded')),
+      );
+
+      final events = <AgentEvent>[];
+      agent.subscribe(events.add);
+      await agent.prompt('hello');
+
+      // The failure is a structured assistant message, not model text.
+      final last = agent.state.messages.last as AssistantMessage;
+      expect(last.stopReason, StopReason.error);
+      expect(last.errorMessage, contains('provider exploded'));
+      expect(last.text, isEmpty);
+      expect(agent.state.errorMessage, contains('provider exploded'));
+
+      // The upstream lifecycle sequence is preserved (agent.ts:542-557): the
+      // error message is emitted, the turn closes, then the agent ends.
+      final types = events.map((e) => e.runtimeType.toString()).toList();
+      expect(types.first, 'AgentStart');
+      expect(types.last, 'AgentEnd');
+      expect(types, contains('TurnEnd'));
+      final endMessages =
+          events.whereType<MessageEnd>().map((e) => e.message).toList();
+      expect(endMessages.last, isA<AssistantMessage>());
+      expect((endMessages.last as AssistantMessage).stopReason,
+          StopReason.error);
+    });
+
+    test('a failure during an aborted run uses the aborted stop reason (#5)',
+        () async {
+      // Abort differentiation: the same failure path tags the terminal message
+      // `aborted` (not `error`) when the run was aborted (agent.ts:550).
+      late Agent agent;
+      agent = Agent(
+        streamFn: (ctx, config) async* {
+          agent.abort();
+          throw Exception('aborted mid-stream');
+        },
+      );
+      await agent.prompt('hello');
+
+      final last = agent.state.messages.last as AssistantMessage;
+      expect(last.stopReason, StopReason.aborted);
+      expect(last.errorMessage, contains('aborted mid-stream'));
+      expect(agent.state.errorMessage, contains('aborted mid-stream'));
+    });
+
+    test('a listener throwing at message_start cannot hide the failure (#5)',
+        () async {
+      // The failure sequence used to reduce state only after awaiting the
+      // listeners, so a listener that threw at `message_start` skipped the
+      // `MessageEnd` reduction and dropped `message_end`/`turn_end`/`agent_end`:
+      // the run ended with `state.errorMessage` null — invisible in exactly the
+      // state this change makes observable. Reducing first makes the recording
+      // unconditional.
+      final agent = Agent(
+        streamFn: (ctx, config) => Stream.error(Exception('provider exploded')),
+      );
+      var messageStarts = 0;
+      agent.subscribe((event) {
+        if (event is MessageStart && messageStarts++ == 0) {
+          throw StateError('listener exploded at message_start');
+        }
+      });
+
+      // The listener's own error still propagates to the caller.
+      await expectLater(agent.prompt('hello'), throwsStateError);
+
+      // The failure is recorded anyway.
+      expect(agent.state.errorMessage, contains('provider exploded'));
+      final last = agent.state.messages.last as AssistantMessage;
+      expect(last.stopReason, StopReason.error);
+      expect(last.errorMessage, contains('provider exploded'));
+    });
   });
 
   group('Agent setters', () {

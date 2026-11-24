@@ -399,7 +399,27 @@ class Agent {
 
       await _emitEvent(AgentEnd(messages: List.from(_state.internalMessages)));
     } catch (e) {
-      _state.errorMessage = e.toString();
+      // A run failure is a structured, observable terminal outcome, not a
+      // silent return. Build an assistant error message and emit the same
+      // message_start -> message_end -> turn_end -> agent_end sequence upstream's
+      // `handleRunFailure` produces (packages/agent/src/agent.ts:542-557), so a
+      // consumer sees the failure in both the event stream and the final state.
+      final aborted = _abortCompleter?.isCompleted ?? false;
+      final failure = AssistantMessage(
+        content: const [],
+        stopReason: aborted ? StopReason.aborted : StopReason.error,
+        errorMessage: e.toString(),
+      );
+      // Reduce state before awaiting listeners: a listener that throws at
+      // `message_start` would otherwise skip the `MessageEnd` reduction and
+      // drop the whole terminal sequence, leaving `state.errorMessage` null —
+      // the failure this sequence exists to make observable. The event order
+      // listeners observe is unchanged.
+      _handleEvent(MessageStart(message: failure));
+      _handleEvent(MessageEnd(message: failure));
+      await _emitEvent(MessageStart(message: failure));
+      await _emitEvent(MessageEnd(message: failure));
+      await _emitEvent(TurnEnd(message: failure, toolResults: const []));
       await _emitEvent(AgentEnd(messages: List.from(_state.internalMessages)));
     } finally {
       _state.isStreaming = false;
