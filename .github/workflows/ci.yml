@@ -114,6 +114,23 @@ jobs:
         if: matrix.name == 'other'
         run: npm run build:daemon --workspace packages/env
 
+      # The `other` suite runs `npm run test:scripts`, which includes the
+      # coverage differential harness tests; those spawn `dart run
+      # pi_agent/tool/parity_harness.dart`, so this job needs the Dart SDK and
+      # pi_agent resolved. The other matrix cells run only their own package's
+      # tests and do not touch Dart.
+      - name: Setup Dart
+        if: matrix.name == 'other'
+        uses: dart-lang/setup-dart@2286a0c042b44434fe26d292bbce8d34f7ec662b # v1
+        with:
+          sdk: "3.9"
+
+      - name: Resolve pi_agent dependencies
+        if: matrix.name == 'other'
+        run: |
+          cd pi_agent
+          dart pub get
+
       - name: Test
         env:
           SUITE: ${{ matrix.name }}
