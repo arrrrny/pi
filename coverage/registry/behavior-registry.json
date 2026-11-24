@@ -8120,16 +8120,19 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/harness.dart",
-      "dart_impl": "pi_agent/lib/src/harness.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/chord/context.dart",
+      "dart_test": "pi_agent/test/durable/context_test.dart",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`."
+      },
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "arrrrny/pi#11",
       "id": "chord.packages-chord-src-context-index.ts.awaitWithContext.api",
       "area": "chord",
       "upstream_path": "packages/chord/src/context/index.ts",
@@ -8149,16 +8152,19 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/harness.dart",
-      "dart_impl": "pi_agent/lib/src/harness.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/chord/context.dart",
+      "dart_test": "pi_agent/test/durable/context_test.dart",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`."
+      },
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "arrrrny/pi#11",
       "id": "chord.packages-chord-src-context-index.ts.BACKGROUND_CONTEXT.api",
       "area": "chord",
       "upstream_path": "packages/chord/src/context/index.ts",
@@ -8178,16 +8184,19 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/harness.dart",
-      "dart_impl": "pi_agent/lib/src/harness.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/chord/context.dart",
+      "dart_test": "pi_agent/test/durable/context_test.dart",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`."
+      },
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "arrrrny/pi#11",
       "id": "chord.packages-chord-src-context-index.ts.Context.api",
       "area": "chord",
       "upstream_path": "packages/chord/src/context/index.ts",
@@ -8758,16 +8767,19 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/harness.dart",
-      "dart_impl": "pi_agent/lib/src/harness.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/chord/delta.dart",
+      "dart_test": "pi_agent/test/durable/chord_primitives_test.dart",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`."
+      },
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "arrrrny/pi#11",
       "id": "chord.packages-chord-src-delta-index.ts.apply.api",
       "area": "chord",
       "upstream_path": "packages/chord/src/delta/index.ts",
@@ -8787,16 +8799,19 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/harness.dart",
-      "dart_impl": "pi_agent/lib/src/harness.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/chord/delta.dart",
+      "dart_test": "pi_agent/test/durable/chord_primitives_test.dart",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`."
+      },
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "arrrrny/pi#11",
       "id": "chord.packages-chord-src-delta-index.ts.applyImmutable.api",
       "area": "chord",
       "upstream_path": "packages/chord/src/delta/index.ts",
@@ -8816,16 +8831,19 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/harness.dart",
-      "dart_impl": "pi_agent/lib/src/harness.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/chord/delta.dart",
+      "dart_test": "pi_agent/test/durable/chord_primitives_test.dart",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`."
+      },
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "arrrrny/pi#11",
       "id": "chord.packages-chord-src-delta-index.ts.applyImmutableBatches.api",
       "area": "chord",
       "upstream_path": "packages/chord/src/delta/index.ts",
@@ -9019,16 +9037,19 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/harness.dart",
-      "dart_impl": "pi_agent/lib/src/harness.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/chord/delta.dart",
+      "dart_test": "pi_agent/test/durable/chord_primitives_test.dart",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`."
+      },
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "arrrrny/pi#11",
       "id": "chord.packages-chord-src-delta-index.ts.Draft.api",
       "area": "chord",
       "upstream_path": "packages/chord/src/delta/index.ts",
@@ -9135,16 +9156,19 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/harness.dart",
-      "dart_impl": "pi_agent/lib/src/harness.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/chord/delta.dart",
+      "dart_test": "pi_agent/test/durable/chord_primitives_test.dart",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`."
+      },
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "arrrrny/pi#11",
       "id": "chord.packages-chord-src-delta-index.ts.isReplace.api",
       "area": "chord",
       "upstream_path": "packages/chord/src/delta/index.ts",
@@ -9164,16 +9188,19 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/harness.dart",
-      "dart_impl": "pi_agent/lib/src/harness.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/chord/delta.dart",
+      "dart_test": "pi_agent/test/durable/chord_primitives_test.dart",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`."
+      },
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "arrrrny/pi#11",
       "id": "chord.packages-chord-src-delta-index.ts.JsonValue.api",
       "area": "chord",
       "upstream_path": "packages/chord/src/delta/index.ts",
@@ -9193,16 +9220,19 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/harness.dart",
-      "dart_impl": "pi_agent/lib/src/harness.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/chord/delta.dart",
+      "dart_test": "pi_agent/test/durable/chord_primitives_test.dart",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`."
+      },
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "arrrrny/pi#11",
       "id": "chord.packages-chord-src-delta-index.ts.NonEmptyPath.api",
       "area": "chord",
       "upstream_path": "packages/chord/src/delta/index.ts",
@@ -9222,16 +9252,19 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/harness.dart",
-      "dart_impl": "pi_agent/lib/src/harness.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/chord/delta.dart",
+      "dart_test": "pi_agent/test/durable/chord_primitives_test.dart",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`."
+      },
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "arrrrny/pi#11",
       "id": "chord.packages-chord-src-delta-index.ts.Op.api",
       "area": "chord",
       "upstream_path": "packages/chord/src/delta/index.ts",
@@ -9309,16 +9342,19 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/harness.dart",
-      "dart_impl": "pi_agent/lib/src/harness.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/chord/delta.dart",
+      "dart_test": "pi_agent/test/durable/chord_primitives_test.dart",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`."
+      },
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "arrrrny/pi#11",
       "id": "chord.packages-chord-src-delta-index.ts.Path.api",
       "area": "chord",
       "upstream_path": "packages/chord/src/delta/index.ts",
@@ -9338,16 +9374,19 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/harness.dart",
-      "dart_impl": "pi_agent/lib/src/harness.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/chord/delta.dart",
+      "dart_test": "pi_agent/test/durable/chord_primitives_test.dart",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`."
+      },
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "arrrrny/pi#11",
       "id": "chord.packages-chord-src-delta-index.ts.PathError.api",
       "area": "chord",
       "upstream_path": "packages/chord/src/delta/index.ts",
@@ -9425,16 +9464,19 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/harness.dart",
-      "dart_impl": "pi_agent/lib/src/harness.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/chord/delta.dart",
+      "dart_test": "pi_agent/test/durable/chord_primitives_test.dart",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`."
+      },
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "arrrrny/pi#11",
       "id": "chord.packages-chord-src-delta-index.ts.RESERVED_SEGMENTS.api",
       "area": "chord",
       "upstream_path": "packages/chord/src/delta/index.ts",
@@ -9454,16 +9496,19 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/harness.dart",
-      "dart_impl": "pi_agent/lib/src/harness.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/chord/delta.dart",
+      "dart_test": "pi_agent/test/durable/chord_primitives_test.dart",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`."
+      },
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "arrrrny/pi#11",
       "id": "chord.packages-chord-src-delta-index.ts.Seg.api",
       "area": "chord",
       "upstream_path": "packages/chord/src/delta/index.ts",
@@ -11136,16 +11181,19 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/harness.dart",
-      "dart_impl": "pi_agent/lib/src/harness.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/chord/json.dart",
+      "dart_test": "pi_agent/test/durable/chord_primitives_test.dart",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`."
+      },
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "arrrrny/pi#11",
       "id": "chord.packages-chord-src-json.ts.copyJson.api",
       "area": "chord",
       "upstream_path": "packages/chord/src/json.ts",
@@ -11194,16 +11242,19 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/harness.dart",
-      "dart_impl": "pi_agent/lib/src/harness.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/chord/json.dart",
+      "dart_test": "pi_agent/test/durable/chord_primitives_test.dart",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`."
+      },
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "arrrrny/pi#11",
       "id": "chord.packages-chord-src-json.ts.isJsonValue.api",
       "area": "chord",
       "upstream_path": "packages/chord/src/json.ts",
@@ -53879,16 +53930,19 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/session.dart",
-      "dart_impl": "pi_agent/lib/src/session.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/storage/memory.dart",
+      "dart_test": "pi_agent/test/durable/storage_conformance_test.dart",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`."
+      },
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "arrrrny/pi#11",
       "id": "durable.packages-durable-src-storage-memory.ts.PreparedMemoryCommit.api",
       "area": "durable",
       "upstream_path": "packages/durable/src/storage/memory.ts",
@@ -85592,6 +85646,614 @@
       "export": null,
       "internal": false,
       "behavior_kind": "test"
+    },
+    {
+      "id": "durable.packages-durable-src-ids.ts.idFromNumber.api",
+      "area": "durable",
+      "upstream_path": "packages/durable/src/ids.ts",
+      "export": "idFromNumber",
+      "internal": false,
+      "behavior_kind": "api",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`."
+      },
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/chord/ids.dart",
+      "dart_test": "pi_agent/test/durable/chord_primitives_test.dart",
+      "normative_refs": {
+        "readme": "packages/durable/README.md",
+        "spec": null,
+        "test": null,
+        "example": null
+      },
+      "platforms": [
+        "vm"
+      ],
+      "adapter_requirements": [],
+      "divergence": {
+        "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
+        "approved_by": null
+      },
+      "issue": "arrrrny/pi#11",
+      "description": "Applies the compile-time record-kind brand to a number at a trust boundary."
+    },
+    {
+      "id": "durable.packages-durable-src-ids.ts.seqFromNumber.api",
+      "area": "durable",
+      "upstream_path": "packages/durable/src/ids.ts",
+      "export": "seqFromNumber",
+      "internal": false,
+      "behavior_kind": "api",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`."
+      },
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/chord/ids.dart",
+      "dart_test": "pi_agent/test/durable/chord_primitives_test.dart",
+      "normative_refs": {
+        "readme": "packages/durable/README.md",
+        "spec": null,
+        "test": null,
+        "example": null
+      },
+      "platforms": [
+        "vm"
+      ],
+      "adapter_requirements": [],
+      "divergence": {
+        "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
+        "approved_by": null
+      },
+      "issue": "arrrrny/pi#11",
+      "description": "Applies the commit-sequence brand to a number at a trust boundary."
+    },
+    {
+      "id": "durable.packages-durable-src-errors.ts.errorMessage.api",
+      "area": "durable",
+      "upstream_path": "packages/durable/src/errors.ts",
+      "export": "errorMessage",
+      "internal": false,
+      "behavior_kind": "api",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`."
+      },
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/errors.dart",
+      "dart_test": "pi_agent/test/durable/storage_conformance_test.dart",
+      "normative_refs": {
+        "readme": "packages/durable/README.md",
+        "spec": null,
+        "test": null,
+        "example": null
+      },
+      "platforms": [
+        "vm"
+      ],
+      "adapter_requirements": [],
+      "divergence": {
+        "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
+        "approved_by": null
+      },
+      "issue": "arrrrny/pi#11",
+      "description": "Formats a thrown value without itself throwing."
+    },
+    {
+      "id": "durable.packages-durable-src-errors.ts.ReadAfterWrite.api",
+      "area": "durable",
+      "upstream_path": "packages/durable/src/errors.ts",
+      "export": "ReadAfterWrite",
+      "internal": false,
+      "behavior_kind": "api",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`."
+      },
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/errors.dart",
+      "dart_test": "pi_agent/test/durable/storage_conformance_test.dart",
+      "normative_refs": {
+        "readme": "packages/durable/README.md",
+        "spec": null,
+        "test": null,
+        "example": null
+      },
+      "platforms": [
+        "vm"
+      ],
+      "adapter_requirements": [],
+      "divergence": {
+        "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
+        "approved_by": null
+      },
+      "issue": "arrrrny/pi#11",
+      "description": "A transaction read a table after its first table write."
+    },
+    {
+      "id": "durable.packages-durable-src-errors.ts.StorageRequestError.api",
+      "area": "durable",
+      "upstream_path": "packages/durable/src/errors.ts",
+      "export": "StorageRequestError",
+      "internal": false,
+      "behavior_kind": "api",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`."
+      },
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/errors.dart",
+      "dart_test": "pi_agent/test/durable/storage_conformance_test.dart",
+      "normative_refs": {
+        "readme": "packages/durable/README.md",
+        "spec": null,
+        "test": null,
+        "example": null
+      },
+      "platforms": [
+        "vm"
+      ],
+      "adapter_requirements": [],
+      "divergence": {
+        "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
+        "approved_by": null
+      },
+      "issue": "arrrrny/pi#11",
+      "description": "A storage read failed as an invalid request, with no durable effect."
+    },
+    {
+      "id": "durable.packages-durable-src-errors.ts.SessionFailed.api",
+      "area": "durable",
+      "upstream_path": "packages/durable/src/errors.ts",
+      "export": "SessionFailed",
+      "internal": false,
+      "behavior_kind": "api",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`."
+      },
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/errors.dart",
+      "dart_test": "pi_agent/test/durable/storage_conformance_test.dart",
+      "normative_refs": {
+        "readme": "packages/durable/README.md",
+        "spec": null,
+        "test": null,
+        "example": null
+      },
+      "platforms": [
+        "vm"
+      ],
+      "adapter_requirements": [],
+      "divergence": {
+        "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
+        "approved_by": null
+      },
+      "issue": "arrrrny/pi#11",
+      "description": "The session failed; every later call rejects with the first cause."
+    },
+    {
+      "id": "durable.packages-durable-src-entries.ts.defineEntry.api",
+      "area": "durable",
+      "upstream_path": "packages/durable/src/entries.ts",
+      "export": "defineEntry",
+      "internal": false,
+      "behavior_kind": "api",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`."
+      },
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/entries.dart",
+      "dart_test": "pi_agent/test/durable/entries_documents_test.dart",
+      "normative_refs": {
+        "readme": "packages/durable/README.md",
+        "spec": null,
+        "test": null,
+        "example": null
+      },
+      "platforms": [
+        "vm"
+      ],
+      "adapter_requirements": [],
+      "divergence": {
+        "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
+        "approved_by": null
+      },
+      "issue": "arrrrny/pi#11",
+      "description": "Defines a typed entry kind and refuses an empty kind."
+    },
+    {
+      "id": "durable.packages-durable-src-entries.ts.UserEntry.api",
+      "area": "durable",
+      "upstream_path": "packages/durable/src/entries.ts",
+      "export": "UserEntry",
+      "internal": false,
+      "behavior_kind": "api",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`."
+      },
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/entries.dart",
+      "dart_test": "pi_agent/test/durable/entries_documents_test.dart",
+      "normative_refs": {
+        "readme": "packages/durable/README.md",
+        "spec": null,
+        "test": null,
+        "example": null
+      },
+      "platforms": [
+        "vm"
+      ],
+      "adapter_requirements": [],
+      "divergence": {
+        "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
+        "approved_by": null
+      },
+      "issue": "arrrrny/pi#11",
+      "description": "The built-in `pi.user` entry kind."
+    },
+    {
+      "id": "durable.packages-durable-src-entries.ts.AssistantEntry.api",
+      "area": "durable",
+      "upstream_path": "packages/durable/src/entries.ts",
+      "export": "AssistantEntry",
+      "internal": false,
+      "behavior_kind": "api",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`."
+      },
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/entries.dart",
+      "dart_test": "pi_agent/test/durable/entries_documents_test.dart",
+      "normative_refs": {
+        "readme": "packages/durable/README.md",
+        "spec": null,
+        "test": null,
+        "example": null
+      },
+      "platforms": [
+        "vm"
+      ],
+      "adapter_requirements": [],
+      "divergence": {
+        "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
+        "approved_by": null
+      },
+      "issue": "arrrrny/pi#11",
+      "description": "The built-in `pi.assistant` entry kind."
+    },
+    {
+      "id": "durable.packages-durable-src-entries.ts.SystemEntry.api",
+      "area": "durable",
+      "upstream_path": "packages/durable/src/entries.ts",
+      "export": "SystemEntry",
+      "internal": false,
+      "behavior_kind": "api",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`."
+      },
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/entries.dart",
+      "dart_test": "pi_agent/test/durable/entries_documents_test.dart",
+      "normative_refs": {
+        "readme": "packages/durable/README.md",
+        "spec": null,
+        "test": null,
+        "example": null
+      },
+      "platforms": [
+        "vm"
+      ],
+      "adapter_requirements": [],
+      "divergence": {
+        "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
+        "approved_by": null
+      },
+      "issue": "arrrrny/pi#11",
+      "description": "The built-in `pi.system` entry kind."
+    },
+    {
+      "id": "durable.packages-durable-src-entries.ts.ToolResultEntry.api",
+      "area": "durable",
+      "upstream_path": "packages/durable/src/entries.ts",
+      "export": "ToolResultEntry",
+      "internal": false,
+      "behavior_kind": "api",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`."
+      },
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/entries.dart",
+      "dart_test": "pi_agent/test/durable/entries_documents_test.dart",
+      "normative_refs": {
+        "readme": "packages/durable/README.md",
+        "spec": null,
+        "test": null,
+        "example": null
+      },
+      "platforms": [
+        "vm"
+      ],
+      "adapter_requirements": [],
+      "divergence": {
+        "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
+        "approved_by": null
+      },
+      "issue": "arrrrny/pi#11",
+      "description": "The built-in `pi.tool-result` entry kind."
+    },
+    {
+      "id": "durable.packages-durable-src-entries.ts.ResetEntry.api",
+      "area": "durable",
+      "upstream_path": "packages/durable/src/entries.ts",
+      "export": "ResetEntry",
+      "internal": false,
+      "behavior_kind": "api",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`."
+      },
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/entries.dart",
+      "dart_test": "pi_agent/test/durable/entries_documents_test.dart",
+      "normative_refs": {
+        "readme": "packages/durable/README.md",
+        "spec": null,
+        "test": null,
+        "example": null
+      },
+      "platforms": [
+        "vm"
+      ],
+      "adapter_requirements": [],
+      "divergence": {
+        "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
+        "approved_by": null
+      },
+      "issue": "arrrrny/pi#11",
+      "description": "The built-in `pi.reset` entry kind."
+    },
+    {
+      "id": "durable.packages-durable-src-entries.ts.CompactionEntry.api",
+      "area": "durable",
+      "upstream_path": "packages/durable/src/entries.ts",
+      "export": "CompactionEntry",
+      "internal": false,
+      "behavior_kind": "api",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`."
+      },
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/entries.dart",
+      "dart_test": "pi_agent/test/durable/entries_documents_test.dart",
+      "normative_refs": {
+        "readme": "packages/durable/README.md",
+        "spec": null,
+        "test": null,
+        "example": null
+      },
+      "platforms": [
+        "vm"
+      ],
+      "adapter_requirements": [],
+      "divergence": {
+        "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
+        "approved_by": null
+      },
+      "issue": "arrrrny/pi#11",
+      "description": "The built-in `pi.compaction` entry kind."
+    },
+    {
+      "id": "durable.packages-durable-src-documents.ts.defineDoc.api",
+      "area": "durable",
+      "upstream_path": "packages/durable/src/documents.ts",
+      "export": "defineDoc",
+      "internal": false,
+      "behavior_kind": "api",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`."
+      },
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/entries.dart",
+      "dart_test": "pi_agent/test/durable/entries_documents_test.dart",
+      "normative_refs": {
+        "readme": "packages/durable/README.md",
+        "spec": null,
+        "test": null,
+        "example": null
+      },
+      "platforms": [
+        "vm"
+      ],
+      "adapter_requirements": [],
+      "divergence": {
+        "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
+        "approved_by": null
+      },
+      "issue": "arrrrny/pi#11",
+      "description": "Defines and validates a singleton document definition (session, conversation, or task scope)."
+    },
+    {
+      "id": "durable.packages-durable-src-documents.ts.defineDocFamily.api",
+      "area": "durable",
+      "upstream_path": "packages/durable/src/documents.ts",
+      "export": "defineDocFamily",
+      "internal": false,
+      "behavior_kind": "api",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`."
+      },
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/entries.dart",
+      "dart_test": "pi_agent/test/durable/entries_documents_test.dart",
+      "normative_refs": {
+        "readme": "packages/durable/README.md",
+        "spec": null,
+        "test": null,
+        "example": null
+      },
+      "platforms": [
+        "vm"
+      ],
+      "adapter_requirements": [],
+      "divergence": {
+        "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
+        "approved_by": null
+      },
+      "issue": "arrrrny/pi#11",
+      "description": "Defines and validates a keyed document family definition."
+    },
+    {
+      "id": "durable.packages-durable-src-storage-scan.ts.scanStart.api",
+      "area": "durable",
+      "upstream_path": "packages/durable/src/storage/scan.ts",
+      "export": "scanStart",
+      "internal": false,
+      "behavior_kind": "api",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`."
+      },
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/storage/storage.dart",
+      "dart_test": "pi_agent/test/durable/storage_conformance_test.dart",
+      "normative_refs": {
+        "readme": "packages/durable/README.md",
+        "spec": null,
+        "test": null,
+        "example": null
+      },
+      "platforms": [
+        "vm"
+      ],
+      "adapter_requirements": [],
+      "divergence": {
+        "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
+        "approved_by": null
+      },
+      "issue": "arrrrny/pi#11",
+      "description": "Resolves a scan order and position; a cursor continues in its own order and a different order throws."
+    },
+    {
+      "id": "durable.packages-durable-src-storage-scan.ts.nextCursor.api",
+      "area": "durable",
+      "upstream_path": "packages/durable/src/storage/scan.ts",
+      "export": "nextCursor",
+      "internal": false,
+      "behavior_kind": "api",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`."
+      },
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/storage/storage.dart",
+      "dart_test": "pi_agent/test/durable/storage_conformance_test.dart",
+      "normative_refs": {
+        "readme": "packages/durable/README.md",
+        "spec": null,
+        "test": null,
+        "example": null
+      },
+      "platforms": [
+        "vm"
+      ],
+      "adapter_requirements": [],
+      "divergence": {
+        "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
+        "approved_by": null
+      },
+      "issue": "arrrrny/pi#11",
+      "description": "Builds the continuation of a scan whose last returned item has an ID."
+    },
+    {
+      "id": "durable.packages-durable-src-storage-memory.ts.MemoryStorage.api",
+      "area": "durable",
+      "upstream_path": "packages/durable/src/storage/memory.ts",
+      "export": "MemoryStorage",
+      "internal": false,
+      "behavior_kind": "api",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`."
+      },
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/storage/memory.dart",
+      "dart_test": "pi_agent/test/durable/storage_conformance_test.dart",
+      "normative_refs": {
+        "readme": "packages/durable/README.md",
+        "spec": null,
+        "test": null,
+        "example": null
+      },
+      "platforms": [
+        "vm"
+      ],
+      "adapter_requirements": [],
+      "divergence": {
+        "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
+        "approved_by": null
+      },
+      "issue": "arrrrny/pi#11",
+      "description": "The detached in-memory reference implementation of Storage, which the shared conformance suite validates."
+    },
+    {
+      "id": "durable.packages-durable-src-testing-storage-conformance.ts.createStorageConformance.api",
+      "area": "durable",
+      "upstream_path": "packages/durable/src/testing/storage-conformance.ts",
+      "export": "createStorageConformance",
+      "internal": false,
+      "behavior_kind": "api",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`."
+      },
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/storage/conformance.dart",
+      "dart_test": "pi_agent/test/durable/storage_conformance_test.dart",
+      "normative_refs": {
+        "readme": "packages/durable/README.md",
+        "spec": null,
+        "test": null,
+        "example": null
+      },
+      "platforms": [
+        "vm"
+      ],
+      "adapter_requirements": [],
+      "divergence": {
+        "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
+        "approved_by": null
+      },
+      "issue": "arrrrny/pi#11",
+      "description": "The shared storage conformance suite, registered once per backend and passed unchanged by all three."
     }
   ],
   "unmapped_rationales": []
