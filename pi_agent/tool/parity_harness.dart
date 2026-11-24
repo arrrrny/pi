@@ -8,11 +8,24 @@
 // published surface, and adds no dependency to `pi_agent/pubspec.yaml` — it
 // uses `dart:io` and `dart:convert` only.
 //
+// `agent-loop.*` scenarios drive the REAL `agentLoop` from
+// `package:pi/src/agent_loop.dart` with a scripted `streamFn`, so the outcome
+// is what shipped code produces rather than a parallel switch that can only
+// disagree with a hand-written twin. The remaining kinds have no Dart
+// implementation to drive yet (`durable.*` has no commit boundary in the port,
+// `provider.*` needs a provider transport the harness does not model), so they
+// stay scripted and say so.
+//
 // Usage:
 //   dart run pi_agent/tool/parity_harness.dart --scenario <file>
 
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+
+import 'package:pi/src/agent_loop.dart';
+import 'package:pi/src/types.dart' hide AgentTool;
+import 'package:pi/src/tools.dart';
 
 /// Replace timestamps by their ordinal within the stream (first seen = 0).
 List<Map<String, dynamic>> normalizeTimestamps(List<Map<String, dynamic>> records) {
@@ -131,32 +144,187 @@ List<Map<String, dynamic>> normalizeOutcome(List<Map<String, dynamic>> rawRecord
   return out;
 }
 
-/// Deterministic model of the Dart port's observable behavior for the scripted
-/// scenarios the differential harness supports. Mirrors the switch in
-/// `scripts/coverage/differential/run-ts.mjs` case for case.
+/// Drives the REAL [agentLoop] for an `agent-loop.*` scenario with a scripted
+/// `streamFn`, so the emitted records are what shipped code produces.
 ///
-/// NOTE: This is a scripted model, not the real `agentLoop`. Driving the real
-/// `runAgentLoop` with a deterministic provider would exercise shipped code
-/// rather than a parallel switch — that is the sounder design for the future.
-/// The current approach catches divergence between the two harness switches
-/// but not a real parity regression in `pi_agent/lib/src/agent_loop.dart`.
+/// The scenario describes the provider's turns: turn 0 carries the tool call
+/// under test (with an `arguments_error` when the scenario models a failed
+/// argument parse), and any later turn is a plain assistant message that ends
+/// the run. Every `AgentEvent` the loop emits is reduced to one record, with a
+/// `turn` index so the two sides group interleaving the same way.
+Future<List<Map<String, dynamic>>> runRealAgentLoop(
+    Map<String, dynamic> scenario) async {
+  final toolName = scenario['tool'] as String? ?? 'shell';
+  final argumentsError = scenario['arguments_error'] as String? ??
+      'Expected object';
+  final arguments = (scenario['arguments'] as Map<String, dynamic>?) ??
+      <String, dynamic>{};
+
+  final tool = AgentTool<Map<String, dynamic>, dynamic>(
+    name: toolName,
+    description: 'Scenario tool under test',
+    parameters: {
+      'type': 'object',
+      'properties': <String, dynamic>{},
+    },
+    execute: (id, params, {onUpdate, isAborted}) async =>
+        AgentToolResult<dynamic>(
+      content: const <ContentBlock>[TextBlock('executed')],
+      details: null,
+    ),
+  );
+
+  final context = AgentContext(
+    systemPrompt: 'parity-harness',
+    messages: <AgentMessage>[UserMessage.text(scenario['prompt'] as String? ?? 'go')],
+    tools: <AgentTool<dynamic, dynamic>>[tool],
+  );
+
+  final config = AgentLoopConfig(
+    model: const Model(
+      provider: 'parity',
+      modelId: 'scripted',
+      contextWindow: 128000,
+    ),
+    convertToLlm: (messages) async => messages
+        .map((m) => <String, dynamic>{'role': 'user', 'content': 'parity'})
+        .toList(),
+  );
+
+  var turn = 0;
+  Stream<AgentEvent> scriptedStream({
+    required AgentContext context,
+    required AgentLoopConfig config,
+    required String apiKey,
+    required Completer<void>? abortSignal,
+  }) {
+    final isFirst = turn++ == 0;
+    final message = isFirst
+        ? AssistantMessage(
+            content: <dynamic>[
+              ToolCallBlock(
+                id: 'call-1',
+                name: toolName,
+                arguments: arguments,
+                argumentsError: argumentsError,
+              ),
+            ],
+            stopReason: StopReason.toolUse,
+          )
+        : AssistantMessage(
+            content: const <ContentBlock>[TextBlock('done')],
+            stopReason: StopReason.endTurn,
+          );
+    return Stream<AgentEvent>.fromIterable(<AgentEvent>[
+      MessageStart(message: message),
+      MessageEnd(message: message),
+    ]);
+  }
+
+  final records = <Map<String, dynamic>>[];
+  var turnIndex = 0;
+  num? usageInput;
+  num? usageOutput;
+
+  // The record contract is the OBSERVABLE outcome, not the event plumbing:
+  // `MessageStart`/`MessageEnd` are streaming bookkeeping (the prompt echo
+  // alone emits two of them), so only loop-, turn-, tool-, and usage-level
+  // records are emitted. Both sides compare the same reduced set.
+  await for (final event in agentLoop(
+    context,
+    config,
+    prompts: <AgentMessage>[UserMessage.text(scenario['prompt'] as String? ?? 'go')],
+    streamFn: scriptedStream,
+  )) {
+    switch (event) {
+      case AgentStart():
+        records.add({'turn': 0, 'type': 'event', 'name': 'agent_start'});
+      case AgentEnd():
+        records.add({'turn': turnIndex, 'type': 'event', 'name': 'agent_end'});
+      case TurnStart():
+        turnIndex += 1;
+        records.add({'turn': turnIndex, 'type': 'turn', 'name': 'turn_start'});
+      case TurnEnd(message: final message, toolResults: final results):
+        records.add({
+          'turn': turnIndex,
+          'type': 'turn',
+          'name': 'turn_end',
+          'stop_reason': message is AssistantMessage
+              ? (message.stopReason?.name ?? 'unknown')
+              : 'unknown',
+        });
+        for (final result in results) {
+          records.add({
+            'turn': turnIndex,
+            'type': 'tool_result',
+            'tool_call_id': result.toolCallId,
+            'tool': result.toolName,
+            'is_error': result.isError,
+            'text': result.content
+                .whereType<TextBlock>()
+                .map((b) => b.text)
+                .join('|'),
+          });
+        }
+      case MessageStart(message: final message):
+        if (message is AssistantMessage) {
+          usageInput ??= message.usage?.inputTokens;
+          usageOutput ??= message.usage?.outputTokens;
+        }
+      case MessageEnd(message: final message):
+        if (message is AssistantMessage) {
+          usageInput ??= message.usage?.inputTokens;
+          usageOutput ??= message.usage?.outputTokens;
+        }
+      case ToolExecutionStart(toolCallId: final id, toolName: final name):
+        records.add({
+          'turn': turnIndex,
+          'type': 'tool_execution',
+          'name': 'start',
+          'tool_call_id': id,
+          'tool': name,
+        });
+      case ToolExecutionEnd(
+          toolCallId: final id,
+          toolName: final name,
+          isError: final isError
+        ):
+        records.add({
+          'turn': turnIndex,
+          'type': 'tool_execution',
+          'name': 'end',
+          'tool_call_id': id,
+          'tool': name,
+          'is_error': isError,
+        });
+      case ToolExecutionUpdate():
+        break;
+      default:
+        break;
+    }
+  }
+
+  records.add({
+    'turn': 0,
+    'type': 'usage',
+    'input': usageInput ?? 0,
+    'output': usageOutput ?? 0,
+    'cache': 0,
+  });
+  records.add({'turn': 0, 'type': 'state', 'path': r'$.turns', 'value': turnIndex});
+  return records;
+}
+
+/// Deterministic model of the Dart port's observable behavior for scenarios
+/// that have no Dart implementation to drive yet.
+///
+/// `durable.*` has no commit boundary in the port and `provider.*` needs a
+/// provider transport the harness does not model, so those kinds stay scripted
+/// and are marked as such in the scenario's `dart_model` field.
 List<Map<String, dynamic>> runScripted(Map<String, dynamic> scenario) {
   final records = <Map<String, dynamic>>[];
   void push(Map<String, dynamic> record) => records.add({'turn': 0, ...record});
   switch (scenario['kind']) {
-    case 'agent-loop.tool-arguments-validated':
-      push({'type': 'event', 'name': 'agent_start'});
-      push({
-        'type': 'event',
-        'name': 'tool_call',
-        'tool_call_id': 'call-1',
-        'tool': scenario['tool'] ?? 'shell',
-        'arguments': scenario['arguments'] ?? <String, dynamic>{},
-      });
-      push({'type': 'error', 'code': 'argumentsError', 'message': 'tool arguments failed validation'});
-      push({'type': 'state', 'path': r'$.turns', 'value': 1});
-      push({'type': 'usage', 'input': 0, 'output': 0, 'cache': 0});
-      break;
     case 'durable.commit-boundary':
       push({'type': 'event', 'name': 'agent_start'});
       push({'type': 'commit', 'commit_id': 'commit-1', 'entries': scenario['entries'] ?? <dynamic>[]});
@@ -181,7 +349,7 @@ List<Map<String, dynamic>> runScripted(Map<String, dynamic> scenario) {
   return records;
 }
 
-void main(List<String> argv) {
+void main(List<String> argv) async {
   String? scenarioPath;
   for (var i = 0; i < argv.length; i++) {
     if (argv[i] == '--scenario' && i + 1 < argv.length) {
@@ -204,7 +372,10 @@ void main(List<String> argv) {
     stderr.writeln('parity_harness: unsupported provider kind $providerKind');
     exit(2);
   }
-  final raw = runScripted(scenario);
+  final kind = scenario['kind'] as String? ?? '';
+  final raw = kind.startsWith('agent-loop.')
+      ? await runRealAgentLoop(scenario)
+      : runScripted(scenario);
   final normalized = normalizeOutcome(raw);
   final lines = normalized.map(canonicalStringify).join('\n');
   stdout.writeln(lines);

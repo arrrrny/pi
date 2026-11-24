@@ -99,8 +99,8 @@ function main() {
 		normalization_version: version,
 		equal,
 		row_ids: scenario.row_ids ?? [],
-		left: normalizedLeft,
-		right: normalizedRight,
+		left,
+		right,
 		differences,
 	};
 	const outDir = join("coverage", "differential", "results", sha ?? "unknown");
@@ -117,7 +117,7 @@ function main() {
 		}
 		process.exit(1);
 	}
-	console.log(`run-scenario: ${scenario.name} matches (${normalizedLeft.length} normalized records)`);
+	console.log(`run-scenario: ${scenario.name} matches (${left.length} normalized records)`);
 }
 
 main();

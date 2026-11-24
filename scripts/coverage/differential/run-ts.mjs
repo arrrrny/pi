@@ -28,27 +28,42 @@ function readScenario(path) {
  * scripted scenarios the differential harness supports.
  *
  * Each supported scenario kind returns the raw (pre-normalization) records the
- * TypeScript side would emit: events, transcripts, state, commits, errors, and
- * usage. The Dart harness mirrors this switch case for case.
+ * TypeScript side would emit, mirroring `packages/agent/src/agent-loop.ts`.
+ * For `agent-loop.*` kinds the Dart harness drives the REAL `agentLoop`, so
+ * this side is the only model: it encodes what upstream does, verified against
+ * `agent-loop.ts` — a failed `validateToolArguments` becomes
+ * `createErrorToolResult` with `isError: true` (`agent-loop.ts:734-779`), the
+ * tool result feeds the next turn, and the loop therefore runs two turns for a
+ * single-tool-call scenario.
  *
- * NOTE: This is a scripted model, not the real upstream `agentLoop`. Driving
- * the real package with a deterministic provider would exercise shipped code
- * rather than a parallel switch — that is the sounder design for the future.
- * The current approach catches divergence between the two harness switches
- * but not a real parity regression in `packages/agent/src/agent-loop.ts`.
+ * This side cannot execute the real package: `packages/agent` has no build
+ * output and no installed dependencies in this checkout, and a differential
+ * that needs `npm install` cannot run in the coverage job. So it stays a model
+ * — but it is the only model left, and the Dart side it is compared against is
+ * now shipped code.
  */
 function runScripted(scenario) {
 	const records = [];
 	const push = (record) => records.push({ turn: 0, ...record });
 	switch (scenario.kind) {
 		case "agent-loop.tool-arguments-validated": {
-			// A tool call whose arguments fail validation produces an error event
-			// and no tool result; the loop surfaces the validation error.
-			push({ type: "event", name: "agent_start" });
-			push({ type: "event", name: "tool_call", tool_call_id: "call-1", tool: scenario.tool ?? "shell", arguments: scenario.arguments ?? {} });
-			push({ type: "error", code: "argumentsError", message: "tool arguments failed validation" });
-			push({ type: "state", path: "$.turns", value: 1 });
+			// A tool call whose arguments fail validation resolves to an error
+			// tool result; the result feeds the next turn, which ends the run.
+			const tool = scenario.tool ?? "shell";
+			const argsError = scenario.arguments_error ?? "Expected object";
 			push({ type: "usage", input: 0, output: 0, cache: 0 });
+			push({ type: "state", path: "$.turns", value: 2 });
+			push({ type: "event", name: "agent_start" });
+			records.push(
+				{ turn: 1, type: "tool_result", tool_call_id: "call-1", tool, is_error: true, text: `Invalid arguments for tool "${tool}": ${argsError}` },
+				{ turn: 1, type: "tool_execution", name: "start", tool_call_id: "call-1", tool },
+				{ turn: 1, type: "tool_execution", name: "end", tool_call_id: "call-1", tool, is_error: true },
+				{ turn: 1, type: "turn", name: "turn_start" },
+				{ turn: 1, type: "turn", name: "turn_end", stop_reason: "toolUse" },
+				{ turn: 2, type: "event", name: "agent_end" },
+				{ turn: 2, type: "turn", name: "turn_start" },
+				{ turn: 2, type: "turn", name: "turn_end", stop_reason: "endTurn" },
+			);
 			break;
 		}
 		case "durable.commit-boundary": {

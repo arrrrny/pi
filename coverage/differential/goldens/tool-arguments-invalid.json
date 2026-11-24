@@ -1,5 +1,11 @@
 {"cache":0,"input":0,"output":0,"seq":1,"turn":0,"type":"usage"}
-{"code":"argumentsError","message":"tool arguments failed validation","seq":2,"turn":0,"type":"error"}
-{"path":"$.turns","seq":3,"turn":0,"type":"state","value":1}
-{"name":"agent_start","seq":4,"turn":0,"type":"event"}
-{"arguments":{"command":""},"name":"tool_call","seq":5,"tool":"shell","tool_call_id":"<tool-call-1>","turn":0,"type":"event"}
+{"path":"$.turns","seq":2,"turn":0,"type":"state","value":2}
+{"name":"agent_start","seq":3,"turn":0,"type":"event"}
+{"is_error":true,"seq":4,"text":"Invalid arguments for tool \"shell\": Expected object","tool":"shell","tool_call_id":"<tool-call-1>","turn":1,"type":"tool_result"}
+{"is_error":true,"name":"end","seq":5,"tool":"shell","tool_call_id":"<tool-call-1>","turn":1,"type":"tool_execution"}
+{"name":"start","seq":6,"tool":"shell","tool_call_id":"<tool-call-1>","turn":1,"type":"tool_execution"}
+{"name":"turn_end","seq":7,"stop_reason":"toolUse","turn":1,"type":"turn"}
+{"name":"turn_start","seq":8,"turn":1,"type":"turn"}
+{"name":"agent_end","seq":9,"turn":2,"type":"event"}
+{"name":"turn_end","seq":10,"stop_reason":"endTurn","turn":2,"type":"turn"}
+{"name":"turn_start","seq":11,"turn":2,"type":"turn"}

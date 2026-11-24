@@ -211,6 +211,9 @@ jobs:
                 '3. Regenerate the coverage ledger for the new target SHA:',
                 '   `node scripts/coverage/generate-coverage-manifest.mjs --upstream . --sha ' + upstream + ' --out coverage/upstream/' + upstream + '`',
                 '   then `node scripts/coverage/check-coverage.mjs --manifest coverage/upstream/' + upstream + '/manifest.json`.',
+                '   The working tree is a merge commit, not `' + upstream + '`; the generator',
+                '   warns on that mismatch and generates from the working tree, because',
+                '   `packages/` is vendored here and the pin is a provenance label.',
                 '4. Move the area\'s rows to `verified` in the registry with passing evidence, and re-run `check-coverage.mjs`.',
                 '5. Run `dart analyze` and `dart test -j 2` in `pi_agent/` until green.',
                 '6. Open a PR referencing this issue.',
@@ -219,12 +222,15 @@ jobs:
               ].filter(Boolean).join('\n');
 
               // Dedup: keep one open dart-port issue per area, comment new syncs onto it.
-              const issues = await github.rest.issues.listForRepo({
+              // Paginate: a single page of 20 can miss an existing area issue once
+              // enough port issues are open, which opens a duplicate instead of
+              // commenting on the one that already exists.
+              const issues = await github.paginate(github.rest.issues.listForRepo, {
                 owner: context.repo.owner, repo: context.repo.repo,
-                state: 'open', labels: 'dart-port', per_page: 20,
+                state: 'open', labels: 'dart-port', per_page: 100,
               });
               const titlePrefix = 'Port upstream ' + area + ' changes into pi_agent (Dart)';
-              const existing = issues.data.find((i) => i.title.startsWith(titlePrefix));
+              const existing = issues.find((i) => i.title.startsWith(titlePrefix));
               if (existing) {
                 await github.rest.issues.createComment({
                   owner: context.repo.owner, repo: context.repo.repo,
@@ -266,11 +272,11 @@ jobs:
                 '- pre-sync master: `' + local + '`',
                 '- upstream/main: `' + upstream + '`',
               ].join('\n');
-              const issues = await github.rest.issues.listForRepo({
+              const issues = await github.paginate(github.rest.issues.listForRepo, {
                 owner: context.repo.owner, repo: context.repo.repo,
-                state: 'open', labels: 'dart-port', per_page: 20,
+                state: 'open', labels: 'dart-port', per_page: 100,
               });
-              const existing = issues.data.find((i) => i.title.startsWith('Port upstream apps changes'));
+              const existing = issues.find((i) => i.title.startsWith('Port upstream apps changes'));
               if (existing) {
                 await github.rest.issues.createComment({
                   owner: context.repo.owner, repo: context.repo.repo,
