@@ -67,6 +67,38 @@ const GPT_6_LUNA: Model<"openai-responses"> = {
 	headers: { ...STATIC_HEADERS },
 };
 
+// models.dev stopped listing these Copilot models (Claude Opus 5 and GPT-5.6
+// Terra); the authenticated Copilot catalog still serves them, so keep them with
+// the same metadata models.dev carries for them on the other providers.
+const CLAUDE_OPUS_5: Model<"anthropic-messages"> = {
+	id: "claude-opus-5",
+	name: "Claude Opus 5",
+	api: "anthropic-messages",
+	provider: "github-copilot",
+	baseUrl: BASE_URL,
+	reasoning: true,
+	input: ["text", "image"],
+	cost: { input: 5, output: 25, cacheRead: 0.5, cacheWrite: 6.25 },
+	contextWindow: 1000000,
+	maxTokens: 128000,
+	headers: { ...STATIC_HEADERS },
+	thinkingLevelMap: { xhigh: "xhigh", max: "max" },
+};
+
+const GPT_5_6_TERRA: Model<"openai-responses"> = {
+	id: "gpt-5.6-terra",
+	name: "GPT-5.6 Terra",
+	api: "openai-responses",
+	provider: "github-copilot",
+	baseUrl: BASE_URL,
+	reasoning: true,
+	input: ["text", "image"],
+	cost: openAiStandardCost("gpt-5.6-terra"),
+	contextWindow: 1050000,
+	maxTokens: 128000,
+	headers: { ...STATIC_HEADERS },
+};
+
 // The authenticated Copilot catalog lists this decision model on /v1/systemone (checked 2026-11-02) without
 // a context window or price, and GitHub's Copilot pricing page does not list it. These are Azure's values,
 // which OpenRouter and Vercel AI Gateway also list.
@@ -108,7 +140,7 @@ export default defineProvider({
 					return result;
 				},
 			}),
-			[GPT_6_LUNA],
+			[GPT_6_LUNA, CLAUDE_OPUS_5, GPT_5_6_TERRA],
 		).map((model) => (EXTENDED_CONTEXT_MODEL_IDS.has(model.id) ? { ...model, contextWindow: 1000000 } : model)),
 	classifiers: () => [MICROSOFT_DECISION_1],
 	// Copilot's /responses treats a function tool without `strict` as strict and fills omitted optional arguments
