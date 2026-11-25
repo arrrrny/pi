@@ -42942,16 +42942,17 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/llm_client.dart",
-      "dart_impl": "pi_agent/lib/src/llm_client.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/ai.dart",
+      "dart_impl": "pi_agent/lib/src/ai/overflow.dart",
+      "dart_test": "pi_agent/test/ai/overflow_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/ai/overflow_test.dart",
+        "note": "Ported from packages/ai/src/utils/overflow.ts with the #12438 identifier-boundary fix; overflow_test.dart green under Dart 3.13."
       },
-      "issue": null,
+      "divergence": null,
+      "issue": "https://github.com/arrrrny/pi/issues/29",
       "id": "ai.packages-ai-src-utils-overflow.ts.getOverflowPatterns.api",
       "area": "ai",
       "upstream_path": "packages/ai/src/utils/overflow.ts",
@@ -42971,16 +42972,17 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/llm_client.dart",
-      "dart_impl": "pi_agent/lib/src/llm_client.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/ai.dart",
+      "dart_impl": "pi_agent/lib/src/ai/overflow.dart",
+      "dart_test": "pi_agent/test/ai/overflow_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/ai/overflow_test.dart",
+        "note": "Ported from packages/ai/src/utils/overflow.ts with the #12438 identifier-boundary fix; overflow_test.dart green under Dart 3.13."
       },
-      "issue": null,
+      "divergence": null,
+      "issue": "https://github.com/arrrrny/pi/issues/29",
       "id": "ai.packages-ai-src-utils-overflow.ts.isContextOverflow.api",
       "area": "ai",
       "upstream_path": "packages/ai/src/utils/overflow.ts",
@@ -43000,16 +43002,17 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/llm_client.dart",
-      "dart_impl": "pi_agent/lib/src/llm_client.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/ai.dart",
+      "dart_impl": "pi_agent/lib/src/ai/overflow.dart",
+      "dart_test": "pi_agent/test/ai/overflow_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/ai/overflow_test.dart",
+        "note": "Ported from packages/ai/src/utils/overflow.ts with the #12438 identifier-boundary fix; overflow_test.dart green under Dart 3.13."
       },
-      "issue": null,
+      "divergence": null,
+      "issue": "https://github.com/arrrrny/pi/issues/29",
       "id": "ai.packages-ai-src-utils-overflow.ts.isRecoverableLength.api",
       "area": "ai",
       "upstream_path": "packages/ai/src/utils/overflow.ts",
