@@ -51947,26 +51947,30 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/durable/src/env/index.ts (scaffolded; needs human review).",
+      "description": "api behavior in packages/durable/src/env/index.ts.",
       "normative_refs": {
         "readme": "packages/durable/README.md",
         "spec": null,
-        "test": null,
+        "test": "packages/durable/test/env-line-scan.test.ts",
         "example": null
       },
       "platforms": [
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/session.dart",
-      "dart_impl": "pi_agent/lib/src/session.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/env/line_scan.dart",
+      "dart_test": "pi_agent/test/durable/env_line_scan_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "differential",
+        "scenario": "env-line-scan",
+        "test": "pi_agent/test/durable/env_line_scan_test.dart",
+        "oracle": "dart:convert utf8 whole-input decode (WHATWG TextDecoder equivalent)",
+        "seeds": 5000,
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "durable.packages-durable-src-env-index.ts.LineScan.api",
       "area": "durable",
@@ -51976,26 +51980,30 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/durable/src/env/index.ts (scaffolded; needs human review).",
+      "description": "api behavior in packages/durable/src/env/index.ts.",
       "normative_refs": {
         "readme": "packages/durable/README.md",
         "spec": null,
-        "test": null,
+        "test": "packages/durable/test/env-line-scan.test.ts",
         "example": null
       },
       "platforms": [
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/session.dart",
-      "dart_impl": "pi_agent/lib/src/session.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/env/line_scan.dart",
+      "dart_test": "pi_agent/test/durable/env_line_scan_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "differential",
+        "scenario": "env-line-scan",
+        "test": "pi_agent/test/durable/env_line_scan_test.dart",
+        "oracle": "dart:convert utf8 whole-input decode (WHATWG TextDecoder equivalent)",
+        "seeds": 5000,
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "durable.packages-durable-src-env-index.ts.LineScanner.api",
       "area": "durable",
@@ -52063,26 +52071,30 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/durable/src/env/index.ts (scaffolded; needs human review).",
+      "description": "api behavior in packages/durable/src/env/index.ts.",
       "normative_refs": {
         "readme": "packages/durable/README.md",
         "spec": null,
-        "test": null,
+        "test": "packages/durable/test/env-line-scan.test.ts",
         "example": null
       },
       "platforms": [
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/session.dart",
-      "dart_impl": "pi_agent/lib/src/session.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/env/decode.dart",
+      "dart_test": "pi_agent/test/durable/env_line_scan_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "differential",
+        "scenario": "env-line-scan",
+        "test": "pi_agent/test/durable/env_line_scan_test.dart",
+        "oracle": "dart:convert utf8 whole-input decode (WHATWG TextDecoder equivalent)",
+        "seeds": 5000,
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "durable.packages-durable-src-env-index.ts.rangeDecoder.api",
       "area": "durable",
@@ -52324,26 +52336,30 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/durable/src/env/index.ts (scaffolded; needs human review).",
+      "description": "api behavior in packages/durable/src/env/index.ts.",
       "normative_refs": {
         "readme": "packages/durable/README.md",
         "spec": null,
-        "test": null,
+        "test": "packages/durable/test/env-line-scan.test.ts",
         "example": null
       },
       "platforms": [
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/session.dart",
-      "dart_impl": "pi_agent/lib/src/session.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/env/decode.dart",
+      "dart_test": "pi_agent/test/durable/env_line_scan_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "differential",
+        "scenario": "env-line-scan",
+        "test": "pi_agent/test/durable/env_line_scan_test.dart",
+        "oracle": "dart:convert utf8 whole-input decode (WHATWG TextDecoder equivalent)",
+        "seeds": 5000,
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "durable.packages-durable-src-env-index.ts.startsWithBom.api",
       "area": "durable",
@@ -52353,26 +52369,30 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/durable/src/env/index.ts (scaffolded; needs human review).",
+      "description": "api behavior in packages/durable/src/env/index.ts.",
       "normative_refs": {
         "readme": "packages/durable/README.md",
         "spec": null,
-        "test": null,
+        "test": "packages/durable/test/env-line-scan.test.ts",
         "example": null
       },
       "platforms": [
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/session.dart",
-      "dart_impl": "pi_agent/lib/src/session.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/env/decode.dart",
+      "dart_test": "pi_agent/test/durable/env_line_scan_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "differential",
+        "scenario": "env-line-scan",
+        "test": "pi_agent/test/durable/env_line_scan_test.dart",
+        "oracle": "dart:convert utf8 whole-input decode (WHATWG TextDecoder equivalent)",
+        "seeds": 5000,
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "durable.packages-durable-src-env-index.ts.StreamDecoder.api",
       "area": "durable",
