@@ -205,6 +205,29 @@ function runScripted(scenario) {
 			);
 			break;
 		}
+		case "agent-loop.tool-executes": {
+			// A tool call with VALID arguments reaches the tool body, succeeds,
+			// and its result feeds the next turn, which ends the run. This is the
+			// success branch of the same real-loop path `tool-arguments-validated`
+			// proves on the rejection branch: two turns, a non-error tool result,
+			// and a terminal endTurn.
+			const tool = scenario.tool ?? "shell";
+			const text = scenario.tool_result_text ?? "executed";
+			push({ type: "usage", input: 0, output: 0, cache: 0 });
+			push({ type: "state", path: "$.turns", value: 2 });
+			push({ type: "event", name: "agent_start" });
+			records.push(
+				{ turn: 1, type: "tool_result", tool_call_id: "call-1", tool, is_error: false, text },
+				{ turn: 1, type: "tool_execution", name: "start", tool_call_id: "call-1", tool },
+				{ turn: 1, type: "tool_execution", name: "end", tool_call_id: "call-1", tool, is_error: false },
+				{ turn: 1, type: "turn", name: "turn_start" },
+				{ turn: 1, type: "turn", name: "turn_end", stop_reason: "toolUse" },
+				{ turn: 2, type: "event", name: "agent_end" },
+				{ turn: 2, type: "turn", name: "turn_start" },
+				{ turn: 2, type: "turn", name: "turn_end", stop_reason: "endTurn" },
+			);
+			break;
+		}
 		case "durable.commit-boundary": {
 			// A durable run crosses one commit boundary; the outcome is the same
 			// whether the process crashed before or after the commit (idempotent
