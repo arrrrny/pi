@@ -39,8 +39,12 @@
       ["m", ["items"], [1, 0, 2]]
     ],
     [
-      ["s", ["nested", "deep", "value"], 9]
+      ["s", ["nested", "deep", "value"], 9],
+      ["t", ["text"], 99]
     ]
+  ],
+  "reserved_segment_ops": [
+    ["s", ["__proto__", "isAdmin"], true]
   ],
   "normalization_version": 1
 }

@@ -9297,7 +9297,7 @@
         "golden": "coverage/differential/goldens/chord-delta-apply.json",
         "result": "coverage/differential/results/c11a73bfba1310dc4075ad836254ea87003f409b/chord-delta-apply.json",
         "normalization_version": 1,
-        "note": "Real Dart chord applier (applyImmutableBatches/apply/isReplace/copyJson/isJsonValue) driven by pi_agent/tool/parity_harness.dart, diffed against the upstream-grounded TypeScript model (scripts/coverage/differential/run-ts.mjs). Dart-only tests alone are not parity; this is the differential evidence."
+        "note": "Real Dart chord applier (applyImmutableBatches, the mutable apply, isReplace, copyJson, isJsonValue and the assertSafePath reserved-segment guard) driven by pi_agent/tool/parity_harness.dart, diffed against the upstream-grounded TypeScript model (scripts/coverage/differential/run-ts.mjs). The scenario drives both the immutable and mutable appliers, exercises a reserved segment and the truncate length>=len edge. Dart-only tests alone are not parity; this is the differential evidence. The `mutable_final` record is produced by the shipped mutable `apply`, so this row's verified evidence exercises `apply` itself."
       },
       "divergence": null,
       "issue": null,
@@ -9330,7 +9330,7 @@
         "golden": "coverage/differential/goldens/chord-delta-apply.json",
         "result": "coverage/differential/results/c11a73bfba1310dc4075ad836254ea87003f409b/chord-delta-apply.json",
         "normalization_version": 1,
-        "note": "Real Dart chord applier (applyImmutableBatches/apply/isReplace/copyJson/isJsonValue) driven by pi_agent/tool/parity_harness.dart, diffed against the upstream-grounded TypeScript model (scripts/coverage/differential/run-ts.mjs). Dart-only tests alone are not parity; this is the differential evidence."
+        "note": "Real Dart chord applier (applyImmutableBatches, the mutable apply, isReplace, copyJson, isJsonValue and the assertSafePath reserved-segment guard) driven by pi_agent/tool/parity_harness.dart, diffed against the upstream-grounded TypeScript model (scripts/coverage/differential/run-ts.mjs). The scenario drives both the immutable and mutable appliers, exercises a reserved segment and the truncate length>=len edge. Dart-only tests alone are not parity; this is the differential evidence."
       },
       "divergence": null,
       "issue": null,
@@ -9363,7 +9363,7 @@
         "golden": "coverage/differential/goldens/chord-delta-apply.json",
         "result": "coverage/differential/results/c11a73bfba1310dc4075ad836254ea87003f409b/chord-delta-apply.json",
         "normalization_version": 1,
-        "note": "Real Dart chord applier (applyImmutableBatches/apply/isReplace/copyJson/isJsonValue) driven by pi_agent/tool/parity_harness.dart, diffed against the upstream-grounded TypeScript model (scripts/coverage/differential/run-ts.mjs). Dart-only tests alone are not parity; this is the differential evidence."
+        "note": "Real Dart chord applier (applyImmutableBatches, the mutable apply, isReplace, copyJson, isJsonValue and the assertSafePath reserved-segment guard) driven by pi_agent/tool/parity_harness.dart, diffed against the upstream-grounded TypeScript model (scripts/coverage/differential/run-ts.mjs). The scenario drives both the immutable and mutable appliers, exercises a reserved segment and the truncate length>=len edge. Dart-only tests alone are not parity; this is the differential evidence."
       },
       "divergence": null,
       "issue": null,
@@ -9570,7 +9570,7 @@
         "golden": "coverage/differential/goldens/chord-delta-apply.json",
         "result": "coverage/differential/results/c11a73bfba1310dc4075ad836254ea87003f409b/chord-delta-apply.json",
         "normalization_version": 1,
-        "note": "Real Dart chord applier (applyImmutableBatches/apply/isReplace/copyJson/isJsonValue) driven by pi_agent/tool/parity_harness.dart, diffed against the upstream-grounded TypeScript model (scripts/coverage/differential/run-ts.mjs). Dart-only tests alone are not parity; this is the differential evidence."
+        "note": "Real Dart chord applier (applyImmutableBatches, the mutable apply, isReplace, copyJson, isJsonValue and the assertSafePath reserved-segment guard) driven by pi_agent/tool/parity_harness.dart, diffed against the upstream-grounded TypeScript model (scripts/coverage/differential/run-ts.mjs). The scenario drives both the immutable and mutable appliers, exercises a reserved segment and the truncate length>=len edge. Dart-only tests alone are not parity; this is the differential evidence."
       },
       "divergence": null,
       "issue": null,
@@ -9690,7 +9690,7 @@
         "golden": "coverage/differential/goldens/chord-delta-apply.json",
         "result": "coverage/differential/results/c11a73bfba1310dc4075ad836254ea87003f409b/chord-delta-apply.json",
         "normalization_version": 1,
-        "note": "Real Dart chord applier (applyImmutableBatches/apply/isReplace/copyJson/isJsonValue) driven by pi_agent/tool/parity_harness.dart, diffed against the upstream-grounded TypeScript model (scripts/coverage/differential/run-ts.mjs). Dart-only tests alone are not parity; this is the differential evidence."
+        "note": "Real Dart chord applier (applyImmutableBatches, the mutable apply, isReplace, copyJson, isJsonValue and the assertSafePath reserved-segment guard) driven by pi_agent/tool/parity_harness.dart, diffed against the upstream-grounded TypeScript model (scripts/coverage/differential/run-ts.mjs). The scenario drives both the immutable and mutable appliers, exercises a reserved segment and the truncate length>=len edge. Dart-only tests alone are not parity; this is the differential evidence."
       },
       "divergence": null,
       "issue": null,
@@ -9755,7 +9755,7 @@
         "golden": "coverage/differential/goldens/chord-delta-apply.json",
         "result": "coverage/differential/results/c11a73bfba1310dc4075ad836254ea87003f409b/chord-delta-apply.json",
         "normalization_version": 1,
-        "note": "Real Dart chord applier (applyImmutableBatches/apply/isReplace/copyJson/isJsonValue) driven by pi_agent/tool/parity_harness.dart, diffed against the upstream-grounded TypeScript model (scripts/coverage/differential/run-ts.mjs). Dart-only tests alone are not parity; this is the differential evidence."
+        "note": "Real Dart chord applier (applyImmutableBatches, the mutable apply, isReplace, copyJson, isJsonValue and the assertSafePath reserved-segment guard) driven by pi_agent/tool/parity_harness.dart, diffed against the upstream-grounded TypeScript model (scripts/coverage/differential/run-ts.mjs). The scenario drives both the immutable and mutable appliers, exercises a reserved segment and the truncate length>=len edge. Dart-only tests alone are not parity; this is the differential evidence."
       },
       "divergence": null,
       "issue": null,
@@ -9788,7 +9788,7 @@
         "golden": "coverage/differential/goldens/chord-delta-apply.json",
         "result": "coverage/differential/results/c11a73bfba1310dc4075ad836254ea87003f409b/chord-delta-apply.json",
         "normalization_version": 1,
-        "note": "Real Dart chord applier (applyImmutableBatches/apply/isReplace/copyJson/isJsonValue) driven by pi_agent/tool/parity_harness.dart, diffed against the upstream-grounded TypeScript model (scripts/coverage/differential/run-ts.mjs). Dart-only tests alone are not parity; this is the differential evidence."
+        "note": "Real Dart chord applier (applyImmutableBatches, the mutable apply, isReplace, copyJson, isJsonValue and the assertSafePath reserved-segment guard) driven by pi_agent/tool/parity_harness.dart, diffed against the upstream-grounded TypeScript model (scripts/coverage/differential/run-ts.mjs). The scenario drives both the immutable and mutable appliers, exercises a reserved segment and the truncate length>=len edge. Dart-only tests alone are not parity; this is the differential evidence."
       },
       "divergence": null,
       "issue": null,
@@ -9879,7 +9879,7 @@
         "golden": "coverage/differential/goldens/chord-delta-apply.json",
         "result": "coverage/differential/results/c11a73bfba1310dc4075ad836254ea87003f409b/chord-delta-apply.json",
         "normalization_version": 1,
-        "note": "Real Dart chord applier (applyImmutableBatches/apply/isReplace/copyJson/isJsonValue) driven by pi_agent/tool/parity_harness.dart, diffed against the upstream-grounded TypeScript model (scripts/coverage/differential/run-ts.mjs). Dart-only tests alone are not parity; this is the differential evidence."
+        "note": "Real Dart chord applier (applyImmutableBatches, the mutable apply, isReplace, copyJson, isJsonValue and the assertSafePath reserved-segment guard) driven by pi_agent/tool/parity_harness.dart, diffed against the upstream-grounded TypeScript model (scripts/coverage/differential/run-ts.mjs). The scenario drives both the immutable and mutable appliers, exercises a reserved segment and the truncate length>=len edge. Dart-only tests alone are not parity; this is the differential evidence."
       },
       "divergence": null,
       "issue": null,
@@ -9912,7 +9912,7 @@
         "golden": "coverage/differential/goldens/chord-delta-apply.json",
         "result": "coverage/differential/results/c11a73bfba1310dc4075ad836254ea87003f409b/chord-delta-apply.json",
         "normalization_version": 1,
-        "note": "Real Dart chord applier (applyImmutableBatches/apply/isReplace/copyJson/isJsonValue) driven by pi_agent/tool/parity_harness.dart, diffed against the upstream-grounded TypeScript model (scripts/coverage/differential/run-ts.mjs). Dart-only tests alone are not parity; this is the differential evidence."
+        "note": "Real Dart chord applier (applyImmutableBatches, the mutable apply, isReplace, copyJson, isJsonValue and the assertSafePath reserved-segment guard) driven by pi_agent/tool/parity_harness.dart, diffed against the upstream-grounded TypeScript model (scripts/coverage/differential/run-ts.mjs). The scenario drives both the immutable and mutable appliers, exercises a reserved segment and the truncate length>=len edge. Dart-only tests alone are not parity; this is the differential evidence."
       },
       "divergence": null,
       "issue": null,
@@ -10003,7 +10003,7 @@
         "golden": "coverage/differential/goldens/chord-delta-apply.json",
         "result": "coverage/differential/results/c11a73bfba1310dc4075ad836254ea87003f409b/chord-delta-apply.json",
         "normalization_version": 1,
-        "note": "Real Dart chord applier (applyImmutableBatches/apply/isReplace/copyJson/isJsonValue) driven by pi_agent/tool/parity_harness.dart, diffed against the upstream-grounded TypeScript model (scripts/coverage/differential/run-ts.mjs). Dart-only tests alone are not parity; this is the differential evidence."
+        "note": "Real Dart chord applier (applyImmutableBatches, the mutable apply, isReplace, copyJson, isJsonValue and the assertSafePath reserved-segment guard) driven by pi_agent/tool/parity_harness.dart, diffed against the upstream-grounded TypeScript model (scripts/coverage/differential/run-ts.mjs). The scenario drives both the immutable and mutable appliers, exercises a reserved segment and the truncate length>=len edge. Dart-only tests alone are not parity; this is the differential evidence. The `reserved_segment` error record writes through `__proto__` and asserts UnsafePathError on both sides, exercising the guard this row names."
       },
       "divergence": null,
       "issue": null,
@@ -10036,7 +10036,7 @@
         "golden": "coverage/differential/goldens/chord-delta-apply.json",
         "result": "coverage/differential/results/c11a73bfba1310dc4075ad836254ea87003f409b/chord-delta-apply.json",
         "normalization_version": 1,
-        "note": "Real Dart chord applier (applyImmutableBatches/apply/isReplace/copyJson/isJsonValue) driven by pi_agent/tool/parity_harness.dart, diffed against the upstream-grounded TypeScript model (scripts/coverage/differential/run-ts.mjs). Dart-only tests alone are not parity; this is the differential evidence."
+        "note": "Real Dart chord applier (applyImmutableBatches, the mutable apply, isReplace, copyJson, isJsonValue and the assertSafePath reserved-segment guard) driven by pi_agent/tool/parity_harness.dart, diffed against the upstream-grounded TypeScript model (scripts/coverage/differential/run-ts.mjs). The scenario drives both the immutable and mutable appliers, exercises a reserved segment and the truncate length>=len edge. Dart-only tests alone are not parity; this is the differential evidence."
       },
       "divergence": null,
       "issue": null,
@@ -11722,7 +11722,7 @@
         "golden": "coverage/differential/goldens/chord-delta-apply.json",
         "result": "coverage/differential/results/c11a73bfba1310dc4075ad836254ea87003f409b/chord-delta-apply.json",
         "normalization_version": 1,
-        "note": "Real Dart chord applier (applyImmutableBatches/apply/isReplace/copyJson/isJsonValue) driven by pi_agent/tool/parity_harness.dart, diffed against the upstream-grounded TypeScript model (scripts/coverage/differential/run-ts.mjs). Dart-only tests alone are not parity; this is the differential evidence."
+        "note": "Real Dart chord applier (applyImmutableBatches, the mutable apply, isReplace, copyJson, isJsonValue and the assertSafePath reserved-segment guard) driven by pi_agent/tool/parity_harness.dart, diffed against the upstream-grounded TypeScript model (scripts/coverage/differential/run-ts.mjs). The scenario drives both the immutable and mutable appliers, exercises a reserved segment and the truncate length>=len edge. Dart-only tests alone are not parity; this is the differential evidence."
       },
       "divergence": null,
       "issue": null,
@@ -11784,7 +11784,7 @@
         "golden": "coverage/differential/goldens/chord-delta-apply.json",
         "result": "coverage/differential/results/c11a73bfba1310dc4075ad836254ea87003f409b/chord-delta-apply.json",
         "normalization_version": 1,
-        "note": "Real Dart chord applier (applyImmutableBatches/apply/isReplace/copyJson/isJsonValue) driven by pi_agent/tool/parity_harness.dart, diffed against the upstream-grounded TypeScript model (scripts/coverage/differential/run-ts.mjs). Dart-only tests alone are not parity; this is the differential evidence."
+        "note": "Real Dart chord applier (applyImmutableBatches, the mutable apply, isReplace, copyJson, isJsonValue and the assertSafePath reserved-segment guard) driven by pi_agent/tool/parity_harness.dart, diffed against the upstream-grounded TypeScript model (scripts/coverage/differential/run-ts.mjs). The scenario drives both the immutable and mutable appliers, exercises a reserved segment and the truncate length>=len edge. Dart-only tests alone are not parity; this is the differential evidence."
       },
       "divergence": null,
       "issue": null,

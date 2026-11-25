@@ -40,22 +40,47 @@
       }
     },
     {
-      "name": "input_unchanged",
+      "name": "mutable_final",
       "seq": 2,
+      "type": "delta",
+      "value": {
+        "count": 2,
+        "items": [
+          "x",
+          "a",
+          "b"
+        ],
+        "nested": {
+          "deep": {
+            "value": 9
+          }
+        },
+        "text": "world!"
+      }
+    },
+    {
+      "name": "input_unchanged",
+      "seq": 3,
       "type": "delta",
       "value": true
     },
     {
       "name": "is_replace_first",
-      "seq": 3,
+      "seq": 4,
       "type": "delta",
       "value": false
     },
     {
       "name": "input_is_json",
-      "seq": 4,
+      "seq": 5,
       "type": "delta",
       "value": true
+    },
+    {
+      "name": "reserved_segment",
+      "seq": 6,
+      "type": "error",
+      "value": "UnsafePathError: __proto__"
     }
   ],
   "right": [
@@ -79,22 +104,47 @@
       }
     },
     {
-      "name": "input_unchanged",
+      "name": "mutable_final",
       "seq": 2,
+      "type": "delta",
+      "value": {
+        "count": 2,
+        "items": [
+          "x",
+          "a",
+          "b"
+        ],
+        "nested": {
+          "deep": {
+            "value": 9
+          }
+        },
+        "text": "world!"
+      }
+    },
+    {
+      "name": "input_unchanged",
+      "seq": 3,
       "type": "delta",
       "value": true
     },
     {
       "name": "is_replace_first",
-      "seq": 3,
+      "seq": 4,
       "type": "delta",
       "value": false
     },
     {
       "name": "input_is_json",
-      "seq": 4,
+      "seq": 5,
       "type": "delta",
       "value": true
+    },
+    {
+      "name": "reserved_segment",
+      "seq": 6,
+      "type": "error",
+      "value": "UnsafePathError: __proto__"
     }
   ],
   "differences": []

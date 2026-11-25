@@ -130,6 +130,12 @@ class PathError extends Error {
 /// `Object.prototype` for the whole process. Ops arrive from a facet, a plugin
 /// compartment, or a tool whose details may echo model output, so none of it is
 /// trusted input.
+///
+/// A Dart `Map` has no prototype chain, so these keys are harmless own entries
+/// here — the pollution the comment describes cannot occur. The applier still
+/// rejects them through [assertSafePath], mirroring upstream's guard for
+/// behavioral parity: a path carrying a reserved segment fails with
+/// [UnsafePathError] on both sides of the differential, not just in JS.
 // The name is the upstream `RESERVED_SEGMENTS` identifier, kept verbatim.
 // ignore: constant_identifier_names
 const Set<String> RESERVED_SEGMENTS = <String>{
@@ -137,6 +143,50 @@ const Set<String> RESERVED_SEGMENTS = <String>{
   'constructor',
   'prototype',
 };
+
+/// Thrown when an op's path is unsafe to walk (upstream `UnsafePathError`).
+///
+/// A string segment in [RESERVED_SEGMENTS] would reach the prototype chain in
+/// JS; a negative or non-integer segment is not a valid index. Dart `Map`s are
+/// immune to the pollution, but the guard is enforced for parity with the
+/// upstream applier, which rejects the same paths.
+class UnsafePathError extends Error {
+  /// The offending path segment.
+  UnsafePathError(this.segment);
+
+  /// The segment that was rejected.
+  final Object segment;
+
+  @override
+  String toString() => 'UnsafePathError(unsafe path segment: $segment)';
+}
+
+/// Reject paths upstream refuses to walk (upstream `assertSafePath`).
+///
+/// Called once per op before any container is copied or written, so a reserved
+/// segment is rejected identically in the mutable and immutable appliers.
+void assertSafePath(Path path) {
+  for (final segment in path) {
+    if (segment is String) {
+      if (RESERVED_SEGMENTS.contains(segment)) {
+        throw UnsafePathError(segment);
+      }
+    } else if (segment is! int || segment < 0) {
+      throw UnsafePathError(segment);
+    }
+  }
+}
+
+/// The path an op walks, or `null` for a root replacement (no path is walked).
+Path? _opPath(Op op) => switch (op) {
+      OpReplace() => null,
+      OpSet(:final path) => path,
+      OpDelete(:final path) => path,
+      OpAppend(:final path) => path,
+      OpTruncate(:final path) => path,
+      OpInsert(:final path) => path,
+      OpMove(:final path) => path,
+    };
 
 /// Whether [op] replaces the whole value (the `r` verb).
 bool isReplace(Op op) => op is OpReplace;
@@ -149,6 +199,8 @@ bool isReplace(Op op) => op is OpReplace;
 Object? apply(Object? target, List<Op> ops) {
   Object? root = target;
   for (final op in ops) {
+    final path = _opPath(op);
+    if (path != null) assertSafePath(path);
     switch (op) {
       case OpReplace(:final value):
         root = value;
@@ -178,6 +230,8 @@ Object? applyImmutableBatches(Object? target, Iterable<List<Op>> batches) {
   Object? root = target;
   for (final ops in batches) {
     for (final op in ops) {
+      final path = _opPath(op);
+      if (path != null) assertSafePath(path);
       switch (op) {
         case OpReplace(:final value):
           root = value;

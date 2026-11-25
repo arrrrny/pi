@@ -31,6 +31,19 @@ function readScenario(path) {
 // model deep-clones the target and applies the decoded ops mutably, which is
 // observationally identical to the copy-on-write applier for the final value.
 
+const RESERVED_SEGMENTS = new Set(["__proto__", "constructor", "prototype"]);
+
+/** Mirror of upstream `assertSafePath` — a write through a reserved segment fails. */
+function assertSafePath(path) {
+	for (const seg of path) {
+		if (typeof seg === "string") {
+			if (RESERVED_SEGMENTS.has(seg)) throw new Error(`unsafe path segment: ${seg}`);
+		} else if (!Number.isInteger(seg) || seg < 0) {
+			throw new Error(`unsafe path segment: ${String(seg)}`);
+		}
+	}
+}
+
 function resolveNode(root, path) {
 	let node = root;
 	for (const seg of path) {
@@ -50,6 +63,7 @@ function applyMutable(root, op) {
 	const verb = op[0];
 	if (verb === "r") return op[1];
 	const path = op[1];
+	assertSafePath(path);
 	if (verb === "p") {
 		const target = path.length === 0 ? root : resolveNode(root, path);
 		if (!Array.isArray(target)) throw new Error("PathError");
@@ -87,7 +101,9 @@ function applyMutable(root, op) {
 		case "t": {
 			const current = read();
 			if (typeof current !== "string") throw new Error("PathError");
-			write(current.slice(op[2]));
+			// Mirror shipped `OpTruncate`: a length at or past the end keeps the
+			// whole string (`slice` alone would return "" and diverge on this edge).
+			write(op[2] >= current.length ? current : current.slice(op[2]));
 			break;
 		}
 		default:
@@ -110,18 +126,37 @@ function runChordDeltaApply(scenario) {
 	const input = scenario.initial ?? null;
 	const batches = scenario.batches ?? [];
 	const before = JSON.stringify(input);
+	// The model applies ops mutably (mirrors shipped `apply`); the immutable path
+	// produces the same final value, so both records are emitted and compared.
 	let root = structuredClone(input);
 	for (const ops of batches) {
 		for (const op of ops) root = applyMutable(root, op);
 	}
+	const mutableRoot = root;
 	const inputUnchanged = JSON.stringify(input) === before;
 	const firstOp = batches.length > 0 && batches[0].length > 0 ? batches[0][0] : null;
 	const isReplaceFirst = firstOp !== null && firstOp[0] === "r";
+
+	const reservedOps = scenario.reserved_segment_ops ?? [];
+	let reservedError = "no error";
+	if (reservedOps.length > 0) {
+		try {
+			let r = {};
+			for (const op of reservedOps) r = applyMutable(r, op);
+		} catch (error) {
+			const message = String(error?.message ?? error);
+			reservedError = message.startsWith("unsafe path segment:")
+				? `UnsafePathError: ${message.slice("unsafe path segment: ".length)}`
+				: message;
+		}
+	}
 	return [
 		{ type: "delta", name: "final", value: root },
+		{ type: "delta", name: "mutable_final", value: mutableRoot },
 		{ type: "delta", name: "input_unchanged", value: inputUnchanged },
 		{ type: "delta", name: "is_replace_first", value: isReplaceFirst },
 		{ type: "delta", name: "input_is_json", value: isJsonValue(input) },
+		{ type: "error", name: "reserved_segment", value: reservedError },
 	];
 }
 

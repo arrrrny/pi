@@ -344,10 +344,11 @@ Op decodeOp(List<dynamic> wire) {
 
 /// Drives the REAL chord delta applier for a `chord.delta-apply` scenario.
 ///
-/// The observable contract is the final value, that the caller's input was left
-/// unmutated (the immutability guarantee), and the `isReplace` classification of
-/// the first op — all produced by the shipped `applyImmutableBatches`/`apply`/
-/// `isReplace`, not a parallel twin.
+/// The observable contract is the final value (immutable and mutable paths),
+/// that the caller's input was left unmutated (the immutability guarantee), the
+/// `isReplace` classification of the first op, and the reserved-segment guard —
+/// all produced by the shipped `applyImmutableBatches`/`apply`/`isReplace`/
+/// `assertSafePath`, not a parallel twin.
 List<Map<String, dynamic>> runChordDeltaApply(Map<String, dynamic> scenario) {
   final input = scenario['initial'];
   final batches = (scenario['batches'] as List)
@@ -355,14 +356,39 @@ List<Map<String, dynamic>> runChordDeltaApply(Map<String, dynamic> scenario) {
           (batch as List).map((op) => decodeOp((op as List).toList())).toList())
       .toList();
   final before = canonicalStringify(input);
+
+  // The immutable path drives the shipped copy-on-write applier.
   final root = applyImmutableBatches(copyJson(input), batches);
+  // The same batches through the PR's headline mutable `apply`, on a fresh
+  // copy, so the differential actually exercises `apply` (not just the unit
+  // test) as the `apply.api` verified evidence claims.
+  final mutableRoot = apply(copyJson(input), batches.expand((batch) => batch).toList());
+
   final inputUnchanged = canonicalStringify(input) == before;
   final isReplaceFirst = firstOpIsReplace(batches);
+
+  // Reserved-segment guard (upstream `assertSafePath`): a write through a
+  // reserved segment must fail with UnsafePathError on both sides, so
+  // `RESERVED_SEGMENTS.api`'s verified evidence exercises the guard.
+  final reservedOps = (scenario['reserved_segment_ops'] as List? ?? <dynamic>[])
+      .map((op) => decodeOp((op as List).toList()))
+      .toList();
+  var reservedError = 'no error';
+  if (reservedOps.isNotEmpty) {
+    try {
+      apply(<String, Object?>{}, reservedOps);
+    } on UnsafePathError catch (error) {
+      reservedError = 'UnsafePathError: ${error.segment}';
+    }
+  }
+
   return <Map<String, dynamic>>[
     {'type': 'delta', 'name': 'final', 'value': root},
+    {'type': 'delta', 'name': 'mutable_final', 'value': mutableRoot},
     {'type': 'delta', 'name': 'input_unchanged', 'value': inputUnchanged},
     {'type': 'delta', 'name': 'is_replace_first', 'value': isReplaceFirst},
     {'type': 'delta', 'name': 'input_is_json', 'value': isJsonValue(input)},
+    {'type': 'error', 'name': 'reserved_segment', 'value': reservedError},
   ];
 }
 

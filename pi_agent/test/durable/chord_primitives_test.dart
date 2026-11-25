@@ -222,5 +222,17 @@ void main() {
     test('names the three prototype-chain segments', () {
       expect(RESERVED_SEGMENTS, <String>{'__proto__', 'constructor', 'prototype'});
     });
+
+    test('both appliers reject reserved segments with UnsafePathError', () {
+      for (final segment in RESERVED_SEGMENTS) {
+        final op = OpSet(<Seg>[segment, 'x'], true);
+        expect(
+            () => applyImmutable(<String, Object?>{}, <Op>[op]),
+            throwsA(isA<UnsafePathError>()));
+        expect(
+            () => apply(<String, Object?>{}, <Op>[op]),
+            throwsA(isA<UnsafePathError>()));
+      }
+    });
   });
 }
