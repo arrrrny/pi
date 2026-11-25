@@ -25,7 +25,8 @@ final class _NoopUpDownCounter implements TelemetryUpDownCounter {
 
 final class _NoopHistogram implements TelemetryHistogram {
   @override
-  void record(num value, [SpanAttributes? attributes, TelemetryContext? context]) {}
+  void record(num value,
+      [SpanAttributes? attributes, TelemetryContext? context]) {}
 }
 
 /// Shared metrics whose instruments never retain metadata or measurements.
@@ -36,7 +37,8 @@ final class _NoopMetrics implements TelemetryMetrics {
   TelemetryCounter counter(String name, [InstrumentOptions? options]) =>
       _noopCounter;
   @override
-  TelemetryUpDownCounter upDownCounter(String name, [InstrumentOptions? options]) =>
+  TelemetryUpDownCounter upDownCounter(String name,
+          [InstrumentOptions? options]) =>
       _noopUpDownCounter;
   @override
   TelemetryHistogram histogram(String name, [HistogramOptions? options]) =>

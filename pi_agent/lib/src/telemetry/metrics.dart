@@ -42,7 +42,8 @@ abstract interface class TelemetryUpDownCounter {
 /// A distribution-recording instrument.
 abstract interface class TelemetryHistogram {
   /// Records [value] with optional [attributes] and [context].
-  void record(num value, [SpanAttributes? attributes, TelemetryContext? context]);
+  void record(num value,
+      [SpanAttributes? attributes, TelemetryContext? context]);
 }
 
 /// Optional adapter capability with synchronous instrument factories.
@@ -51,7 +52,8 @@ abstract interface class TelemetryMetrics {
   TelemetryCounter counter(String name, [InstrumentOptions? options]);
 
   /// Creates an up/down counter named [name].
-  TelemetryUpDownCounter upDownCounter(String name, [InstrumentOptions? options]);
+  TelemetryUpDownCounter upDownCounter(String name,
+      [InstrumentOptions? options]);
 
   /// Creates a histogram named [name].
   TelemetryHistogram histogram(String name, [HistogramOptions? options]);

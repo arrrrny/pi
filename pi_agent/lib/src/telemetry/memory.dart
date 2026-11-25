@@ -29,7 +29,8 @@ class RecordedTelemetryEvent {
 /// A recorded link on a span, before settlement.
 class RecordedTelemetryLink {
   /// Creates a recorded link.
-  const RecordedTelemetryLink({required this.context, required this.attributes});
+  const RecordedTelemetryLink(
+      {required this.context, required this.attributes});
 
   /// The linked span's context carrier.
   final TelemetryCarrier context;
@@ -229,7 +230,11 @@ SpanStatus _copyStatus(SpanStatus status) {
 /// Backend-neutral reference recorder that keeps spans and measurements in
 /// process memory. Create a fresh instance to isolate tests or scopes.
 class InMemoryTelemetryContext
-    implements TelemetryContext, TelemetryPropagation, TelemetryMetrics, TelemetryStore {
+    implements
+        TelemetryContext,
+        TelemetryPropagation,
+        TelemetryMetrics,
+        TelemetryStore {
   /// Creates an empty in-memory recorder with a fresh scope.
   InMemoryTelemetryContext() : _scope = _newScope();
 
@@ -271,7 +276,8 @@ class InMemoryTelemetryContext
         'pi-memory-span': '$id',
         'pi-memory-trace': traceId,
       },
-      parentContext: parent == null ? null : Map<String, String>.of(parent.context),
+      parentContext:
+          parent == null ? null : Map<String, String>.of(parent.context),
       links: links,
       name: options.name,
       attributes: attributes,
@@ -305,22 +311,23 @@ class InMemoryTelemetryContext
       if (!recorded.explicitStatus) {
         recorded.status = error is Error
             ? SpanStatus.error(
-                error: SpanError(
-                    name: 'Error', message: error.toString()))
+                error: SpanError(name: 'Error', message: error.toString()))
             : const SpanStatus.error();
       }
       rethrow;
     } finally {
       recorded.settled = true;
       recorded.endedMs =
-          ((recorded.startedMs + (_nowClock() - recorded.clock)) * 1000).round() / 1000;
+          ((recorded.startedMs + (_nowClock() - recorded.clock)) * 1000)
+                  .round() /
+              1000;
       recorded.endSequence = _nextEndSequence++;
     }
   }
 
   @override
   Future<T> startSpan<T>(SpanOptions options,
-      FutureOr<T> Function(TelemetrySpan span) callback) =>
+          FutureOr<T> Function(TelemetrySpan span) callback) =>
       _startSpan<T>(null, options, callback);
 
   @override
@@ -352,10 +359,11 @@ class InMemoryTelemetryContext
     final carrier = context == null ? null : _carriers[context];
     final description = options?.description;
     final unit = options?.unit;
-    final boundaries =
-        kind == MetricKind.histogram && options is HistogramOptions && options.boundaries != null
-            ? [...options.boundaries!]
-            : null;
+    final boundaries = kind == MetricKind.histogram &&
+            options is HistogramOptions &&
+            options.boundaries != null
+        ? [...options.boundaries!]
+        : null;
     _measurements.add(_Measurement(
       (DateTime.now().millisecondsSinceEpoch ~/ 10000) * 10000,
       RecordedTelemetryMeasurement(
@@ -376,7 +384,8 @@ class InMemoryTelemetryContext
       _Counter(this, MetricKind.counter, name, options);
 
   @override
-  TelemetryUpDownCounter upDownCounter(String name, [InstrumentOptions? options]) =>
+  TelemetryUpDownCounter upDownCounter(String name,
+          [InstrumentOptions? options]) =>
       _Counter(this, MetricKind.upDownCounter, name, options);
 
   @override
@@ -392,7 +401,8 @@ class InMemoryTelemetryContext
       result.add(StoredSpan(
         id: _carrierId(span.context),
         traceId: span.context['pi-memory-trace']!,
-        parentId: span.parentContext == null ? null : _carrierId(span.parentContext!),
+        parentId:
+            span.parentContext == null ? null : _carrierId(span.parentContext!),
         name: span.name,
         startedMs: span.startedMs,
         endedMs: ended,
@@ -400,7 +410,9 @@ class InMemoryTelemetryContext
         events: [
           for (final e in span.events)
             StoredEvent(
-                name: e.name, timeMs: e.timeMs, attributes: _copyAttributes(e.attributes)),
+                name: e.name,
+                timeMs: e.timeMs,
+                attributes: _copyAttributes(e.attributes)),
         ],
         links: [
           for (final l in span.links)
@@ -434,36 +446,42 @@ class InMemoryTelemetryContext
     List<Object>? after;
     if (query.cursor != null) {
       final decoded = jsonDecode(query.cursor!) as List<Object?>;
-      after = [decoded[0]! , decoded[1]!];
+      after = [decoded[0]!, decoded[1]!];
     }
     final grouped = <String, StoredTrace>{};
     for (final span in _storedSpans()) {
-      grouped.putIfAbsent(span.traceId, () => StoredTrace(traceId: span.traceId, spans: []));
+      grouped.putIfAbsent(
+          span.traceId, () => StoredTrace(traceId: span.traceId, spans: []));
       grouped[span.traceId]!.spans.add(span);
     }
     final matches = grouped.values.where((trace) {
       final first = trace.spans.first;
       if (query.name != null && first.name != query.name) return false;
-      if (query.startMin != null && first.startedMs < query.startMin!) return false;
-      if (query.startMax != null && first.startedMs > query.startMax!) return false;
+      if (query.startMin != null && first.startedMs < query.startMin!)
+        return false;
+      if (query.startMax != null && first.startedMs > query.startMax!)
+        return false;
       if (after != null) {
         final a = after[0] as num;
         final b = after[1] as String;
-        if (!(first.startedMs < a || (first.startedMs == a && trace.traceId.compareTo(b) > 0))) {
+        if (!(first.startedMs < a ||
+            (first.startedMs == a && trace.traceId.compareTo(b) > 0))) {
           return false;
         }
       }
-      if (query.errors == true && !trace.spans.any((s) => s.status.isError)) return false;
+      if (query.errors == true && !trace.spans.any((s) => s.status.isError))
+        return false;
       final attrs = query.attributes;
       if (attrs != null) {
-        final ok = trace.spans.any((span) => attrs.entries.every(
-            (e) => _attrEquals(span.attributes[e.key], e.value)));
+        final ok = trace.spans.any((span) => attrs.entries
+            .every((e) => _attrEquals(span.attributes[e.key], e.value)));
         if (!ok) return false;
       }
       return true;
     }).toList()
       ..sort((a, b) {
-        final byStart = b.spans.first.startedMs.compareTo(a.spans.first.startedMs);
+        final byStart =
+            b.spans.first.startedMs.compareTo(a.spans.first.startedMs);
         if (byStart != 0) return byStart;
         return a.traceId.compareTo(b.traceId);
       });
@@ -581,8 +599,10 @@ final class _Histogram implements TelemetryHistogram {
   final String _name;
   final HistogramOptions? _options;
   @override
-  void record(num value, [SpanAttributes? attributes, TelemetryContext? context]) =>
-      _ctx._record(value, MetricKind.histogram, _name, _options, attributes, context);
+  void record(num value,
+          [SpanAttributes? attributes, TelemetryContext? context]) =>
+      _ctx._record(
+          value, MetricKind.histogram, _name, _options, attributes, context);
 }
 
 final class _MemorySpan implements TelemetrySpan {
@@ -598,7 +618,8 @@ final class _MemorySpan implements TelemetrySpan {
   @override
   Future<T> startSpan<T>(SpanOptions options,
           FutureOr<T> Function(TelemetrySpan span) callback) =>
-      _ctx._startSpan<T>(_InMemoryParent(_span.context, _span.id, _span), options, callback);
+      _ctx._startSpan<T>(
+          _InMemoryParent(_span.context, _span.id, _span), options, callback);
 
   @override
   void addLink(SpanLink link) {
@@ -664,5 +685,6 @@ final class _ExtractedContext implements TelemetryContext {
   @override
   Future<T> startSpan<T>(SpanOptions options,
           FutureOr<T> Function(TelemetrySpan span) callback) =>
-      _ctx._startSpan<T>(_InMemoryParent(_context, _localId, null), options, callback);
+      _ctx._startSpan<T>(
+          _InMemoryParent(_context, _localId, null), options, callback);
 }

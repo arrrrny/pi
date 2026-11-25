@@ -153,8 +153,10 @@ String renderTrace(List<StoredSpan> spans) {
       );
     }
     for (final link in span.links) {
-      final ids = 'trace ${_escaped(link.traceId)} span ${_escaped(link.spanId)}';
-      lines.add('$indent  → link $ids${_formatAttributes(link.attributes ?? {})}');
+      final ids =
+          'trace ${_escaped(link.traceId)} span ${_escaped(link.spanId)}';
+      lines.add(
+          '$indent  → link $ids${_formatAttributes(link.attributes ?? {})}');
     }
     final descendants = children[span.id] ?? const [];
     for (var index = descendants.length - 1; index >= 0; index--) {
