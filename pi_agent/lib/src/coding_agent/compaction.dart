@@ -9,6 +9,8 @@
 // preparation layer it builds on, so it has no provider or stream dependency.
 library;
 
+import 'dart:convert';
+
 import '../types.dart';
 
 /// File paths touched by a conversation branch, deduplicated per kind.
@@ -151,20 +153,20 @@ String _truncateForSummary(String text) {
       '[... $truncatedChars more characters truncated]';
 }
 
-/// Concatenates the text blocks of [content] (image and tool-call blocks are
-/// ignored, matching upstream `contentText`).
+/// Concatenates the text blocks of [content] with the upstream `contentText`
+/// separator (`"\n"`) between them. Image, thinking and tool-call blocks are
+/// ignored.
 String _contentText(List<dynamic> content) {
-  final buffer = StringBuffer();
-  for (final block in content) {
-    if (block is TextBlock) buffer.write(block.text);
-  }
-  return buffer.toString();
+  return content
+      .whereType<TextBlock>()
+      .map((block) => block.text)
+      .join('\n');
 }
 
 /// JSON-encodes a tool-call argument value the way upstream's
 /// `JSON.stringify` renders it inside a serialized tool call.
 String _jsonEncode(Object? value) {
-  if (value is String) return '"$value"';
+  if (value is String) return jsonEncode(value);
   return '$value';
 }
 
@@ -282,13 +284,43 @@ BranchPreparation prepareBranchEntries(
   return BranchPreparation(messages: messages, totalTokens: totalTokens);
 }
 
+/// Character count of the text blocks in [content].
+///
+/// Mirrors upstream `estimateTextAndImageContentChars` without the image
+/// constant: separators are not counted, only the text itself.
+int _contentChars(List<dynamic> content) {
+  var chars = 0;
+  for (final block in content) {
+    if (block is TextBlock) chars += block.text.length;
+  }
+  return chars;
+}
+
 /// Estimates the tokens [message] occupies (chars/4, rounded up).
+///
+/// Mirrors upstream `estimateTokens`: an assistant turn's tool calls contribute
+/// `name.length + JSON.stringify(arguments).length` and thinking blocks
+/// contribute `thinking.length`, so a tool-call-only turn is never estimated at
+/// zero tokens.
 int _estimateTokens(AgentMessage message) {
-  final text = switch (message) {
-    UserMessage(:final content) => _contentText(content),
-    AssistantMessage(:final content) => _contentText(content),
-    ToolResultMessage(:final content) => _contentText(content),
-    CustomMessage(:final display) => display,
-  };
-  return (text.length / 4).ceil();
+  var chars = 0;
+  switch (message) {
+    case UserMessage(:final content):
+      chars = _contentChars(content);
+    case AssistantMessage(:final content):
+      for (final block in content) {
+        if (block is TextBlock) {
+          chars += block.text.length;
+        } else if (block is ThinkingBlock) {
+          chars += block.text.length;
+        } else if (block is ToolCallBlock) {
+          chars += block.name.length + jsonEncode(block.arguments).length;
+        }
+      }
+    case ToolResultMessage(:final content):
+      chars = _contentChars(content);
+    case CustomMessage(:final display):
+      chars = display.length;
+  }
+  return (chars / 4).ceil();
 }

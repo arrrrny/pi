@@ -13,6 +13,8 @@
 // `generateBranchSummary` is a separate slice; this file covers only the pure
 // preparation layer.
 
+import 'dart:convert';
+
 import 'package:pi/coding_agent.dart';
 import 'package:test/test.dart';
 
@@ -86,6 +88,35 @@ void main() {
       expect(text, contains('[Tool result]: file body'));
     });
 
+    test('joins multiple text blocks with the upstream newline separator', () {
+      final messages = <AgentMessage>[
+        UserMessage(content: <ContentBlock>[
+          const TextBlock('a'),
+          const TextBlock('b'),
+        ]),
+      ];
+
+      expect(serializeConversation(messages), '[User]: a\nb');
+    });
+
+    test('escapes string arguments like JSON.stringify', () {
+      final messages = <AgentMessage>[
+        AssistantMessage(content: <dynamic>[
+          const ToolCallBlock(
+              id: 'c1',
+              name: 'bash',
+              arguments: <String, dynamic>{'cmd': 'a"b\\c\nd'}),
+        ]),
+      ];
+
+      // jsonEncode quotes and escapes the value; the hand-rolled '"$value"'
+      // emitted a broken, unescaped JSON string.
+      expect(
+        serializeConversation(messages),
+        '[Assistant tool calls]: bash(cmd=${jsonEncode('a"b\\c\nd')})',
+      );
+    });
+
     test('truncates a long tool result and notes the remainder', () {
       final long = 'x' * 2500;
       final messages = <AgentMessage>[
@@ -151,6 +182,41 @@ void main() {
       expect((limited.messages.single as UserMessage).content.first.toString(),
           'TextBlock(new)');
       expect(limited.totalTokens, 1);
+    });
+
+    test('counts tool-call and thinking blocks toward the token budget', () {
+      final callEntry = MessageEntry(
+          id: 'c1',
+          parentId: '',
+          timestamp: DateTime(1),
+          role: 'assistant',
+          message: AssistantMessage(content: <dynamic>[
+            const ToolCallBlock(
+                id: 't1',
+                name: 'read',
+                arguments: <String, dynamic>{'path': 'a.dart'}),
+          ]));
+      final thinkingEntry = MessageEntry(
+          id: 't1',
+          parentId: '',
+          timestamp: DateTime(2),
+          role: 'assistant',
+          message: AssistantMessage(
+              content: <dynamic>[const ThinkingBlock('abcd')]));
+
+      // Upstream counts name.length + JSON.stringify(arguments).length for a
+      // tool call and thinking.length for a thinking block; chars/4, ceil.
+      final callChars = 'read'.length + '{"path":"a.dart"}'.length;
+      expect(prepareBranchEntries(<SessionTreeEntry>[callEntry], 0).totalTokens,
+          (callChars / 4).ceil());
+      expect(
+          prepareBranchEntries(<SessionTreeEntry>[thinkingEntry], 0).totalTokens,
+          1);
+
+      // A tool-call-only turn that exceeds the budget must not be kept — this
+      // was the bug when only text blocks contributed tokens (estimate 0).
+      expect(prepareBranchEntries(<SessionTreeEntry>[callEntry], 1).messages,
+          isEmpty);
     });
 
     test('returns no messages for an empty branch', () {
