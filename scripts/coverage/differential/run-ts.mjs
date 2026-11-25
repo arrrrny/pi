@@ -23,6 +23,143 @@ function readScenario(path) {
 	return JSON.parse(readFileSync(path, "utf8"));
 }
 
+// ─── chord.delta-apply model ────────────────────────────────────────────────
+//
+// A faithful model of `packages/chord/src/delta/index.ts`'s observable
+// contract: `applyImmutableBatches` never mutates its input, a root replacement
+// is adopted, and the op vocabulary (s/d/a/t/p/m/r) applies to plain JSON. The
+// model deep-clones the target and applies the decoded ops mutably, which is
+// observationally identical to the copy-on-write applier for the final value.
+
+const RESERVED_SEGMENTS = new Set(["__proto__", "constructor", "prototype"]);
+
+/** Mirror of upstream `assertSafePath` — a write through a reserved segment fails. */
+function assertSafePath(path) {
+	for (const seg of path) {
+		if (typeof seg === "string") {
+			if (RESERVED_SEGMENTS.has(seg)) throw new Error(`unsafe path segment: ${seg}`);
+		} else if (!Number.isInteger(seg) || seg < 0) {
+			throw new Error(`unsafe path segment: ${String(seg)}`);
+		}
+	}
+}
+
+function resolveNode(root, path) {
+	let node = root;
+	for (const seg of path) {
+		if (Array.isArray(node)) {
+			if (typeof seg !== "number") throw new Error("PathError");
+			node = node[seg];
+		} else if (node !== null && typeof node === "object") {
+			node = node[seg];
+		} else {
+			throw new Error("PathError");
+		}
+	}
+	return node;
+}
+
+function applyMutable(root, op) {
+	const verb = op[0];
+	if (verb === "r") return op[1];
+	const path = op[1];
+	assertSafePath(path);
+	if (verb === "p") {
+		const target = path.length === 0 ? root : resolveNode(root, path);
+		if (!Array.isArray(target)) throw new Error("PathError");
+		target.splice(op[2], op[3]);
+		target.splice(op[2], 0, ...op[4]);
+		return root;
+	}
+	if (verb === "m") {
+		const target = path.length === 0 ? root : resolveNode(root, path);
+		if (!Array.isArray(target) || target.length !== op[2].length) throw new Error("PathError");
+		const previous = target.slice();
+		for (let index = 0; index < op[2].length; index++) target[index] = previous[op[2][index]];
+		return root;
+	}
+	const parent = resolveNode(root, path.slice(0, -1));
+	const key = path[path.length - 1];
+	const read = () => (Array.isArray(parent) ? parent[key] : parent[key]);
+	const write = (value) => {
+		parent[key] = value;
+	};
+	switch (verb) {
+		case "s":
+			write(op[2]);
+			break;
+		case "d":
+			if (Array.isArray(parent)) parent.splice(key, 1);
+			else delete parent[key];
+			break;
+		case "a": {
+			const current = read();
+			if (typeof current !== "string") throw new Error("PathError");
+			write(`${current}${op[2]}`);
+			break;
+		}
+		case "t": {
+			const current = read();
+			if (typeof current !== "string") throw new Error("PathError");
+			// Mirror shipped `OpTruncate`: a length at or past the end keeps the
+			// whole string (`slice` alone would return "" and diverge on this edge).
+			write(op[2] >= current.length ? current : current.slice(op[2]));
+			break;
+		}
+		default:
+			throw new Error(`unknown verb ${verb}`);
+	}
+	return root;
+}
+
+function isJsonValue(value) {
+	if (value === null || typeof value === "string" || typeof value === "boolean") return true;
+	if (typeof value === "number") return Number.isFinite(value);
+	if (Array.isArray(value)) return value.every((item) => isJsonValue(item));
+	if (typeof value === "object") {
+		return Object.keys(value).every((key) => isJsonValue(value[key]));
+	}
+	return false;
+}
+
+function runChordDeltaApply(scenario) {
+	const input = scenario.initial ?? null;
+	const batches = scenario.batches ?? [];
+	const before = JSON.stringify(input);
+	// The model applies ops mutably (mirrors shipped `apply`); the immutable path
+	// produces the same final value, so both records are emitted and compared.
+	let root = structuredClone(input);
+	for (const ops of batches) {
+		for (const op of ops) root = applyMutable(root, op);
+	}
+	const mutableRoot = root;
+	const inputUnchanged = JSON.stringify(input) === before;
+	const firstOp = batches.length > 0 && batches[0].length > 0 ? batches[0][0] : null;
+	const isReplaceFirst = firstOp !== null && firstOp[0] === "r";
+
+	const reservedOps = scenario.reserved_segment_ops ?? [];
+	let reservedError = "no error";
+	if (reservedOps.length > 0) {
+		try {
+			let r = {};
+			for (const op of reservedOps) r = applyMutable(r, op);
+		} catch (error) {
+			const message = String(error?.message ?? error);
+			reservedError = message.startsWith("unsafe path segment:")
+				? `UnsafePathError: ${message.slice("unsafe path segment: ".length)}`
+				: message;
+		}
+	}
+	return [
+		{ type: "delta", name: "final", value: root },
+		{ type: "delta", name: "mutable_final", value: mutableRoot },
+		{ type: "delta", name: "input_unchanged", value: inputUnchanged },
+		{ type: "delta", name: "is_replace_first", value: isReplaceFirst },
+		{ type: "delta", name: "input_is_json", value: isJsonValue(input) },
+		{ type: "error", name: "reserved_segment", value: reservedError },
+	];
+}
+
 /**
  * Deterministic model of the upstream agent loop's observable behavior for the
  * scripted scenarios the differential harness supports.
@@ -46,6 +183,8 @@ function runScripted(scenario) {
 	const records = [];
 	const push = (record) => records.push({ turn: 0, ...record });
 	switch (scenario.kind) {
+		case "chord.delta-apply":
+			return runChordDeltaApply(scenario);
 		case "agent-loop.tool-arguments-validated": {
 			// A tool call whose arguments fail validation resolves to an error
 			// tool result; the result feeds the next turn, which ends the run.

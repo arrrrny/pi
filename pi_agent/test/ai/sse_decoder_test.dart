@@ -100,6 +100,11 @@ void main() {
     });
 
     test('reads a large streamed line in linear, not quadratic, time', () {
+      // WORKAROUND (pi#67): this wall-clock bound flakes on the shared forklift
+      // host under concurrent load (observed 12.2s against the 10s limit while
+      // the decoder code was untouched). Treat a red here as host contention,
+      // not a regression; verify decoder changes with the functional cases in
+      // this file. See https://github.com/arrrrny/pi/issues/67.
       // A pre-#12451 reader that rescanned the whole pending buffer per chunk
       // copies about (size / chunk) * size characters: 2 MiB in 256 B chunks is
       // ~16 GB of copying and takes seconds. The linear decoder finishes far
