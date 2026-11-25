@@ -6,5 +6,18 @@
 /// and commit it ports.
 library;
 
+export 'src/coding_agent/compaction.dart';
 export 'src/coding_agent/jsonl.dart';
 export 'src/coding_agent/shell.dart';
+export 'src/types.dart' show
+    AgentMessage,
+    AssistantMessage,
+    ContentBlock,
+    CustomMessage,
+    MessageEntry,
+    SessionTreeEntry,
+    TextBlock,
+    ThinkingBlock,
+    ToolCallBlock,
+    ToolResultMessage,
+    UserMessage;
