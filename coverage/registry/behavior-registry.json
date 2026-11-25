@@ -52512,11 +52512,11 @@
       "dart_entrypoint": "package:pi/session.dart",
       "dart_impl": "pi_agent/lib/src/session.dart",
       "dart_test": null,
-      "status": "unported",
+      "status": "not_applicable",
       "evidence": null,
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+        "reason": "Node.js execution environment (packages/durable/src/env/node.ts). The Dart port models durable behavior natively and ships no Node env: LocalExecutionEnv (pi_agent/lib/src/execution_env.dart) runs the host /bin/sh on the Linux/macOS pool hosts. The 2026-11-25 sync's only durable change here is Windows Git Bash discovery (findGitBashOfGitOnPath via `git var GIT_SHELL_PATH`), which has no Dart surface. Platform/scope exclusion per spec 004 (the port models, rather than ports, durable behavior).",
+        "approved_by": "arrrrny"
       },
       "issue": null,
       "id": "durable.packages-durable-src-env-node.ts.NodeExecutionEnv.api",
@@ -52541,11 +52541,11 @@
       "dart_entrypoint": "package:pi/session.dart",
       "dart_impl": "pi_agent/lib/src/session.dart",
       "dart_test": null,
-      "status": "unported",
+      "status": "not_applicable",
       "evidence": null,
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+        "reason": "Node.js file-watcher options (packages/durable/src/env/node.ts, NodeWatchOptions). The Dart port ships no Node file watcher and models durable behavior natively; the 2026-11-25 sync did not change NodeWatchOptions. Platform/scope exclusion per spec 004 (the port models, rather than ports, durable behavior).",
+        "approved_by": "arrrrny"
       },
       "issue": null,
       "id": "durable.packages-durable-src-env-node.ts.NodeWatchOptions.api",
@@ -54864,11 +54864,11 @@
       "dart_entrypoint": "package:pi/session.dart",
       "dart_impl": "pi_agent/lib/src/session.dart",
       "dart_test": null,
-      "status": "unported",
+      "status": "not_applicable",
       "evidence": null,
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+        "reason": "Upstream NodeTextLineReader linear-time line-scan test (packages/durable/test/env-line-scan.test.ts). The Dart port has no streaming Node line reader; its JSONL and session readers use content.split('\\n') and file.readAsLines() (pi_agent/lib/src/durable/storage/jsonl.dart, session_storage.dart), which are already linear-time, so the upstream quadratic-rescan fix has no Dart surface to port. Platform/scope exclusion per spec 004.",
+        "approved_by": "arrrrny"
       },
       "issue": null,
       "id": "durable.packages-durable-test-env-line-scan.test.ts.internal.test",
