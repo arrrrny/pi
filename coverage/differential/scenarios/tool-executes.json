@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "name": "tool-executes",
+  "kind": "agent-loop.tool-executes",
+  "area": "agent",
+  "row_ids": ["agent.packages-agent-src-agent-loop.ts.runToolCall.api"],
+  "provider": { "kind": "scripted", "turns": [] },
+  "clock": { "kind": "virtual", "start": "2026-01-01T00:00:00Z" },
+  "storage": { "kind": "memory" },
+  "crash_points": [],
+  "tool": "shell",
+  "arguments": { "command": "echo hi" },
+  "arguments_error": null,
+  "tool_result_text": "executed",
+  "normalization_version": 1
+}

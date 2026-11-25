@@ -172,8 +172,12 @@ List<Map<String, dynamic>> normalizeOutcome(
 Future<List<Map<String, dynamic>>> runRealAgentLoop(
     Map<String, dynamic> scenario) async {
   final toolName = scenario['tool'] as String? ?? 'shell';
-  final argumentsError =
-      scenario['arguments_error'] as String? ?? 'Expected object';
+  // An absent `arguments_error` models the historical default (a failed parse);
+  // an explicit null models a VALID call that reaches the tool body, so the
+  // same real-loop path proves both the rejection and the success branch.
+  final argumentsError = scenario.containsKey('arguments_error')
+      ? scenario['arguments_error'] as String?
+      : 'Expected object';
   final arguments =
       (scenario['arguments'] as Map<String, dynamic>?) ?? <String, dynamic>{};
 
@@ -355,8 +359,8 @@ Op decodeOp(List<dynamic> wire) {
       return OpInsert((wire[1] as List).cast<Seg>(), wire[2] as int,
           wire[3] as int, (wire[4] as List).cast<Object?>());
     case 'm':
-      return OpMove((wire[1] as List).cast<Seg>(),
-          (wire[2] as List).cast<int>());
+      return OpMove(
+          (wire[1] as List).cast<Seg>(), (wire[2] as List).cast<int>());
     default:
       throw StateError('unknown op verb: $verb');
   }
@@ -382,7 +386,8 @@ List<Map<String, dynamic>> runChordDeltaApply(Map<String, dynamic> scenario) {
   // The same batches through the PR's headline mutable `apply`, on a fresh
   // copy, so the differential actually exercises `apply` (not just the unit
   // test) as the `apply.api` verified evidence claims.
-  final mutableRoot = apply(copyJson(input), batches.expand((batch) => batch).toList());
+  final mutableRoot =
+      apply(copyJson(input), batches.expand((batch) => batch).toList());
 
   final inputUnchanged = canonicalStringify(input) == before;
   final isReplaceFirst = firstOpIsReplace(batches);
@@ -414,7 +419,9 @@ List<Map<String, dynamic>> runChordDeltaApply(Map<String, dynamic> scenario) {
 
 /// Whether the first op of the first batch is a root replacement.
 bool firstOpIsReplace(List<List<Op>> batches) =>
-    batches.isNotEmpty && batches.first.isNotEmpty && isReplace(batches.first.first);
+    batches.isNotEmpty &&
+    batches.first.isNotEmpty &&
+    isReplace(batches.first.first);
 
 /// Deterministic model of the Dart port's observable behavior for scenarios
 /// that have no Dart implementation to drive yet.
@@ -794,8 +801,7 @@ void main(List<String> argv) async {
   } else {
     raw = runScripted(scenario);
   }
-  final normalized =
-      normalizeOutcome(normalizeGeneratedToolCallIds(raw));
+  final normalized = normalizeOutcome(normalizeGeneratedToolCallIds(raw));
   final lines = normalized.map(canonicalStringify).join('\n');
   stdout.writeln(lines);
 }

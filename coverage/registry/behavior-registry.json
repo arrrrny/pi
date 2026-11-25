@@ -50421,10 +50421,10 @@
       "status": "unported",
       "evidence": null,
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "Example (examples/mcp-codemode/main.ts) is not ported; examples are out of the Dart package surface. Tracked in #71.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "#71",
       "id": "agent.packages-agent-examples-mcp-codemode-main.ts.internal.example",
       "area": "agent",
       "upstream_path": "packages/agent/examples/mcp-codemode/main.ts",
@@ -50450,10 +50450,10 @@
       "status": "unported",
       "evidence": null,
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "Example (examples/mcp-codemode/tools.ts) is not ported; examples are out of the Dart package surface. Tracked in #71.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "#71",
       "id": "agent.packages-agent-examples-mcp-codemode-tools.ts.internal.example",
       "area": "agent",
       "upstream_path": "packages/agent/examples/mcp-codemode/tools.ts",
@@ -50479,10 +50479,10 @@
       "status": "unported",
       "evidence": null,
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "AgentEventSink is not a Dart export; the loop emits AgentEvent through a stream, not a sink interface. Tracked in #71.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "#71",
       "id": "agent.packages-agent-src-agent-loop.ts.AgentEventSink.api",
       "area": "agent",
       "upstream_path": "packages/agent/src/agent-loop.ts",
@@ -50517,7 +50517,7 @@
       "issue": null
     },
     {
-      "description": "api behavior in packages/agent/src/agent-loop.ts (scaffolded; needs human review).",
+      "description": "agentLoopContinue ported (continues from existing context, throws on empty context).",
       "normative_refs": {
         "readme": "packages/agent/README.md",
         "spec": null,
@@ -50530,13 +50530,14 @@
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_test": "pi_agent/test/agent_loop_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/agent_loop_test.dart",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "agent.packages-agent-src-agent-loop.ts.agentLoopContinue.api",
       "area": "agent",
@@ -50563,10 +50564,10 @@
       "status": "unported",
       "evidence": null,
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "DEFAULT_AGENT_IDENTITY has no Dart equivalent; the port sets identity per request via client identity utils. Tracked in #71.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "#71",
       "id": "agent.packages-agent-src-agent-loop.ts.DEFAULT_AGENT_IDENTITY.api",
       "area": "agent",
       "upstream_path": "packages/agent/src/agent-loop.ts",
@@ -50575,7 +50576,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/agent/src/agent-loop.ts (scaffolded; needs human review).",
+      "description": "runAgentLoop ported (collects the final messages from agentLoop).",
       "normative_refs": {
         "readme": "packages/agent/README.md",
         "spec": null,
@@ -50588,13 +50589,14 @@
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_test": "pi_agent/test/agent_loop_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/agent_loop_test.dart",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "agent.packages-agent-src-agent-loop.ts.runAgentLoop.api",
       "area": "agent",
@@ -50604,7 +50606,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/agent/src/agent-loop.ts (scaffolded; needs human review).",
+      "description": "runAgentLoopContinue ported (collects the final messages from agentLoopContinue).",
       "normative_refs": {
         "readme": "packages/agent/README.md",
         "spec": null,
@@ -50617,13 +50619,14 @@
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_test": "pi_agent/test/agent_loop_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/agent_loop_test.dart",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "agent.packages-agent-src-agent-loop.ts.runAgentLoopContinue.api",
       "area": "agent",
@@ -50633,7 +50636,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/agent/src/agent-loop.ts (scaffolded; needs human review).",
+      "description": "runToolCall ported: a valid tool call reaches the tool body, succeeds, and its result feeds the next turn (differential scenario tool-executes; unit coverage in agent_loop_test.dart).",
       "normative_refs": {
         "readme": "packages/agent/README.md",
         "spec": null,
@@ -50646,13 +50649,15 @@
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_test": "pi_agent/test/agent_loop_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "differential",
+        "scenario": "tool-executes",
+        "golden": "coverage/differential/goldens/tool-executes.json",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "agent.packages-agent-src-agent-loop.ts.runToolCall.api",
       "area": "agent",
@@ -50679,10 +50684,10 @@
       "status": "unported",
       "evidence": null,
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "RunToolCallOptions is not modeled; runToolCall takes explicit parameters in the port. Tracked in #71.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "#71",
       "id": "agent.packages-agent-src-agent-loop.ts.RunToolCallOptions.api",
       "area": "agent",
       "upstream_path": "packages/agent/src/agent-loop.ts",
@@ -50708,10 +50713,10 @@
       "status": "unported",
       "evidence": null,
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "ToolCallHooks is not a named Dart type; beforeToolCall/afterToolCall are passed on AgentLoopConfig. Tracked in #71.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "#71",
       "id": "agent.packages-agent-src-agent-loop.ts.ToolCallHooks.api",
       "area": "agent",
       "upstream_path": "packages/agent/src/agent-loop.ts",
@@ -50720,7 +50725,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/agent/src/agent.ts (scaffolded; needs human review).",
+      "description": "Agent ported (stateful wrapper: prompt/continue, event subscription, abort, reset, steering/follow-up queues).",
       "normative_refs": {
         "readme": "packages/agent/README.md",
         "spec": null,
@@ -50733,13 +50738,14 @@
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_test": "pi_agent/test/agent_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/agent_test.dart",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "agent.packages-agent-src-agent.ts.Agent.api",
       "area": "agent",
@@ -50766,10 +50772,10 @@
       "status": "unported",
       "evidence": null,
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "AgentInitialState is not ported; AgentState carries the initial state directly. Tracked in #71.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "#71",
       "id": "agent.packages-agent-src-agent.ts.AgentInitialState.api",
       "area": "agent",
       "upstream_path": "packages/agent/src/agent.ts",
@@ -50778,7 +50784,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/agent/src/agent.ts (scaffolded; needs human review).",
+      "description": "AgentOptions ported (construction options for model, tools, hooks, queue modes).",
       "normative_refs": {
         "readme": "packages/agent/README.md",
         "spec": null,
@@ -50791,13 +50797,14 @@
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_test": "pi_agent/test/agent_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/agent_test.dart",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "agent.packages-agent-src-agent.ts.AgentOptions.api",
       "area": "agent",
@@ -50807,7 +50814,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/agent/src/agent.ts (scaffolded; needs human review).",
+      "description": "QueueMode ported (all vs oneAtATime drain; runtime-settable, affects already-queued messages).",
       "normative_refs": {
         "readme": "packages/agent/README.md",
         "spec": null,
@@ -50820,13 +50827,14 @@
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_test": "pi_agent/test/pending_queue_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/pending_queue_test.dart",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "agent.packages-agent-src-agent.ts.QueueMode.api",
       "area": "agent",
@@ -50853,10 +50861,10 @@
       "status": "unported",
       "evidence": null,
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "setDefaultStreamFn (a global default) is not ported; the stream fn is wired per Agent. Tracked in #71.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "#71",
       "id": "agent.packages-agent-src-index.ts.setDefaultStreamFn.api",
       "area": "agent",
       "upstream_path": "packages/agent/src/index.ts",
@@ -50882,10 +50890,10 @@
       "status": "unported",
       "evidence": null,
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "proxy.ts stream adapter is not ported to Dart. Tracked in #71.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "#71",
       "id": "agent.packages-agent-src-proxy.ts.ProxyAssistantMessageEvent.api",
       "area": "agent",
       "upstream_path": "packages/agent/src/proxy.ts",
@@ -50911,10 +50919,10 @@
       "status": "unported",
       "evidence": null,
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "proxy.ts stream adapter is not ported to Dart. Tracked in #71.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "#71",
       "id": "agent.packages-agent-src-proxy.ts.ProxyStreamOptions.api",
       "area": "agent",
       "upstream_path": "packages/agent/src/proxy.ts",
@@ -50940,10 +50948,10 @@
       "status": "unported",
       "evidence": null,
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "proxy.ts stream adapter is not ported to Dart. Tracked in #71.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "#71",
       "id": "agent.packages-agent-src-proxy.ts.streamProxy.api",
       "area": "agent",
       "upstream_path": "packages/agent/src/proxy.ts",
@@ -50952,7 +50960,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/agent/src/types.ts (scaffolded; needs human review).",
+      "description": "AfterToolCallContext ported (toolCallId, toolName, args, result).",
       "normative_refs": {
         "readme": "packages/agent/README.md",
         "spec": null,
@@ -50965,13 +50973,14 @@
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_test": "pi_agent/test/agent_loop_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/agent_loop_test.dart",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "agent.packages-agent-src-types.ts.AfterToolCallContext.api",
       "area": "agent",
@@ -50981,7 +50990,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/agent/src/types.ts (scaffolded; needs human review).",
+      "description": "AfterToolCallResult ported (content/details/terminate/isError overrides).",
       "normative_refs": {
         "readme": "packages/agent/README.md",
         "spec": null,
@@ -50994,13 +51003,14 @@
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_test": "pi_agent/test/agent_loop_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/agent_loop_test.dart",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "agent.packages-agent-src-types.ts.AfterToolCallResult.api",
       "area": "agent",
@@ -51010,7 +51020,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/agent/src/types.ts (scaffolded; needs human review).",
+      "description": "AgentContext ported (system prompt, messages, tools; immutable, cloned per turn).",
       "normative_refs": {
         "readme": "packages/agent/README.md",
         "spec": null,
@@ -51023,13 +51033,14 @@
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_test": "pi_agent/test/agent_loop_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/agent_loop_test.dart",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "agent.packages-agent-src-types.ts.AgentContext.api",
       "area": "agent",
@@ -51039,7 +51050,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/agent/src/types.ts (scaffolded; needs human review).",
+      "description": "AgentEvent sealed class ported (agent/turn/message/tool_execution variants).",
       "normative_refs": {
         "readme": "packages/agent/README.md",
         "spec": null,
@@ -51052,13 +51063,14 @@
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_test": "pi_agent/test/types_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/types_test.dart",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "agent.packages-agent-src-types.ts.AgentEvent.api",
       "area": "agent",
@@ -51068,7 +51080,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/agent/src/types.ts (scaffolded; needs human review).",
+      "description": "AgentLoopConfig ported (model, toolExecution, convertToLlm, transformContext, hooks, queue providers).",
       "normative_refs": {
         "readme": "packages/agent/README.md",
         "spec": null,
@@ -51081,13 +51093,14 @@
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_test": "pi_agent/test/agent_loop_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/agent_loop_test.dart",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "agent.packages-agent-src-types.ts.AgentLoopConfig.api",
       "area": "agent",
@@ -51114,10 +51127,10 @@
       "status": "unported",
       "evidence": null,
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "AgentLoopTurnUpdate is not ported; turn updates are AgentEvent variants. Tracked in #71.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "#71",
       "id": "agent.packages-agent-src-types.ts.AgentLoopTurnUpdate.api",
       "area": "agent",
       "upstream_path": "packages/agent/src/types.ts",
@@ -51126,7 +51139,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/agent/src/types.ts (scaffolded; needs human review).",
+      "description": "AgentMessage sealed class ported (user/assistant/toolResult/custom).",
       "normative_refs": {
         "readme": "packages/agent/README.md",
         "spec": null,
@@ -51139,13 +51152,14 @@
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_test": "pi_agent/test/types_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/types_test.dart",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "agent.packages-agent-src-types.ts.AgentMessage.api",
       "area": "agent",
@@ -51172,10 +51186,10 @@
       "status": "unported",
       "evidence": null,
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "AgentRequestUpdate is not ported; the port has no request-update streaming type. Tracked in #71.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "#71",
       "id": "agent.packages-agent-src-types.ts.AgentRequestUpdate.api",
       "area": "agent",
       "upstream_path": "packages/agent/src/types.ts",
@@ -51184,7 +51198,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/agent/src/types.ts (scaffolded; needs human review).",
+      "description": "AgentState ported (messages, tools, streaming fields, errorMessage, pending tool calls).",
       "normative_refs": {
         "readme": "packages/agent/README.md",
         "spec": null,
@@ -51197,13 +51211,14 @@
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_test": "pi_agent/test/types_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/types_test.dart",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "agent.packages-agent-src-types.ts.AgentState.api",
       "area": "agent",
@@ -51213,7 +51228,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/agent/src/types.ts (scaffolded; needs human review).",
+      "description": "AgentTool ported (name, description, parameters, execute, prepareArguments, executionMode).",
       "normative_refs": {
         "readme": "packages/agent/README.md",
         "spec": null,
@@ -51226,13 +51241,14 @@
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_test": "pi_agent/test/tools_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/tools_test.dart",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "agent.packages-agent-src-types.ts.AgentTool.api",
       "area": "agent",
@@ -51259,10 +51275,10 @@
       "status": "unported",
       "evidence": null,
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "AgentToolCall (TS tool-call shape) is not ported; the port uses ToolCallBlock. Tracked in #71.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "#71",
       "id": "agent.packages-agent-src-types.ts.AgentToolCall.api",
       "area": "agent",
       "upstream_path": "packages/agent/src/types.ts",
@@ -51288,10 +51304,10 @@
       "status": "unported",
       "evidence": null,
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "AgentToolCallOutcome is not ported; the loop uses an internal finalized-call record. Tracked in #71.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "#71",
       "id": "agent.packages-agent-src-types.ts.AgentToolCallOutcome.api",
       "area": "agent",
       "upstream_path": "packages/agent/src/types.ts",
@@ -51317,10 +51333,10 @@
       "status": "unported",
       "evidence": null,
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "AgentToolParams is not ported; tool parameters are a plain JSON map. Tracked in #71.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "#71",
       "id": "agent.packages-agent-src-types.ts.AgentToolParams.api",
       "area": "agent",
       "upstream_path": "packages/agent/src/types.ts",
@@ -51329,7 +51345,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/agent/src/types.ts (scaffolded; needs human review).",
+      "description": "AgentToolResult ported (content, details, terminate).",
       "normative_refs": {
         "readme": "packages/agent/README.md",
         "spec": null,
@@ -51342,13 +51358,14 @@
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_test": "pi_agent/test/tools_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/tools_test.dart",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "agent.packages-agent-src-types.ts.AgentToolResult.api",
       "area": "agent",
@@ -51375,10 +51392,10 @@
       "status": "unported",
       "evidence": null,
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "AgentToolUpdateCallback is not a named Dart type; onUpdate is a closure parameter. Tracked in #71.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "#71",
       "id": "agent.packages-agent-src-types.ts.AgentToolUpdateCallback.api",
       "area": "agent",
       "upstream_path": "packages/agent/src/types.ts",
@@ -51404,10 +51421,10 @@
       "status": "unported",
       "evidence": null,
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "AgentTurnContext is not ported; the loop passes ShouldStopAfterTurnContext instead. Tracked in #71.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "#71",
       "id": "agent.packages-agent-src-types.ts.AgentTurnContext.api",
       "area": "agent",
       "upstream_path": "packages/agent/src/types.ts",
@@ -51433,10 +51450,10 @@
       "status": "unported",
       "evidence": null,
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "AgentTurnDecision is not ported; turn continuation is decided by the loop, not a returned decision. Tracked in #71.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "#71",
       "id": "agent.packages-agent-src-types.ts.AgentTurnDecision.api",
       "area": "agent",
       "upstream_path": "packages/agent/src/types.ts",
@@ -51445,7 +51462,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/agent/src/types.ts (scaffolded; needs human review).",
+      "description": "BeforeToolCallContext ported (toolCallId, toolName, args, overrideArgs).",
       "normative_refs": {
         "readme": "packages/agent/README.md",
         "spec": null,
@@ -51458,13 +51475,14 @@
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_test": "pi_agent/test/agent_loop_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/agent_loop_test.dart",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "agent.packages-agent-src-types.ts.BeforeToolCallContext.api",
       "area": "agent",
@@ -51474,7 +51492,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/agent/src/types.ts (scaffolded; needs human review).",
+      "description": "BeforeToolCallResult ported (block + reason).",
       "normative_refs": {
         "readme": "packages/agent/README.md",
         "spec": null,
@@ -51487,13 +51505,14 @@
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_test": "pi_agent/test/agent_loop_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/agent_loop_test.dart",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "agent.packages-agent-src-types.ts.BeforeToolCallResult.api",
       "area": "agent",
@@ -51520,10 +51539,10 @@
       "status": "unported",
       "evidence": null,
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "CustomAgentMessages is not ported; the port has a CustomMessage agent message. Tracked in #71.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "#71",
       "id": "agent.packages-agent-src-types.ts.CustomAgentMessages.api",
       "area": "agent",
       "upstream_path": "packages/agent/src/types.ts",
@@ -51549,10 +51568,10 @@
       "status": "unported",
       "evidence": null,
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "FinishTurn is not ported; the loop ends a turn on a terminal stop reason. Tracked in #71.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "#71",
       "id": "agent.packages-agent-src-types.ts.FinishTurn.api",
       "area": "agent",
       "upstream_path": "packages/agent/src/types.ts",
@@ -51578,10 +51597,10 @@
       "status": "unported",
       "evidence": null,
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "PrepareNextTurnContext is not ported; the loop has no prepare-next-turn hook. Tracked in #71.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "#71",
       "id": "agent.packages-agent-src-types.ts.PrepareNextTurnContext.api",
       "area": "agent",
       "upstream_path": "packages/agent/src/types.ts",
@@ -51607,10 +51626,10 @@
       "status": "unported",
       "evidence": null,
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "PrepareRequest is not ported; the loop builds the request from AgentContext directly. Tracked in #71.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "#71",
       "id": "agent.packages-agent-src-types.ts.PrepareRequest.api",
       "area": "agent",
       "upstream_path": "packages/agent/src/types.ts",
@@ -51636,10 +51655,10 @@
       "status": "unported",
       "evidence": null,
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "PrepareRequestContext is not ported with PrepareRequest. Tracked in #71.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "#71",
       "id": "agent.packages-agent-src-types.ts.PrepareRequestContext.api",
       "area": "agent",
       "upstream_path": "packages/agent/src/types.ts",
@@ -51665,10 +51684,10 @@
       "status": "unported",
       "evidence": null,
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "StreamFn (TS provider stream signature) is not a named Dart type; the port uses LoopStreamFn. Tracked in #71.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "#71",
       "id": "agent.packages-agent-src-types.ts.StreamFn.api",
       "area": "agent",
       "upstream_path": "packages/agent/src/types.ts",
@@ -51677,7 +51696,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/agent/src/types.ts (scaffolded; needs human review).",
+      "description": "ThinkingLevel enum ported (off/minimal/low/medium/high).",
       "normative_refs": {
         "readme": "packages/agent/README.md",
         "spec": null,
@@ -51690,13 +51709,14 @@
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_test": "pi_agent/test/types_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/types_test.dart",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "agent.packages-agent-src-types.ts.ThinkingLevel.api",
       "area": "agent",
@@ -51706,7 +51726,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/agent/src/types.ts (scaffolded; needs human review).",
+      "description": "ToolExecutionMode enum ported (parallel/sequential).",
       "normative_refs": {
         "readme": "packages/agent/README.md",
         "spec": null,
@@ -51719,13 +51739,14 @@
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_test": "pi_agent/test/types_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/types_test.dart",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "agent.packages-agent-src-types.ts.ToolExecutionMode.api",
       "area": "agent",
@@ -51735,7 +51756,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "test behavior in packages/agent/test/agent-loop.test.ts (scaffolded; needs human review).",
+      "description": "agent-loop.test.ts behaviors reproduced by the Dart agent_loop_test.dart suite.",
       "normative_refs": {
         "readme": "packages/agent/README.md",
         "spec": null,
@@ -51748,13 +51769,14 @@
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_test": "pi_agent/test/agent_loop_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/agent_loop_test.dart",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "agent.packages-agent-test-agent-loop.test.ts.internal.test",
       "area": "agent",
@@ -51764,7 +51786,7 @@
       "behavior_kind": "test"
     },
     {
-      "description": "test behavior in packages/agent/test/agent-tool-typebox.test.ts (scaffolded; needs human review).",
+      "description": "agent-tool-typebox.test.ts argument-validation behaviors reproduced by the Dart tools_test.dart validateToolArguments suite.",
       "normative_refs": {
         "readme": "packages/agent/README.md",
         "spec": null,
@@ -51777,13 +51799,14 @@
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_test": "pi_agent/test/tools_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/tools_test.dart",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "agent.packages-agent-test-agent-tool-typebox.test.ts.internal.test",
       "area": "agent",
@@ -51793,7 +51816,7 @@
       "behavior_kind": "test"
     },
     {
-      "description": "test behavior in packages/agent/test/agent.test.ts (scaffolded; needs human review).",
+      "description": "agent.test.ts behaviors reproduced by the Dart agent_test.dart suite.",
       "normative_refs": {
         "readme": "packages/agent/README.md",
         "spec": null,
@@ -51806,13 +51829,14 @@
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_test": "pi_agent/test/agent_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/agent_test.dart",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "agent.packages-agent-test-agent.test.ts.internal.test",
       "area": "agent",
@@ -51822,7 +51846,7 @@
       "behavior_kind": "test"
     },
     {
-      "description": "test behavior in packages/agent/test/e2e.test.ts (scaffolded; needs human review).",
+      "description": "e2e.test.ts end-to-end loop reproduced by the Dart agent_integration_test.dart suite.",
       "normative_refs": {
         "readme": "packages/agent/README.md",
         "spec": null,
@@ -51835,13 +51859,14 @@
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_test": "pi_agent/test/agent_integration_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/agent_integration_test.dart",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "agent.packages-agent-test-e2e.test.ts.internal.test",
       "area": "agent",
@@ -51868,10 +51893,10 @@
       "status": "unported",
       "evidence": null,
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "proxy.test.ts has no Dart counterpart; the proxy stream adapter is not ported. Tracked in #71.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "#71",
       "id": "agent.packages-agent-test-proxy.test.ts.internal.test",
       "area": "agent",
       "upstream_path": "packages/agent/test/proxy.test.ts",
@@ -51897,10 +51922,10 @@
       "status": "unported",
       "evidence": null,
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "Test helper utils/calculate.ts is not ported (Dart tests compute inline). Tracked in #71.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "#71",
       "id": "agent.packages-agent-test-utils-calculate.ts.internal.test",
       "area": "agent",
       "upstream_path": "packages/agent/test/utils/calculate.ts",
@@ -51926,10 +51951,10 @@
       "status": "unported",
       "evidence": null,
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "Test helper utils/get-current-time.ts is not ported (Dart tests use a virtual clock). Tracked in #71.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "#71",
       "id": "agent.packages-agent-test-utils-get-current-time.ts.internal.test",
       "area": "agent",
       "upstream_path": "packages/agent/test/utils/get-current-time.ts",
@@ -51955,10 +51980,10 @@
       "status": "unported",
       "evidence": null,
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "Test helper utils/wait-for-tick.ts is not ported (Dart tests await microtasks directly). Tracked in #71.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "#71",
       "id": "agent.packages-agent-test-utils-wait-for-tick.ts.internal.test",
       "area": "agent",
       "upstream_path": "packages/agent/test/utils/wait-for-tick.ts",
