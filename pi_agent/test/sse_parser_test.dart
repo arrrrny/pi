@@ -228,4 +228,48 @@ void main() {
       expect((error as StateError).message, 'MCP SSE event exceeds 24 bytes');
     });
   });
+
+  // Large-line reassembly through `parseSSE`, whose `LineSplitter` already
+  // appends only the new text and reads the pending line once. The linear-time
+  // guarantee of upstream #12451 is guarded where that change actually landed:
+  // `SseDecoder` (see `test/ai/sse_decoder_test.dart`), not here — asserting it
+  // on `LineSplitter` would only lock a property of the Dart SDK.
+  group('parseSSE large streamed lines (upstream #12451)', () {
+    Stream<List<int>> toByteChunkedStream(String input, int chunkSize) {
+      final bytes = utf8.encode(input);
+      final controller = StreamController<List<int>>();
+      for (var i = 0; i < bytes.length; i += chunkSize) {
+        final end =
+            (i + chunkSize < bytes.length) ? i + chunkSize : bytes.length;
+        controller.add(bytes.sublist(i, end));
+      }
+      controller.close();
+      return controller.stream;
+    }
+
+    test('reassembles a 1 MiB data line delivered in 4 KiB chunks', () async {
+      final payload = 'x' * (1024 * 1024);
+      final events =
+          await parseSSE(toByteChunkedStream('data: $payload\n\n', 4096))
+              .toList();
+      expect(events, hasLength(1));
+      expect(events[0]['data'], payload);
+    });
+
+    test('yields the same event for every chunk size', () async {
+      final payload = jsonEncode({
+        'choices': [
+          {
+            'delta': {'content': 'y' * 200000}
+          }
+        ]
+      });
+      final line = 'data: $payload\n\n';
+      for (final size in [1, 7, 4096, 65536, line.length]) {
+        final events = await parseSSE(toByteChunkedStream(line, size)).toList();
+        expect(events, hasLength(1), reason: 'chunk size $size');
+        expect(events[0]['data'], payload, reason: 'chunk size $size');
+      }
+    });
+  });
 }

@@ -80,4 +80,36 @@ void main() {
       ]);
     });
   });
+
+  // Ports the linear-time guarantee of upstream #12451 (da7e26cc8, "read large
+  // streamed lines and events in linear time") onto the component that change
+  // actually touched: `SseDecoder` re-scanned the accumulated buffer per chunk
+  // before #12451, and now scans only the newly decoded text. Driving push/end
+  // directly means a reintroduced quadratic rescan fails here, rather than on
+  // `parseSSE`/`LineSplitter`, which is linear regardless of this port.
+  group('SseDecoder large streamed lines (upstream #12451)', () {
+    test('reassembles a 1 MiB data line delivered in 4 KiB chunks', () {
+      final payload = 'x' * (1024 * 1024);
+      final events = _decode(utf8.encode('data: $payload\n\n'), 4096);
+      expect(events, hasLength(1));
+      expect(events.single.data, payload);
+    });
+
+    test('reads a large streamed line in linear, not quadratic, time', () {
+      // A pre-#12451 reader that rescanned the whole pending buffer per chunk
+      // copies about (size / chunk) * size characters: 2 MiB in 256 B chunks is
+      // ~16 GB of copying and takes seconds. The linear decoder finishes far
+      // under the bound. The limit is generous so a shared host cannot flake
+      // it, while a reintroduced quadratic rescan still blows past it.
+      final payload = 'z' * (2 * 1024 * 1024);
+      final bytes = utf8.encode('data: $payload\n\n');
+      final sw = Stopwatch()..start();
+      final events = _decode(bytes, 256);
+      sw.stop();
+      expect(events, hasLength(1));
+      expect(events.single.data, payload);
+      expect(sw.elapsedMilliseconds, lessThan(10000),
+          reason: 'large line decode took ${sw.elapsedMilliseconds}ms');
+    });
+  });
 }
