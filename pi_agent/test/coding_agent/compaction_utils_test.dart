@@ -253,6 +253,5 @@ class FakeSession implements ReadonlySession {
   @override
   SessionTreeEntry? getEntry(String id) => _byId[id];
 
-  @override
   List<SessionTreeEntry> get allEntries => List<SessionTreeEntry>.unmodifiable(_entries);
 }
