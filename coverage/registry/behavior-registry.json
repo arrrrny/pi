@@ -62973,16 +62973,17 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/tools.dart",
-      "dart_impl": "pi_agent/lib/src/tools.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/pi.dart",
+      "dart_impl": "pi_agent/lib/src/sse_parser.dart",
+      "dart_test": "pi_agent/test/sse_parser_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/sse_parser_test.dart",
+        "note": "consumeSseStream parity port of packages/mcp/src/transports/streamable-http.ts (#12451): incremental line scan (pending line read once when it ends), UTF-8 byte cap on the incomplete line rejected before its line ending arrives, cap on joined data lines before dispatch, CRLF/LF/CR endings incl. a CRLF split across chunks, and dispatch-scoped id; sse_parser_test.dart green under Dart 3.13."
       },
-      "issue": null,
+      "divergence": null,
+      "issue": "https://github.com/arrrrny/pi/issues/33",
       "id": "mcp.packages-mcp-test-streamable-http.test.ts.internal.test",
       "area": "mcp",
       "upstream_path": "packages/mcp/test/streamable-http.test.ts",
