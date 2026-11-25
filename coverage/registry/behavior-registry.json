@@ -51977,7 +51977,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/durable/src/env/index.ts (scaffolded; needs human review).",
+      "description": "api behavior in packages/durable/src/env/index.ts.",
       "normative_refs": {
         "readme": "packages/durable/README.md",
         "spec": null,
@@ -51988,15 +51988,18 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/session.dart",
-      "dart_impl": "pi_agent/lib/src/session.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/env/index.dart",
+      "dart_test": "pi_agent/test/durable/env_index_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "differential",
+        "scenario": "env-index",
+        "test": "pi_agent/test/durable/env_index_test.dart",
+        "oracle": "packages/durable/src/env/index.ts at 780bf31fcaeb252fa9b68df3964c735eae75bde3 (Result/ok/err/getOrThrow/getOrUndefined/toError, FileError/ExecutionError + code enums, and the FileSystem/Shell/BinaryReader/DirReader/FileWatcher contracts)",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "durable.packages-durable-src-env-index.ts.BinaryReader.api",
       "area": "durable",
@@ -52006,7 +52009,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/durable/src/env/index.ts (scaffolded; needs human review).",
+      "description": "api behavior in packages/durable/src/env/index.ts.",
       "normative_refs": {
         "readme": "packages/durable/README.md",
         "spec": null,
@@ -52017,15 +52020,18 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/session.dart",
-      "dart_impl": "pi_agent/lib/src/session.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/env/index.dart",
+      "dart_test": "pi_agent/test/durable/env_index_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "differential",
+        "scenario": "env-index",
+        "test": "pi_agent/test/durable/env_index_test.dart",
+        "oracle": "packages/durable/src/env/index.ts at 780bf31fcaeb252fa9b68df3964c735eae75bde3 (Result/ok/err/getOrThrow/getOrUndefined/toError, FileError/ExecutionError + code enums, and the FileSystem/Shell/BinaryReader/DirReader/FileWatcher contracts)",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "durable.packages-durable-src-env-index.ts.DirReader.api",
       "area": "durable",
@@ -52035,7 +52041,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/durable/src/env/index.ts (scaffolded; needs human review).",
+      "description": "api behavior in packages/durable/src/env/index.ts.",
       "normative_refs": {
         "readme": "packages/durable/README.md",
         "spec": null,
@@ -52046,15 +52052,18 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/session.dart",
-      "dart_impl": "pi_agent/lib/src/session.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/env/index.dart",
+      "dart_test": "pi_agent/test/durable/env_index_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "differential",
+        "scenario": "env-index",
+        "test": "pi_agent/test/durable/env_index_test.dart",
+        "oracle": "packages/durable/src/env/index.ts at 780bf31fcaeb252fa9b68df3964c735eae75bde3 (Result/ok/err/getOrThrow/getOrUndefined/toError, FileError/ExecutionError + code enums, and the FileSystem/Shell/BinaryReader/DirReader/FileWatcher contracts)",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "durable.packages-durable-src-env-index.ts.err.api",
       "area": "durable",
@@ -52064,7 +52073,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/durable/src/env/index.ts (scaffolded; needs human review).",
+      "description": "api behavior in packages/durable/src/env/index.ts.",
       "normative_refs": {
         "readme": "packages/durable/README.md",
         "spec": null,
@@ -52075,15 +52084,18 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/session.dart",
-      "dart_impl": "pi_agent/lib/src/session.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/env/index.dart",
+      "dart_test": "pi_agent/test/durable/env_index_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "differential",
+        "scenario": "env-index",
+        "test": "pi_agent/test/durable/env_index_test.dart",
+        "oracle": "packages/durable/src/env/index.ts at 780bf31fcaeb252fa9b68df3964c735eae75bde3 (Result/ok/err/getOrThrow/getOrUndefined/toError, FileError/ExecutionError + code enums, and the FileSystem/Shell/BinaryReader/DirReader/FileWatcher contracts)",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "durable.packages-durable-src-env-index.ts.ExecutionEnv.api",
       "area": "durable",
@@ -52093,7 +52105,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/durable/src/env/index.ts (scaffolded; needs human review).",
+      "description": "api behavior in packages/durable/src/env/index.ts.",
       "normative_refs": {
         "readme": "packages/durable/README.md",
         "spec": null,
@@ -52104,15 +52116,18 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/session.dart",
-      "dart_impl": "pi_agent/lib/src/session.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/env/index.dart",
+      "dart_test": "pi_agent/test/durable/env_index_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "differential",
+        "scenario": "env-index",
+        "test": "pi_agent/test/durable/env_index_test.dart",
+        "oracle": "packages/durable/src/env/index.ts at 780bf31fcaeb252fa9b68df3964c735eae75bde3 (Result/ok/err/getOrThrow/getOrUndefined/toError, FileError/ExecutionError + code enums, and the FileSystem/Shell/BinaryReader/DirReader/FileWatcher contracts)",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "durable.packages-durable-src-env-index.ts.ExecutionError.api",
       "area": "durable",
@@ -52122,7 +52137,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/durable/src/env/index.ts (scaffolded; needs human review).",
+      "description": "api behavior in packages/durable/src/env/index.ts.",
       "normative_refs": {
         "readme": "packages/durable/README.md",
         "spec": null,
@@ -52133,15 +52148,18 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/session.dart",
-      "dart_impl": "pi_agent/lib/src/session.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/env/index.dart",
+      "dart_test": "pi_agent/test/durable/env_index_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "differential",
+        "scenario": "env-index",
+        "test": "pi_agent/test/durable/env_index_test.dart",
+        "oracle": "packages/durable/src/env/index.ts at 780bf31fcaeb252fa9b68df3964c735eae75bde3 (Result/ok/err/getOrThrow/getOrUndefined/toError, FileError/ExecutionError + code enums, and the FileSystem/Shell/BinaryReader/DirReader/FileWatcher contracts)",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "durable.packages-durable-src-env-index.ts.ExecutionErrorCode.api",
       "area": "durable",
@@ -52151,7 +52169,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/durable/src/env/index.ts (scaffolded; needs human review).",
+      "description": "api behavior in packages/durable/src/env/index.ts.",
       "normative_refs": {
         "readme": "packages/durable/README.md",
         "spec": null,
@@ -52162,15 +52180,18 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/session.dart",
-      "dart_impl": "pi_agent/lib/src/session.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/env/index.dart",
+      "dart_test": "pi_agent/test/durable/env_index_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "differential",
+        "scenario": "env-index",
+        "test": "pi_agent/test/durable/env_index_test.dart",
+        "oracle": "packages/durable/src/env/index.ts at 780bf31fcaeb252fa9b68df3964c735eae75bde3 (Result/ok/err/getOrThrow/getOrUndefined/toError, FileError/ExecutionError + code enums, and the FileSystem/Shell/BinaryReader/DirReader/FileWatcher contracts)",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "durable.packages-durable-src-env-index.ts.FileChange.api",
       "area": "durable",
@@ -52180,7 +52201,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/durable/src/env/index.ts (scaffolded; needs human review).",
+      "description": "api behavior in packages/durable/src/env/index.ts.",
       "normative_refs": {
         "readme": "packages/durable/README.md",
         "spec": null,
@@ -52191,15 +52212,18 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/session.dart",
-      "dart_impl": "pi_agent/lib/src/session.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/env/index.dart",
+      "dart_test": "pi_agent/test/durable/env_index_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "differential",
+        "scenario": "env-index",
+        "test": "pi_agent/test/durable/env_index_test.dart",
+        "oracle": "packages/durable/src/env/index.ts at 780bf31fcaeb252fa9b68df3964c735eae75bde3 (Result/ok/err/getOrThrow/getOrUndefined/toError, FileError/ExecutionError + code enums, and the FileSystem/Shell/BinaryReader/DirReader/FileWatcher contracts)",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "durable.packages-durable-src-env-index.ts.FileError.api",
       "area": "durable",
@@ -52209,7 +52233,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/durable/src/env/index.ts (scaffolded; needs human review).",
+      "description": "api behavior in packages/durable/src/env/index.ts.",
       "normative_refs": {
         "readme": "packages/durable/README.md",
         "spec": null,
@@ -52220,15 +52244,18 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/session.dart",
-      "dart_impl": "pi_agent/lib/src/session.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/env/index.dart",
+      "dart_test": "pi_agent/test/durable/env_index_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "differential",
+        "scenario": "env-index",
+        "test": "pi_agent/test/durable/env_index_test.dart",
+        "oracle": "packages/durable/src/env/index.ts at 780bf31fcaeb252fa9b68df3964c735eae75bde3 (Result/ok/err/getOrThrow/getOrUndefined/toError, FileError/ExecutionError + code enums, and the FileSystem/Shell/BinaryReader/DirReader/FileWatcher contracts)",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "durable.packages-durable-src-env-index.ts.FileErrorCode.api",
       "area": "durable",
@@ -52238,7 +52265,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/durable/src/env/index.ts (scaffolded; needs human review).",
+      "description": "api behavior in packages/durable/src/env/index.ts.",
       "normative_refs": {
         "readme": "packages/durable/README.md",
         "spec": null,
@@ -52249,15 +52276,18 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/session.dart",
-      "dart_impl": "pi_agent/lib/src/session.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/env/index.dart",
+      "dart_test": "pi_agent/test/durable/env_index_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "differential",
+        "scenario": "env-index",
+        "test": "pi_agent/test/durable/env_index_test.dart",
+        "oracle": "packages/durable/src/env/index.ts at 780bf31fcaeb252fa9b68df3964c735eae75bde3 (Result/ok/err/getOrThrow/getOrUndefined/toError, FileError/ExecutionError + code enums, and the FileSystem/Shell/BinaryReader/DirReader/FileWatcher contracts)",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "durable.packages-durable-src-env-index.ts.FileInfo.api",
       "area": "durable",
@@ -52267,7 +52297,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/durable/src/env/index.ts (scaffolded; needs human review).",
+      "description": "api behavior in packages/durable/src/env/index.ts.",
       "normative_refs": {
         "readme": "packages/durable/README.md",
         "spec": null,
@@ -52278,15 +52308,18 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/session.dart",
-      "dart_impl": "pi_agent/lib/src/session.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/env/index.dart",
+      "dart_test": "pi_agent/test/durable/env_index_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "differential",
+        "scenario": "env-index",
+        "test": "pi_agent/test/durable/env_index_test.dart",
+        "oracle": "packages/durable/src/env/index.ts at 780bf31fcaeb252fa9b68df3964c735eae75bde3 (Result/ok/err/getOrThrow/getOrUndefined/toError, FileError/ExecutionError + code enums, and the FileSystem/Shell/BinaryReader/DirReader/FileWatcher contracts)",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "durable.packages-durable-src-env-index.ts.FileKind.api",
       "area": "durable",
@@ -52296,7 +52329,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/durable/src/env/index.ts (scaffolded; needs human review).",
+      "description": "api behavior in packages/durable/src/env/index.ts.",
       "normative_refs": {
         "readme": "packages/durable/README.md",
         "spec": null,
@@ -52307,15 +52340,18 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/session.dart",
-      "dart_impl": "pi_agent/lib/src/session.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/env/index.dart",
+      "dart_test": "pi_agent/test/durable/env_index_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "differential",
+        "scenario": "env-index",
+        "test": "pi_agent/test/durable/env_index_test.dart",
+        "oracle": "packages/durable/src/env/index.ts at 780bf31fcaeb252fa9b68df3964c735eae75bde3 (Result/ok/err/getOrThrow/getOrUndefined/toError, FileError/ExecutionError + code enums, and the FileSystem/Shell/BinaryReader/DirReader/FileWatcher contracts)",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "durable.packages-durable-src-env-index.ts.FileListEntry.api",
       "area": "durable",
@@ -52325,7 +52361,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/durable/src/env/index.ts (scaffolded; needs human review).",
+      "description": "api behavior in packages/durable/src/env/index.ts.",
       "normative_refs": {
         "readme": "packages/durable/README.md",
         "spec": null,
@@ -52336,15 +52372,18 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/session.dart",
-      "dart_impl": "pi_agent/lib/src/session.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/env/index.dart",
+      "dart_test": "pi_agent/test/durable/env_index_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "differential",
+        "scenario": "env-index",
+        "test": "pi_agent/test/durable/env_index_test.dart",
+        "oracle": "packages/durable/src/env/index.ts at 780bf31fcaeb252fa9b68df3964c735eae75bde3 (Result/ok/err/getOrThrow/getOrUndefined/toError, FileError/ExecutionError + code enums, and the FileSystem/Shell/BinaryReader/DirReader/FileWatcher contracts)",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "durable.packages-durable-src-env-index.ts.FileListing.api",
       "area": "durable",
@@ -52354,7 +52393,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/durable/src/env/index.ts (scaffolded; needs human review).",
+      "description": "api behavior in packages/durable/src/env/index.ts.",
       "normative_refs": {
         "readme": "packages/durable/README.md",
         "spec": null,
@@ -52365,15 +52404,18 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/session.dart",
-      "dart_impl": "pi_agent/lib/src/session.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/env/index.dart",
+      "dart_test": "pi_agent/test/durable/env_index_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "differential",
+        "scenario": "env-index",
+        "test": "pi_agent/test/durable/env_index_test.dart",
+        "oracle": "packages/durable/src/env/index.ts at 780bf31fcaeb252fa9b68df3964c735eae75bde3 (Result/ok/err/getOrThrow/getOrUndefined/toError, FileError/ExecutionError + code enums, and the FileSystem/Shell/BinaryReader/DirReader/FileWatcher contracts)",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "durable.packages-durable-src-env-index.ts.FileSystem.api",
       "area": "durable",
@@ -52383,7 +52425,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/durable/src/env/index.ts (scaffolded; needs human review).",
+      "description": "api behavior in packages/durable/src/env/index.ts.",
       "normative_refs": {
         "readme": "packages/durable/README.md",
         "spec": null,
@@ -52394,15 +52436,18 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/session.dart",
-      "dart_impl": "pi_agent/lib/src/session.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/env/index.dart",
+      "dart_test": "pi_agent/test/durable/env_index_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "differential",
+        "scenario": "env-index",
+        "test": "pi_agent/test/durable/env_index_test.dart",
+        "oracle": "packages/durable/src/env/index.ts at 780bf31fcaeb252fa9b68df3964c735eae75bde3 (Result/ok/err/getOrThrow/getOrUndefined/toError, FileError/ExecutionError + code enums, and the FileSystem/Shell/BinaryReader/DirReader/FileWatcher contracts)",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "durable.packages-durable-src-env-index.ts.FileWatcher.api",
       "area": "durable",
@@ -52412,7 +52457,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/durable/src/env/index.ts (scaffolded; needs human review).",
+      "description": "api behavior in packages/durable/src/env/index.ts.",
       "normative_refs": {
         "readme": "packages/durable/README.md",
         "spec": null,
@@ -52423,15 +52468,18 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/session.dart",
-      "dart_impl": "pi_agent/lib/src/session.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/env/index.dart",
+      "dart_test": "pi_agent/test/durable/env_index_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "differential",
+        "scenario": "env-index",
+        "test": "pi_agent/test/durable/env_index_test.dart",
+        "oracle": "packages/durable/src/env/index.ts at 780bf31fcaeb252fa9b68df3964c735eae75bde3 (Result/ok/err/getOrThrow/getOrUndefined/toError, FileError/ExecutionError + code enums, and the FileSystem/Shell/BinaryReader/DirReader/FileWatcher contracts)",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "durable.packages-durable-src-env-index.ts.getOrThrow.api",
       "area": "durable",
@@ -52441,7 +52489,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/durable/src/env/index.ts (scaffolded; needs human review).",
+      "description": "api behavior in packages/durable/src/env/index.ts.",
       "normative_refs": {
         "readme": "packages/durable/README.md",
         "spec": null,
@@ -52452,15 +52500,18 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/session.dart",
-      "dart_impl": "pi_agent/lib/src/session.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/env/index.dart",
+      "dart_test": "pi_agent/test/durable/env_index_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "differential",
+        "scenario": "env-index",
+        "test": "pi_agent/test/durable/env_index_test.dart",
+        "oracle": "packages/durable/src/env/index.ts at 780bf31fcaeb252fa9b68df3964c735eae75bde3 (Result/ok/err/getOrThrow/getOrUndefined/toError, FileError/ExecutionError + code enums, and the FileSystem/Shell/BinaryReader/DirReader/FileWatcher contracts)",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "durable.packages-durable-src-env-index.ts.getOrUndefined.api",
       "area": "durable",
@@ -52536,7 +52587,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/durable/src/env/index.ts (scaffolded; needs human review).",
+      "description": "api behavior in packages/durable/src/env/index.ts.",
       "normative_refs": {
         "readme": "packages/durable/README.md",
         "spec": null,
@@ -52547,15 +52598,18 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/session.dart",
-      "dart_impl": "pi_agent/lib/src/session.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/env/index.dart",
+      "dart_test": "pi_agent/test/durable/env_index_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "differential",
+        "scenario": "env-index",
+        "test": "pi_agent/test/durable/env_index_test.dart",
+        "oracle": "packages/durable/src/env/index.ts at 780bf31fcaeb252fa9b68df3964c735eae75bde3 (Result/ok/err/getOrThrow/getOrUndefined/toError, FileError/ExecutionError + code enums, and the FileSystem/Shell/BinaryReader/DirReader/FileWatcher contracts)",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "durable.packages-durable-src-env-index.ts.ListFilesOptions.api",
       "area": "durable",
@@ -52565,7 +52619,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/durable/src/env/index.ts (scaffolded; needs human review).",
+      "description": "api behavior in packages/durable/src/env/index.ts.",
       "normative_refs": {
         "readme": "packages/durable/README.md",
         "spec": null,
@@ -52576,15 +52630,18 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/session.dart",
-      "dart_impl": "pi_agent/lib/src/session.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/env/index.dart",
+      "dart_test": "pi_agent/test/durable/env_index_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "differential",
+        "scenario": "env-index",
+        "test": "pi_agent/test/durable/env_index_test.dart",
+        "oracle": "packages/durable/src/env/index.ts at 780bf31fcaeb252fa9b68df3964c735eae75bde3 (Result/ok/err/getOrThrow/getOrUndefined/toError, FileError/ExecutionError + code enums, and the FileSystem/Shell/BinaryReader/DirReader/FileWatcher contracts)",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "durable.packages-durable-src-env-index.ts.ok.api",
       "area": "durable",
@@ -52627,7 +52684,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/durable/src/env/index.ts (scaffolded; needs human review).",
+      "description": "api behavior in packages/durable/src/env/index.ts.",
       "normative_refs": {
         "readme": "packages/durable/README.md",
         "spec": null,
@@ -52638,15 +52695,18 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/session.dart",
-      "dart_impl": "pi_agent/lib/src/session.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/env/index.dart",
+      "dart_test": "pi_agent/test/durable/env_index_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "differential",
+        "scenario": "env-index",
+        "test": "pi_agent/test/durable/env_index_test.dart",
+        "oracle": "packages/durable/src/env/index.ts at 780bf31fcaeb252fa9b68df3964c735eae75bde3 (Result/ok/err/getOrThrow/getOrUndefined/toError, FileError/ExecutionError + code enums, and the FileSystem/Shell/BinaryReader/DirReader/FileWatcher contracts)",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "durable.packages-durable-src-env-index.ts.Result.api",
       "area": "durable",
@@ -52656,7 +52716,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/durable/src/env/index.ts (scaffolded; needs human review).",
+      "description": "api behavior in packages/durable/src/env/index.ts.",
       "normative_refs": {
         "readme": "packages/durable/README.md",
         "spec": null,
@@ -52667,15 +52727,18 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/session.dart",
-      "dart_impl": "pi_agent/lib/src/session.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/env/index.dart",
+      "dart_test": "pi_agent/test/durable/env_index_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "differential",
+        "scenario": "env-index",
+        "test": "pi_agent/test/durable/env_index_test.dart",
+        "oracle": "packages/durable/src/env/index.ts at 780bf31fcaeb252fa9b68df3964c735eae75bde3 (Result/ok/err/getOrThrow/getOrUndefined/toError, FileError/ExecutionError + code enums, and the FileSystem/Shell/BinaryReader/DirReader/FileWatcher contracts)",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "durable.packages-durable-src-env-index.ts.Shell.api",
       "area": "durable",
@@ -52685,7 +52748,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/durable/src/env/index.ts (scaffolded; needs human review).",
+      "description": "api behavior in packages/durable/src/env/index.ts.",
       "normative_refs": {
         "readme": "packages/durable/README.md",
         "spec": null,
@@ -52696,15 +52759,18 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/session.dart",
-      "dart_impl": "pi_agent/lib/src/session.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/env/index.dart",
+      "dart_test": "pi_agent/test/durable/env_index_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "differential",
+        "scenario": "env-index",
+        "test": "pi_agent/test/durable/env_index_test.dart",
+        "oracle": "packages/durable/src/env/index.ts at 780bf31fcaeb252fa9b68df3964c735eae75bde3 (Result/ok/err/getOrThrow/getOrUndefined/toError, FileError/ExecutionError + code enums, and the FileSystem/Shell/BinaryReader/DirReader/FileWatcher contracts)",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "durable.packages-durable-src-env-index.ts.ShellExecOptions.api",
       "area": "durable",
@@ -52714,7 +52780,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/durable/src/env/index.ts (scaffolded; needs human review).",
+      "description": "api behavior in packages/durable/src/env/index.ts.",
       "normative_refs": {
         "readme": "packages/durable/README.md",
         "spec": null,
@@ -52725,15 +52791,18 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/session.dart",
-      "dart_impl": "pi_agent/lib/src/session.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/env/index.dart",
+      "dart_test": "pi_agent/test/durable/env_index_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "differential",
+        "scenario": "env-index",
+        "test": "pi_agent/test/durable/env_index_test.dart",
+        "oracle": "packages/durable/src/env/index.ts at 780bf31fcaeb252fa9b68df3964c735eae75bde3 (Result/ok/err/getOrThrow/getOrUndefined/toError, FileError/ExecutionError + code enums, and the FileSystem/Shell/BinaryReader/DirReader/FileWatcher contracts)",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "durable.packages-durable-src-env-index.ts.ShellExecResult.api",
       "area": "durable",
@@ -52743,7 +52812,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/durable/src/env/index.ts (scaffolded; needs human review).",
+      "description": "api behavior in packages/durable/src/env/index.ts.",
       "normative_refs": {
         "readme": "packages/durable/README.md",
         "spec": null,
@@ -52754,15 +52823,18 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/session.dart",
-      "dart_impl": "pi_agent/lib/src/session.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/env/index.dart",
+      "dart_test": "pi_agent/test/durable/env_index_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "differential",
+        "scenario": "env-index",
+        "test": "pi_agent/test/durable/env_index_test.dart",
+        "oracle": "packages/durable/src/env/index.ts at 780bf31fcaeb252fa9b68df3964c735eae75bde3 (Result/ok/err/getOrThrow/getOrUndefined/toError, FileError/ExecutionError + code enums, and the FileSystem/Shell/BinaryReader/DirReader/FileWatcher contracts)",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "durable.packages-durable-src-env-index.ts.ShellOutputInfo.api",
       "area": "durable",
@@ -52772,7 +52844,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/durable/src/env/index.ts (scaffolded; needs human review).",
+      "description": "api behavior in packages/durable/src/env/index.ts.",
       "normative_refs": {
         "readme": "packages/durable/README.md",
         "spec": null,
@@ -52783,15 +52855,18 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/session.dart",
-      "dart_impl": "pi_agent/lib/src/session.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/env/index.dart",
+      "dart_test": "pi_agent/test/durable/env_index_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "differential",
+        "scenario": "env-index",
+        "test": "pi_agent/test/durable/env_index_test.dart",
+        "oracle": "packages/durable/src/env/index.ts at 780bf31fcaeb252fa9b68df3964c735eae75bde3 (Result/ok/err/getOrThrow/getOrUndefined/toError, FileError/ExecutionError + code enums, and the FileSystem/Shell/BinaryReader/DirReader/FileWatcher contracts)",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "durable.packages-durable-src-env-index.ts.ShellOutputSkip.api",
       "area": "durable",
@@ -52801,7 +52876,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/durable/src/env/index.ts (scaffolded; needs human review).",
+      "description": "api behavior in packages/durable/src/env/index.ts.",
       "normative_refs": {
         "readme": "packages/durable/README.md",
         "spec": null,
@@ -52812,15 +52887,18 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/session.dart",
-      "dart_impl": "pi_agent/lib/src/session.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/env/index.dart",
+      "dart_test": "pi_agent/test/durable/env_index_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "differential",
+        "scenario": "env-index",
+        "test": "pi_agent/test/durable/env_index_test.dart",
+        "oracle": "packages/durable/src/env/index.ts at 780bf31fcaeb252fa9b68df3964c735eae75bde3 (Result/ok/err/getOrThrow/getOrUndefined/toError, FileError/ExecutionError + code enums, and the FileSystem/Shell/BinaryReader/DirReader/FileWatcher contracts)",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "durable.packages-durable-src-env-index.ts.ShellOutputWindow.api",
       "area": "durable",
@@ -52830,7 +52908,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/durable/src/env/index.ts (scaffolded; needs human review).",
+      "description": "api behavior in packages/durable/src/env/index.ts.",
       "normative_refs": {
         "readme": "packages/durable/README.md",
         "spec": null,
@@ -52841,15 +52919,18 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/session.dart",
-      "dart_impl": "pi_agent/lib/src/session.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/env/index.dart",
+      "dart_test": "pi_agent/test/durable/env_index_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "differential",
+        "scenario": "env-index",
+        "test": "pi_agent/test/durable/env_index_test.dart",
+        "oracle": "packages/durable/src/env/index.ts at 780bf31fcaeb252fa9b68df3964c735eae75bde3 (Result/ok/err/getOrThrow/getOrUndefined/toError, FileError/ExecutionError + code enums, and the FileSystem/Shell/BinaryReader/DirReader/FileWatcher contracts)",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "durable.packages-durable-src-env-index.ts.ShellSpillOptions.api",
       "area": "durable",
@@ -52925,7 +53006,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/durable/src/env/index.ts (scaffolded; needs human review).",
+      "description": "api behavior in packages/durable/src/env/index.ts.",
       "normative_refs": {
         "readme": "packages/durable/README.md",
         "spec": null,
@@ -52936,15 +53017,18 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/session.dart",
-      "dart_impl": "pi_agent/lib/src/session.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/env/index.dart",
+      "dart_test": "pi_agent/test/durable/env_index_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "differential",
+        "scenario": "env-index",
+        "test": "pi_agent/test/durable/env_index_test.dart",
+        "oracle": "packages/durable/src/env/index.ts at 780bf31fcaeb252fa9b68df3964c735eae75bde3 (Result/ok/err/getOrThrow/getOrUndefined/toError, FileError/ExecutionError + code enums, and the FileSystem/Shell/BinaryReader/DirReader/FileWatcher contracts)",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "durable.packages-durable-src-env-index.ts.TextLine.api",
       "area": "durable",
@@ -52954,7 +53038,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/durable/src/env/index.ts (scaffolded; needs human review).",
+      "description": "api behavior in packages/durable/src/env/index.ts.",
       "normative_refs": {
         "readme": "packages/durable/README.md",
         "spec": null,
@@ -52965,15 +53049,18 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/session.dart",
-      "dart_impl": "pi_agent/lib/src/session.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/env/index.dart",
+      "dart_test": "pi_agent/test/durable/env_index_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "differential",
+        "scenario": "env-index",
+        "test": "pi_agent/test/durable/env_index_test.dart",
+        "oracle": "packages/durable/src/env/index.ts at 780bf31fcaeb252fa9b68df3964c735eae75bde3 (Result/ok/err/getOrThrow/getOrUndefined/toError, FileError/ExecutionError + code enums, and the FileSystem/Shell/BinaryReader/DirReader/FileWatcher contracts)",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "durable.packages-durable-src-env-index.ts.TextLineReader.api",
       "area": "durable",
@@ -52983,7 +53070,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/durable/src/env/index.ts (scaffolded; needs human review).",
+      "description": "api behavior in packages/durable/src/env/index.ts.",
       "normative_refs": {
         "readme": "packages/durable/README.md",
         "spec": null,
@@ -52994,15 +53081,18 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/session.dart",
-      "dart_impl": "pi_agent/lib/src/session.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/env/index.dart",
+      "dart_test": "pi_agent/test/durable/env_index_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "differential",
+        "scenario": "env-index",
+        "test": "pi_agent/test/durable/env_index_test.dart",
+        "oracle": "packages/durable/src/env/index.ts at 780bf31fcaeb252fa9b68df3964c735eae75bde3 (Result/ok/err/getOrThrow/getOrUndefined/toError, FileError/ExecutionError + code enums, and the FileSystem/Shell/BinaryReader/DirReader/FileWatcher contracts)",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "durable.packages-durable-src-env-index.ts.toError.api",
       "area": "durable",
@@ -53012,7 +53102,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/durable/src/env/index.ts (scaffolded; needs human review).",
+      "description": "api behavior in packages/durable/src/env/index.ts.",
       "normative_refs": {
         "readme": "packages/durable/README.md",
         "spec": null,
@@ -53023,15 +53113,18 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/session.dart",
-      "dart_impl": "pi_agent/lib/src/session.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/durable/env/index.dart",
+      "dart_test": "pi_agent/test/durable/env_index_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "differential",
+        "scenario": "env-index",
+        "test": "pi_agent/test/durable/env_index_test.dart",
+        "oracle": "packages/durable/src/env/index.ts at 780bf31fcaeb252fa9b68df3964c735eae75bde3 (Result/ok/err/getOrThrow/getOrUndefined/toError, FileError/ExecutionError + code enums, and the FileSystem/Shell/BinaryReader/DirReader/FileWatcher contracts)",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "durable.packages-durable-src-env-index.ts.WatchTarget.api",
       "area": "durable",
@@ -62973,16 +63066,17 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/tools.dart",
-      "dart_impl": "pi_agent/lib/src/tools.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/pi.dart",
+      "dart_impl": "pi_agent/lib/src/sse_parser.dart",
+      "dart_test": "pi_agent/test/sse_parser_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/sse_parser_test.dart",
+        "note": "consumeSseStream parity port of packages/mcp/src/transports/streamable-http.ts (#12451): incremental line scan (pending line read once when it ends), UTF-8 byte cap on the incomplete line rejected before its line ending arrives, cap on joined data lines before dispatch, CRLF/LF/CR endings incl. a CRLF split across chunks, and dispatch-scoped id; sse_parser_test.dart green under Dart 3.13."
       },
-      "issue": null,
+      "divergence": null,
+      "issue": "https://github.com/arrrrny/pi/issues/33",
       "id": "mcp.packages-mcp-test-streamable-http.test.ts.internal.test",
       "area": "mcp",
       "upstream_path": "packages/mcp/test/streamable-http.test.ts",
