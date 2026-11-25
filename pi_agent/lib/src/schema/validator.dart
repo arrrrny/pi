@@ -22,6 +22,13 @@ class SchemaValidator {
   /// Creates a validator over [root] (the schema document, for `$ref`).
   SchemaValidator(this.root);
 
+  /// Marker for a `$ref` pointer that could not be resolved.
+  ///
+  /// Kept distinct from a resolved value so that a pointer landing on a
+  /// boolean schema (`true`/`false`) or on JSON `null` is validated instead of
+  /// being mistaken for "no such ref" (which is treated as an empty schema).
+  static final Object _unresolvedRef = Object();
+
   /// The root schema document, used to resolve local `$ref` pointers.
   final Map<String, Object?> root;
 
@@ -37,7 +44,10 @@ class SchemaValidator {
     final ref = schema['\$ref'];
     if (ref is String) {
       final target = _resolveRef(ref, doc);
-      if (target == null) return true;
+      // An unresolvable pointer is tolerated as an empty schema, but a pointer
+      // that resolves to a boolean schema must be validated as that schema —
+      // notably `$ref: false` must reject every value.
+      if (identical(target, _unresolvedRef)) return true;
       return _validate(target, value, doc);
     }
 
@@ -287,25 +297,28 @@ class SchemaValidator {
     return true;
   }
 
-  Map<String, Object?>? _resolveRef(String ref, Map<String, Object?> doc) {
-    if (!ref.startsWith('#')) return null;
+  Object? _resolveRef(String ref, Map<String, Object?> doc) {
+    if (!ref.startsWith('#')) return _unresolvedRef;
     final pointer = ref.substring(1);
     if (pointer.isEmpty || pointer == '/') return doc;
-    if (!pointer.startsWith('/')) return null;
+    if (!pointer.startsWith('/')) return _unresolvedRef;
     Object? current = doc;
     for (final rawToken in pointer.substring(1).split('/')) {
       final token = rawToken.replaceAll('~1', '/').replaceAll('~0', '~');
       if (current is Map<String, Object?>) {
+        if (!current.containsKey(token)) return _unresolvedRef;
         current = current[token];
       } else if (current is List<Object?>) {
         final index = int.tryParse(token);
-        if (index == null || index < 0 || index >= current.length) return null;
+        if (index == null || index < 0 || index >= current.length) {
+          return _unresolvedRef;
+        }
         current = current[index];
       } else {
-        return null;
+        return _unresolvedRef;
       }
     }
-    return current is Map<String, Object?> ? current : null;
+    return current;
   }
 }
 
