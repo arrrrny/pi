@@ -131,13 +131,11 @@ void main() {
     });
   });
 
-  // Ports the agent-area behavioral guarantee of upstream #12451 (da7e26cc8,
-  // "read large streamed lines and events in linear time"), whose agent slice
-  // changed `streamProxy` to split only the newly decoded chunk instead of
-  // rescanning the whole accumulated buffer on every chunk. The Dart port has
-  // no `streamProxy`; its streaming path reads SSE lines through `LineSplitter`,
-  // which already appends only the new text and reads the pending line once, so
-  // these lock the linear-time guarantee in rather than change production code.
+  // Large-line reassembly through `parseSSE`, whose `LineSplitter` already
+  // appends only the new text and reads the pending line once. The linear-time
+  // guarantee of upstream #12451 is guarded where that change actually landed:
+  // `SseDecoder` (see `test/ai/sse_decoder_test.dart`), not here — asserting it
+  // on `LineSplitter` would only lock a property of the Dart SDK.
   group('parseSSE large streamed lines (upstream #12451)', () {
     Stream<List<int>> toByteChunkedStream(String input, int chunkSize) {
       final bytes = utf8.encode(input);
@@ -174,25 +172,6 @@ void main() {
         expect(events, hasLength(1), reason: 'chunk size $size');
         expect(events[0]['data'], payload, reason: 'chunk size $size');
       }
-    });
-
-    test('reads a large streamed line in linear, not quadratic, time',
-        () async {
-      // A pre-#12451 reader that rescanned the whole pending buffer per chunk
-      // copies about (size / chunk) * size characters: 2 MiB in 256 B chunks is
-      // ~16 GB of copying and takes seconds. The linear LineSplitter finishes
-      // far under the bound. The limit is generous so a shared host cannot flake
-      // it, while a reintroduced quadratic rescan still blows past it.
-      final payload = 'z' * (2 * 1024 * 1024);
-      final sw = Stopwatch()..start();
-      final events =
-          await parseSSE(toByteChunkedStream('data: $payload\n\n', 256))
-              .toList();
-      sw.stop();
-      expect(events, hasLength(1));
-      expect(events[0]['data'], payload);
-      expect(sw.elapsedMilliseconds, lessThan(10000),
-          reason: 'large line parse took ${sw.elapsedMilliseconds}ms');
     });
   });
 }
