@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "name": "provider.session-identity",
+  "sha": "c11a73bfba1310dc4075ad836254ea87003f409b",
+  "normalization_version": 1,
+  "equal": true,
+  "row_ids": [
+    "ai.packages-ai-src-utils-identity.ts.formatUserAgent.api",
+    "ai.packages-ai-src-utils-identity.ts.getAttributionHeaders.api",
+    "ai.packages-ai-src-utils-identity.ts.getIdentityHeaders.api",
+    "ai.packages-ai-src-utils-identity.ts.mergeClientIdentity.api",
+    "ai.packages-ai-src-utils-identity.ts.getOpenCodeSessionHeaders.api",
+    "ai.packages-ai-test-identity.test.ts.identity.test"
+  ],
+  "left": [
+    {
+      "attribution": {
+        "HTTP-Referer": "https://pi.dev",
+        "X-OpenRouter-Categories": "cli-agent",
+        "X-OpenRouter-Title": "pi"
+      },
+      "seq": 1,
+      "session": null,
+      "type": "request_identity",
+      "userAgent": "pi/1.6.0 (darwin; node/v22.0.0; arm64)"
+    },
+    {
+      "attribution": {
+        "X-BILLING-INVOKE-ORIGIN": "Pi"
+      },
+      "seq": 2,
+      "session": null,
+      "type": "request_identity",
+      "userAgent": "pi/1.6.0 (darwin; node/v22.0.0; arm64)"
+    },
+    {
+      "attribution": {
+        "x-opencode-client": "pi"
+      },
+      "seq": 3,
+      "session": {
+        "x-opencode-session": "sess-42"
+      },
+      "type": "request_identity",
+      "userAgent": "pi/1.6.0 (darwin; node/v22.0.0; arm64)"
+    },
+    {
+      "attribution": null,
+      "seq": 4,
+      "session": null,
+      "type": "request_identity",
+      "userAgent": "pi/1.6.0 (darwin; node/v22.0.0; arm64)"
+    },
+    {
+      "attribution": null,
+      "seq": 5,
+      "session": null,
+      "type": "request_identity",
+      "userAgent": "pi"
+    },
+    {
+      "attribution": null,
+      "seq": 6,
+      "session": null,
+      "type": "request_identity",
+      "userAgent": "pi/2.0.0 (darwin; node/v22.0.0; arm64)"
+    }
+  ],
+  "right": [
+    {
+      "attribution": {
+        "HTTP-Referer": "https://pi.dev",
+        "X-OpenRouter-Categories": "cli-agent",
+        "X-OpenRouter-Title": "pi"
+      },
+      "seq": 1,
+      "session": null,
+      "type": "request_identity",
+      "userAgent": "pi/1.6.0 (darwin; node/v22.0.0; arm64)"
+    },
+    {
+      "attribution": {
+        "X-BILLING-INVOKE-ORIGIN": "Pi"
+      },
+      "seq": 2,
+      "session": null,
+      "type": "request_identity",
+      "userAgent": "pi/1.6.0 (darwin; node/v22.0.0; arm64)"
+    },
+    {
+      "attribution": {
+        "x-opencode-client": "pi"
+      },
+      "seq": 3,
+      "session": {
+        "x-opencode-session": "sess-42"
+      },
+      "type": "request_identity",
+      "userAgent": "pi/1.6.0 (darwin; node/v22.0.0; arm64)"
+    },
+    {
+      "attribution": null,
+      "seq": 4,
+      "session": null,
+      "type": "request_identity",
+      "userAgent": "pi/1.6.0 (darwin; node/v22.0.0; arm64)"
+    },
+    {
+      "attribution": null,
+      "seq": 5,
+      "session": null,
+      "type": "request_identity",
+      "userAgent": "pi"
+    },
+    {
+      "attribution": null,
+      "seq": 6,
+      "session": null,
+      "type": "request_identity",
+      "userAgent": "pi/2.0.0 (darwin; node/v22.0.0; arm64)"
+    }
+  ],
+  "differences": []
+}

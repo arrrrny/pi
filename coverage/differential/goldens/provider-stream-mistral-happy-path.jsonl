@@ -1,0 +1,12 @@
+{"contentIndex":0,"seq":1,"type":"text_start"}
+{"contentIndex":0,"delta":"Hello","seq":2,"type":"text_delta"}
+{"content":"Hello","contentIndex":0,"seq":3,"type":"text_end"}
+{"contentIndex":1,"seq":4,"type":"thinking_start"}
+{"contentIndex":1,"delta":"why","seq":5,"type":"thinking_delta"}
+{"content":"why","contentIndex":1,"seq":6,"type":"thinking_end"}
+{"contentIndex":2,"seq":7,"type":"toolcall_start"}
+{"contentIndex":2,"delta":"{\"command\"","seq":8,"type":"toolcall_delta"}
+{"contentIndex":2,"delta":": \"ls\"}","seq":9,"type":"toolcall_delta"}
+{"contentIndex":2,"seq":10,"toolCall":{"arguments":{"command":"ls"},"id":"call_1","name":"shell"},"type":"toolcall_end"}
+{"reason":"toolUse","seq":11,"type":"done"}
+{"content":[{"text":"Hello","type":"text"},{"thinking":"why","type":"thinking"},{"arguments":{"command":"ls"},"id":"call_1","name":"shell"}],"rawStopReason":"tool_calls","responseId":"m1","role":"assistant","seq":12,"stopReason":"toolUse","type":"message","usage":{"cacheRead":10,"cacheWrite":0,"input":20,"output":6,"totalTokens":26}}

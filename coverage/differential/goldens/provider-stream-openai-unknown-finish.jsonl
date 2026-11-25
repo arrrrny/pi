@@ -1,0 +1,5 @@
+{"contentIndex":0,"seq":1,"type":"text_start"}
+{"contentIndex":0,"delta":"partial answer","seq":2,"type":"text_delta"}
+{"content":"partial answer","contentIndex":0,"seq":3,"type":"text_end"}
+{"errorMessage":"Provider finish_reason: martian_pause","reason":"error","seq":4,"type":"error"}
+{"content":[{"text":"partial answer","type":"text"}],"errorMessage":"Provider finish_reason: martian_pause","rawStopReason":"martian_pause","responseId":"c1","role":"assistant","seq":5,"stopReason":"error","type":"message","usage":{"cacheRead":0,"cacheWrite":0,"input":0,"output":0,"totalTokens":0}}

@@ -45,7 +45,8 @@ void main() {
       '413: {"code":"plugin_request_too_large","message":"request too large"}',
       '413',
     ]) {
-      test('detects provider-independent request-size overflow: $errorMessage', () {
+      test('detects provider-independent request-size overflow: $errorMessage',
+          () {
         expect(isContextOverflow(_errorMessage(errorMessage), 1000000), isTrue);
         expect(isContextOverflow(_errorMessage(errorMessage)), isTrue);
       });
@@ -70,7 +71,9 @@ void main() {
       'Unknown error code request_too_large2',
       'Unknown error code request_too_large_flag',
     ]) {
-      test('does not match request-size codes inside longer identifiers: $errorMessage', () {
+      test(
+          'does not match request-size codes inside longer identifiers: $errorMessage',
+          () {
         expect(isContextOverflow(_errorMessage(errorMessage), 200000), isFalse);
       });
     }
@@ -140,7 +143,9 @@ void main() {
       );
     });
 
-    test('detects OpenAI-compatible parenthesized maximum context length errors', () {
+    test(
+        'detects OpenAI-compatible parenthesized maximum context length errors',
+        () {
       expect(
         isContextOverflow(
           _errorMessage(
@@ -152,7 +157,8 @@ void main() {
       );
     });
 
-    test('detects DS4 configured context size errors with and without commas', () {
+    test('detects DS4 configured context size errors with and without commas',
+        () {
       expect(
         isContextOverflow(
           _errorMessage(
@@ -175,7 +181,8 @@ void main() {
 
     test('does not treat generic non-overflow Ollama errors as overflow', () {
       expect(
-        isContextOverflow(_errorMessage('500 `model runner crashed unexpectedly`'), 32768),
+        isContextOverflow(
+            _errorMessage('500 `model runner crashed unexpectedly`'), 32768),
         isFalse,
       );
     });
@@ -209,7 +216,8 @@ void main() {
     test('does not treat Bedrock service unavailable as overflow', () {
       expect(
         isContextOverflow(
-          _errorMessage('Service unavailable: The service is temporarily unavailable.'),
+          _errorMessage(
+              'Service unavailable: The service is temporarily unavailable.'),
           200000,
         ),
         isFalse,
@@ -233,7 +241,9 @@ void main() {
       );
     });
 
-    test('detects Xiaomi-style overflow (length stop, zero output, filled context)', () {
+    test(
+        'detects Xiaomi-style overflow (length stop, zero output, filled context)',
+        () {
       final message = _lengthStop(input: 58, cacheRead: 1048512, output: 0);
       expect(isContextOverflow(message, 1048576), isTrue);
     });
@@ -243,24 +253,30 @@ void main() {
       expect(isContextOverflow(message, 200000), isFalse);
     });
 
-    test('does not treat zero-output length stops far below context as overflow', () {
+    test(
+        'does not treat zero-output length stops far below context as overflow',
+        () {
       final message = _lengthStop(input: 100, cacheRead: 0, output: 0);
       expect(isContextOverflow(message, 200000), isFalse);
     });
   });
 
   group('isRecoverableLength', () {
-    test('treats a length stop below the desired output limit as recoverable', () {
+    test('treats a length stop below the desired output limit as recoverable',
+        () {
       final message = _lengthStop(input: 3, cacheRead: 253584, output: 16);
       expect(isRecoverableLength(message, 128000), isTrue);
     });
 
-    test('does not recover a length stop that reached the desired output limit', () {
+    test('does not recover a length stop that reached the desired output limit',
+        () {
       final message = _lengthStop(input: 4062, cacheRead: 0, output: 1024);
       expect(isRecoverableLength(message, 1024), isFalse);
     });
 
-    test('treats zero-output length stops as recoverable without context metadata', () {
+    test(
+        'treats zero-output length stops as recoverable without context metadata',
+        () {
       final message = _lengthStop(input: 100, cacheRead: 0, output: 0);
       expect(isRecoverableLength(message, 128000), isTrue);
     });

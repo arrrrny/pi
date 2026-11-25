@@ -20,14 +20,12 @@ import 'session.dart';
 import 'session_storage.dart';
 
 /// A `beforeToolCall` hook, matching [Agent].
-typedef BeforeToolCallHook = Future<BeforeToolCallResult?> Function(
-    BeforeToolCallContext ctx,
-    {bool Function()? isAborted});
+typedef BeforeToolCallHook = Future<BeforeToolCallResult?>
+    Function(BeforeToolCallContext ctx, {bool Function()? isAborted});
 
 /// An `afterToolCall` hook, matching [Agent].
-typedef AfterToolCallHook = Future<AfterToolCallResult?> Function(
-    AfterToolCallContext ctx,
-    {bool Function()? isAborted});
+typedef AfterToolCallHook = Future<AfterToolCallResult?>
+    Function(AfterToolCallContext ctx, {bool Function()? isAborted});
 
 /// Resolves an API key for a provider.
 typedef ConversationGetApiKey = Future<String?> Function(String provider);
@@ -43,7 +41,8 @@ class Conversation {
       StreamController<AgentEvent>.broadcast();
   bool _closed = false;
 
-  Conversation._(this._agent, this._session, this._loopStreamFn, this._getApiKey);
+  Conversation._(
+      this._agent, this._session, this._loopStreamFn, this._getApiKey);
 
   /// Creates a new, empty conversation backed by [storage].
   static Future<Conversation> create(
@@ -167,13 +166,15 @@ class Conversation {
   Future<bool> compact({
     CompactionSettings? settings,
     String? apiKey,
-    Future<String> Function(List<AgentMessage> messages, Model model)? summarize,
+    Future<String> Function(List<AgentMessage> messages, Model model)?
+        summarize,
   }) async {
     final effective = settings ?? defaultCompactionSettings;
     final model = _agent.state.model;
     final liveMessages = _agent.state.messages;
     if (liveMessages.length < 2 ||
-        !shouldCompact(liveMessages, model.contextWindow, settings: effective)) {
+        !shouldCompact(liveMessages, model.contextWindow,
+            settings: effective)) {
       return false;
     }
 
@@ -194,8 +195,9 @@ class Conversation {
             apiKey: apiKey ?? await _getApiKey?.call(model.provider),
           );
 
-    final firstKept =
-        preparation.keptEntries.isNotEmpty ? preparation.keptEntries.first.id : '';
+    final firstKept = preparation.keptEntries.isNotEmpty
+        ? preparation.keptEntries.first.id
+        : '';
     await _session.appendCompaction(summary, firstKept, preparation.tokensCut);
 
     final rebuilt = await _session.buildContext();

@@ -1,0 +1,11 @@
+{"contentIndex":0,"seq":1,"type":"text_start"}
+{"contentIndex":0,"delta":"Visible","seq":2,"type":"text_delta"}
+{"content":"Visible","contentIndex":0,"seq":3,"type":"text_end"}
+{"contentIndex":1,"seq":4,"type":"thinking_start"}
+{"contentIndex":1,"delta":"quiet thought","seq":5,"type":"thinking_delta"}
+{"content":"quiet thought","contentIndex":1,"seq":6,"type":"thinking_end"}
+{"contentIndex":2,"seq":7,"type":"toolcall_start"}
+{"contentIndex":2,"delta":"{\"command\":\"ls\"}","seq":8,"type":"toolcall_delta"}
+{"contentIndex":2,"seq":9,"toolCall":{"arguments":{"command":"ls"},"id":"<generated-tool-call-1>","name":"shell"},"type":"toolcall_end"}
+{"reason":"stop","seq":10,"type":"done"}
+{"content":[{"text":"Visible","type":"text"},{"thinking":"quiet thought","type":"thinking"},{"arguments":{"command":"ls"},"id":"<generated-tool-call-1>","name":"shell"}],"rawStopReason":"STOP","responseId":"r1","role":"assistant","seq":11,"stopReason":"stop","type":"message","usage":{"cacheRead":2,"cacheWrite":0,"input":8,"output":8,"reasoning":3,"totalTokens":18}}

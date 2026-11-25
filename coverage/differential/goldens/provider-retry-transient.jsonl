@@ -1,0 +1,6 @@
+{"call":1,"errorMessage":"connection refused","seq":1,"stopReason":"error","type":"produce"}
+{"attempt":1,"delayMs":1000,"errorMessage":"connection refused","maxAttempts":2,"seq":2,"type":"retry_scheduled"}
+{"call":2,"errorMessage":"connection refused","seq":3,"stopReason":"error","type":"produce"}
+{"attempt":2,"delayMs":2000,"errorMessage":"connection refused","maxAttempts":2,"seq":4,"type":"retry_scheduled"}
+{"call":3,"errorMessage":null,"seq":5,"stopReason":"stop","type":"produce"}
+{"attempt":2,"seq":6,"success":true,"type":"retry_finished"}

@@ -57,8 +57,10 @@ class ServerSentEvent {
 /// Lines end with LF, CRLF or CR, and a blank line ends an event. Only new text
 /// is scanned, and an incomplete line is read once when it ends.
 class SseDecoder {
-  /// The incomplete last line.
-  String _pendingLine = '';
+  /// The incomplete last line, held as fragments so a line delivered in many
+  /// chunks joins only once when it completes (#12451 linear-time guarantee;
+  /// repeated `+=` on an immutable string would copy the whole line per chunk).
+  final List<String> _pendingParts = <String>[];
 
   /// The last text ended with CR, so a leading LF of the next text completes it.
   bool _skipLeadingLf = false;
@@ -74,8 +76,7 @@ class SseDecoder {
   late final ByteConversionSink _byteSink;
 
   /// Creates a decoder.
-  SseDecoder()
-      : _eventSink = _EventSink() {
+  SseDecoder() : _eventSink = _EventSink() {
     _eventSink._owner = this;
     _byteSink = utf8.decoder.startChunkedConversion(_eventSink);
   }
@@ -92,9 +93,10 @@ class SseDecoder {
   List<ServerSentEvent> end() {
     _emitted.clear();
     _byteSink.close();
-    if (_pendingLine.isNotEmpty) {
-      _decodeLine(_pendingLine);
-      _pendingLine = '';
+    if (_pendingParts.isNotEmpty) {
+      final line = _pendingParts.join();
+      _pendingParts.clear();
+      _decodeLine(line);
     }
     _skipLeadingLf = false;
     final last = _flush();
@@ -112,8 +114,10 @@ class SseDecoder {
         i++;
         continue;
       }
-      final event = _decodeLine(_pendingLine + text.substring(start, i));
-      _pendingLine = '';
+      final event = _decodeLine(
+        (_pendingParts..add(text.substring(start, i))).join(),
+      );
+      _pendingParts.clear();
       if (event != null) _emitted.add(event);
       if (char == '\r') {
         if (i + 1 == text.length) {
@@ -125,7 +129,7 @@ class SseDecoder {
       start = i + 1;
       i++;
     }
-    _pendingLine += text.substring(start);
+    if (start < text.length) _pendingParts.add(text.substring(start));
   }
 
   ServerSentEvent? _decodeLine(String line) {

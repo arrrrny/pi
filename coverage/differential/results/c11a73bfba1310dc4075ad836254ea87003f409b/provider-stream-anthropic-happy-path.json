@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "name": "provider-stream-anthropic-happy-path",
+  "sha": "c11a73bfba1310dc4075ad836254ea87003f409b",
+  "normalization_version": 1,
+  "equal": true,
+  "row_ids": [
+    "ai.packages-ai-src-api-anthropic-messages.lazy.ts.anthropicMessagesApi.api"
+  ],
+  "left": [
+    {
+      "seq": 1,
+      "type": "start"
+    },
+    {
+      "contentIndex": 0,
+      "seq": 2,
+      "type": "text_start"
+    },
+    {
+      "contentIndex": 0,
+      "delta": "Hello",
+      "seq": 3,
+      "type": "text_delta"
+    },
+    {
+      "contentIndex": 0,
+      "delta": " world",
+      "seq": 4,
+      "type": "text_delta"
+    },
+    {
+      "content": "Hello world",
+      "contentIndex": 0,
+      "seq": 5,
+      "type": "text_end"
+    },
+    {
+      "contentIndex": 1,
+      "seq": 6,
+      "type": "thinking_start"
+    },
+    {
+      "contentIndex": 1,
+      "delta": "hmm",
+      "seq": 7,
+      "type": "thinking_delta"
+    },
+    {
+      "content": "hmm",
+      "contentIndex": 1,
+      "seq": 8,
+      "type": "thinking_end"
+    },
+    {
+      "contentIndex": 2,
+      "seq": 9,
+      "type": "toolcall_start"
+    },
+    {
+      "contentIndex": 2,
+      "delta": "{\"comm",
+      "seq": 10,
+      "type": "toolcall_delta"
+    },
+    {
+      "contentIndex": 2,
+      "delta": "and\": \"ls\"}",
+      "seq": 11,
+      "type": "toolcall_delta"
+    },
+    {
+      "contentIndex": 2,
+      "seq": 12,
+      "toolCall": {
+        "arguments": {
+          "command": "ls"
+        },
+        "id": "toolu_1",
+        "name": "shell"
+      },
+      "type": "toolcall_end"
+    },
+    {
+      "reason": "toolUse",
+      "seq": 13,
+      "type": "done"
+    },
+    {
+      "content": [
+        {
+          "text": "Hello world",
+          "type": "text"
+        },
+        {
+          "thinking": "hmm",
+          "thinkingSignature": "sig9",
+          "type": "thinking"
+        },
+        {
+          "arguments": {
+            "command": "ls"
+          },
+          "id": "toolu_1",
+          "name": "shell"
+        }
+      ],
+      "rawStopReason": "tool_use",
+      "responseId": "msg_1",
+      "role": "assistant",
+      "seq": 14,
+      "stopReason": "toolUse",
+      "type": "message",
+      "usage": {
+        "cacheRead": 3,
+        "cacheWrite": 4,
+        "input": 12,
+        "output": 7,
+        "totalTokens": 26
+      }
+    }
+  ],
+  "right": [
+    {
+      "seq": 1,
+      "type": "start"
+    },
+    {
+      "contentIndex": 0,
+      "seq": 2,
+      "type": "text_start"
+    },
+    {
+      "contentIndex": 0,
+      "delta": "Hello",
+      "seq": 3,
+      "type": "text_delta"
+    },
+    {
+      "contentIndex": 0,
+      "delta": " world",
+      "seq": 4,
+      "type": "text_delta"
+    },
+    {
+      "content": "Hello world",
+      "contentIndex": 0,
+      "seq": 5,
+      "type": "text_end"
+    },
+    {
+      "contentIndex": 1,
+      "seq": 6,
+      "type": "thinking_start"
+    },
+    {
+      "contentIndex": 1,
+      "delta": "hmm",
+      "seq": 7,
+      "type": "thinking_delta"
+    },
+    {
+      "content": "hmm",
+      "contentIndex": 1,
+      "seq": 8,
+      "type": "thinking_end"
+    },
+    {
+      "contentIndex": 2,
+      "seq": 9,
+      "type": "toolcall_start"
+    },
+    {
+      "contentIndex": 2,
+      "delta": "{\"comm",
+      "seq": 10,
+      "type": "toolcall_delta"
+    },
+    {
+      "contentIndex": 2,
+      "delta": "and\": \"ls\"}",
+      "seq": 11,
+      "type": "toolcall_delta"
+    },
+    {
+      "contentIndex": 2,
+      "seq": 12,
+      "toolCall": {
+        "arguments": {
+          "command": "ls"
+        },
+        "id": "toolu_1",
+        "name": "shell"
+      },
+      "type": "toolcall_end"
+    },
+    {
+      "reason": "toolUse",
+      "seq": 13,
+      "type": "done"
+    },
+    {
+      "content": [
+        {
+          "text": "Hello world",
+          "type": "text"
+        },
+        {
+          "thinking": "hmm",
+          "thinkingSignature": "sig9",
+          "type": "thinking"
+        },
+        {
+          "arguments": {
+            "command": "ls"
+          },
+          "id": "toolu_1",
+          "name": "shell"
+        }
+      ],
+      "rawStopReason": "tool_use",
+      "responseId": "msg_1",
+      "role": "assistant",
+      "seq": 14,
+      "stopReason": "toolUse",
+      "type": "message",
+      "usage": {
+        "cacheRead": 3,
+        "cacheWrite": 4,
+        "input": 12,
+        "output": 7,
+        "totalTokens": 26
+      }
+    }
+  ],
+  "differences": []
+}

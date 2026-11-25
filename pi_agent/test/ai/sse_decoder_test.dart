@@ -51,7 +51,8 @@ void main() {
                   'data:  "é"}',
                 ],
               ),
-              const ServerSentEvent(event: null, data: 'tail', raw: <String>['data: tail']),
+              const ServerSentEvent(
+                  event: null, data: 'tail', raw: <String>['data: tail']),
             ],
           );
         }
@@ -62,20 +63,23 @@ void main() {
       final decoder = SseDecoder();
       expect(decoder.push(utf8.encode('data: a\r')), isEmpty);
       expect(decoder.push(utf8.encode('\ndata: b\r\n\r\n')), <ServerSentEvent>[
-        const ServerSentEvent(event: null, data: 'a\nb', raw: <String>['data: a', 'data: b']),
+        const ServerSentEvent(
+            event: null, data: 'a\nb', raw: <String>['data: a', 'data: b']),
       ]);
     });
 
     test('does not carry an empty event name into the next event', () {
       final decoder = SseDecoder();
-      expect(decoder.push(utf8.encode('event:\n\ndata: x\n\n')), <ServerSentEvent>[
+      expect(
+          decoder.push(utf8.encode('event:\n\ndata: x\n\n')), <ServerSentEvent>[
         const ServerSentEvent(event: null, data: 'x', raw: <String>['data: x']),
       ]);
     });
 
     test('drops comment lines of events without data', () {
       final decoder = SseDecoder();
-      expect(decoder.push(utf8.encode(': ping\n\ndata: x\n\n')), <ServerSentEvent>[
+      expect(
+          decoder.push(utf8.encode(': ping\n\ndata: x\n\n')), <ServerSentEvent>[
         const ServerSentEvent(event: null, data: 'x', raw: <String>['data: x']),
       ]);
     });

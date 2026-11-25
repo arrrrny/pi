@@ -292,9 +292,8 @@ void main() {
       // The post-abort "second" message is never processed, and exactly one
       // abort outcome is added on top of the message that preceded the abort.
       final ends = events.whereType<MessageEnd>().toList();
-      final texts = ends
-          .map((e) => (e.message as AssistantMessage).text)
-          .toList();
+      final texts =
+          ends.map((e) => (e.message as AssistantMessage).text).toList();
       expect(texts, isNot(contains('second')));
       expect(texts, contains('first'));
       expect(ends, hasLength(2));
@@ -463,7 +462,10 @@ void main() {
       // `loopStreamFn` drives the real loop, so this covers the whole path:
       // provider failure -> loop termination -> AgentState mirror.
       final agent = Agent(
-        loopStreamFn: ({required context, required config, required apiKey,
+        loopStreamFn: (
+                {required context,
+                required config,
+                required apiKey,
                 required abortSignal}) =>
             Stream.fromIterable([
           MessageEnd(
@@ -506,7 +508,10 @@ void main() {
       // `turnLoop` -> `_streamFromAsync`. A loop-body failure there used to be
       // swallowed, so the caller saw a normal-looking completion with no error.
       final agent = Agent(
-        loopStreamFn: ({required context, required config, required apiKey,
+        loopStreamFn: (
+                {required context,
+                required config,
+                required apiKey,
                 required abortSignal}) =>
             Stream.error(Exception('provider exploded')),
       );
@@ -531,8 +536,8 @@ void main() {
       final endMessages =
           events.whereType<MessageEnd>().map((e) => e.message).toList();
       expect(endMessages.last, isA<AssistantMessage>());
-      expect((endMessages.last as AssistantMessage).stopReason,
-          StopReason.error);
+      expect(
+          (endMessages.last as AssistantMessage).stopReason, StopReason.error);
     });
 
     test('a failure during an aborted run uses the aborted stop reason (#5)',
@@ -924,11 +929,11 @@ void main() {
           }
           return Stream<AgentEvent>.fromIterable(const [
             MessageStart(
-                message:
-                    AssistantMessage(content: [], stopReason: StopReason.endTurn)),
+                message: AssistantMessage(
+                    content: [], stopReason: StopReason.endTurn)),
             MessageEnd(
-                message:
-                    AssistantMessage(content: [], stopReason: StopReason.endTurn)),
+                message: AssistantMessage(
+                    content: [], stopReason: StopReason.endTurn)),
           ]);
         },
       );
