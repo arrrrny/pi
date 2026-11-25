@@ -15,8 +15,16 @@ import 'dart:convert';
 import 'provider_events.dart';
 import 'provider_stop_reason.dart';
 
-/// Counter for generating unique tool call IDs.
+/// Counter for generating unique tool call IDs in the default factory.
 int _googleToolCallCounter = 0;
+
+/// Generates an ID for a tool call the provider did not name. Inject one to
+/// make IDs deterministic in tests or collision-free across parser instances;
+/// the default preserves the upstream wall-clock + counter scheme.
+typedef ToolCallIdFactory = String Function(String name);
+
+String _defaultToolCallId(String name) =>
+    '${name}_${DateTime.now().millisecondsSinceEpoch}_${++_googleToolCallCounter}';
 
 /// Parses Google Generative AI `GenerateContentResponse` chunks into canonical
 /// stream events.
@@ -31,8 +39,15 @@ class GoogleStreamParser {
   /// differing response model. The upstream API compares `model.id`.
   final String requestedModelId;
 
+  /// Factory for generated tool-call IDs. Injectable so IDs are testable and
+  /// callers can avoid cross-instance collisions; the default matches upstream.
+  final ToolCallIdFactory generateToolCallId;
+
   /// Creates a GoogleStreamParser.
-  GoogleStreamParser({this.requestedModelId = ''});
+  GoogleStreamParser({
+    this.requestedModelId = '',
+    ToolCallIdFactory? generateToolCallId,
+  }) : generateToolCallId = generateToolCallId ?? _defaultToolCallId;
 
   /// The message.
   final ProviderMessageState message = ProviderMessageState();
@@ -179,7 +194,6 @@ class GoogleStreamParser {
       } else {
         final block = _currentBlock as ProviderTextBlock;
         block.text += text;
-        _retainThoughtSignatureText(block, part['thoughtSignature']);
         events.add(TextDelta(blockIndex, text));
       }
     }
@@ -195,9 +209,7 @@ class GoogleStreamParser {
           message.content
               .any((b) => b is ProviderToolCall && b.id == providedId);
       final name = functionCall['name'] as String? ?? '';
-      final toolCallId = needsNewId
-          ? '${name}_${DateTime.now().millisecondsSinceEpoch}_${++_googleToolCallCounter}'
-          : providedId;
+      final toolCallId = needsNewId ? generateToolCallId(name) : providedId;
       final args = functionCall['args'];
       final toolCall = ProviderToolCall(
         id: toolCallId,
@@ -236,13 +248,6 @@ class GoogleStreamParser {
     if (block.thinkingSignature.isEmpty && signature is String) {
       block.thinkingSignature = signature;
     }
-  }
-
-  void _retainThoughtSignatureText(ProviderTextBlock block, Object? signature) {
-    // Text blocks carry `textSignature` upstream; the port keeps the same
-    // first-wins rule in the thinking-signature slot, which is where replay
-    // reads it from.
-    if (block.text.isEmpty && signature is String) return;
   }
 }
 

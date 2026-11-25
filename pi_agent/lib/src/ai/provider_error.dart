@@ -147,7 +147,7 @@ bool _isPlainNonEmptyObject(Object? value) {
 String formatProviderError(NormalizedProviderError norm, {String? prefix}) {
   if (norm.messageCarriesBody || norm.status == null || norm.body == null) {
     if (prefix != null && norm.status != null) {
-      return '\$prefix (${norm.status}): ${norm.message}';
+      return '$prefix (${norm.status}): ${norm.message}';
     }
     return norm.message;
   }

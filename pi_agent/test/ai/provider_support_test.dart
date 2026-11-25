@@ -69,6 +69,21 @@ void main() {
           'OpenAI (429): slow down');
     });
 
+    test('format with prefix interpolates it when the body is in the message',
+        () {
+      // Regression: the `\$prefix` escape rendered a literal `$prefix` on the
+      // branch where the message already carries the body (parity with
+      // upstream `error-body.ts`).
+      const norm = NormalizedProviderError(
+        message: 'the request failed: slow down',
+        status: 429,
+        body: 'slow down',
+        messageCarriesBody: true,
+      );
+      expect(formatProviderError(norm, prefix: 'OpenAI'),
+          'OpenAI (429): the request failed: slow down');
+    });
+
     test('large proxy bodies are truncated to the cap', () {
       final bodyText = 'x' * 5000;
       final norm = normalizeProviderError({

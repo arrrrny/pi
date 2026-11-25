@@ -809,6 +809,34 @@ void main() {
       expect(toolCall.id, isNotEmpty);
     });
 
+    test('injected tool-call ID factory makes generated IDs deterministic', () {
+      final parser = GoogleStreamParser(
+        generateToolCallId: (name) => 'fixed-$name-id',
+      );
+      driveGoogle(parser, [
+        {
+          'candidates': [
+            {
+              'content': {
+                'parts': [
+                  {
+                    'functionCall': {
+                      'name': 'shell',
+                      'args': {'command': 'ls'},
+                    }
+                  }
+                ]
+              },
+              'finishReason': 'STOP',
+            }
+          ]
+        }
+      ]);
+      final toolCall =
+          parser.message.content.whereType<ProviderToolCall>().single;
+      expect(toolCall.id, 'fixed-shell-id');
+    });
+
     test('duplicate function call ids get fresh ids', () {
       final parser = GoogleStreamParser();
       driveGoogle(parser, [
