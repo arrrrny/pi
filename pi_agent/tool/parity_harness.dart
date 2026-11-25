@@ -24,6 +24,8 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:pi/src/agent_loop.dart';
+import 'package:pi/src/chord/delta.dart';
+import 'package:pi/src/chord/json.dart';
 import 'package:pi/src/types.dart' hide AgentTool;
 import 'package:pi/src/tools.dart';
 
@@ -315,6 +317,85 @@ Future<List<Map<String, dynamic>>> runRealAgentLoop(
   return records;
 }
 
+/// Decode one wire op (the upstream tuple form) into the Dart [Op] vocabulary.
+Op decodeOp(List<dynamic> wire) {
+  final verb = wire[0] as String;
+  switch (verb) {
+    case 'r':
+      return OpReplace(wire[1]);
+    case 's':
+      return OpSet((wire[1] as List).cast<Seg>(), wire[2]);
+    case 'd':
+      return OpDelete((wire[1] as List).cast<Seg>());
+    case 'a':
+      return OpAppend((wire[1] as List).cast<Seg>(), wire[2] as String);
+    case 't':
+      return OpTruncate((wire[1] as List).cast<Seg>(), wire[2] as int);
+    case 'p':
+      return OpInsert((wire[1] as List).cast<Seg>(), wire[2] as int,
+          wire[3] as int, (wire[4] as List).cast<Object?>());
+    case 'm':
+      return OpMove((wire[1] as List).cast<Seg>(),
+          (wire[2] as List).cast<int>());
+    default:
+      throw StateError('unknown op verb: $verb');
+  }
+}
+
+/// Drives the REAL chord delta applier for a `chord.delta-apply` scenario.
+///
+/// The observable contract is the final value (immutable and mutable paths),
+/// that the caller's input was left unmutated (the immutability guarantee), the
+/// `isReplace` classification of the first op, and the reserved-segment guard —
+/// all produced by the shipped `applyImmutableBatches`/`apply`/`isReplace`/
+/// `assertSafePath`, not a parallel twin.
+List<Map<String, dynamic>> runChordDeltaApply(Map<String, dynamic> scenario) {
+  final input = scenario['initial'];
+  final batches = (scenario['batches'] as List)
+      .map((batch) =>
+          (batch as List).map((op) => decodeOp((op as List).toList())).toList())
+      .toList();
+  final before = canonicalStringify(input);
+
+  // The immutable path drives the shipped copy-on-write applier.
+  final root = applyImmutableBatches(copyJson(input), batches);
+  // The same batches through the PR's headline mutable `apply`, on a fresh
+  // copy, so the differential actually exercises `apply` (not just the unit
+  // test) as the `apply.api` verified evidence claims.
+  final mutableRoot = apply(copyJson(input), batches.expand((batch) => batch).toList());
+
+  final inputUnchanged = canonicalStringify(input) == before;
+  final isReplaceFirst = firstOpIsReplace(batches);
+
+  // Reserved-segment guard (upstream `assertSafePath`): a write through a
+  // reserved segment must fail with UnsafePathError on both sides, so
+  // `RESERVED_SEGMENTS.api`'s verified evidence exercises the guard.
+  final reservedOps = (scenario['reserved_segment_ops'] as List? ?? <dynamic>[])
+      .map((op) => decodeOp((op as List).toList()))
+      .toList();
+  var reservedError = 'no error';
+  if (reservedOps.isNotEmpty) {
+    try {
+      apply(<String, Object?>{}, reservedOps);
+    } on UnsafePathError catch (error) {
+      reservedError = 'UnsafePathError: ${error.segment}';
+    }
+  }
+
+  return <Map<String, dynamic>>[
+    {'type': 'delta', 'name': 'final', 'value': root},
+    {'type': 'delta', 'name': 'mutable_final', 'value': mutableRoot},
+    {'type': 'delta', 'name': 'input_unchanged', 'value': inputUnchanged},
+    {'type': 'delta', 'name': 'is_replace_first', 'value': isReplaceFirst},
+    {'type': 'delta', 'name': 'input_is_json', 'value': isJsonValue(input)},
+    {'type': 'error', 'name': 'reserved_segment', 'value': reservedError},
+  ];
+}
+
+/// Whether the first op of the first batch is a root replacement.
+bool firstOpIsReplace(List<List<Op>> batches) =>
+    batches.isNotEmpty && batches.first.isNotEmpty && isReplace(batches.first.first);
+
 /// Deterministic model of the Dart port's observable behavior for scenarios
 /// that have no Dart implementation to drive yet.
 ///
@@ -373,9 +454,14 @@ void main(List<String> argv) async {
     exit(2);
   }
   final kind = scenario['kind'] as String? ?? '';
-  final raw = kind.startsWith('agent-loop.')
-      ? await runRealAgentLoop(scenario)
-      : runScripted(scenario);
+  final List<Map<String, dynamic>> raw;
+  if (kind.startsWith('agent-loop.')) {
+    raw = await runRealAgentLoop(scenario);
+  } else if (kind == 'chord.delta-apply') {
+    raw = runChordDeltaApply(scenario);
+  } else {
+    raw = runScripted(scenario);
+  }
   final normalized = normalizeOutcome(raw);
   final lines = normalized.map(canonicalStringify).join('\n');
   stdout.writeln(lines);

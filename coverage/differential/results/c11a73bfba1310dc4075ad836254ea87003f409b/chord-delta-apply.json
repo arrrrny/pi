@@ -1,0 +1,151 @@
+{
+  "schema_version": 1,
+  "name": "chord-delta-apply",
+  "sha": "c11a73bfba1310dc4075ad836254ea87003f409b",
+  "normalization_version": 1,
+  "equal": true,
+  "row_ids": [
+    "chord.packages-chord-src-delta-index.ts.applyImmutable.api",
+    "chord.packages-chord-src-delta-index.ts.applyImmutableBatches.api",
+    "chord.packages-chord-src-delta-index.ts.apply.api",
+    "chord.packages-chord-src-delta-index.ts.Draft.api",
+    "chord.packages-chord-src-delta-index.ts.Op.api",
+    "chord.packages-chord-src-delta-index.ts.Path.api",
+    "chord.packages-chord-src-delta-index.ts.Seg.api",
+    "chord.packages-chord-src-delta-index.ts.NonEmptyPath.api",
+    "chord.packages-chord-src-delta-index.ts.PathError.api",
+    "chord.packages-chord-src-delta-index.ts.isReplace.api",
+    "chord.packages-chord-src-delta-index.ts.RESERVED_SEGMENTS.api",
+    "chord.packages-chord-src-json.ts.copyJson.api",
+    "chord.packages-chord-src-json.ts.isJsonValue.api"
+  ],
+  "left": [
+    {
+      "name": "final",
+      "seq": 1,
+      "type": "delta",
+      "value": {
+        "count": 2,
+        "items": [
+          "x",
+          "a",
+          "b"
+        ],
+        "nested": {
+          "deep": {
+            "value": 9
+          }
+        },
+        "text": "world!"
+      }
+    },
+    {
+      "name": "mutable_final",
+      "seq": 2,
+      "type": "delta",
+      "value": {
+        "count": 2,
+        "items": [
+          "x",
+          "a",
+          "b"
+        ],
+        "nested": {
+          "deep": {
+            "value": 9
+          }
+        },
+        "text": "world!"
+      }
+    },
+    {
+      "name": "input_unchanged",
+      "seq": 3,
+      "type": "delta",
+      "value": true
+    },
+    {
+      "name": "is_replace_first",
+      "seq": 4,
+      "type": "delta",
+      "value": false
+    },
+    {
+      "name": "input_is_json",
+      "seq": 5,
+      "type": "delta",
+      "value": true
+    },
+    {
+      "name": "reserved_segment",
+      "seq": 6,
+      "type": "error",
+      "value": "UnsafePathError: __proto__"
+    }
+  ],
+  "right": [
+    {
+      "name": "final",
+      "seq": 1,
+      "type": "delta",
+      "value": {
+        "count": 2,
+        "items": [
+          "x",
+          "a",
+          "b"
+        ],
+        "nested": {
+          "deep": {
+            "value": 9
+          }
+        },
+        "text": "world!"
+      }
+    },
+    {
+      "name": "mutable_final",
+      "seq": 2,
+      "type": "delta",
+      "value": {
+        "count": 2,
+        "items": [
+          "x",
+          "a",
+          "b"
+        ],
+        "nested": {
+          "deep": {
+            "value": 9
+          }
+        },
+        "text": "world!"
+      }
+    },
+    {
+      "name": "input_unchanged",
+      "seq": 3,
+      "type": "delta",
+      "value": true
+    },
+    {
+      "name": "is_replace_first",
+      "seq": 4,
+      "type": "delta",
+      "value": false
+    },
+    {
+      "name": "input_is_json",
+      "seq": 5,
+      "type": "delta",
+      "value": true
+    },
+    {
+      "name": "reserved_segment",
+      "seq": 6,
+      "type": "error",
+      "value": "UnsafePathError: __proto__"
+    }
+  ],
+  "differences": []
+}
