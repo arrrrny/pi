@@ -41,8 +41,7 @@ class _ScriptedServer {
 }
 
 void main() {
-  test(
-      'Agent default path runs the full loop end to end (LLM -> tool -> LLM)',
+  test('Agent default path runs the full loop end to end (LLM -> tool -> LLM)',
       () async {
     final server = _ScriptedServer([
       // Turn 1: the model issues a tool call.

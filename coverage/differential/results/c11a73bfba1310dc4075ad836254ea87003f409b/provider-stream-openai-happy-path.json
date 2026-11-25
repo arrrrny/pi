@@ -1,0 +1,176 @@
+{
+  "schema_version": 1,
+  "name": "provider-stream-openai-happy-path",
+  "sha": "c11a73bfba1310dc4075ad836254ea87003f409b",
+  "normalization_version": 1,
+  "equal": true,
+  "row_ids": [
+    "ai.packages-ai-src-api-openai-completions.lazy.ts.openaiCompletionsApi.api",
+    "ai.packages-ai-test-streaming-tool-arguments.test.ts.streaming-tool-arguments.test"
+  ],
+  "left": [
+    {
+      "contentIndex": 0,
+      "seq": 1,
+      "type": "text_start"
+    },
+    {
+      "contentIndex": 0,
+      "delta": "Hi",
+      "seq": 2,
+      "type": "text_delta"
+    },
+    {
+      "contentIndex": 1,
+      "seq": 3,
+      "type": "toolcall_start"
+    },
+    {
+      "contentIndex": 1,
+      "delta": "{\"comm",
+      "seq": 4,
+      "type": "toolcall_delta"
+    },
+    {
+      "contentIndex": 1,
+      "delta": "and\": \"ls\"}",
+      "seq": 5,
+      "type": "toolcall_delta"
+    },
+    {
+      "content": "Hi",
+      "contentIndex": 0,
+      "seq": 6,
+      "type": "text_end"
+    },
+    {
+      "contentIndex": 1,
+      "seq": 7,
+      "toolCall": {
+        "arguments": {
+          "command": "ls"
+        },
+        "id": "call_1",
+        "name": "shell"
+      },
+      "type": "toolcall_end"
+    },
+    {
+      "reason": "toolUse",
+      "seq": 8,
+      "type": "done"
+    },
+    {
+      "content": [
+        {
+          "text": "Hi",
+          "type": "text"
+        },
+        {
+          "arguments": {
+            "command": "ls"
+          },
+          "id": "call_1",
+          "name": "shell"
+        }
+      ],
+      "rawStopReason": "tool_calls",
+      "responseId": "chatcmpl-1",
+      "role": "assistant",
+      "seq": 9,
+      "stopReason": "toolUse",
+      "type": "message",
+      "usage": {
+        "cacheRead": 4,
+        "cacheWrite": 0,
+        "input": 16,
+        "output": 8,
+        "reasoning": 2,
+        "totalTokens": 28
+      }
+    }
+  ],
+  "right": [
+    {
+      "contentIndex": 0,
+      "seq": 1,
+      "type": "text_start"
+    },
+    {
+      "contentIndex": 0,
+      "delta": "Hi",
+      "seq": 2,
+      "type": "text_delta"
+    },
+    {
+      "contentIndex": 1,
+      "seq": 3,
+      "type": "toolcall_start"
+    },
+    {
+      "contentIndex": 1,
+      "delta": "{\"comm",
+      "seq": 4,
+      "type": "toolcall_delta"
+    },
+    {
+      "contentIndex": 1,
+      "delta": "and\": \"ls\"}",
+      "seq": 5,
+      "type": "toolcall_delta"
+    },
+    {
+      "content": "Hi",
+      "contentIndex": 0,
+      "seq": 6,
+      "type": "text_end"
+    },
+    {
+      "contentIndex": 1,
+      "seq": 7,
+      "toolCall": {
+        "arguments": {
+          "command": "ls"
+        },
+        "id": "call_1",
+        "name": "shell"
+      },
+      "type": "toolcall_end"
+    },
+    {
+      "reason": "toolUse",
+      "seq": 8,
+      "type": "done"
+    },
+    {
+      "content": [
+        {
+          "text": "Hi",
+          "type": "text"
+        },
+        {
+          "arguments": {
+            "command": "ls"
+          },
+          "id": "call_1",
+          "name": "shell"
+        }
+      ],
+      "rawStopReason": "tool_calls",
+      "responseId": "chatcmpl-1",
+      "role": "assistant",
+      "seq": 9,
+      "stopReason": "toolUse",
+      "type": "message",
+      "usage": {
+        "cacheRead": 4,
+        "cacheWrite": 0,
+        "input": 16,
+        "output": 8,
+        "reasoning": 2,
+        "totalTokens": 28
+      }
+    }
+  ],
+  "differences": []
+}

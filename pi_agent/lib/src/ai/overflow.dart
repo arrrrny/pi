@@ -21,21 +21,28 @@ import '../types.dart';
 /// Ported verbatim from upstream `OVERFLOW_PATTERNS`, with the #12438
 /// identifier-boundary change applied to the `request_too_large` pattern.
 final List<RegExp> _overflowPatterns = <RegExp>[
-  RegExp(r'prompt (?:is )?too long', caseSensitive: false), // Anthropic and z.ai
-  RegExp(r'prompt exceeds max length', caseSensitive: false), // z.ai CN endpoint
+  RegExp(r'prompt (?:is )?too long',
+      caseSensitive: false), // Anthropic and z.ai
+  RegExp(r'prompt exceeds max length',
+      caseSensitive: false), // z.ai CN endpoint
   // Anthropic request byte-size error code, not a longer identifier (#12438).
-  RegExp(r'(?:^|[^a-z0-9_])request_too_large(?![a-z0-9_])', caseSensitive: false),
-  RegExp(r'input is too long for requested model', caseSensitive: false), // Amazon Bedrock
+  RegExp(r'(?:^|[^a-z0-9_])request_too_large(?![a-z0-9_])',
+      caseSensitive: false),
+  RegExp(r'input is too long for requested model',
+      caseSensitive: false), // Amazon Bedrock
   RegExp(r'exceeds the context window', caseSensitive: false), // OpenAI
   RegExp(
     r"exceeds (?:the )?(?:model'?s )?maximum context length(?: of [\d,]+ tokens?|\s*\([\d,]+\))",
     caseSensitive: false,
   ), // OpenAI-compatible proxies (LiteLLM)
-  RegExp(r'context window exceeded', caseSensitive: false), // LiteLLM pre-call check
-  RegExp(r'input token count.*exceeds the maximum', caseSensitive: false), // Google
+  RegExp(r'context window exceeded',
+      caseSensitive: false), // LiteLLM pre-call check
+  RegExp(r'input token count.*exceeds the maximum',
+      caseSensitive: false), // Google
   RegExp(r'maximum prompt length is \d+', caseSensitive: false), // xAI (Grok)
   RegExp(r'reduce the length of the messages', caseSensitive: false), // Groq
-  RegExp(r'maximum context length is \d+ tokens', caseSensitive: false), // OpenRouter
+  RegExp(r'maximum context length is \d+ tokens',
+      caseSensitive: false), // OpenRouter
   RegExp(
     r'exceeds (?:the )?maximum allowed input length of [\d,]+ tokens?',
     caseSensitive: false,
@@ -45,28 +52,37 @@ final List<RegExp> _overflowPatterns = <RegExp>[
     caseSensitive: false,
   ), // Together AI
   RegExp(r'exceeds the limit of \d+', caseSensitive: false), // GitHub Copilot
-  RegExp(r'exceeds the available context size', caseSensitive: false), // llama.cpp
+  RegExp(r'exceeds the available context size',
+      caseSensitive: false), // llama.cpp
   RegExp(r'greater than the context length', caseSensitive: false), // LM Studio
   RegExp(r'context window exceeds limit', caseSensitive: false), // MiniMax
-  RegExp(r'exceeded model token limit', caseSensitive: false), // Kimi For Coding
-  RegExp(r'too large for model with \d+ maximum context length', caseSensitive: false), // Mistral
+  RegExp(r'exceeded model token limit',
+      caseSensitive: false), // Kimi For Coding
+  RegExp(r'too large for model with \d+ maximum context length',
+      caseSensitive: false), // Mistral
   RegExp(
     r'prompt has [\d,]+ tokens?, but the configured context size is [\d,]+ tokens?',
     caseSensitive: false,
   ), // DS4 server
-  RegExp(r'model_context_window_exceeded', caseSensitive: false), // z.ai finish_reason
-  RegExp(r'prompt too long; exceeded (?:max )?context length', caseSensitive: false), // Ollama
-  RegExp(r'range of input length should be', caseSensitive: false), // DashScope / Qwen
-  RegExp(r'context[_ ]length[_ ]exceeded', caseSensitive: false), // Generic fallback
+  RegExp(r'model_context_window_exceeded',
+      caseSensitive: false), // z.ai finish_reason
+  RegExp(r'prompt too long; exceeded (?:max )?context length',
+      caseSensitive: false), // Ollama
+  RegExp(r'range of input length should be',
+      caseSensitive: false), // DashScope / Qwen
+  RegExp(r'context[_ ]length[_ ]exceeded',
+      caseSensitive: false), // Generic fallback
   RegExp(r'too many tokens', caseSensitive: false), // Generic fallback
   RegExp(r'token limit exceeded', caseSensitive: false), // Generic fallback
   // HTTP 413 means request-size overflow regardless of provider or body text.
-  RegExp(r'^(?:[\w -]+ API error \(413\):|413(?:\s|:|$))', caseSensitive: false),
+  RegExp(r'^(?:[\w -]+ API error \(413\):|413(?:\s|:|$))',
+      caseSensitive: false),
 ];
 
 /// A bodyless 400/413 status, known to indicate overflow only for Cerebras (#9482).
-final RegExp _cerebrasBodylessOverflowPattern =
-    RegExp(r'^4(?:00|13)\s*(?:status code)?\s*\(no body\)', caseSensitive: false);
+final RegExp _cerebrasBodylessOverflowPattern = RegExp(
+    r'^4(?:00|13)\s*(?:status code)?\s*\(no body\)',
+    caseSensitive: false);
 
 /// Patterns that indicate non-overflow errors (rate limiting, server errors).
 ///
@@ -93,13 +109,16 @@ List<RegExp> getOverflowPatterns() => List<RegExp>.of(_overflowPatterns);
 ///
 /// [provider] is the provider id, used only to attribute a bodyless 400/413 to
 /// Cerebras; Dart's [AssistantMessage] does not carry it.
-bool isContextOverflow(AssistantMessage message, [int? contextWindow, String? provider]) {
+bool isContextOverflow(AssistantMessage message,
+    [int? contextWindow, String? provider]) {
   final errorMessage = message.errorMessage;
   if (message.stopReason == StopReason.error && errorMessage != null) {
-    final isNonOverflow = _nonOverflowPatterns.any((p) => p.hasMatch(errorMessage));
+    final isNonOverflow =
+        _nonOverflowPatterns.any((p) => p.hasMatch(errorMessage));
     if (!isNonOverflow) {
       if (_overflowPatterns.any((p) => p.hasMatch(errorMessage))) return true;
-      if (provider == 'cerebras' && _cerebrasBodylessOverflowPattern.hasMatch(errorMessage)) {
+      if (provider == 'cerebras' &&
+          _cerebrasBodylessOverflowPattern.hasMatch(errorMessage)) {
         return true;
       }
     }
@@ -110,7 +129,8 @@ bool isContextOverflow(AssistantMessage message, [int? contextWindow, String? pr
     final inputTokens = usage.inputTokens + (usage.cacheReadInputTokens ?? 0);
 
     // Case 2: silent overflow (z.ai style) on a successful stop.
-    if (message.stopReason == StopReason.endTurn && inputTokens > contextWindow) {
+    if (message.stopReason == StopReason.endTurn &&
+        inputTokens > contextWindow) {
       return true;
     }
 

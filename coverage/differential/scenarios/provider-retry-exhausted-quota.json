@@ -1,0 +1,29 @@
+{
+	"kind": "provider-retry-transient",
+	"row_ids": [
+		"ai.packages-ai-src-utils-retry.ts.isRetryableAssistantError.api"
+	],
+	"provider": {
+		"kind": "scripted",
+		"turns": []
+	},
+	"policy": {
+		"enabled": true,
+		"maxRetries": 3,
+		"baseDelayMs": 100
+	},
+	"responses": [
+		{
+			"stopReason": "error",
+			"errorMessage": "insufficient_quota: out of budget"
+		}
+	],
+	"schema_version": 1,
+	"name": "provider-retry-exhausted-quota",
+	"area": "ai",
+	"clock": {
+		"kind": "virtual",
+		"start": "2026-01-01T00:00:00Z"
+	},
+	"normalization_version": 1
+}

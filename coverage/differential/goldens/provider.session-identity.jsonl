@@ -1,0 +1,6 @@
+{"attribution":{"HTTP-Referer":"https://pi.dev","X-OpenRouter-Categories":"cli-agent","X-OpenRouter-Title":"pi"},"seq":1,"session":null,"type":"request_identity","userAgent":"pi/1.6.0 (darwin; node/v22.0.0; arm64)"}
+{"attribution":{"X-BILLING-INVOKE-ORIGIN":"Pi"},"seq":2,"session":null,"type":"request_identity","userAgent":"pi/1.6.0 (darwin; node/v22.0.0; arm64)"}
+{"attribution":{"x-opencode-client":"pi"},"seq":3,"session":{"x-opencode-session":"sess-42"},"type":"request_identity","userAgent":"pi/1.6.0 (darwin; node/v22.0.0; arm64)"}
+{"attribution":null,"seq":4,"session":null,"type":"request_identity","userAgent":"pi/1.6.0 (darwin; node/v22.0.0; arm64)"}
+{"attribution":null,"seq":5,"session":null,"type":"request_identity","userAgent":"pi"}
+{"attribution":null,"seq":6,"session":null,"type":"request_identity","userAgent":"pi/2.0.0 (darwin; node/v22.0.0; arm64)"}

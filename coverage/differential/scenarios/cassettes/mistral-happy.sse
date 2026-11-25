@@ -1,0 +1,12 @@
+data: {"id":"m1","choices":[{"index":0,"delta":{"content":"Hello"}}]}
+
+data: {"id":"m1","choices":[{"index":0,"delta":{"content":[{"type":"thinking","thinking":[{"text":"why"}]}]}}]}
+
+data: {"id":"m1","choices":[{"index":0,"delta":{"tool_calls":[{"index":0,"id":"call_1","function":{"name":"shell","arguments":"{\"command\""}}]}}]}
+
+data: {"id":"m1","choices":[{"index":0,"delta":{"tool_calls":[{"index":0,"function":{"arguments":": \"ls\"}"}}]}}]}
+
+data: {"id":"m1","choices":[{"index":0,"delta":{},"finish_reason":"tool_calls"}],"usage":{"prompt_tokens":30,"completion_tokens":6,"prompt_tokens_details":{"cached_tokens":10},"total_tokens":26}}
+
+data: [DONE]
+

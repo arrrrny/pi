@@ -75,7 +75,10 @@ void main() {
         jsonEncode({
           'id': 'cmpl-1',
           'choices': [
-            {'delta': {'content': 'Hello'}, 'finish_reason': null},
+            {
+              'delta': {'content': 'Hello'},
+              'finish_reason': null
+            },
           ],
         }),
         jsonEncode({
@@ -154,8 +157,8 @@ void main() {
       ]);
 
       final events = await streamLLM(
-        context: AgentContext(
-            systemPrompt: '', messages: [UserMessage.text('go')]),
+        context:
+            AgentContext(systemPrompt: '', messages: [UserMessage.text('go')]),
         config: makeConfig(makeModel(server.url.toString())),
         apiKey: 'k',
         abortSignal: null,
@@ -199,8 +202,8 @@ void main() {
       ]);
 
       final events = await streamLLM(
-        context: AgentContext(
-            systemPrompt: '', messages: [UserMessage.text('go')]),
+        context:
+            AgentContext(systemPrompt: '', messages: [UserMessage.text('go')]),
         config: makeConfig(makeModel(server.url.toString())),
         apiKey: 'k',
         abortSignal: null,
@@ -236,8 +239,8 @@ void main() {
       ]);
 
       final events = await streamLLM(
-        context: AgentContext(
-            systemPrompt: '', messages: [UserMessage.text('go')]),
+        context:
+            AgentContext(systemPrompt: '', messages: [UserMessage.text('go')]),
         config: makeConfig(makeModel(server.url.toString())),
         apiKey: 'k',
         abortSignal: null,
@@ -261,8 +264,8 @@ void main() {
       addTearDown(() => bad.close(force: true));
 
       final events = await streamLLM(
-        context: AgentContext(
-            systemPrompt: '', messages: [UserMessage.text('hi')]),
+        context:
+            AgentContext(systemPrompt: '', messages: [UserMessage.text('hi')]),
         config: makeConfig(makeModel('http://127.0.0.1:${bad.port}/v1')),
         apiKey: 'bad',
         abortSignal: null,
@@ -284,13 +287,16 @@ void main() {
       // (openai-completions.ts:1583-1590).
       server.frames.add(jsonEncode({
         'choices': [
-          {'delta': {'content': 'hello'}, 'finish_reason': 'safety_guard_triggered'},
+          {
+            'delta': {'content': 'hello'},
+            'finish_reason': 'safety_guard_triggered'
+          },
         ],
       }));
 
       final events = await streamLLM(
-        context: AgentContext(
-            systemPrompt: '', messages: [UserMessage.text('hi')]),
+        context:
+            AgentContext(systemPrompt: '', messages: [UserMessage.text('hi')]),
         config: makeConfig(makeModel(server.url.toString())),
         apiKey: 'k',
         abortSignal: null,
@@ -298,7 +304,8 @@ void main() {
 
       final msg = singleEnd(events).message as AssistantMessage;
       expect(msg.stopReason, StopReason.error);
-      expect(msg.errorMessage, 'Provider finish_reason: safety_guard_triggered');
+      expect(
+          msg.errorMessage, 'Provider finish_reason: safety_guard_triggered');
       // The failure is a diagnostic, not model-authored content.
       expect(msg.content, isEmpty);
       expect(msg.text, isEmpty);
@@ -317,8 +324,8 @@ void main() {
       addTearDown(() => bad.close(force: true));
 
       final events = await streamLLM(
-        context: AgentContext(
-            systemPrompt: '', messages: [UserMessage.text('hi')]),
+        context:
+            AgentContext(systemPrompt: '', messages: [UserMessage.text('hi')]),
         config: makeConfig(makeModel('http://127.0.0.1:${bad.port}/v1')),
         apiKey: 'k',
         abortSignal: null,
@@ -338,8 +345,8 @@ void main() {
       await closed.close(force: true);
 
       final events = await streamLLM(
-        context: AgentContext(
-            systemPrompt: '', messages: [UserMessage.text('hi')]),
+        context:
+            AgentContext(systemPrompt: '', messages: [UserMessage.text('hi')]),
         config: makeConfig(makeModel('http://127.0.0.1:$deadPort/v1')),
         apiKey: 'k',
         abortSignal: null,
@@ -357,13 +364,16 @@ void main() {
       // Frames after the malformed one must not become model output.
       server.frames.add(jsonEncode({
         'choices': [
-          {'delta': {'content': 'should not appear'}, 'finish_reason': 'stop'},
+          {
+            'delta': {'content': 'should not appear'},
+            'finish_reason': 'stop'
+          },
         ],
       }));
 
       final events = await streamLLM(
-        context: AgentContext(
-            systemPrompt: '', messages: [UserMessage.text('hi')]),
+        context:
+            AgentContext(systemPrompt: '', messages: [UserMessage.text('hi')]),
         config: makeConfig(makeModel(server.url.toString())),
         apiKey: 'k',
         abortSignal: null,
@@ -379,13 +389,16 @@ void main() {
         () async {
       server.frames.add(jsonEncode({
         'choices': [
-          {'delta': {'content': 'partial'}, 'finish_reason': null},
+          {
+            'delta': {'content': 'partial'},
+            'finish_reason': null
+          },
         ],
       }));
 
       final events = await streamLLM(
-        context: AgentContext(
-            systemPrompt: '', messages: [UserMessage.text('hi')]),
+        context:
+            AgentContext(systemPrompt: '', messages: [UserMessage.text('hi')]),
         config: makeConfig(makeModel(server.url.toString())),
         apiKey: 'k',
         abortSignal: null,
@@ -400,13 +413,16 @@ void main() {
       final abort = Completer<void>();
       server.frames.add(jsonEncode({
         'choices': [
-          {'delta': {'content': 'partial'}, 'finish_reason': null},
+          {
+            'delta': {'content': 'partial'},
+            'finish_reason': null
+          },
         ],
       }));
 
       final future = streamLLM(
-        context: AgentContext(
-            systemPrompt: '', messages: [UserMessage.text('hi')]),
+        context:
+            AgentContext(systemPrompt: '', messages: [UserMessage.text('hi')]),
         config: makeConfig(makeModel(server.url.toString())),
         apiKey: 'k',
         abortSignal: abort,
@@ -428,8 +444,8 @@ void main() {
       }));
 
       final events = await streamLLM(
-        context: AgentContext(
-            systemPrompt: '', messages: [UserMessage.text('hi')]),
+        context:
+            AgentContext(systemPrompt: '', messages: [UserMessage.text('hi')]),
         config: makeConfig(makeModel(server.url.toString())),
         apiKey: 'k',
         abortSignal: null,
@@ -445,7 +461,10 @@ void main() {
         jsonEncode({
           'id': 'cmpl-3',
           'choices': [
-            {'delta': {'content': 'ok'}, 'finish_reason': 'stop'},
+            {
+              'delta': {'content': 'ok'},
+              'finish_reason': 'stop'
+            },
           ],
         }),
       ]);
@@ -477,8 +496,8 @@ void main() {
 
       final tools = server.lastBody!['tools'] as List<dynamic>;
       expect(tools, hasLength(1));
-      final fn =
-          (tools.single as Map<String, dynamic>)['function'] as Map<String, dynamic>;
+      final fn = (tools.single as Map<String, dynamic>)['function']
+          as Map<String, dynamic>;
       expect(fn['name'], 'echo');
       expect(fn['description'], 'Echo input');
       expect(fn['parameters'], isA<Map<String, dynamic>>());

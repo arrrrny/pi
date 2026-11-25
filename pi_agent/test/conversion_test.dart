@@ -51,7 +51,8 @@ void main() {
       expect(result.first['role'], 'assistant');
       expect(result.first['tool_calls'], isA<List<dynamic>>());
       expect((result.first['tool_calls'] as List<dynamic>).length, 1);
-      final tc = (result.first['tool_calls'] as List<dynamic>).first as Map<String, dynamic>;
+      final tc = (result.first['tool_calls'] as List<dynamic>).first
+          as Map<String, dynamic>;
       expect(tc['function']['name'], 'read_file');
     });
 

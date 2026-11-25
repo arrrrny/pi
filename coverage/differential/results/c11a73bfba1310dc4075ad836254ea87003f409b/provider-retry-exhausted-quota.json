@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "name": "provider-retry-exhausted-quota",
+  "sha": "c11a73bfba1310dc4075ad836254ea87003f409b",
+  "normalization_version": 1,
+  "equal": true,
+  "row_ids": [
+    "ai.packages-ai-src-utils-retry.ts.isRetryableAssistantError.api"
+  ],
+  "left": [
+    {
+      "call": 1,
+      "errorMessage": "insufficient_quota: out of budget",
+      "seq": 1,
+      "stopReason": "error",
+      "type": "produce"
+    }
+  ],
+  "right": [
+    {
+      "call": 1,
+      "errorMessage": "insufficient_quota: out of budget",
+      "seq": 1,
+      "stopReason": "error",
+      "type": "produce"
+    }
+  ],
+  "differences": []
+}
