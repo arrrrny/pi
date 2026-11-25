@@ -162,9 +162,16 @@ class UsageState {
           for (final entry in (raw as Map<String, Object?>).entries)
             entry.key: Usage.fromJson(entry.value! as Map<String, Object?>),
         };
+    // Missing buckets decode to empty ledgers, mirroring UsageCost.fromJson's
+    // tolerance of absent counters (toJson always emits both, but hand-built or
+    // older wire blobs need not).
     return UsageState(
-      models: decode(json['models']),
-      tools: decode(json['tools']),
+      models: decode(
+        (json['models'] as Map<String, Object?>?) ?? const <String, Object?>{},
+      ),
+      tools: decode(
+        (json['tools'] as Map<String, Object?>?) ?? const <String, Object?>{},
+      ),
     );
   }
 }
@@ -190,7 +197,31 @@ void addUsage(Usage total, Usage usage) {
   total.cost.total += usage.cost.total;
 }
 
+/// A deep copy of [usage], matching upstream's `structuredClone` when
+/// `addUsageState` defines a key the sum does not yet hold. Both [Usage] and
+/// its [UsageCost] have mutable fields, so assigning the source by reference
+/// would let later `addUsage` calls on the sum mutate the source ledger.
+Usage _cloneUsage(Usage usage) => Usage(
+      input: usage.input,
+      output: usage.output,
+      cacheRead: usage.cacheRead,
+      cacheWrite: usage.cacheWrite,
+      totalTokens: usage.totalTokens,
+      cacheWrite1h: usage.cacheWrite1h,
+      reasoning: usage.reasoning,
+      cost: UsageCost(
+        input: usage.cost.input,
+        output: usage.cost.output,
+        cacheRead: usage.cost.cacheRead,
+        cacheWrite: usage.cost.cacheWrite,
+        total: usage.cost.total,
+        totalFromProvider: usage.cost.totalFromProvider,
+      ),
+    );
+
 /// Add every bucket of [state] into [sum]. Port of upstream `addUsageState`.
+/// New keys are deep-copied (upstream's `structuredClone`) so the two ledgers
+/// never share a mutable [Usage].
 void addUsageState(UsageState sum, UsageState state) {
   for (final bucket in const <String>['models', 'tools']) {
     final target = bucket == 'models' ? sum.models : sum.tools;
@@ -200,7 +231,7 @@ void addUsageState(UsageState sum, UsageState state) {
       if (existing != null) {
         addUsage(existing, entry.value);
       } else {
-        target[entry.key] = entry.value;
+        target[entry.key] = _cloneUsage(entry.value);
       }
     }
   }

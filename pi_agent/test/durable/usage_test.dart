@@ -100,6 +100,32 @@ void main() {
     });
   });
 
+  group('UsageState.fromJson', () {
+    test('missing models/tools buckets decode to empty ledgers', () {
+      final decoded = UsageState.fromJson(<String, Object?>{});
+      expect(decoded.models, isEmpty);
+      expect(decoded.tools, isEmpty);
+    });
+
+    test('present buckets still decode their entries', () {
+      final decoded = UsageState.fromJson(<String, Object?>{
+        'models': <String, Object?>{
+          'p/m': <String, Object?>{
+            'input': 1,
+            'output': 2,
+            'cacheRead': 3,
+            'cacheWrite': 4,
+            'totalTokens': 5,
+            'cost': <String, Object?>{'total': 6},
+          },
+        },
+      });
+      expect(decoded.models['p/m']!.input, 1);
+      expect(decoded.models['p/m']!.cost.total, 6);
+      expect(decoded.tools, isEmpty);
+    });
+  });
+
   group('addUsageState', () {
     test('merges per-model and per-tool buckets', () {
       final sum = UsageState();
@@ -131,6 +157,22 @@ void main() {
             'p/m': _usage(input: 5, totalTokens: 5),
           }));
       expect(sum.models['p/m']!.input, 5);
+    });
+
+    test('a new key is deep-copied, never aliased to the source ledger', () {
+      final source = UsageState(models: <String, Usage>{
+        'p/m': _usage(input: 5, totalTokens: 5, costTotal: 2),
+      });
+      final sum = UsageState();
+      addUsageState(sum, source);
+
+      // Mutating the sum's entry must not reach the source (upstream's
+      // structuredClone), including its nested mutable cost.
+      addUsage(sum.models['p/m']!, _usage(input: 1, costTotal: 1));
+      expect(sum.models['p/m']!.input, 6);
+      expect(sum.models['p/m']!.cost.total, 3);
+      expect(source.models['p/m']!.input, 5);
+      expect(source.models['p/m']!.cost.total, 2);
     });
 
     test('a tool named __proto__ is an ordinary key', () {
