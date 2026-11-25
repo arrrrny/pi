@@ -1,5 +1,10 @@
 ## [Unreleased]
 
+### Added
+
+- `pi/telemetry.dart`: a Dart port of the runtime surface of `@earendil-works/pi-telemetry` — backend-neutral span/trace/metric contracts, an `InMemoryTelemetryContext` recorder (spans, metrics, propagation inject/extract, store queries), no-op capabilities, and `renderTrace`. Differential parity is proven against the upstream `render.test.ts` golden output and the in-process telemetry/metrics/store/propagation scenarios. ([#39](https://github.com/arrrrny/pi/issues/39))
+- `pi/schema.dart`: a Dart port of the validation surface of `@earendil-works/pi-schema` — a draft-07 `SchemaValidator` (type, enum, const, numeric/string/array/object keywords, combinators, local `$ref`, boolean schemas) and a `format` subset (ipv4, uuid, date, time, date-time, email, hostname, json-pointer, regex). Differential parity is proven against the official JSON-Schema-Test-Suite draft-07 fixtures. Remaining surface (draft2020-12, IDNA/URI/IRI formats, compiler/builders) is tracked in pi#53. ([#39](https://github.com/arrrrny/pi/issues/39))
+
 ### Changed
 
 - The exported `compact()` now generates its summary through the model instead of returning a placeholder: it delegates to the same canonical summarization path as `Conversation.compact()`, accepting an optional `loopStreamFn` (defaulting to `streamLLM`) and threading `previousSummary`, `customInstructions` and `abortSignal`. Prompts mirror upstream (`<conversation>` / `<previous-summary>` tags, initial vs update instructions, system prompt), and `CompactionResult` carries the summarizing response's `usage`. Responses that failed at the provider, were aborted, hit the token cap, attempted a tool call, or produced empty text now throw instead of being persisted as a summary, as does a call with nothing before the cut point. An optional `getApiKey` callback resolves the credential before the default `streamLLM` path sends it, matching `Conversation.compact()`. ([#7](https://github.com/arrrrny/pi/issues/7))
