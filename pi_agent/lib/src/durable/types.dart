@@ -606,7 +606,7 @@ final class TaskSleeping<S, R> extends CheckpointedTaskState<S, R> {
   final int? until;
 
   /// Signal keys whose value wakes the task.
-  final List<SignalKey>? signals;
+  final List<SignalName>? signals;
 
   @override
   String get status => 'sleeping';
@@ -703,9 +703,9 @@ final class WakeTasks extends WakeReason {
 }
 
 /// A signal key a task can sleep on.
-class SignalKey {
+class SignalName {
   /// A signal key named [name].
-  const SignalKey(this.name);
+  const SignalName(this.name);
 
   /// The key's name.
   final String name;
@@ -714,7 +714,7 @@ class SignalKey {
   String toJson() => name;
 
   /// A key decoded from [json].
-  static SignalKey fromJson(Object? json) => SignalKey(json! as String);
+  static SignalName fromJson(Object? json) => SignalName(json! as String);
 }
 
 /// Who owns a task: its conversation or another task.
