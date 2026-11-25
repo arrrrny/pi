@@ -66,20 +66,20 @@ void main() {
     test('records counter, up/down counter and histogram with context',
         () async {
       final adapter = InMemoryTelemetryContext();
-      adapter.metrics!
+      adapter.metrics
           .counter('network.bytes',
               const InstrumentOptions(description: 'Encoded bytes', unit: 'By'))
           .add(128, {'direction': 'out'});
-      adapter.metrics!.upDownCounter('network.active').add(1);
-      adapter.metrics!.upDownCounter('network.active').add(-1);
+      adapter.metrics.upDownCounter('network.active').add(1);
+      adapter.metrics.upDownCounter('network.active').add(-1);
       TelemetrySpan? requestSpan;
       await adapter.startSpan(SpanOptions(name: 'request'), (span) {
         requestSpan = span;
-        adapter.metrics!
+        adapter.metrics
             .histogram('call.duration',
                 const HistogramOptions(unit: 'ms', boundaries: [1, 10, 100]))
             .record(12, {'method': 'read'}, span);
-        adapter.metrics!.histogram('call.duration').record(13);
+        adapter.metrics.histogram('call.duration').record(13);
         return null;
       });
       final measurements = adapter.getMetrics();
@@ -154,8 +154,8 @@ void main() {
 
     test('findMetrics returns count-one rows filtered by name', () async {
       final telemetry = InMemoryTelemetryContext();
-      telemetry.metrics!.counter('hits').add(1);
-      telemetry.metrics!.counter('hits').add(2);
+      telemetry.metrics.counter('hits').add(1);
+      telemetry.metrics.counter('hits').add(2);
       final rows = await telemetry.findMetrics(const MetricQuery(name: 'hits'));
       expect(rows, hasLength(2));
       expect(rows.map((r) => r.sum).toList(), [1, 2]);

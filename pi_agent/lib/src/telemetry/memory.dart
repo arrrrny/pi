@@ -457,10 +457,12 @@ class InMemoryTelemetryContext
     final matches = grouped.values.where((trace) {
       final first = trace.spans.first;
       if (query.name != null && first.name != query.name) return false;
-      if (query.startMin != null && first.startedMs < query.startMin!)
+      if (query.startMin != null && first.startedMs < query.startMin!) {
         return false;
-      if (query.startMax != null && first.startedMs > query.startMax!)
+      }
+      if (query.startMax != null && first.startedMs > query.startMax!) {
         return false;
+      }
       if (after != null) {
         final a = after[0] as num;
         final b = after[1] as String;
@@ -469,8 +471,9 @@ class InMemoryTelemetryContext
           return false;
         }
       }
-      if (query.errors == true && !trace.spans.any((s) => s.status.isError))
+      if (query.errors == true && !trace.spans.any((s) => s.status.isError)) {
         return false;
+      }
       final attrs = query.attributes;
       if (attrs != null) {
         final ok = trace.spans.any((span) => attrs.entries
