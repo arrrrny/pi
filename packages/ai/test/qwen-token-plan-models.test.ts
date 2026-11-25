@@ -291,7 +291,8 @@ describe("Qwen Token Plan models", () => {
 	] as const)("omits retired models on %s", (provider) => {
 		const modelIds = getModels(provider).map((model) => model.id);
 		// #11773: deepseek-v3.2 and deepseek-v4-flash left the Token Plan model lists.
-		for (const retired of ["qwen3.8-max-preview", "deepseek-v3.2", "deepseek-v4-flash"]) {
+		// qwen4-max-preview is deprecated on models.dev and filtered by skipDeprecated.
+		for (const retired of ["qwen3.8-max-preview", "deepseek-v3.2", "deepseek-v4-flash", "qwen4-max-preview"]) {
 			expect(modelIds).not.toContain(retired);
 		}
 	});

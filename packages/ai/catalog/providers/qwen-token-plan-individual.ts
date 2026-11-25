@@ -19,9 +19,6 @@ export const INDIVIDUAL_MODEL_IDS = new Set<string>([
 	"qwen3.7-plus",
 	"qwen3.8-flash",
 	"qwen3.8-max",
-	// qwen4-max-preview was added in #12313 but models.dev now marks it deprecated
-	// (a preview pulled the day it shipped), so qwenTokenPlanModels' skipDeprecated
-	// drops it; it is not part of the available Individual text-model set.
 ]);
 
 export default defineProvider({
