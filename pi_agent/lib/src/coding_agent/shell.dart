@@ -104,9 +104,14 @@ class ProcessShellHost implements ShellHost {
 
   @override
   bool shellPathExists(String path) {
+    // Mirrors upstream `accessSync(path, F_OK)`: a plain existence probe. Do
+    // NOT use `File.statSync()` here — its extra stat/open rejects runnable
+    // Windows Store aliases (nodejs/node#36790), so an alias could read as
+    // missing. `existsSync()` uses the platform's lightweight existence check
+    // (GetFileAttributes on Windows, access(F_OK) on Unix) and throws if the
+    // probe itself fails, which we treat as "does not exist", like upstream.
     try {
-      io.File(path).statSync();
-      return true;
+      return io.File(path).existsSync();
     } catch (_) {
       return false;
     }
@@ -115,12 +120,18 @@ class ProcessShellHost implements ShellHost {
   @override
   String? findExecutableOnPath(String executable) {
     try {
-      final command = io.Platform.isWindows ? 'where' : 'which';
+      final isWindows = io.Platform.isWindows;
+      final command = isWindows ? 'where' : 'which';
       final result = io.Process.runSync(command, <String>[executable]);
       if (result.exitCode == 0) {
         final first =
             (result.stdout as String).trim().split(RegExp(r'\r?\n')).first;
-        if (first.isNotEmpty) return first;
+        // Upstream verifies the `where` result with shellPathExists on Windows
+        // so a stale/duplicate PATH entry is never returned as the shell. On
+        // Unix `which` output is trusted (Termux and special filesystems).
+        if (first.isNotEmpty && (!isWindows || shellPathExists(first))) {
+          return first;
+        }
       }
     } catch (_) {
       // Ignore errors.
@@ -336,6 +347,18 @@ String _win32Join(List<String> parts) {
   return out.toString();
 }
 
+/// Stand-in for upstream `path.win32.normalize` for exactly the inputs this
+/// module feeds it:
+///   * `git var GIT_SHELL_PATH` output such as `G:/Git/usr/bin/sh.exe` — the
+///     only requirement downstream is that `win32.normalize` turns `/` into
+///     `\` before the `\\usr\\bin\\sh.exe` suffix check and the root slice.
+///   * `isLegacyWslBashPath` inputs from the resolution order, including
+///     `SystemRoot`-joined paths like `d:/WINNT/System32/BASH.EXE` that may
+///     carry forward slashes, mixed case, repeated separators, a trailing
+///     separator, or a UNC prefix.
+/// This deliberately does not implement every `win32.normalize` corner case
+/// (drive-relative `..`, root `..`, extended-length prefixes); it must match
+/// the cases above and no more. Keep it aligned with `shell.ts`.
 String _win32Normalize(String path) {
   final normalized = path.replaceAll('/', '\\');
   // Collapse repeated separators and resolve `.` / `..` segments the way
