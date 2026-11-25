@@ -19,6 +19,8 @@ export 'src/chord/delta.dart';
 export 'src/chord/ids.dart';
 export 'src/chord/json.dart';
 export 'src/durable/entries.dart';
+export 'src/durable/env/decode.dart';
+export 'src/durable/env/line_scan.dart';
 export 'src/durable/errors.dart';
 export 'src/durable/signals.dart';
 export 'src/durable/provider.dart';
