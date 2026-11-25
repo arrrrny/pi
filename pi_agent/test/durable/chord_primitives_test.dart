@@ -174,4 +174,53 @@ void main() {
           draft.value);
     });
   });
+
+  // Upstream `packages/chord/src/delta/index.ts`: `apply` mutates a value the
+  // caller owns and returns it; `isReplace` classifies the `r` verb;
+  // `RESERVED_SEGMENTS` names the segments that reach the prototype chain.
+  group('apply (mutable)', () {
+    test('mutates the target in place and returns the same root', () {
+      final target = <String, Object?>{
+        'count': 1,
+        'items': <Object?>['a', 'b'],
+      };
+      final returned = apply(target, <Op>[
+        OpSet(<Seg>['count'], 2),
+        OpInsert(<Seg>['items'], 1, 0, <Object?>['x']),
+      ]);
+      expect(returned, same(target));
+      expect(target['count'], 2);
+      expect(target['items'], <Object?>['a', 'x', 'b']);
+    });
+
+    test('a root replacement is adopted, not copied', () {
+      final replacement = <String, Object?>{'fresh': true};
+      final returned = apply(<String, Object?>{'old': true},
+          <Op>[OpReplace(replacement)]);
+      expect(returned, same(replacement));
+    });
+
+    test('an unresolvable path fails with PathError', () {
+      expect(
+          () => apply(<String, Object?>{'count': 1}, <Op>[
+                OpAppend(<Seg>['count'], 'x'),
+              ]),
+          throwsA(isA<PathError>()));
+    });
+  });
+
+  group('isReplace', () {
+    test('is true only for the replace verb', () {
+      expect(isReplace(OpReplace(null)), isTrue);
+      expect(isReplace(OpSet(<Seg>['a'], 1)), isFalse);
+      expect(isReplace(OpDelete(<Seg>['a'])), isFalse);
+      expect(isReplace(OpInsert(<Seg>[], 0, 0, <Object?>[])), isFalse);
+    });
+  });
+
+  group('RESERVED_SEGMENTS', () {
+    test('names the three prototype-chain segments', () {
+      expect(RESERVED_SEGMENTS, <String>{'__proto__', 'constructor', 'prototype'});
+    });
+  });
 }

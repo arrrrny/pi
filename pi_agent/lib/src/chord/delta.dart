@@ -122,6 +122,48 @@ class PathError extends Error {
   String toString() => 'PathError(${path.join("/")})';
 }
 
+/// Segments that reach the prototype chain.
+///
+/// `JSON.parse` is safe on its own — it makes `__proto__` an own property. What
+/// is not safe is `parent[key] = value`, which is exactly what an applier does,
+/// and paths are data: `["s", ["__proto__", "isAdmin"], true]` pollutes
+/// `Object.prototype` for the whole process. Ops arrive from a facet, a plugin
+/// compartment, or a tool whose details may echo model output, so none of it is
+/// trusted input.
+// The name is the upstream `RESERVED_SEGMENTS` identifier, kept verbatim.
+// ignore: constant_identifier_names
+const Set<String> RESERVED_SEGMENTS = <String>{
+  '__proto__',
+  'constructor',
+  'prototype',
+};
+
+/// Whether [op] replaces the whole value (the `r` verb).
+bool isReplace(Op op) => op is OpReplace;
+
+/// Apply [ops] to a plain mutable value the caller owns, returning the root.
+///
+/// Unlike [applyImmutable], this mutates [target] in place: containers are
+/// written through, not copied. Only `r` replaces the root outright, so the
+/// return value is the one to keep — it is [target] for every other verb.
+Object? apply(Object? target, List<Op> ops) {
+  Object? root = target;
+  for (final op in ops) {
+    switch (op) {
+      case OpReplace(:final value):
+        root = value;
+      case OpInsert():
+      case OpMove():
+      case OpSet():
+      case OpDelete():
+      case OpAppend():
+      case OpTruncate():
+        _applyMutable(root, op);
+    }
+  }
+  return root;
+}
+
 /// Apply [ops] to [target], returning a new value; [target] is not mutated.
 Object? applyImmutable(Object? target, List<Op> ops) =>
     applyImmutableBatches(target, <List<Op>>[ops]);

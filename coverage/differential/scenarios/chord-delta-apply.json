@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "name": "chord-delta-apply",
+  "kind": "chord.delta-apply",
+  "area": "chord",
+  "row_ids": [
+    "chord.packages-chord-src-delta-index.ts.applyImmutable.api",
+    "chord.packages-chord-src-delta-index.ts.applyImmutableBatches.api",
+    "chord.packages-chord-src-delta-index.ts.apply.api",
+    "chord.packages-chord-src-delta-index.ts.Draft.api",
+    "chord.packages-chord-src-delta-index.ts.Op.api",
+    "chord.packages-chord-src-delta-index.ts.Path.api",
+    "chord.packages-chord-src-delta-index.ts.Seg.api",
+    "chord.packages-chord-src-delta-index.ts.NonEmptyPath.api",
+    "chord.packages-chord-src-delta-index.ts.PathError.api",
+    "chord.packages-chord-src-delta-index.ts.isReplace.api",
+    "chord.packages-chord-src-delta-index.ts.RESERVED_SEGMENTS.api",
+    "chord.packages-chord-src-json.ts.copyJson.api",
+    "chord.packages-chord-src-json.ts.isJsonValue.api"
+  ],
+  "provider": { "kind": "scripted", "turns": [] },
+  "clock": { "kind": "virtual", "start": "2026-01-01T00:00:00Z" },
+  "storage": { "kind": "memory" },
+  "crash_points": [],
+  "initial": {
+    "count": 1,
+    "text": "hello world",
+    "items": ["a", "b"],
+    "nested": { "deep": { "value": 1 } }
+  },
+  "batches": [
+    [
+      ["s", ["count"], 2],
+      ["a", ["text"], "!"],
+      ["t", ["text"], 6]
+    ],
+    [
+      ["p", ["items"], 1, 0, ["x"]],
+      ["m", ["items"], [1, 0, 2]]
+    ],
+    [
+      ["s", ["nested", "deep", "value"], 9]
+    ]
+  ],
+  "normalization_version": 1
+}
