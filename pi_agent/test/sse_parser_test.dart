@@ -130,4 +130,69 @@ void main() {
       expect(decoded, isA<Map<String, dynamic>>());
     });
   });
+
+  // Ports the agent-area behavioral guarantee of upstream #12451 (da7e26cc8,
+  // "read large streamed lines and events in linear time"), whose agent slice
+  // changed `streamProxy` to split only the newly decoded chunk instead of
+  // rescanning the whole accumulated buffer on every chunk. The Dart port has
+  // no `streamProxy`; its streaming path reads SSE lines through `LineSplitter`,
+  // which already appends only the new text and reads the pending line once, so
+  // these lock the linear-time guarantee in rather than change production code.
+  group('parseSSE large streamed lines (upstream #12451)', () {
+    Stream<List<int>> toByteChunkedStream(String input, int chunkSize) {
+      final bytes = utf8.encode(input);
+      final controller = StreamController<List<int>>();
+      for (var i = 0; i < bytes.length; i += chunkSize) {
+        final end =
+            (i + chunkSize < bytes.length) ? i + chunkSize : bytes.length;
+        controller.add(bytes.sublist(i, end));
+      }
+      controller.close();
+      return controller.stream;
+    }
+
+    test('reassembles a 1 MiB data line delivered in 4 KiB chunks', () async {
+      final payload = 'x' * (1024 * 1024);
+      final events =
+          await parseSSE(toByteChunkedStream('data: $payload\n\n', 4096))
+              .toList();
+      expect(events, hasLength(1));
+      expect(events[0]['data'], payload);
+    });
+
+    test('yields the same event for every chunk size', () async {
+      final payload = jsonEncode({
+        'choices': [
+          {
+            'delta': {'content': 'y' * 200000}
+          }
+        ]
+      });
+      final line = 'data: $payload\n\n';
+      for (final size in [1, 7, 4096, 65536, line.length]) {
+        final events = await parseSSE(toByteChunkedStream(line, size)).toList();
+        expect(events, hasLength(1), reason: 'chunk size $size');
+        expect(events[0]['data'], payload, reason: 'chunk size $size');
+      }
+    });
+
+    test('reads a large streamed line in linear, not quadratic, time',
+        () async {
+      // A pre-#12451 reader that rescanned the whole pending buffer per chunk
+      // copies about (size / chunk) * size characters: 2 MiB in 256 B chunks is
+      // ~16 GB of copying and takes seconds. The linear LineSplitter finishes
+      // far under the bound. The limit is generous so a shared host cannot flake
+      // it, while a reintroduced quadratic rescan still blows past it.
+      final payload = 'z' * (2 * 1024 * 1024);
+      final sw = Stopwatch()..start();
+      final events =
+          await parseSSE(toByteChunkedStream('data: $payload\n\n', 256))
+              .toList();
+      sw.stop();
+      expect(events, hasLength(1));
+      expect(events[0]['data'], payload);
+      expect(sw.elapsedMilliseconds, lessThan(10000),
+          reason: 'large line parse took ${sw.elapsedMilliseconds}ms');
+    });
+  });
 }
