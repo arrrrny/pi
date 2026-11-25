@@ -227,6 +227,35 @@ void main() {
       expect(error, isA<StateError>());
       expect((error as StateError).message, 'MCP SSE event exceeds 24 bytes');
     });
+
+    test('an id-only event does not leak its id into a later event', () async {
+      // Upstream's empty-dispatch clear (streamable-http.ts:57-62).
+      final events = await parseSSE(
+        toChunkedStream(['id: 1\n\n', 'data: c\n\n']),
+      ).toList();
+      expect(events, [
+        {'data': 'c'},
+      ]);
+    });
+
+    test('abandons a buffered partial event after a cap error', () async {
+      // The scanner fails on the unterminated over-limit line before the
+      // assembler sees a terminator; no event may follow the error, matching
+      // upstream's throw-out-of-loop behavior.
+      final order = <String>[];
+      final done = Completer<void>();
+      parseSSE(
+        toChunkedStream(['data: aaa\n', 'data: ${'x' * 100}']),
+        maxEventBytes: 32,
+      ).listen(
+        (event) => order.add('event $event'),
+        onError: (Object error) => order.add('error $error'),
+        onDone: done.complete,
+      );
+      await done.future;
+      expect(order, hasLength(1));
+      expect(order.single, contains('MCP SSE event exceeds 32 bytes'));
+    });
   });
 
   // Large-line reassembly through `parseSSE`, whose `LineSplitter` already

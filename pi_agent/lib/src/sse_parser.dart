@@ -7,6 +7,11 @@ import 'dart:convert';
 /// Default cap for one SSE event in bytes, matching the MCP Streamable HTTP
 /// transport's `DEFAULT_MAX_MESSAGE_BYTES` (16 MiB,
 /// `packages/mcp/src/transports/transport.ts`).
+///
+/// This constant is a value for callers to pass as [parseSSE]'s `maxEventBytes`
+/// when they want the MCP cap; it is not applied automatically. The package's
+/// only current caller (`llm_client.dart`) passes no cap, so the generic LLM
+/// SSE path stays uncapped.
 const int defaultMaxSseEventBytes = 16 * 1024 * 1024;
 
 /// Parses a byte stream into SSE events.
@@ -71,7 +76,9 @@ StreamTransformer<String, String> _sseLineScanner({int? maxEventBytes}) {
     }
     final rest = text.substring(start);
     pendingLine.write(rest);
-    pendingLineBytes += utf8.encode(rest).length;
+    // The counters are read only under a cap; avoid encoding every chunk on
+    // the uncapped default path where the byte count is never consulted.
+    if (maxEventBytes != null) pendingLineBytes += utf8.encode(rest).length;
   }
 
   return StreamTransformer<String, String>.fromHandlers(
@@ -104,11 +111,21 @@ StreamTransformer<String, String> _sseLineScanner({int? maxEventBytes}) {
 
 /// Assembles SSE lines into events, mirroring the MCP Streamable HTTP
 /// transport's field handling: multi-line `data` joined with "\n", comments
-/// skipped, the event's `id` scoped to the dispatched event.
+/// skipped, the event's `id` scoped to the dispatched event. A data-less
+/// dispatch (a blank line with no preceding `data:` field) emits nothing and
+/// clears the scoped `event`/`id` state, rather than leaking it into a later
+/// event — matching the upstream empty-dispatch behavior.
 ///
 /// Bytes of the pending event's data, including the "\n" joins, are counted
 /// as `data` lines arrive, so an event streamed as many short `data:` lines
 /// without a terminating blank line cannot grow past [maxEventBytes].
+///
+/// Note: field parsing here is carried over verbatim from the pre-port parser
+/// and intentionally unchanged by this port, so a few pre-existing divergences
+/// from upstream remain (empty `data:` drops the event instead of dispatching
+/// `{data: ""}`; values are `.trim()`ed rather than stripping one leading
+/// space; `id` has no NUL guard and `retry` accepts non-numeric values). The
+/// `verified` registry row covers only the behaviors ported here, not those.
 StreamTransformer<String, Map<String, String>> _sseEvents(
     {int? maxEventBytes}) {
   final dataBuffer = StringBuffer();
@@ -117,6 +134,10 @@ StreamTransformer<String, Map<String, String>> _sseEvents(
   String? lastEventId;
   String? retry;
   var closed = false;
+  // Set when an error arrives from the upstream scanner (e.g. a mid-line cap
+  // failure) so `handleDone` abandons the buffered partial event. Upstream's
+  // consumeSseStream throws out of the loop, so its tail dispatch never runs.
+  var failed = false;
 
   void dispatch(EventSink<Map<String, String>> sink) {
     if (dataBuffer.isEmpty) {
@@ -154,7 +175,9 @@ StreamTransformer<String, Map<String, String>> _sseEvents(
             dataBytes += 1;
           }
           dataBuffer.write(trimmed);
-          dataBytes += utf8.encode(trimmed).length;
+          if (maxEventBytes != null) {
+            dataBytes += utf8.encode(trimmed).length;
+          }
           if (maxEventBytes != null && dataBytes > maxEventBytes) {
             closed = true;
             sink.addError(
@@ -166,6 +189,9 @@ StreamTransformer<String, Map<String, String>> _sseEvents(
         } else if (line.startsWith('id:')) {
           lastEventId = line.substring(3).trim();
         } else if (line.startsWith('retry:')) {
+          // Deliberately not reset on dispatch: like upstream, retry is
+          // connection state rather than per-event data, so it may decorate
+          // more than one event. The scoping asymmetry with `id` is a choice.
           retry = line.substring(6).trim();
         }
       } catch (error) {
@@ -174,9 +200,14 @@ StreamTransformer<String, Map<String, String>> _sseEvents(
         sink.close();
       }
     },
+    handleError: (Object error, StackTrace stackTrace,
+        EventSink<Map<String, String>> sink) {
+      failed = true;
+      sink.addError(error, stackTrace);
+    },
     handleDone: (EventSink<Map<String, String>> sink) {
       if (closed) return;
-      dispatch(sink);
+      if (!failed) dispatch(sink);
       sink.close();
     },
   );
