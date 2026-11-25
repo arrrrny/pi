@@ -70018,13 +70018,16 @@
       ],
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/agent.dart",
-      "dart_impl": "pi_agent/lib/src/agent.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
+      "dart_impl": "pi_agent/lib/src/coding_agent/shell.dart",
+      "dart_test": "pi_agent/test/coding_agent/shell_test.dart",
+      "status": "verified",
+      "evidence": {
+        "dart_test": "pi_agent/test/coding_agent/shell_test.dart",
+        "note": "Ported from packages/coding-agent/src/utils/shell.ts with the #12494 Git-Bash-of-git-on-PATH discovery; shell_test.dart green under Dart 3.13."
+      },
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+        "reason": "Runtime behavior ported to Dart and unit-tested; the upstream TypeScript is exercised through the Dart port's own suite.",
+        "approved_by": "arrrrny/pi#34"
       },
       "issue": null,
       "id": "coding-agent.packages-coding-agent-src-index.ts.getPowerShellConfig.api",
@@ -70047,13 +70050,16 @@
       ],
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/agent.dart",
-      "dart_impl": "pi_agent/lib/src/agent.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
+      "dart_impl": "pi_agent/lib/src/coding_agent/shell.dart",
+      "dart_test": "pi_agent/test/coding_agent/shell_test.dart",
+      "status": "verified",
+      "evidence": {
+        "dart_test": "pi_agent/test/coding_agent/shell_test.dart",
+        "note": "Ported from packages/coding-agent/src/utils/shell.ts with the #12494 Git-Bash-of-git-on-PATH discovery; shell_test.dart green under Dart 3.13."
+      },
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+        "reason": "Runtime behavior ported to Dart and unit-tested; the upstream TypeScript is exercised through the Dart port's own suite.",
+        "approved_by": "arrrrny/pi#34"
       },
       "issue": null,
       "id": "coding-agent.packages-coding-agent-src-index.ts.getShellConfig.api",
@@ -77848,13 +77854,16 @@
       ],
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/agent.dart",
-      "dart_impl": "pi_agent/lib/src/agent.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
+      "dart_impl": "pi_agent/lib/src/coding_agent/jsonl.dart",
+      "dart_test": "pi_agent/test/coding_agent/jsonl_test.dart",
+      "status": "verified",
+      "evidence": {
+        "dart_test": "pi_agent/test/coding_agent/jsonl_test.dart",
+        "note": "Ported from packages/coding-agent/src/modes/rpc/jsonl.ts with the #12451 linear-time line reader; jsonl_test.dart green under Dart 3.13."
+      },
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+        "reason": "Runtime behavior ported to Dart and unit-tested; the upstream TypeScript is exercised through the Dart port's own suite.",
+        "approved_by": "arrrrny/pi#34"
       },
       "issue": null,
       "id": "coding-agent.packages-coding-agent-test-rpc-jsonl.test.ts.internal.test",
@@ -83561,13 +83570,16 @@
       ],
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/agent.dart",
-      "dart_impl": "pi_agent/lib/src/agent.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
+      "dart_impl": "pi_agent/lib/src/coding_agent/shell.dart",
+      "dart_test": "pi_agent/test/coding_agent/shell_test.dart",
+      "status": "verified",
+      "evidence": {
+        "dart_test": "pi_agent/test/coding_agent/shell_test.dart",
+        "note": "Ported from packages/coding-agent/src/utils/shell.ts with the #12494 Git-Bash-of-git-on-PATH discovery; shell_test.dart green under Dart 3.13."
+      },
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+        "reason": "Runtime behavior ported to Dart and unit-tested; the upstream TypeScript is exercised through the Dart port's own suite.",
+        "approved_by": "arrrrny/pi#34"
       },
       "issue": null,
       "id": "coding-agent.packages-coding-agent-test-windows-shell-config.test.ts.internal.test",
