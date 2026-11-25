@@ -67160,7 +67160,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/coding-agent/src/core/compaction/branch-summarization.ts (scaffolded; needs human review).",
+      "description": "Ported into pi_agent/lib/src/coding_agent/compaction.dart.",
       "normative_refs": {
         "readme": "packages/coding-agent/README.md",
         "spec": null,
@@ -67172,14 +67172,15 @@
       ],
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/agent.dart",
-      "dart_impl": "pi_agent/lib/src/agent.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_impl": "pi_agent/lib/src/coding_agent/compaction.dart",
+      "dart_test": "pi_agent/test/coding_agent/compaction_utils_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/coding_agent/compaction_utils_test.dart",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "coding-agent.packages-coding-agent-src-core-compaction-branch-summarization.ts.BranchPreparation.api",
       "area": "coding-agent",
@@ -67201,15 +67202,15 @@
       ],
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/agent.dart",
-      "dart_impl": "pi_agent/lib/src/agent.dart",
+      "dart_impl": "pi_agent/lib/src/coding_agent/compaction.dart",
       "dart_test": null,
       "status": "unported",
       "evidence": null,
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "BranchSummaryDetails is the JSON shape stored on a branch_summary entry; the Dart BranchSummaryEntry carries no details field yet. Tracked in #44.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "#44",
       "id": "coding-agent.packages-coding-agent-src-core-compaction-branch-summarization.ts.BranchSummaryDetails.api",
       "area": "coding-agent",
       "upstream_path": "packages/coding-agent/src/core/compaction/branch-summarization.ts",
@@ -67230,15 +67231,15 @@
       ],
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/agent.dart",
-      "dart_impl": "pi_agent/lib/src/agent.dart",
+      "dart_impl": "pi_agent/lib/src/coding_agent/compaction.dart",
       "dart_test": null,
       "status": "unported",
       "evidence": null,
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "BranchSummaryResult is the provider-backed generateBranchSummary result; that model/stream path is a later slice. Tracked in #44.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "#44",
       "id": "coding-agent.packages-coding-agent-src-core-compaction-branch-summarization.ts.BranchSummaryResult.api",
       "area": "coding-agent",
       "upstream_path": "packages/coding-agent/src/core/compaction/branch-summarization.ts",
@@ -67247,7 +67248,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/coding-agent/src/core/compaction/branch-summarization.ts (scaffolded; needs human review).",
+      "description": "api behavior in packages/coding-agent/src/core/compaction/branch-summarization.ts Ported into pi_agent/lib/src/coding_agent/compaction.dart.",
       "normative_refs": {
         "readme": "packages/coding-agent/README.md",
         "spec": null,
@@ -67259,14 +67260,15 @@
       ],
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/agent.dart",
-      "dart_impl": "pi_agent/lib/src/agent.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_impl": "pi_agent/lib/src/coding_agent/compaction.dart",
+      "dart_test": "pi_agent/test/coding_agent/compaction_utils_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/coding_agent/compaction_utils_test.dart",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "coding-agent.packages-coding-agent-src-core-compaction-branch-summarization.ts.collectEntriesForBranchSummary.api",
       "area": "coding-agent",
@@ -67276,7 +67278,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/coding-agent/src/core/compaction/branch-summarization.ts (scaffolded; needs human review).",
+      "description": "Ported into pi_agent/lib/src/coding_agent/compaction.dart.",
       "normative_refs": {
         "readme": "packages/coding-agent/README.md",
         "spec": null,
@@ -67288,14 +67290,15 @@
       ],
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/agent.dart",
-      "dart_impl": "pi_agent/lib/src/agent.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_impl": "pi_agent/lib/src/coding_agent/compaction.dart",
+      "dart_test": "pi_agent/test/coding_agent/compaction_utils_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/coding_agent/compaction_utils_test.dart",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "coding-agent.packages-coding-agent-src-core-compaction-branch-summarization.ts.CollectEntriesResult.api",
       "area": "coding-agent",
@@ -67305,7 +67308,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/coding-agent/src/core/compaction/branch-summarization.ts (scaffolded; needs human review).",
+      "description": "Ported into pi_agent/lib/src/coding_agent/compaction.dart.",
       "normative_refs": {
         "readme": "packages/coding-agent/README.md",
         "spec": null,
@@ -67317,14 +67320,15 @@
       ],
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/agent.dart",
-      "dart_impl": "pi_agent/lib/src/agent.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_impl": "pi_agent/lib/src/coding_agent/compaction.dart",
+      "dart_test": "pi_agent/test/coding_agent/compaction_utils_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/coding_agent/compaction_utils_test.dart",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "coding-agent.packages-coding-agent-src-core-compaction-branch-summarization.ts.FileOperations.api",
       "area": "coding-agent",
@@ -67346,15 +67350,15 @@
       ],
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/agent.dart",
-      "dart_impl": "pi_agent/lib/src/agent.dart",
+      "dart_impl": "pi_agent/lib/src/coding_agent/compaction.dart",
       "dart_test": null,
       "status": "unported",
       "evidence": null,
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "generateBranchSummary needs a model + stream (completeSummarization); deferred to a provider-backed slice. The pure prepareBranchEntries it builds on is ported. Tracked in #44.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "#44",
       "id": "coding-agent.packages-coding-agent-src-core-compaction-branch-summarization.ts.generateBranchSummary.api",
       "area": "coding-agent",
       "upstream_path": "packages/coding-agent/src/core/compaction/branch-summarization.ts",
@@ -67375,15 +67379,15 @@
       ],
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/agent.dart",
-      "dart_impl": "pi_agent/lib/src/agent.dart",
+      "dart_impl": "pi_agent/lib/src/coding_agent/compaction.dart",
       "dart_test": null,
       "status": "unported",
       "evidence": null,
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "GenerateBranchSummaryOptions configures the provider-backed generateBranchSummary; deferred with it to a later slice. Tracked in #44.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "#44",
       "id": "coding-agent.packages-coding-agent-src-core-compaction-branch-summarization.ts.GenerateBranchSummaryOptions.api",
       "area": "coding-agent",
       "upstream_path": "packages/coding-agent/src/core/compaction/branch-summarization.ts",
@@ -67392,7 +67396,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/coding-agent/src/core/compaction/branch-summarization.ts (scaffolded; needs human review).",
+      "description": "api behavior in packages/coding-agent/src/core/compaction/branch-summarization.ts Ported into pi_agent/lib/src/coding_agent/compaction.dart.",
       "normative_refs": {
         "readme": "packages/coding-agent/README.md",
         "spec": null,
@@ -67404,14 +67408,15 @@
       ],
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/agent.dart",
-      "dart_impl": "pi_agent/lib/src/agent.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_impl": "pi_agent/lib/src/coding_agent/compaction.dart",
+      "dart_test": "pi_agent/test/coding_agent/compaction_utils_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/coding_agent/compaction_utils_test.dart",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "coding-agent.packages-coding-agent-src-core-compaction-branch-summarization.ts.prepareBranchEntries.api",
       "area": "coding-agent",
@@ -68030,7 +68035,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/coding-agent/src/core/compaction/utils.ts (scaffolded; needs human review).",
+      "description": "api behavior in packages/coding-agent/src/core/compaction/utils.ts Ported into pi_agent/lib/src/coding_agent/compaction.dart.",
       "normative_refs": {
         "readme": "packages/coding-agent/README.md",
         "spec": null,
@@ -68042,14 +68047,15 @@
       ],
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/agent.dart",
-      "dart_impl": "pi_agent/lib/src/agent.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_impl": "pi_agent/lib/src/coding_agent/compaction.dart",
+      "dart_test": "pi_agent/test/coding_agent/compaction_utils_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/coding_agent/compaction_utils_test.dart",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "coding-agent.packages-coding-agent-src-core-compaction-utils.ts.computeFileLists.api",
       "area": "coding-agent",
@@ -68059,7 +68065,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/coding-agent/src/core/compaction/utils.ts (scaffolded; needs human review).",
+      "description": "api behavior in packages/coding-agent/src/core/compaction/utils.ts Ported into pi_agent/lib/src/coding_agent/compaction.dart.",
       "normative_refs": {
         "readme": "packages/coding-agent/README.md",
         "spec": null,
@@ -68071,14 +68077,15 @@
       ],
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/agent.dart",
-      "dart_impl": "pi_agent/lib/src/agent.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_impl": "pi_agent/lib/src/coding_agent/compaction.dart",
+      "dart_test": "pi_agent/test/coding_agent/compaction_utils_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/coding_agent/compaction_utils_test.dart",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "coding-agent.packages-coding-agent-src-core-compaction-utils.ts.createFileOps.api",
       "area": "coding-agent",
@@ -68088,7 +68095,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/coding-agent/src/core/compaction/utils.ts (scaffolded; needs human review).",
+      "description": "api behavior in packages/coding-agent/src/core/compaction/utils.ts Ported into pi_agent/lib/src/coding_agent/compaction.dart.",
       "normative_refs": {
         "readme": "packages/coding-agent/README.md",
         "spec": null,
@@ -68100,14 +68107,15 @@
       ],
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/agent.dart",
-      "dart_impl": "pi_agent/lib/src/agent.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_impl": "pi_agent/lib/src/coding_agent/compaction.dart",
+      "dart_test": "pi_agent/test/coding_agent/compaction_utils_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/coding_agent/compaction_utils_test.dart",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "coding-agent.packages-coding-agent-src-core-compaction-utils.ts.extractFileOpsFromMessage.api",
       "area": "coding-agent",
@@ -68117,7 +68125,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/coding-agent/src/core/compaction/utils.ts (scaffolded; needs human review).",
+      "description": "Ported into pi_agent/lib/src/coding_agent/compaction.dart.",
       "normative_refs": {
         "readme": "packages/coding-agent/README.md",
         "spec": null,
@@ -68129,14 +68137,15 @@
       ],
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/agent.dart",
-      "dart_impl": "pi_agent/lib/src/agent.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_impl": "pi_agent/lib/src/coding_agent/compaction.dart",
+      "dart_test": "pi_agent/test/coding_agent/compaction_utils_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/coding_agent/compaction_utils_test.dart",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "coding-agent.packages-coding-agent-src-core-compaction-utils.ts.formatFileOperations.api",
       "area": "coding-agent",
@@ -68146,7 +68155,7 @@
       "behavior_kind": "api"
     },
     {
-      "description": "api behavior in packages/coding-agent/src/core/compaction/utils.ts (scaffolded; needs human review).",
+      "description": "api behavior in packages/coding-agent/src/core/compaction/utils.ts Ported into pi_agent/lib/src/coding_agent/compaction.dart.",
       "normative_refs": {
         "readme": "packages/coding-agent/README.md",
         "spec": null,
@@ -68158,14 +68167,15 @@
       ],
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/agent.dart",
-      "dart_impl": "pi_agent/lib/src/agent.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_impl": "pi_agent/lib/src/coding_agent/compaction.dart",
+      "dart_test": "pi_agent/test/coding_agent/compaction_utils_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/coding_agent/compaction_utils_test.dart",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "coding-agent.packages-coding-agent-src-core-compaction-utils.ts.serializeConversation.api",
       "area": "coding-agent",
@@ -68187,15 +68197,15 @@
       ],
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/agent.dart",
-      "dart_impl": "pi_agent/lib/src/agent.dart",
+      "dart_impl": "pi_agent/lib/src/coding_agent/compaction.dart",
       "dart_test": null,
       "status": "unported",
       "evidence": null,
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "SUMMARIZATION_SYSTEM_PROMPT already has a Dart equivalent (summarizationSystemPrompt in src/compaction.dart); the coding-agent export is the same text, not re-exported here. Tracked in #44.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "#44",
       "id": "coding-agent.packages-coding-agent-src-core-compaction-utils.ts.SUMMARIZATION_SYSTEM_PROMPT.api",
       "area": "coding-agent",
       "upstream_path": "packages/coding-agent/src/core/compaction/utils.ts",
@@ -72485,14 +72495,15 @@
       ],
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/agent.dart",
-      "dart_impl": "pi_agent/lib/src/agent.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_impl": "pi_agent/lib/src/coding_agent/compaction.dart",
+      "dart_test": "pi_agent/test/coding_agent/compaction_utils_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/coding_agent/compaction_utils_test.dart",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": null,
       "id": "coding-agent.packages-coding-agent-test-branch-summarization.test.ts.internal.test",
       "area": "coding-agent",
