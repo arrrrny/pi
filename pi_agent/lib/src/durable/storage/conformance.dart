@@ -1055,7 +1055,7 @@ Future<void> _wakes(Storage storage, ConformanceAssertions expect) async {
   for (var index = 0; index < 5; index++) {
     ids.add(await storage.mintId<TaskKind>());
   }
-  final signals = <SignalKey>[const SignalKey('a')];
+  final signals = <SignalName>[const SignalName('a')];
   final memos = <String, Object?>{
     'pi.signal.app.answer/a': <String, Object?>{
       'version': 1,

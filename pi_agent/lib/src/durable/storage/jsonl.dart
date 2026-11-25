@@ -413,7 +413,7 @@ TaskState<Object?, Object?> decodeTaskState(Map<String, Object?> json) {
         checkpoint,
         until: json['until'] as int?,
         signals: (json['signals'] as List<Object?>?)
-            ?.map((value) => SignalKey(value! as String))
+            ?.map((value) => SignalName(value! as String))
             .toList(),
       );
     case 'completing':
