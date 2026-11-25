@@ -51,8 +51,7 @@ Stream<AgentEvent> streamLLM({
       // proxy answering with a large HTML error page would otherwise write it
       // in full on every reload (upstream `error-body.ts:110`).
       final errorBody = await response.stream.bytesToString();
-      yield _errorEnd(
-          '${response.statusCode} - ${_clampErrorBody(errorBody)}',
+      yield _errorEnd('${response.statusCode} - ${_clampErrorBody(errorBody)}',
           StopReason.error);
       return;
     }

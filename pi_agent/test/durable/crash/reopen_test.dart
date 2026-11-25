@@ -176,8 +176,7 @@ void main() {
       expect(rows, hasLength(2));
       expect(<int>[for (final row in rows) row['id']! as int], <int>[1, 2]);
       expect(
-          (await reopened.entry(
-                  idFromNumber<EntryKind>(4), backgroundContext))!
+          (await reopened.entry(idFromNumber<EntryKind>(4), backgroundContext))!
               .entry
               .kind,
           'pi.user');

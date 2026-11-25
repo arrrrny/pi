@@ -161,3 +161,41 @@ export function diffOutcomes(left, right) {
 	}
 	return { equal: differences.length === 0, differences };
 }
+/**
+ * Provider-stream normalization (parity slice PI-PAR-003, arrrrny/pi#41):
+ * replace GENERATED tool-call ids with role-based placeholders. Google (and
+ * any provider that mints an id at stream time) generates
+ * `<name>_<timestamp>_<counter>` ids; the timestamp differs per run and per
+ * language, so the first-seen generated shape maps to
+ * `<generated-tool-call-N>` on both sides. Explicit ids in scenarios never
+ * use that shape (they are `call_1`-style), so they pass through untouched.
+ */
+export function normalizeGeneratedToolCallIds(records) {
+	const counters = new Map();
+	const seen = new Map();
+	const GENERATED_ID_PATTERN = /^.+_\d+_\d+$/;
+	const placeholderFor = (value) => {
+		if (seen.has(value)) return seen.get(value);
+		const count = (counters.get("generated-tool-call") ?? 0) + 1;
+		counters.set("generated-tool-call", count);
+		const placeholder = `<generated-tool-call-${count}>`;
+		seen.set(value, placeholder);
+		return placeholder;
+	};
+	const walk = (value) => {
+		if (Array.isArray(value)) return value.map(walk);
+		if (value && typeof value === "object") {
+			const out = {};
+			for (const [key, inner] of Object.entries(value)) {
+				if (key === "id" && typeof inner === "string" && GENERATED_ID_PATTERN.test(inner)) {
+					out[key] = placeholderFor(inner);
+				} else {
+					out[key] = walk(inner);
+				}
+			}
+			return out;
+		}
+		return value;
+	};
+	return records.map(walk);
+}

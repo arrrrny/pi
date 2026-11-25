@@ -1,0 +1,6 @@
+data: {"id":"c1","choices":[{"index":0,"delta":{"content":"partial answer"}}]}
+
+data: {"id":"c1","choices":[{"index":0,"delta":{},"finish_reason":"martian_pause"}]}
+
+data: [DONE]
+

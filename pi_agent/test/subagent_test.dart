@@ -65,7 +65,9 @@ void main() {
               _assistant(AssistantMessage(
                 content: [
                   ToolCallBlock(
-                      id: 's1', name: 'task', arguments: {'task': 'summarize X'}),
+                      id: 's1',
+                      name: 'task',
+                      arguments: {'task': 'summarize X'}),
                 ],
                 stopReason: StopReason.toolUse,
               )),

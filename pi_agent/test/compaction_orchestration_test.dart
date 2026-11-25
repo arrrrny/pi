@@ -55,8 +55,11 @@ void main() {
 
       expect(summary, 'SUM');
       expect(seen, isNotNull);
-      final prompt =
-          (seen!.messages.first as UserMessage).content.whereType<TextBlock>().single.text;
+      final prompt = (seen!.messages.first as UserMessage)
+          .content
+          .whereType<TextBlock>()
+          .single
+          .text;
       expect(prompt, contains('the question'));
       expect(prompt, contains('the answer'));
     });
@@ -91,7 +94,8 @@ void main() {
       final storage = InMemorySessionStorage();
       final conv = await Conversation.create(
         storage,
-        model: const Model(provider: 'openai', modelId: 'gpt-x', contextWindow: 20),
+        model: const Model(
+            provider: 'openai', modelId: 'gpt-x', contextWindow: 20),
         systemPrompt: 'sys',
         loopStreamFn: _scripted(
           (_) => [
@@ -102,13 +106,16 @@ void main() {
         ),
       );
 
-      await conv.prompt('this first message is definitely long enough to matter');
-      await conv.prompt('and a second equally long message here for good measure');
+      await conv
+          .prompt('this first message is definitely long enough to matter');
+      await conv
+          .prompt('and a second equally long message here for good measure');
       final beforeCount = conv.messages.length;
       expect(beforeCount, greaterThanOrEqualTo(4));
 
       final didCompact = await conv.compact(
-        settings: const CompactionSettings(reserveTokens: 0, keepRecentTokens: 1),
+        settings:
+            const CompactionSettings(reserveTokens: 0, keepRecentTokens: 1),
         summarize: (messages, model) async => 'THE SUMMARY',
       );
 
@@ -136,7 +143,8 @@ void main() {
       await conv.prompt('hi');
 
       final didCompact = await conv.compact(
-        settings: const CompactionSettings(reserveTokens: 0, keepRecentTokens: 1),
+        settings:
+            const CompactionSettings(reserveTokens: 0, keepRecentTokens: 1),
         summarize: (messages, model) async => 'unused',
       );
       expect(didCompact, isFalse);

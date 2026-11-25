@@ -1,0 +1,19 @@
+{
+	"kind": "provider-stream.google",
+	"requested_model_id": "gemini-x",
+	"row_ids": [
+		"ai.packages-ai-src-api-google-generative-ai.lazy.ts.googleGenerativeAiApi.api"
+	],
+	"provider": {
+		"kind": "cassette",
+		"cassette": "coverage/differential/scenarios/cassettes/google-happy.sse"
+	},
+	"schema_version": 1,
+	"name": "provider-stream-google-happy-path",
+	"area": "ai",
+	"clock": {
+		"kind": "virtual",
+		"start": "2026-01-01T00:00:00Z"
+	},
+	"normalization_version": 1
+}

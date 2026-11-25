@@ -1,0 +1,19 @@
+{
+	"kind": "provider-stream.anthropic",
+	"row_ids": [
+		"ai.packages-ai-src-api-anthropic-messages.lazy.ts.anthropicMessagesApi.api"
+	],
+	"provider": {
+		"kind": "cassette",
+		"cassette": "coverage/differential/scenarios/cassettes/anthropic-happy.sse"
+	},
+	"schema_version": 1,
+	"name": "provider-stream-anthropic-happy-path",
+	"area": "ai",
+	"clock": {
+		"kind": "virtual",
+		"start": "2026-01-01T00:00:00Z"
+	},
+	"normalization_version": 1,
+	"requested_model_id": "claude-x"
+}
