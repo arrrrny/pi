@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "decisions": [
+    {
+      "path": "apps/p2",
+      "decision": "not_applicable",
+      "reason": "Product application (a web app with its own deploy pipeline); it exercises the packages but exposes no Dart library surface to port.",
+      "approved_by": "arrrrny"
+    },
+    {
+      "path": "apps/p2-mac",
+      "decision": "not_applicable",
+      "reason": "Native macOS shell for p2; platform-specific UI with no Dart library surface to port.",
+      "approved_by": "arrrrny"
+    },
+    {
+      "path": "apps/p3",
+      "decision": "not_applicable",
+      "reason": "Pi Roam product application; no Dart library surface to port.",
+      "approved_by": "arrrrny"
+    }
+  ]
+}
