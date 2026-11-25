@@ -1,26 +1,27 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:math' as math;
 import 'package:test/test.dart';
 import 'package:pi/src/sse_parser.dart';
 
 void main() {
+  Stream<List<int>> toByteStream(String input) {
+    final controller = StreamController<List<int>>();
+    controller.add(utf8.encode(input));
+    controller.close();
+    return controller.stream;
+  }
+
+  Stream<List<int>> toChunkedStream(List<String> chunks) {
+    final controller = StreamController<List<int>>();
+    for (final c in chunks) {
+      controller.add(utf8.encode(c));
+    }
+    controller.close();
+    return controller.stream;
+  }
+
   group('parseSSE', () {
-    Stream<List<int>> toByteStream(String input) {
-      final controller = StreamController<List<int>>();
-      controller.add(utf8.encode(input));
-      controller.close();
-      return controller.stream;
-    }
-
-    Stream<List<int>> toChunkedStream(List<String> chunks) {
-      final controller = StreamController<List<int>>();
-      for (final c in chunks) {
-        controller.add(utf8.encode(c));
-      }
-      controller.close();
-      return controller.stream;
-    }
-
     test('parses single event with data field', () async {
       final events = await parseSSE(toByteStream('data: hello\n\n')).toList();
       expect(events, hasLength(1));
@@ -128,6 +129,132 @@ void main() {
       expect(events, hasLength(1));
       final decoded = jsonDecode(events[0]['data']!);
       expect(decoded, isA<Map<String, dynamic>>());
+    });
+  });
+
+  // Parity with the MCP Streamable HTTP transport's consumeSseStream
+  // (packages/mcp/src/transports/streamable-http.ts); ported from upstream
+  // #12451 (arrrrny/pi#33).
+  group('consumeSseStream parity', () {
+    test('parses chunked CRLF events, comments, IDs, and multiline data',
+        () async {
+      final events = await parseSSE(toChunkedStream([
+        ': keepalive\r\nid: 7\r\ndata: {"one":\r\n',
+        'data: 1}\r\n\r\n',
+      ])).toList();
+      expect(events, [
+        {'id': '7', 'data': '{"one":\n1}'},
+      ]);
+    });
+
+    test(
+        'recognizes CR, LF, and CRLF line endings, including CRLF split '
+        'across chunks', () async {
+      Future<List<Map<String, String>>> parse(List<String> chunks) =>
+          parseSSE(toChunkedStream(chunks)).toList();
+      const expected = [
+        {'id': '1', 'data': 'a\nb'},
+        {'data': 'c'},
+      ];
+      for (final separator in ['\n', '\r\n', '\r']) {
+        final text = ['id: 1', 'data: a', 'data: b', '', 'data: c', '', '']
+            .join(separator);
+        expect(await parse([text]), expected);
+        // One character per chunk splits every CRLF between chunks.
+        expect(await parse(text.split('')), expected);
+      }
+      expect(await parse(['id: 1\rdata: a\r\ndata: b\n\r', '\ndata: c\r\r']),
+          expected);
+    });
+
+    // Regression test for upstream #12224: a large event split across many
+    // chunks is measured and scanned once, not rescanned per chunk.
+    test('reads a large event split across many chunks in linear time',
+        () async {
+      const chunkSize = 256;
+      const dataSize = 2 * 1024 * 1024;
+      final text = 'data: ${'x' * dataSize}\n\n';
+      final chunks = <String>[];
+      for (var i = 0; i < text.length; i += chunkSize) {
+        chunks.add(text.substring(i, math.min(i + chunkSize, text.length)));
+      }
+      final watch = Stopwatch()..start();
+      final events = await parseSSE(toChunkedStream(chunks)).toList();
+      watch.stop();
+      expect(events, hasLength(1));
+      expect(events[0]['data'], 'x' * dataSize);
+      // A reintroduced quadratic rescan copies ~4 GiB for this input and
+      // cannot finish anywhere near this bound; the linear scanner does.
+      expect(watch.elapsed, lessThan(const Duration(seconds: 10)));
+    });
+
+    test(
+        'rejects a line that exceeds the limit before its line ending '
+        'arrives', () async {
+      var sent = 0;
+      Stream<List<int>> endlessLine() async* {
+        yield utf8.encode('data: ');
+        while (true) {
+          sent++;
+          yield utf8.encode('x' * 16);
+        }
+      }
+
+      Object? error;
+      try {
+        await parseSSE(endlessLine(), maxEventBytes: 256).toList();
+      } catch (caught) {
+        error = caught;
+      }
+      expect(error, isA<StateError>());
+      expect((error as StateError).message, 'MCP SSE event exceeds 256 bytes');
+      expect(sent, lessThan(100));
+    });
+
+    test(
+        'rejects an event whose joined data lines exceed the limit before '
+        'it dispatches', () async {
+      Object? error;
+      try {
+        await parseSSE(
+          toChunkedStream(
+              ['data: 0123456789abcdef\ndata: 0123456789abcdef\n\n']),
+          maxEventBytes: 24,
+        ).toList();
+      } catch (caught) {
+        error = caught;
+      }
+      expect(error, isA<StateError>());
+      expect((error as StateError).message, 'MCP SSE event exceeds 24 bytes');
+    });
+
+    test('an id-only event does not leak its id into a later event', () async {
+      // Upstream's empty-dispatch clear (streamable-http.ts:57-62).
+      final events = await parseSSE(
+        toChunkedStream(['id: 1\n\n', 'data: c\n\n']),
+      ).toList();
+      expect(events, [
+        {'data': 'c'},
+      ]);
+    });
+
+    test('abandons a buffered partial event after a cap error', () async {
+      // The scanner fails on the unterminated over-limit line before the
+      // assembler sees a terminator; no event may follow the error, matching
+      // upstream's throw-out-of-loop behavior.
+      final order = <String>[];
+      final done = Completer<void>();
+      parseSSE(
+        toChunkedStream(['data: aaa\n', 'data: ${'x' * 100}']),
+        maxEventBytes: 32,
+      ).listen(
+        (event) => order.add('event $event'),
+        onError: (Object error) => order.add('error $error'),
+        onDone: done.complete,
+      );
+      await done.future;
+      expect(order, hasLength(1));
+      expect(order.single, contains('MCP SSE event exceeds 32 bytes'));
     });
   });
 
