@@ -60451,7 +60451,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "codemode.packages-codemode-examples-cloudflare-agent-src-index.ts.internal.example",
       "area": "codemode",
       "upstream_path": "packages/codemode/examples/cloudflare/agent/src/index.ts",
@@ -60480,7 +60480,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "codemode.packages-codemode-examples-cloudflare-agent-wrangler.jsonc.internal.example",
       "area": "codemode",
       "upstream_path": "packages/codemode/examples/cloudflare/agent/wrangler.jsonc",
@@ -60509,7 +60509,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "codemode.packages-codemode-examples-cloudflare-readme.md.internal.example",
       "area": "codemode",
       "upstream_path": "packages/codemode/examples/cloudflare/README.md",
@@ -60538,7 +60538,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "codemode.packages-codemode-examples-cloudflare-sandbox-src-index.ts.internal.example",
       "area": "codemode",
       "upstream_path": "packages/codemode/examples/cloudflare/sandbox/src/index.ts",
@@ -60567,7 +60567,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "codemode.packages-codemode-examples-cloudflare-sandbox-wrangler.jsonc.internal.example",
       "area": "codemode",
       "upstream_path": "packages/codemode/examples/cloudflare/sandbox/wrangler.jsonc",
@@ -60596,7 +60596,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "codemode.packages-codemode-src-cloudflare.ts.cloudflareQuickJSWasm.api",
       "area": "codemode",
       "upstream_path": "packages/codemode/src/cloudflare.ts",
@@ -60625,7 +60625,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "codemode.packages-codemode-src-cloudflare.ts.CodemodeSandboxDurableObject.api",
       "area": "codemode",
       "upstream_path": "packages/codemode/src/cloudflare.ts",
@@ -60654,7 +60654,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "codemode.packages-codemode-src-cloudflare.ts.createInlineCodemodeSandbox.api",
       "area": "codemode",
       "upstream_path": "packages/codemode/src/cloudflare.ts",
@@ -60683,7 +60683,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "codemode.packages-codemode-src-cloudflare.ts.DEFAULT_REMOTE_MEMORY_LIMIT_BYTES.api",
       "area": "codemode",
       "upstream_path": "packages/codemode/src/cloudflare.ts",
@@ -60712,7 +60712,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "codemode.packages-codemode-src-declarations.ts.DEFAULT_INPUT_SCHEMA_MAX_CHARS.api",
       "area": "codemode",
       "upstream_path": "packages/codemode/src/declarations.ts",
@@ -60741,7 +60741,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "codemode.packages-codemode-src-declarations.ts.renderDeclarations.api",
       "area": "codemode",
       "upstream_path": "packages/codemode/src/declarations.ts",
@@ -60770,7 +60770,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "codemode.packages-codemode-src-declarations.ts.RenderDeclarationsOptions.api",
       "area": "codemode",
       "upstream_path": "packages/codemode/src/declarations.ts",
@@ -60799,7 +60799,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "codemode.packages-codemode-src-declarations.ts.renderToolOutputType.api",
       "area": "codemode",
       "upstream_path": "packages/codemode/src/declarations.ts",
@@ -60828,7 +60828,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "codemode.packages-codemode-src-declarations.ts.renderToolSample.api",
       "area": "codemode",
       "upstream_path": "packages/codemode/src/declarations.ts",
@@ -60857,7 +60857,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "codemode.packages-codemode-src-declarations.ts.renderToolSignature.api",
       "area": "codemode",
       "upstream_path": "packages/codemode/src/declarations.ts",
@@ -60886,7 +60886,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "codemode.packages-codemode-src-declarations.ts.resolveSchemaRef.api",
       "area": "codemode",
       "upstream_path": "packages/codemode/src/declarations.ts",
@@ -60915,7 +60915,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "codemode.packages-codemode-src-declarations.ts.schemaToType.api",
       "area": "codemode",
       "upstream_path": "packages/codemode/src/declarations.ts",
@@ -60944,7 +60944,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "codemode.packages-codemode-src-declarations.ts.toCodemodeIdentifier.api",
       "area": "codemode",
       "upstream_path": "packages/codemode/src/declarations.ts",
@@ -60973,7 +60973,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "codemode.packages-codemode-src-index.ts.CodemodeSandbox.api",
       "area": "codemode",
       "upstream_path": "packages/codemode/src/index.ts",
@@ -61002,7 +61002,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "codemode.packages-codemode-src-index.ts.CodemodeSandboxBase.api",
       "area": "codemode",
       "upstream_path": "packages/codemode/src/index.ts",
@@ -61031,7 +61031,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "codemode.packages-codemode-src-index.ts.loadQuickJSWasm.api",
       "area": "codemode",
       "upstream_path": "packages/codemode/src/index.ts",
@@ -61060,7 +61060,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "codemode.packages-codemode-src-portable.ts.CodemodeWasmModule.api",
       "area": "codemode",
       "upstream_path": "packages/codemode/src/portable.ts",
@@ -61089,7 +61089,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "codemode.packages-codemode-src-portable.ts.HostToWorkerMessage.api",
       "area": "codemode",
       "upstream_path": "packages/codemode/src/portable.ts",
@@ -61118,7 +61118,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "codemode.packages-codemode-src-portable.ts.VmStartData.api",
       "area": "codemode",
       "upstream_path": "packages/codemode/src/portable.ts",
@@ -61147,7 +61147,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "codemode.packages-codemode-src-portable.ts.WorkerToHostMessage.api",
       "area": "codemode",
       "upstream_path": "packages/codemode/src/portable.ts",
@@ -61176,7 +61176,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "codemode.packages-codemode-src-runtime-worker.ts.internal.internal",
       "area": "codemode",
       "upstream_path": "packages/codemode/src/runtime/worker.ts",
@@ -61189,7 +61189,7 @@
       "normative_refs": {
         "readme": "packages/codemode/README.md",
         "spec": null,
-        "test": null,
+        "test": "packages/codemode/test/source.test.ts",
         "example": null
       },
       "platforms": [
@@ -61197,14 +61197,14 @@
       ],
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/tools.dart",
-      "dart_impl": "pi_agent/lib/src/tools.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_impl": "pi_agent/lib/src/codemode_source.dart",
+      "dart_test": "pi_agent/test/codemode_source_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/codemode_source_test.dart"
       },
+      "divergence": null,
       "issue": null,
       "id": "codemode.packages-codemode-src-source.ts.CODEMODE_OPTIONS_PREFIX.api",
       "area": "codemode",
@@ -61218,7 +61218,7 @@
       "normative_refs": {
         "readme": "packages/codemode/README.md",
         "spec": null,
-        "test": null,
+        "test": "packages/codemode/test/source.test.ts",
         "example": null
       },
       "platforms": [
@@ -61226,14 +61226,14 @@
       ],
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/tools.dart",
-      "dart_impl": "pi_agent/lib/src/tools.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_impl": "pi_agent/lib/src/codemode_source.dart",
+      "dart_test": "pi_agent/test/codemode_source_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/codemode_source_test.dart"
       },
+      "divergence": null,
       "issue": null,
       "id": "codemode.packages-codemode-src-source.ts.CODEMODE_SOURCE_GRAMMAR.api",
       "area": "codemode",
@@ -61247,7 +61247,7 @@
       "normative_refs": {
         "readme": "packages/codemode/README.md",
         "spec": null,
-        "test": null,
+        "test": "packages/codemode/test/source.test.ts",
         "example": null
       },
       "platforms": [
@@ -61255,14 +61255,14 @@
       ],
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/tools.dart",
-      "dart_impl": "pi_agent/lib/src/tools.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_impl": "pi_agent/lib/src/codemode_source.dart",
+      "dart_test": "pi_agent/test/codemode_source_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/codemode_source_test.dart"
       },
+      "divergence": null,
       "issue": null,
       "id": "codemode.packages-codemode-src-source.ts.CodemodeSourceError.api",
       "area": "codemode",
@@ -61276,7 +61276,7 @@
       "normative_refs": {
         "readme": "packages/codemode/README.md",
         "spec": null,
-        "test": null,
+        "test": "packages/codemode/test/source.test.ts",
         "example": null
       },
       "platforms": [
@@ -61284,14 +61284,14 @@
       ],
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/tools.dart",
-      "dart_impl": "pi_agent/lib/src/tools.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_impl": "pi_agent/lib/src/codemode_source.dart",
+      "dart_test": "pi_agent/test/codemode_source_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/codemode_source_test.dart"
       },
+      "divergence": null,
       "issue": null,
       "id": "codemode.packages-codemode-src-source.ts.CodemodeSourceOptions.api",
       "area": "codemode",
@@ -61305,7 +61305,7 @@
       "normative_refs": {
         "readme": "packages/codemode/README.md",
         "spec": null,
-        "test": null,
+        "test": "packages/codemode/test/source.test.ts",
         "example": null
       },
       "platforms": [
@@ -61313,14 +61313,14 @@
       ],
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/tools.dart",
-      "dart_impl": "pi_agent/lib/src/tools.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_impl": "pi_agent/lib/src/codemode_source.dart",
+      "dart_test": "pi_agent/test/codemode_source_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/codemode_source_test.dart"
       },
+      "divergence": null,
       "issue": null,
       "id": "codemode.packages-codemode-src-source.ts.parseCodemodeSource.api",
       "area": "codemode",
@@ -61334,7 +61334,7 @@
       "normative_refs": {
         "readme": "packages/codemode/README.md",
         "spec": null,
-        "test": null,
+        "test": "packages/codemode/test/source.test.ts",
         "example": null
       },
       "platforms": [
@@ -61342,14 +61342,14 @@
       ],
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/tools.dart",
-      "dart_impl": "pi_agent/lib/src/tools.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_impl": "pi_agent/lib/src/codemode_source.dart",
+      "dart_test": "pi_agent/test/codemode_source_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/codemode_source_test.dart"
       },
+      "divergence": null,
       "issue": null,
       "id": "codemode.packages-codemode-src-source.ts.ParsedCodemodeSource.api",
       "area": "codemode",
@@ -61379,7 +61379,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "codemode.packages-codemode-test-declarations.test.ts.internal.test",
       "area": "codemode",
       "upstream_path": "packages/codemode/test/declarations.test.ts",
@@ -61408,7 +61408,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "codemode.packages-codemode-test-deterministic.test.ts.internal.test",
       "area": "codemode",
       "upstream_path": "packages/codemode/test/deterministic.test.ts",
@@ -61437,7 +61437,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "codemode.packages-codemode-test-fixtures-raw-worker.ts.internal.test",
       "area": "codemode",
       "upstream_path": "packages/codemode/test/fixtures/raw-worker.ts",
@@ -61466,7 +61466,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "codemode.packages-codemode-test-fixtures-worker-process-exit.ts.internal.test",
       "area": "codemode",
       "upstream_path": "packages/codemode/test/fixtures/worker-process-exit.ts",
@@ -61495,7 +61495,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "codemode.packages-codemode-test-portable.test.ts.internal.test",
       "area": "codemode",
       "upstream_path": "packages/codemode/test/portable.test.ts",
@@ -61524,7 +61524,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "codemode.packages-codemode-test-sandbox.test.ts.internal.test",
       "area": "codemode",
       "upstream_path": "packages/codemode/test/sandbox.test.ts",
@@ -61545,14 +61545,14 @@
       ],
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/tools.dart",
-      "dart_impl": "pi_agent/lib/src/tools.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_impl": "pi_agent/lib/src/codemode_source.dart",
+      "dart_test": "pi_agent/test/codemode_source_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/codemode_source_test.dart"
       },
+      "divergence": null,
       "issue": null,
       "id": "codemode.packages-codemode-test-source.test.ts.internal.test",
       "area": "codemode",
@@ -61582,7 +61582,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "codemode.packages-codemode-test-worker-lifetime.test.ts.internal.test",
       "area": "codemode",
       "upstream_path": "packages/codemode/test/worker-lifetime.test.ts",
@@ -62162,7 +62162,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "mcp.packages-mcp-src-index.ts.AuthProvider.api",
       "area": "mcp",
       "upstream_path": "packages/mcp/src/index.ts",
@@ -62191,7 +62191,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "mcp.packages-mcp-src-index.ts.createMcpResultSchema.api",
       "area": "mcp",
       "upstream_path": "packages/mcp/src/index.ts",
@@ -62220,7 +62220,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "mcp.packages-mcp-src-index.ts.createMcpToolName.api",
       "area": "mcp",
       "upstream_path": "packages/mcp/src/index.ts",
@@ -62249,7 +62249,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "mcp.packages-mcp-src-index.ts.McpClient.api",
       "area": "mcp",
       "upstream_path": "packages/mcp/src/index.ts",
@@ -62278,7 +62278,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "mcp.packages-mcp-src-index.ts.McpFetch.api",
       "area": "mcp",
       "upstream_path": "packages/mcp/src/index.ts",
@@ -62307,7 +62307,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "mcp.packages-mcp-src-index.ts.mcpNamespace.api",
       "area": "mcp",
       "upstream_path": "packages/mcp/src/index.ts",
@@ -62336,7 +62336,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "mcp.packages-mcp-src-index.ts.mcpServerSummary.api",
       "area": "mcp",
       "upstream_path": "packages/mcp/src/index.ts",
@@ -62365,7 +62365,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "mcp.packages-mcp-src-index.ts.normalizeMcpInputSchema.api",
       "area": "mcp",
       "upstream_path": "packages/mcp/src/index.ts",
@@ -62394,7 +62394,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "mcp.packages-mcp-src-index.ts.StdioTransport.api",
       "area": "mcp",
       "upstream_path": "packages/mcp/src/index.ts",
@@ -62423,7 +62423,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "mcp.packages-mcp-src-index.ts.toMcpModelContent.api",
       "area": "mcp",
       "upstream_path": "packages/mcp/src/index.ts",
@@ -62452,7 +62452,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "mcp.packages-mcp-src-index.ts.UnauthorizedContext.api",
       "area": "mcp",
       "upstream_path": "packages/mcp/src/index.ts",
@@ -62481,7 +62481,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "mcp.packages-mcp-src-oauth-index.ts.createMcpAuthProvider.api",
       "area": "mcp",
       "upstream_path": "packages/mcp/src/oauth/index.ts",
@@ -62510,7 +62510,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "mcp.packages-mcp-src-testing-index.ts.createInMemoryTransportPair.api",
       "area": "mcp",
       "upstream_path": "packages/mcp/src/testing/index.ts",
@@ -62539,7 +62539,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "mcp.packages-mcp-src-testing-index.ts.InMemoryTransport.api",
       "area": "mcp",
       "upstream_path": "packages/mcp/src/testing/index.ts",
@@ -62568,7 +62568,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "mcp.packages-mcp-test-auth-provider.test.ts.internal.test",
       "area": "mcp",
       "upstream_path": "packages/mcp/test/auth-provider.test.ts",
@@ -62597,7 +62597,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "mcp.packages-mcp-test-authorization-server.ts.internal.test",
       "area": "mcp",
       "upstream_path": "packages/mcp/test/authorization-server.ts",
@@ -62626,7 +62626,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "mcp.packages-mcp-test-client.test.ts.internal.test",
       "area": "mcp",
       "upstream_path": "packages/mcp/test/client.test.ts",
@@ -62655,7 +62655,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "mcp.packages-mcp-test-config.test.ts.internal.test",
       "area": "mcp",
       "upstream_path": "packages/mcp/test/config.test.ts",
@@ -62684,7 +62684,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "mcp.packages-mcp-test-content.test.ts.internal.test",
       "area": "mcp",
       "upstream_path": "packages/mcp/test/content.test.ts",
@@ -62713,7 +62713,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "mcp.packages-mcp-test-fixtures-exiting-parent-server.mjs.internal.test",
       "area": "mcp",
       "upstream_path": "packages/mcp/test/fixtures/exiting-parent-server.mjs",
@@ -62742,7 +62742,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "mcp.packages-mcp-test-fixtures-stdio-server.mjs.internal.test",
       "area": "mcp",
       "upstream_path": "packages/mcp/test/fixtures/stdio-server.mjs",
@@ -62771,7 +62771,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "mcp.packages-mcp-test-fixtures-stubborn-server.mjs.internal.test",
       "area": "mcp",
       "upstream_path": "packages/mcp/test/fixtures/stubborn-server.mjs",
@@ -62800,7 +62800,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "mcp.packages-mcp-test-helpers.ts.internal.test",
       "area": "mcp",
       "upstream_path": "packages/mcp/test/helpers.ts",
@@ -62829,7 +62829,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "mcp.packages-mcp-test-input-schema.test.ts.internal.test",
       "area": "mcp",
       "upstream_path": "packages/mcp/test/input-schema.test.ts",
@@ -62858,7 +62858,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "mcp.packages-mcp-test-lines.test.ts.internal.test",
       "area": "mcp",
       "upstream_path": "packages/mcp/test/lines.test.ts",
@@ -62887,7 +62887,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "mcp.packages-mcp-test-loopback.test.ts.internal.test",
       "area": "mcp",
       "upstream_path": "packages/mcp/test/loopback.test.ts",
@@ -62916,7 +62916,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "mcp.packages-mcp-test-model-content.test.ts.internal.test",
       "area": "mcp",
       "upstream_path": "packages/mcp/test/model-content.test.ts",
@@ -62945,7 +62945,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "mcp.packages-mcp-test-naming.test.ts.internal.test",
       "area": "mcp",
       "upstream_path": "packages/mcp/test/naming.test.ts",
@@ -62974,7 +62974,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "mcp.packages-mcp-test-oauth.test.ts.internal.test",
       "area": "mcp",
       "upstream_path": "packages/mcp/test/oauth.test.ts",
@@ -63003,7 +63003,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "mcp.packages-mcp-test-output-limit.test.ts.internal.test",
       "area": "mcp",
       "upstream_path": "packages/mcp/test/output-limit.test.ts",
@@ -63032,7 +63032,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "mcp.packages-mcp-test-pipe.test.ts.internal.test",
       "area": "mcp",
       "upstream_path": "packages/mcp/test/pipe.test.ts",
@@ -63061,7 +63061,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "mcp.packages-mcp-test-result-schema.test.ts.internal.test",
       "area": "mcp",
       "upstream_path": "packages/mcp/test/result-schema.test.ts",
@@ -63090,7 +63090,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "mcp.packages-mcp-test-sign-in.test.ts.internal.test",
       "area": "mcp",
       "upstream_path": "packages/mcp/test/sign-in.test.ts",
@@ -63119,7 +63119,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "mcp.packages-mcp-test-stdio.test.ts.internal.test",
       "area": "mcp",
       "upstream_path": "packages/mcp/test/stdio.test.ts",
@@ -63148,7 +63148,10 @@
         "dart_test": "pi_agent/test/sse_parser_test.dart",
         "note": "consumeSseStream parity port of packages/mcp/src/transports/streamable-http.ts (#12451): incremental line scan (pending line read once when it ends), UTF-8 byte cap on the incomplete line rejected before its line ending arrives, cap on joined data lines before dispatch, CRLF/LF/CR endings incl. a CRLF split across chunks, and dispatch-scoped id; sse_parser_test.dart green under Dart 3.13."
       },
-      "divergence": null,
+      "divergence": {
+        "reason": "Not yet ported to the Dart runtime; tracked as a remaining PI-PAR-008 parity gap in pi#46.",
+        "approved_by": null
+      },
       "issue": "https://github.com/arrrrny/pi/issues/33",
       "id": "mcp.packages-mcp-test-streamable-http.test.ts.internal.test",
       "area": "mcp",
@@ -86198,7 +86201,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "evals.packages-evals-src-cli.ts.internal.internal",
       "area": "evals",
       "upstream_path": "packages/evals/src/cli.ts",
@@ -86227,7 +86230,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "evals.packages-evals-test-acme-server.test.ts.internal.test",
       "area": "evals",
       "upstream_path": "packages/evals/test/acme-server.test.ts",
@@ -86256,7 +86259,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "evals.packages-evals-test-comparison.test.ts.internal.test",
       "area": "evals",
       "upstream_path": "packages/evals/test/comparison.test.ts",
@@ -86285,7 +86288,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "evals.packages-evals-test-configured-runtime.test.ts.internal.test",
       "area": "evals",
       "upstream_path": "packages/evals/test/configured-runtime.test.ts",
@@ -86314,7 +86317,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "evals.packages-evals-test-harness.test.ts.internal.test",
       "area": "evals",
       "upstream_path": "packages/evals/test/harness.test.ts",
@@ -86343,7 +86346,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "evals.packages-evals-test-plan.test.ts.internal.test",
       "area": "evals",
       "upstream_path": "packages/evals/test/plan.test.ts",
@@ -86372,7 +86375,7 @@
         "reason": "Scaffolded by build-registry; not yet assessed for parity.",
         "approved_by": null
       },
-      "issue": null,
+      "issue": "https://github.com/arrrrny/pi/issues/46",
       "id": "evals.packages-evals-test-report.test.ts.internal.test",
       "area": "evals",
       "upstream_path": "packages/evals/test/report.test.ts",

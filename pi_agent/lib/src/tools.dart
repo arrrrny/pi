@@ -6,6 +6,8 @@ import 'dart:convert';
 
 import 'types.dart';
 
+export 'codemode_source.dart';
+
 /// A tool definition for the agent.
 ///
 /// Tools define functions the LLM can call during conversation.
