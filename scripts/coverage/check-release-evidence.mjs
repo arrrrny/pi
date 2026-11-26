@@ -70,17 +70,30 @@ export function checkAdaptationDecisions(manifest) {
 				failures.push(`adaptation-decisions: ${coordinate} ${entry.decision} requires a destination package`);
 			}
 		}
-		// Every TUI behavior row in the manifest must carry a decision entry.
+		// Every TUI behavior row in the manifest must carry a decision entry,
+		// and every TUI decision must map back to a live row: renaming or
+		// removing a row must not leave an orphan decision that passes silently.
 		if (manifest) {
+			const tuiRowIds = new Set(
+				manifest.rows.filter((row) => row.area === "tui").map((row) => row.id),
+			);
 			for (const row of manifest.rows) {
 				if (row.area === "tui" && !seen.has(row.id)) {
 					failures.push(`adaptation-decisions: tui row ${row.id} has no recorded decision`);
+				}
+			}
+			for (const entry of decisions) {
+				if (entry?.area === "tui" && !tuiRowIds.has(entry?.coordinate)) {
+					failures.push(`adaptation-decisions: tui decision ${entry?.coordinate ?? "(unknown)"} has no matching manifest row`);
 				}
 			}
 		}
 	}
 
 	// Apps: every apps/* target in the manifest must carry an approved decision.
+	// Completeness of app_decisions itself is the generator's job at the pinned
+	// SHA (it reconfirms the apps/* set), so an empty or partial list is accepted
+	// here by design — this gate only validates the entries it is given.
 	if (manifest) {
 		for (const app of manifest.app_decisions ?? []) {
 			if (!VALID_DECISIONS.includes(app?.decision)) {

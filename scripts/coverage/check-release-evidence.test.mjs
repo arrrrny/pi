@@ -83,7 +83,10 @@ test("fails parity when a TUI row has no evidence-backed decision", async (t) =>
 		upstream: { repo: "earendil-works/pi", sha: "a".repeat(40), packages: {} },
 		packages: [],
 		app_decisions: [],
-		rows: [],
+		rows: [
+			{ id: "tui.packages-tui-src-index.ts.Box.api", area: "tui", status: "verified", evidence: { scenario: "s" } },
+			{ id: "tui.packages-tui-test-text.test.ts.internal.test", area: "tui", status: "verified", evidence: { scenario: "s" } },
+		],
 	});
 	writeAdaptationDecisions(root, {
 		schema_version: 1,
@@ -96,6 +99,72 @@ test("fails parity when a TUI row has no evidence-backed decision", async (t) =>
 	const evidence = JSON.parse(result.stdout);
 	assert.equal(evidence.resolved, false);
 	assert.ok(evidence.failures.some((f) => /tui.packages-tui-test-text/.test(f) && /decision/.test(f)));
+});
+
+test("fails parity when a manifest TUI row has no recorded decision", async (t) => {
+	const { root } = await run(t, []);
+	mkdirSync(join(root, "coverage"), { recursive: true });
+	writeFileSync(join(root, "coverage", "state.json"), JSON.stringify({
+		target_upstream_sha: "a".repeat(40),
+		verified_upstream_sha: "a".repeat(40),
+	}));
+	writeManifest(root, {
+		schema_version: 1,
+		generator: { name: "pi-coverage", version: "0.1.0", typescript: "x", registry_version: "r" },
+		upstream: { repo: "earendil-works/pi", sha: "a".repeat(40), packages: {} },
+		packages: [],
+		app_decisions: [],
+		rows: [
+			{ id: "tui.row.with.decision", area: "tui", status: "verified", evidence: { scenario: "s" } },
+			{ id: "tui.row.without.decision", area: "tui", status: "verified", evidence: { scenario: "s" } },
+		],
+	});
+	writeAdaptationDecisions(root, {
+		schema_version: 1,
+		decisions: [
+			{ area: "tui", coordinate: "tui.row.with.decision", decision: "adapt", owner: "arrrrny", destination: "zuraffa_tui", evidence: "p" },
+		],
+	});
+	const result = spawnSync(process.execPath, [script, "--json"], { cwd: root, encoding: "utf8" });
+	const evidence = JSON.parse(result.stdout);
+	assert.equal(evidence.resolved, false);
+	assert.ok(
+		evidence.failures.some((f) => /tui row tui\.row\.without\.decision has no recorded decision/.test(f)),
+		JSON.stringify(evidence.failures),
+	);
+});
+
+test("fails parity when a TUI decision has no matching manifest row", async (t) => {
+	const { root } = await run(t, []);
+	mkdirSync(join(root, "coverage"), { recursive: true });
+	writeFileSync(join(root, "coverage", "state.json"), JSON.stringify({
+		target_upstream_sha: "a".repeat(40),
+		verified_upstream_sha: "a".repeat(40),
+	}));
+	writeManifest(root, {
+		schema_version: 1,
+		generator: { name: "pi-coverage", version: "0.1.0", typescript: "x", registry_version: "r" },
+		upstream: { repo: "earendil-works/pi", sha: "a".repeat(40), packages: {} },
+		packages: [],
+		app_decisions: [],
+		rows: [
+			{ id: "tui.row.kept", area: "tui", status: "verified", evidence: { scenario: "s" } },
+		],
+	});
+	writeAdaptationDecisions(root, {
+		schema_version: 1,
+		decisions: [
+			{ area: "tui", coordinate: "tui.row.kept", decision: "adapt", owner: "arrrrny", destination: "zuraffa_tui", evidence: "p" },
+			{ area: "tui", coordinate: "tui.row.renamed.away", decision: "adapt", owner: "arrrrny", destination: "zuraffa_tui", evidence: "stale entry from a removed row" },
+		],
+	});
+	const result = spawnSync(process.execPath, [script, "--json"], { cwd: root, encoding: "utf8" });
+	const evidence = JSON.parse(result.stdout);
+	assert.equal(evidence.resolved, false);
+	assert.ok(
+		evidence.failures.some((f) => /tui decision tui\.row\.renamed\.away has no matching manifest row/.test(f)),
+		JSON.stringify(evidence.failures),
+	);
 });
 
 test("fails parity when an apps/* target has no approved decision", async (t) => {
@@ -137,7 +206,10 @@ test("passes the adaptation-decision gate when every TUI row and app is decided 
 		app_decisions: [
 			{ path: "apps/p2", decision: "not_applicable", reason: "product app", approved_by: "arrrrny" },
 		],
-		rows: [],
+		rows: [
+			{ id: "tui.packages-tui-src-index.ts.Box.api", area: "tui", status: "verified", evidence: { scenario: "s" } },
+			{ id: "tui.packages-tui-test-text.test.ts.internal.test", area: "tui", status: "verified", evidence: { scenario: "s" } },
+		],
 	});
 	writeAdaptationDecisions(root, {
 		schema_version: 1,
