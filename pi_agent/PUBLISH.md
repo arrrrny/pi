@@ -25,7 +25,7 @@ Run from `pi_agent/`:
 
 3. **Differential Parity Scenarios**:
    ```bash
-   node scripts/coverage/differential/run-scenario.mjs --scenario coverage/differential/scenarios/tool-executes.json --sha <target_sha>
+   node ../scripts/coverage/differential/run-scenario.mjs --scenario ../coverage/differential/scenarios/tool-executes.json --sha <target_sha>
    ```
 
 4. **Publish Dry-Run**:
