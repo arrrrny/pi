@@ -93,11 +93,20 @@ void main() {
 
       final pidart = File('${cache.path}/bin/pidart');
 
-      // --version: exit 0, version on stdout, nothing on stderr.
+      // --version: exit 0, version on stdout, nothing on stderr. A cold-cache
+      // global activation prints `dart pub` resolution chatter to stdout before
+      // the program runs, so the version is the final non-empty line rather than
+      // the whole of stdout.
       final version =
           Process.runSync(pidart.path, ['--version'], environment: runEnv);
       expect(version.exitCode, 0, reason: version.stderr.toString());
-      expect(version.stdout.toString().trim(), pidartVersion);
+      final versionLines = version.stdout
+          .toString()
+          .trim()
+          .split('\n')
+          .where((line) => line.trim().isNotEmpty)
+          .toList();
+      expect(versionLines.last.trim(), pidartVersion);
       expect(version.stderr.toString(), isEmpty);
 
       // --help: exit 0, usage on stdout mentioning pidart.
