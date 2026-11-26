@@ -1,7 +1,19 @@
 import 'package:pi/src/codemode_source.dart';
+import 'package:pi/tools.dart' as public_api;
 import 'package:test/test.dart';
 
 void main() {
+  // The parser is advertised as the public `package:pi/tools.dart` surface
+  // (CHANGELOG + commit message); exercise that re-export, not just the
+  // private path the rest of this suite imports.
+  test('parser is reachable through package:pi/tools.dart', () {
+    expect(
+      public_api.parseCodemodeSource('text(1)'),
+      equals(const ParsedCodemodeSource(
+          code: 'text(1)', options: CodemodeSourceOptions())),
+    );
+  });
+
   group('parseCodemodeSource', () {
     test('returns plain code unchanged', () {
       expect(

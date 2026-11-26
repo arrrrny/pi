@@ -105,8 +105,12 @@ CodemodeSourceOptions _parseOptions(String directive) {
   try {
     value = jsonDecode(directive);
   } catch (error) {
+    // Match upstream, which appends `error.message` (not `String(error)`).
+    // Interpolating the whole exception leaks the Dart runtime type and a
+    // runtime-specific message; use the message alone for a stable detail.
+    final detail = error is FormatException ? error.message : error.toString();
     throw CodemodeSourceError(
-        '@options must be valid JSON with supported fields $_supportedFieldsText: $error');
+        '@options must be valid JSON with supported fields $_supportedFieldsText: $detail');
   }
   if (value is! Map<String, Object?>) {
     throw CodemodeSourceError(
