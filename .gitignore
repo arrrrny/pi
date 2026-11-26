@@ -34,6 +34,8 @@ coverage/*
 !coverage/state.json
 !coverage/upstream/
 !coverage/differential/
+!coverage/adaptation-decisions.json
+!coverage/tui-adaptation-seam.md
 .nyc_output/
 .pi_config/
 tui-debug.log
