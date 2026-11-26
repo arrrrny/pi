@@ -24,11 +24,23 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:pi/src/agent_loop.dart';
+import 'package:pi/src/ai/anthropic_stream.dart';
+import 'package:pi/src/ai/google_stream.dart';
+import 'package:pi/src/ai/mistral_stream.dart';
+import 'package:pi/src/ai/openai_stream.dart';
+import 'package:pi/src/ai/provider_error.dart';
+import 'package:pi/src/ai/provider_events.dart';
+import 'package:pi/src/ai/provider_identity.dart';
+import 'package:pi/src/ai/provider_retry.dart';
+import 'package:pi/src/ai/sse_decoder.dart';
+import 'package:pi/src/chord/delta.dart';
+import 'package:pi/src/chord/json.dart';
 import 'package:pi/src/types.dart' hide AgentTool;
 import 'package:pi/src/tools.dart';
 
 /// Replace timestamps by their ordinal within the stream (first seen = 0).
-List<Map<String, dynamic>> normalizeTimestamps(List<Map<String, dynamic>> records) {
+List<Map<String, dynamic>> normalizeTimestamps(
+    List<Map<String, dynamic>> records) {
   final order = <String, int>{};
   var next = 0;
   for (final record in records) {
@@ -80,7 +92,9 @@ List<Map<String, dynamic>> normalizeIds(List<Map<String, dynamic>> records) {
 /// Canonical stringify: sorted object keys, compact separators.
 String canonicalStringify(Object? value) {
   if (value == null) return 'null';
-  if (value is num || value is bool || value is String) return jsonEncode(value);
+  if (value is num || value is bool || value is String) {
+    return jsonEncode(value);
+  }
   if (value is List) return '[${value.map(canonicalStringify).join(',')}]';
   if (value is Map) {
     final keys = value.keys.map((k) => k.toString()).toList()..sort();
@@ -99,7 +113,8 @@ String normalizePath(String path) {
 
 /// Sort freely interleavable events inside one turn by (name, canonical-json);
 /// records without a turn index keep their order.
-List<Map<String, dynamic>> normalizeInterleaving(List<Map<String, dynamic>> records) {
+List<Map<String, dynamic>> normalizeInterleaving(
+    List<Map<String, dynamic>> records) {
   final out = <Map<String, dynamic>>[];
   final emittedTurns = <int>{};
   for (final record in records) {
@@ -115,7 +130,8 @@ List<Map<String, dynamic>> normalizeInterleaving(List<Map<String, dynamic>> reco
       if (candidate['turn'] == turn) group.add(candidate);
     }
     group.sort((a, b) {
-      final nameDelta = (a['name'] ?? '').toString().compareTo((b['name'] ?? '').toString());
+      final nameDelta =
+          (a['name'] ?? '').toString().compareTo((b['name'] ?? '').toString());
       if (nameDelta != 0) return nameDelta;
       return canonicalStringify(a).compareTo(canonicalStringify(b));
     });
@@ -125,7 +141,8 @@ List<Map<String, dynamic>> normalizeInterleaving(List<Map<String, dynamic>> reco
 }
 
 /// Normalize a raw event stream into the canonical JSONL form.
-List<Map<String, dynamic>> normalizeOutcome(List<Map<String, dynamic>> rawRecords) {
+List<Map<String, dynamic>> normalizeOutcome(
+    List<Map<String, dynamic>> rawRecords) {
   var records = normalizeTimestamps(rawRecords);
   records = normalizeIds(records);
   records = normalizeInterleaving(records);
@@ -155,10 +172,14 @@ List<Map<String, dynamic>> normalizeOutcome(List<Map<String, dynamic>> rawRecord
 Future<List<Map<String, dynamic>>> runRealAgentLoop(
     Map<String, dynamic> scenario) async {
   final toolName = scenario['tool'] as String? ?? 'shell';
-  final argumentsError = scenario['arguments_error'] as String? ??
-      'Expected object';
-  final arguments = (scenario['arguments'] as Map<String, dynamic>?) ??
-      <String, dynamic>{};
+  // An absent `arguments_error` models the historical default (a failed parse);
+  // an explicit null models a VALID call that reaches the tool body, so the
+  // same real-loop path proves both the rejection and the success branch.
+  final argumentsError = scenario.containsKey('arguments_error')
+      ? scenario['arguments_error'] as String?
+      : 'Expected object';
+  final arguments =
+      (scenario['arguments'] as Map<String, dynamic>?) ?? <String, dynamic>{};
 
   final tool = AgentTool<Map<String, dynamic>, dynamic>(
     name: toolName,
@@ -176,7 +197,9 @@ Future<List<Map<String, dynamic>>> runRealAgentLoop(
 
   final context = AgentContext(
     systemPrompt: 'parity-harness',
-    messages: <AgentMessage>[UserMessage.text(scenario['prompt'] as String? ?? 'go')],
+    messages: <AgentMessage>[
+      UserMessage.text(scenario['prompt'] as String? ?? 'go')
+    ],
     tools: <AgentTool<dynamic, dynamic>>[tool],
   );
 
@@ -233,7 +256,9 @@ Future<List<Map<String, dynamic>>> runRealAgentLoop(
   await for (final event in agentLoop(
     context,
     config,
-    prompts: <AgentMessage>[UserMessage.text(scenario['prompt'] as String? ?? 'go')],
+    prompts: <AgentMessage>[
+      UserMessage.text(scenario['prompt'] as String? ?? 'go')
+    ],
     streamFn: scriptedStream,
   )) {
     switch (event) {
@@ -311,9 +336,92 @@ Future<List<Map<String, dynamic>>> runRealAgentLoop(
     'output': usageOutput ?? 0,
     'cache': 0,
   });
-  records.add({'turn': 0, 'type': 'state', 'path': r'$.turns', 'value': turnIndex});
+  records.add(
+      {'turn': 0, 'type': 'state', 'path': r'$.turns', 'value': turnIndex});
   return records;
 }
+
+/// Decode one wire op (the upstream tuple form) into the Dart [Op] vocabulary.
+Op decodeOp(List<dynamic> wire) {
+  final verb = wire[0] as String;
+  switch (verb) {
+    case 'r':
+      return OpReplace(wire[1]);
+    case 's':
+      return OpSet((wire[1] as List).cast<Seg>(), wire[2]);
+    case 'd':
+      return OpDelete((wire[1] as List).cast<Seg>());
+    case 'a':
+      return OpAppend((wire[1] as List).cast<Seg>(), wire[2] as String);
+    case 't':
+      return OpTruncate((wire[1] as List).cast<Seg>(), wire[2] as int);
+    case 'p':
+      return OpInsert((wire[1] as List).cast<Seg>(), wire[2] as int,
+          wire[3] as int, (wire[4] as List).cast<Object?>());
+    case 'm':
+      return OpMove(
+          (wire[1] as List).cast<Seg>(), (wire[2] as List).cast<int>());
+    default:
+      throw StateError('unknown op verb: $verb');
+  }
+}
+
+/// Drives the REAL chord delta applier for a `chord.delta-apply` scenario.
+///
+/// The observable contract is the final value (immutable and mutable paths),
+/// that the caller's input was left unmutated (the immutability guarantee), the
+/// `isReplace` classification of the first op, and the reserved-segment guard —
+/// all produced by the shipped `applyImmutableBatches`/`apply`/`isReplace`/
+/// `assertSafePath`, not a parallel twin.
+List<Map<String, dynamic>> runChordDeltaApply(Map<String, dynamic> scenario) {
+  final input = scenario['initial'];
+  final batches = (scenario['batches'] as List)
+      .map((batch) =>
+          (batch as List).map((op) => decodeOp((op as List).toList())).toList())
+      .toList();
+  final before = canonicalStringify(input);
+
+  // The immutable path drives the shipped copy-on-write applier.
+  final root = applyImmutableBatches(copyJson(input), batches);
+  // The same batches through the PR's headline mutable `apply`, on a fresh
+  // copy, so the differential actually exercises `apply` (not just the unit
+  // test) as the `apply.api` verified evidence claims.
+  final mutableRoot =
+      apply(copyJson(input), batches.expand((batch) => batch).toList());
+
+  final inputUnchanged = canonicalStringify(input) == before;
+  final isReplaceFirst = firstOpIsReplace(batches);
+
+  // Reserved-segment guard (upstream `assertSafePath`): a write through a
+  // reserved segment must fail with UnsafePathError on both sides, so
+  // `RESERVED_SEGMENTS.api`'s verified evidence exercises the guard.
+  final reservedOps = (scenario['reserved_segment_ops'] as List? ?? <dynamic>[])
+      .map((op) => decodeOp((op as List).toList()))
+      .toList();
+  var reservedError = 'no error';
+  if (reservedOps.isNotEmpty) {
+    try {
+      apply(<String, Object?>{}, reservedOps);
+    } on UnsafePathError catch (error) {
+      reservedError = 'UnsafePathError: ${error.segment}';
+    }
+  }
+
+  return <Map<String, dynamic>>[
+    {'type': 'delta', 'name': 'final', 'value': root},
+    {'type': 'delta', 'name': 'mutable_final', 'value': mutableRoot},
+    {'type': 'delta', 'name': 'input_unchanged', 'value': inputUnchanged},
+    {'type': 'delta', 'name': 'is_replace_first', 'value': isReplaceFirst},
+    {'type': 'delta', 'name': 'input_is_json', 'value': isJsonValue(input)},
+    {'type': 'error', 'name': 'reserved_segment', 'value': reservedError},
+  ];
+}
+
+/// Whether the first op of the first batch is a root replacement.
+bool firstOpIsReplace(List<List<Op>> batches) =>
+    batches.isNotEmpty &&
+    batches.first.isNotEmpty &&
+    isReplace(batches.first.first);
 
 /// Deterministic model of the Dart port's observable behavior for scenarios
 /// that have no Dart implementation to drive yet.
@@ -327,14 +435,26 @@ List<Map<String, dynamic>> runScripted(Map<String, dynamic> scenario) {
   switch (scenario['kind']) {
     case 'durable.commit-boundary':
       push({'type': 'event', 'name': 'agent_start'});
-      push({'type': 'commit', 'commit_id': 'commit-1', 'entries': scenario['entries'] ?? <dynamic>[]});
+      push({
+        'type': 'commit',
+        'commit_id': 'commit-1',
+        'entries': scenario['entries'] ?? <dynamic>[]
+      });
       push({'type': 'state', 'path': r'$.turns', 'value': 1});
       push({'type': 'usage', 'input': 0, 'output': 0, 'cache': 0});
       break;
     case 'provider.scripted-turn':
       push({'type': 'event', 'name': 'agent_start'});
-      push({'type': 'transcript', 'role': 'user', 'content': scenario['prompt'] ?? ''});
-      push({'type': 'transcript', 'role': 'assistant', 'content': scenario['response'] ?? ''});
+      push({
+        'type': 'transcript',
+        'role': 'user',
+        'content': scenario['prompt'] ?? ''
+      });
+      push({
+        'type': 'transcript',
+        'role': 'assistant',
+        'content': scenario['response'] ?? ''
+      });
       push({'type': 'state', 'path': r'$.turns', 'value': 1});
       push({
         'type': 'usage',
@@ -345,6 +465,301 @@ List<Map<String, dynamic>> runScripted(Map<String, dynamic> scenario) {
       break;
     default:
       throw StateError('unsupported scenario kind: ${scenario['kind']}');
+  }
+  return records;
+}
+
+/// Normalization shared with `normalize.mjs`: a GENERATED tool-call id
+/// (`<name>_<timestamp>_<counter>`, minted at stream time by Google and any
+/// provider that mints ids) differs per run and per language, so the
+/// first-seen generated shape maps to `<generated-tool-call-N>` on both
+/// sides. Explicit scenario ids are `call_1`-style and never match.
+final RegExp _generatedToolCallId = RegExp(r'^.+_\d+_\d+$');
+
+List<Map<String, dynamic>> normalizeGeneratedToolCallIds(
+    List<Map<String, dynamic>> records) {
+  final placeholders = <String, String>{};
+  var count = 0;
+  String placeholderFor(String value) => placeholders.putIfAbsent(value, () {
+        count += 1;
+        return '<generated-tool-call-$count>';
+      });
+
+  Object? walk(Object? value) {
+    if (value is List) return value.map(walk).toList();
+    if (value is Map) {
+      final out = <String, dynamic>{};
+      for (final entry in value.entries) {
+        final key = entry.key;
+        final inner = entry.value;
+        if (key == 'id' &&
+            inner is String &&
+            _generatedToolCallId.hasMatch(inner)) {
+          out[key as String] = placeholderFor(inner);
+        } else {
+          out[key as String] = walk(inner);
+        }
+      }
+      return out;
+    }
+    return value;
+  }
+
+  return records.map((record) => walk(record) as Map<String, dynamic>).toList();
+}
+
+/// Decode a raw SSE cassette into decoded events, mirroring the well-formed
+/// frames a sanitized cassette carries.
+List<ServerSentEvent> decodeCassette(String text) {
+  final decoder = SseDecoder();
+  final events = <ServerSentEvent>[];
+  for (final frame in text.split('\n\n')) {
+    if (frame.isEmpty) continue;
+    events.addAll(decoder.push(utf8.encode('$frame\n\n')));
+  }
+  events.addAll(decoder.end());
+  return events;
+}
+
+/// The provider streaming surface (`provider-stream.*`, `provider-error-body`,
+/// `provider-retry-transient`, `provider.session-identity`): drive the REAL
+/// Dart parsers and utils over the sanitized cassette, exactly as the
+/// TypeScript side's model drives the upstream contract. A parser failure
+/// becomes the canonical terminal `error` outcome plus message record, like
+/// the upstream API's outer catch.
+Future<List<Map<String, dynamic>>> runProviderSurface(
+    Map<String, dynamic> scenario) async {
+  final kind = scenario['kind'] as String? ?? '';
+  if (kind == 'provider-error-body') {
+    return runProviderErrorBodyScenario(scenario);
+  }
+  if (kind == 'provider-retry-transient') {
+    return runProviderRetryScenario(scenario);
+  }
+  if (kind == 'provider.session-identity') {
+    return runProviderIdentityScenario(scenario);
+  }
+
+  final cassette =
+      File((scenario['provider'] as Map<String, dynamic>)['cassette'] as String)
+          .readAsStringSync();
+  if (kind.startsWith('provider-stream.anthropic')) {
+    final parser = AnthropicStreamParser(
+      requestedModelId: scenario['requested_model_id'] as String? ?? '',
+    );
+    return driveProviderParser(
+      parser.message,
+      run: (events) {
+        for (final sse in decodeCassette(cassette)) {
+          events.addAll(parser.feed(sse));
+        }
+        events.addAll(parser.end());
+      },
+    );
+  }
+  final chunks = <Map<String, dynamic>>[];
+  for (final sse in decodeCassette(cassette)) {
+    // The [DONE] sentinel carries no payload.
+    if (sse.data == '[DONE]') continue;
+    chunks.add(jsonDecode(sse.data) as Map<String, dynamic>);
+  }
+  if (kind.startsWith('provider-stream.openai')) {
+    final parser = OpenAiStreamParser(
+      requestedModelId: scenario['requested_model_id'] as String?,
+    );
+    return driveProviderParser(
+      parser.message,
+      run: (events) {
+        for (final chunk in chunks) {
+          events.addAll(parser.feedChunk(chunk));
+        }
+        // The sink IS the accumulator: end() returns it, so no addAll — a
+        // second add would double every block-close event.
+        parser.end(sink: events);
+      },
+    );
+  }
+  if (kind.startsWith('provider-stream.google')) {
+    final parser = GoogleStreamParser(
+      requestedModelId: scenario['requested_model_id'] as String? ?? '',
+    );
+    return driveProviderParser(
+      parser.message,
+      run: (events) {
+        for (final chunk in chunks) {
+          events.addAll(parser.feedChunk(chunk));
+        }
+        // The sink IS the accumulator: end() returns it, so no addAll — a
+        // second add would double every block-close event.
+        parser.end(sink: events);
+      },
+    );
+  }
+  if (kind.startsWith('provider-stream.mistral')) {
+    final parser = MistralStreamParser();
+    return driveProviderParser(
+      parser.message,
+      run: (events) {
+        for (final chunk in chunks) {
+          events.addAll(parser.feedChunk(chunk));
+        }
+        // The sink IS the accumulator: end() returns it, so no addAll — a
+        // second add would double every block-close event.
+        parser.end(sink: events);
+      },
+    );
+  }
+  throw StateError('unsupported scenario kind: $kind');
+}
+
+/// Run the parser against the shared [run] accumulator, then render the
+/// canonical outcome records: one per event plus the terminal message
+/// record. Events collected before a throw survive: the accumulator is
+/// shared with the caller's closure.
+List<Map<String, dynamic>> driveProviderParser(
+  ProviderMessageState message, {
+  required void Function(List<ProviderStreamEvent> events) run,
+}) {
+  final events = <ProviderStreamEvent>[];
+  try {
+    run(events);
+  } on ProviderStreamException catch (error) {
+    message.stopReason = 'error';
+    message.errorMessage = error.message;
+    events.add(ProviderErrorEvent('error', error.message));
+  }
+  return [
+    for (final event in events) event.toJson(),
+    {'type': 'message', ...message.toJson()},
+  ];
+}
+
+/// `provider-error-body`: normalize + format each scripted error shape.
+List<Map<String, dynamic>> runProviderErrorBodyScenario(
+    Map<String, dynamic> scenario) {
+  final records = <Map<String, dynamic>>[];
+  for (final entry in scenario['errors'] as List) {
+    final map = entry as Map<String, dynamic>;
+    final norm = normalizeProviderError(map['error']);
+    final display = formatProviderError(norm, prefix: map['prefix'] as String?);
+    records.add({
+      'type': 'provider_error',
+      'status': norm.status,
+      'body': norm.body,
+      'messageCarriesBody': norm.messageCarriesBody,
+      'display': display,
+    });
+  }
+  return records;
+}
+
+/// `provider-retry-transient`: the retry loop over scripted responses with an
+/// injected (virtual-clock) sleep.
+Future<List<Map<String, dynamic>>> runProviderRetryScenario(
+    Map<String, dynamic> scenario) async {
+  final records = <Map<String, dynamic>>[];
+  final responses = (scenario['responses'] as List?) ?? const <dynamic>[];
+  final policyJson = scenario['policy'] as Map<String, dynamic>?;
+  final policy = policyJson == null
+      ? null
+      : RetryPolicy(
+          enabled: policyJson['enabled'] as bool,
+          maxRetries: (policyJson['maxRetries'] as num).toInt(),
+          baseDelayMs: (policyJson['baseDelayMs'] as num).toInt(),
+          maxAgentDelayMs: policyJson['maxAgentDelayMs'] == null
+              ? null
+              : (policyJson['maxAgentDelayMs'] as num).toInt(),
+        );
+  var call = 0;
+  await retryAssistantCall(
+    () async {
+      final response =
+          responses[call < responses.length ? call : responses.length - 1]
+              as Map<String, dynamic>;
+      call++;
+      records.add({
+        'type': 'produce',
+        'call': call,
+        'stopReason': response['stopReason'],
+        'errorMessage': response['errorMessage'],
+      });
+      return RetryAssistantOutcome(
+        response['stopReason'] as String,
+        response['errorMessage'] as String?,
+      );
+    },
+    policy,
+    null,
+    RetryCallbacks(
+      onRetryScheduled: (attempt, maxAttempts, delayMs, errorMessage) {
+        records.add({
+          'type': 'retry_scheduled',
+          'attempt': attempt,
+          'maxAttempts': maxAttempts,
+          'delayMs': delayMs,
+          'errorMessage': errorMessage,
+        });
+      },
+      onRetryFinished: (success, attempt, finalError) {
+        records.add({
+          'type': 'retry_finished',
+          'success': success,
+          'attempt': attempt,
+          if (finalError != null) 'finalError': finalError,
+        });
+      },
+    ),
+    (_) async {},
+  );
+  return records;
+}
+
+/// `provider.session-identity`: user agent + attribution + session headers
+/// for scripted request targets.
+List<Map<String, dynamic>> runProviderIdentityScenario(
+    Map<String, dynamic> scenario) {
+  ClientIdentity? identityFrom(Map<String, dynamic>? json) {
+    if (json == null) return null;
+    final attributionJson = json['attribution'] as Map<String, dynamic>?;
+    return ClientIdentity(
+      userAgent: json['user_agent'],
+      attribution: attributionJson == null
+          ? null
+          : ClientAttribution(
+              name: attributionJson['name'] as String,
+              url: attributionJson['url'] as String,
+              categories:
+                  (attributionJson['categories'] as List?)?.cast<String>(),
+            ),
+      version: json['version'] as String?,
+    );
+  }
+
+  final records = <Map<String, dynamic>>[];
+  for (final entry in scenario['requests'] as List) {
+    final map = entry as Map<String, dynamic>;
+    final identity = identityFrom(map['identity'] as Map<String, dynamic>?);
+    final runtime = map['runtime'] as Map<String, dynamic>?;
+    final targetJson = map['target'] as Map<String, dynamic>;
+    final target = ClientIdentityTarget(
+      provider: targetJson['provider'] as String,
+      baseUrl: targetJson['base_url'] as String,
+    );
+    final userAgent = formatUserAgent(
+      identity,
+      platform: runtime?['platform'] as String?,
+      runtime: runtime?['runtime'] as String?,
+      arch: runtime?['arch'] as String?,
+    );
+    final attribution = getAttributionHeaders(target, identity);
+    final session =
+        getOpenCodeSessionHeaders(target, map['session_id'] as String?);
+    records.add({
+      'type': 'request_identity',
+      'userAgent': userAgent,
+      'attribution': attribution.isEmpty ? null : attribution,
+      'session': session,
+    });
   }
   return records;
 }
@@ -373,10 +788,20 @@ void main(List<String> argv) async {
     exit(2);
   }
   final kind = scenario['kind'] as String? ?? '';
-  final raw = kind.startsWith('agent-loop.')
-      ? await runRealAgentLoop(scenario)
-      : runScripted(scenario);
-  final normalized = normalizeOutcome(raw);
+  final List<Map<String, dynamic>> raw;
+  if (kind.startsWith('agent-loop.')) {
+    raw = await runRealAgentLoop(scenario);
+  } else if (kind.startsWith('provider-stream.') ||
+      kind == 'provider-error-body' ||
+      kind == 'provider-retry-transient' ||
+      kind == 'provider.session-identity') {
+    raw = await runProviderSurface(scenario);
+  } else if (kind == 'chord.delta-apply') {
+    raw = runChordDeltaApply(scenario);
+  } else {
+    raw = runScripted(scenario);
+  }
+  final normalized = normalizeOutcome(normalizeGeneratedToolCallIds(raw));
   final lines = normalized.map(canonicalStringify).join('\n');
   stdout.writeln(lines);
 }

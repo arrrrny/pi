@@ -3,21 +3,21 @@
 - Upstream: `earendil-works/pi` at `c11a73bfba1310dc4075ad836254ea87003f409b`
 - Generator: `pi-coverage` v0.1.0 (node 20.19.2)
 - Registry version: `eac23310c3f9`
-- Rows: 2970 total — 1 verified, 37 implemented_unverified, 0 in_progress, 2932 unported, 0 not_applicable
+- Rows: 2970 total — 158 verified, 24 implemented_unverified, 0 in_progress, 2785 unported, 3 not_applicable
 
 ## Per-package status
 
 | Area | Package | Version | Exports | Behaviors | Verified | Unverified | Not applicable |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| schema | `@earendil-works/pi-schema` | 1.6.0 | 195 | 224 | 0 | 224 | 0 |
-| telemetry | `@earendil-works/pi-telemetry` | 1.6.0 | 72 | 55 | 0 | 55 | 0 |
-| chord | `@earendil-works/chord` | 1.6.0 | 1959 | 928 | 0 | 928 | 0 |
-| ai | `@earendil-works/pi-ai` | 1.6.0 | 1171 | 509 | 0 | 509 | 0 |
+| schema | `@earendil-works/pi-schema` | 1.6.0 | 195 | 224 | 49 | 175 | 0 |
+| telemetry | `@earendil-works/pi-telemetry` | 1.6.0 | 72 | 55 | 55 | 0 | 0 |
+| chord | `@earendil-works/chord` | 1.6.0 | 1959 | 928 | 13 | 915 | 0 |
+| ai | `@earendil-works/pi-ai` | 1.6.0 | 1171 | 509 | 3 | 506 | 0 |
 | agent | `@earendil-works/pi-agent-core` | 1.6.0 | 91 | 54 | 1 | 53 | 0 |
-| durable | `@earendil-works/pi-durable` | 1.6.0 | 738 | 306 | 0 | 306 | 0 |
+| durable | `@earendil-works/pi-durable` | 1.6.0 | 738 | 306 | 36 | 267 | 3 |
 | codemode | `@earendil-works/pi-codemode` | 1.6.0 | 93 | 40 | 0 | 40 | 0 |
 | env | `@earendil-works/pi-env` | 1.6.0 | 50 | 19 | 0 | 19 | 0 |
-| mcp | `@earendil-works/pi-mcp` | 1.6.0 | 195 | 35 | 0 | 35 | 0 |
+| mcp | `@earendil-works/pi-mcp` | 1.6.0 | 195 | 35 | 1 | 34 | 0 |
 | coding-agent | `@earendil-works/pi-coding-agent` | 1.6.0 | 1545 | 705 | 0 | 705 | 0 |
 | tui | `@earendil-works/pi-tui` | 1.6.0 | 311 | 88 | 0 | 88 | 0 |
 | evals | `@earendil-works/pi-evals` | 1.6.0 | 42 | 7 | 0 | 7 | 0 |
@@ -32,2261 +32,1429 @@
 
 ## Not verified
 
-### `schema.packages-schema-src-formats-index.ts.formats.api`
-
-- Area: `schema`, kind: `api`
-- Upstream: `packages/schema/src/formats/index.ts` → `formats`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
 ### `schema.packages-schema-src-formats-typebox-idna-hostname.ts.IsHostname.api`
 
 - Area: `schema`, kind: `api`
 - Upstream: `packages/schema/src/formats/typebox/idna/hostname.ts` → `IsHostname`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-src-formats-typebox-idna-idn-hostname.ts.IsIdnHostname.api`
 
 - Area: `schema`, kind: `api`
 - Upstream: `packages/schema/src/formats/typebox/idna/idn-hostname.ts` → `IsIdnHostname`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `schema.packages-schema-src-index.ts.Check.api`
-
-- Area: `schema`, kind: `api`
-- Upstream: `packages/schema/src/index.ts` → `Check`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `schema.packages-schema-src-index.ts.CoercingValidator.api`
-
-- Area: `schema`, kind: `api`
-- Upstream: `packages/schema/src/index.ts` → `CoercingValidator`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `schema.packages-schema-src-index.ts.compile.api`
-
-- Area: `schema`, kind: `api`
-- Upstream: `packages/schema/src/index.ts` → `compile`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `schema.packages-schema-src-index.ts.CompileOptions.api`
-
-- Area: `schema`, kind: `api`
-- Upstream: `packages/schema/src/index.ts` → `CompileOptions`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `schema.packages-schema-src-index.ts.equal.api`
-
-- Area: `schema`, kind: `api`
-- Upstream: `packages/schema/src/index.ts` → `equal`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `schema.packages-schema-src-index.ts.FormatCheck.api`
-
-- Area: `schema`, kind: `api`
-- Upstream: `packages/schema/src/index.ts` → `FormatCheck`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `schema.packages-schema-src-index.ts.JsonSchema.api`
-
-- Area: `schema`, kind: `api`
-- Upstream: `packages/schema/src/index.ts` → `JsonSchema`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `schema.packages-schema-src-index.ts.ParseResult.api`
-
-- Area: `schema`, kind: `api`
-- Upstream: `packages/schema/src/index.ts` → `ParseResult`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `schema.packages-schema-src-index.ts.ValidationError.api`
-
-- Area: `schema`, kind: `api`
-- Upstream: `packages/schema/src/index.ts` → `ValidationError`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `schema.packages-schema-src-index.ts.Validator.api`
-
-- Area: `schema`, kind: `api`
-- Upstream: `packages/schema/src/index.ts` → `Validator`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-bench-all.ts.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/bench/all.ts`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-bench-candidates.ts.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/bench/candidates.ts`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-bench-cases.ts.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/bench/cases.ts`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-bench-conformance.ts.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/bench/conformance.ts`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-bench-corpus.ts.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/bench/corpus.ts`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-bench-memory.ts.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/bench/memory.ts`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-bench-setup.ts.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/bench/setup.ts`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-bench-size.ts.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/bench/size.ts`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-bench-speed.ts.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/bench/speed.ts`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-bench-zod.ts.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/bench/zod.ts`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-builders.test.ts.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/builders.test.ts`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-coerce-typebox.test.ts.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/coerce-typebox.test.ts`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-coerce.test.ts.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/coerce.test.ts`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-conformance.test.ts.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/conformance.test.ts`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-equal.test.ts.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/equal.test.ts`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-license.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/LICENSE`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-readme.md.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/README.md`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-remotes-baseurichange-folderinteger.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/remotes/baseUriChange/folderInteger.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-remotes-baseurichangefolder-folderinteger.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/remotes/baseUriChangeFolder/folderInteger.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-remotes-baseurichangefolderinsubschema-folderinteger.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/remotes/baseUriChangeFolderInSubschema/folderInteger.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-remotes-draft2019-09-dependentrequired.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/remotes/draft2019-09/dependentRequired.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-remotes-draft2019-09-ignore-prefixitems.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/remotes/draft2019-09/ignore-prefixItems.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-remotes-draft2020-12-baseurichange-folderinteger.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/remotes/draft2020-12/baseUriChange/folderInteger.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-remotes-draft2020-12-baseurichangefolder-folderinteger.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/remotes/draft2020-12/baseUriChangeFolder/folderInteger.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-remotes-draft2020-12-baseurichangefolderinsubschema-folderinteger.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/remotes/draft2020-12/baseUriChangeFolderInSubschema/folderInteger.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-remotes-draft2020-12-detached-dynamicref.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/remotes/draft2020-12/detached-dynamicref.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-remotes-draft2020-12-detached-ref.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/remotes/draft2020-12/detached-ref.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-remotes-draft2020-12-different-id-ref-string.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/remotes/draft2020-12/different-id-ref-string.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-remotes-draft2020-12-extendible-dynamic-ref.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/remotes/draft2020-12/extendible-dynamic-ref.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-remotes-draft2020-12-format-assertion-false.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/remotes/draft2020-12/format-assertion-false.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-remotes-draft2020-12-format-assertion-true.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/remotes/draft2020-12/format-assertion-true.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-remotes-draft2020-12-integer.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/remotes/draft2020-12/integer.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-remotes-draft2020-12-locationindependentidentifier.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/remotes/draft2020-12/locationIndependentIdentifier.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-remotes-draft2020-12-metaschema-no-validation.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/remotes/draft2020-12/metaschema-no-validation.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-remotes-draft2020-12-metaschema-optional-vocabulary.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/remotes/draft2020-12/metaschema-optional-vocabulary.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-remotes-draft2020-12-name-defs.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/remotes/draft2020-12/name-defs.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-remotes-draft2020-12-nested-absolute-ref-to-string.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/remotes/draft2020-12/nested-absolute-ref-to-string.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-remotes-draft2020-12-nested-foo-ref-string.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/remotes/draft2020-12/nested/foo-ref-string.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-remotes-draft2020-12-nested-string.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/remotes/draft2020-12/nested/string.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-remotes-draft2020-12-prefixitems.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/remotes/draft2020-12/prefixItems.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-remotes-draft2020-12-ref-and-defs.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/remotes/draft2020-12/ref-and-defs.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-remotes-draft2020-12-subschemas.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/remotes/draft2020-12/subSchemas.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-remotes-draft2020-12-tree.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/remotes/draft2020-12/tree.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-remotes-draft2020-12-urn-ref-string.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/remotes/draft2020-12/urn-ref-string.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-remotes-draft7-detached-ref.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/remotes/draft7/detached-ref.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-remotes-draft7-ignore-dependentrequired.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/remotes/draft7/ignore-dependentRequired.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-remotes-draft7-locationindependentidentifier.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/remotes/draft7/locationIndependentIdentifier.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-remotes-draft7-name.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/remotes/draft7/name.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-remotes-draft7-ref-and-definitions.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/remotes/draft7/ref-and-definitions.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-remotes-draft7-subschemas.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/remotes/draft7/subSchemas.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-remotes-integer.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/remotes/integer.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-remotes-nested-foo-ref-string.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/remotes/nested/foo-ref-string.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-remotes-nested-string.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/remotes/nested/string.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-additionalproperties.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/additionalProperties.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-allof.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/allOf.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-anchor.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/anchor.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-anyof.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/anyOf.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-boolean_schema.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/boolean_schema.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-const.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/const.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-contains.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/contains.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-content.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/content.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-default.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/default.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-defs.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/defs.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-dependentrequired.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/dependentRequired.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-dependentschemas.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/dependentSchemas.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-dynamicref.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/dynamicRef.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-enum.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/enum.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-exclusivemaximum.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/exclusiveMaximum.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-exclusiveminimum.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/exclusiveMinimum.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-format.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/format.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-if-then-else.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/if-then-else.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-infinite-loop-detection.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/infinite-loop-detection.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-items.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/items.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-maxcontains.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/maxContains.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-maximum.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/maximum.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-maxitems.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/maxItems.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-maxlength.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/maxLength.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-maxproperties.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/maxProperties.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-mincontains.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/minContains.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-minimum.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/minimum.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-minitems.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/minItems.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-minlength.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/minLength.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-minproperties.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/minProperties.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-multipleof.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/multipleOf.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-not.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/not.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-oneof.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/oneOf.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-optional-anchor.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/optional/anchor.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-optional-bignum.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/optional/bignum.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-optional-cross-draft.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/optional/cross-draft.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-optional-dependencies-compatibility.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/optional/dependencies-compatibility.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-optional-dynamicref.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/optional/dynamicRef.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-optional-ecmascript-regex.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/optional/ecmascript-regex.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-optional-float-overflow.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/optional/float-overflow.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-optional-format-assertion.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/optional/format-assertion.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-optional-format-date-time.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/optional/format/date-time.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-optional-format-date.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/optional/format/date.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-optional-format-duration.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/optional/format/duration.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-optional-format-ecmascript-regex.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/optional/format/ecmascript-regex.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-optional-format-email.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/optional/format/email.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-optional-format-hostname.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/optional/format/hostname.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-optional-format-idn-email.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/optional/format/idn-email.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-optional-format-idn-hostname.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/optional/format/idn-hostname.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-optional-format-ipv4.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/optional/format/ipv4.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-optional-format-ipv6.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/optional/format/ipv6.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-optional-format-iri-reference.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/optional/format/iri-reference.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-optional-format-iri.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/optional/format/iri.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-optional-format-json-pointer.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/optional/format/json-pointer.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-optional-format-regex.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/optional/format/regex.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-optional-format-relative-json-pointer.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/optional/format/relative-json-pointer.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-optional-format-time.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/optional/format/time.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-optional-format-unknown.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/optional/format/unknown.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-optional-format-uri-reference.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/optional/format/uri-reference.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-optional-format-uri-template.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/optional/format/uri-template.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-optional-format-uri.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/optional/format/uri.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-optional-format-uuid.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/optional/format/uuid.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-optional-id.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/optional/id.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-optional-no-schema.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/optional/no-schema.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-optional-non-bmp-regex.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/optional/non-bmp-regex.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-optional-refofunknownkeyword.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/optional/refOfUnknownKeyword.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-optional-unknownkeyword.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/optional/unknownKeyword.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-pattern.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/pattern.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-patternproperties.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/patternProperties.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-prefixitems.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/prefixItems.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-properties.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/properties.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-propertynames.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/propertyNames.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-ref.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/ref.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-refremote.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/refRemote.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-required.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/required.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-type.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/type.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-unevaluateditems.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/unevaluatedItems.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-unevaluatedproperties.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/unevaluatedProperties.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-uniqueitems.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/uniqueItems.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft2020-12-vocabulary.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft2020-12/vocabulary.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-additionalitems.json.internal.test`
-
-- Area: `schema`, kind: `test`
-- Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/additionalItems.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-additionalproperties.json.internal.test`
-
-- Area: `schema`, kind: `test`
-- Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/additionalProperties.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-allof.json.internal.test`
-
-- Area: `schema`, kind: `test`
-- Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/allOf.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-anyof.json.internal.test`
-
-- Area: `schema`, kind: `test`
-- Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/anyOf.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-boolean_schema.json.internal.test`
-
-- Area: `schema`, kind: `test`
-- Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/boolean_schema.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-const.json.internal.test`
-
-- Area: `schema`, kind: `test`
-- Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/const.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-contains.json.internal.test`
-
-- Area: `schema`, kind: `test`
-- Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/contains.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-default.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/default.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-definitions.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/definitions.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-dependencies.json.internal.test`
-
-- Area: `schema`, kind: `test`
-- Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/dependencies.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-enum.json.internal.test`
-
-- Area: `schema`, kind: `test`
-- Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/enum.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-exclusivemaximum.json.internal.test`
-
-- Area: `schema`, kind: `test`
-- Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/exclusiveMaximum.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-exclusiveminimum.json.internal.test`
-
-- Area: `schema`, kind: `test`
-- Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/exclusiveMinimum.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-format.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/format.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-if-then-else.json.internal.test`
-
-- Area: `schema`, kind: `test`
-- Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/if-then-else.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-infinite-loop-detection.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/infinite-loop-detection.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-items.json.internal.test`
-
-- Area: `schema`, kind: `test`
-- Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/items.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-maximum.json.internal.test`
-
-- Area: `schema`, kind: `test`
-- Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/maximum.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-maxitems.json.internal.test`
-
-- Area: `schema`, kind: `test`
-- Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/maxItems.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-maxlength.json.internal.test`
-
-- Area: `schema`, kind: `test`
-- Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/maxLength.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-maxproperties.json.internal.test`
-
-- Area: `schema`, kind: `test`
-- Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/maxProperties.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-minimum.json.internal.test`
-
-- Area: `schema`, kind: `test`
-- Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/minimum.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-minitems.json.internal.test`
-
-- Area: `schema`, kind: `test`
-- Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/minItems.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-minlength.json.internal.test`
-
-- Area: `schema`, kind: `test`
-- Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/minLength.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-minproperties.json.internal.test`
-
-- Area: `schema`, kind: `test`
-- Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/minProperties.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-multipleof.json.internal.test`
-
-- Area: `schema`, kind: `test`
-- Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/multipleOf.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-not.json.internal.test`
-
-- Area: `schema`, kind: `test`
-- Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/not.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-oneof.json.internal.test`
-
-- Area: `schema`, kind: `test`
-- Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/oneOf.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-optional-bignum.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/optional/bignum.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-optional-content.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/optional/content.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-optional-cross-draft.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/optional/cross-draft.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-optional-ecmascript-regex.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/optional/ecmascript-regex.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-optional-float-overflow.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/optional/float-overflow.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-optional-format-date-time.json.internal.test`
-
-- Area: `schema`, kind: `test`
-- Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/optional/format/date-time.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-optional-format-date.json.internal.test`
-
-- Area: `schema`, kind: `test`
-- Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/optional/format/date.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-optional-format-ecmascript-regex.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/optional/format/ecmascript-regex.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-optional-format-email.json.internal.test`
-
-- Area: `schema`, kind: `test`
-- Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/optional/format/email.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-optional-format-hostname.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/optional/format/hostname.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-optional-format-idn-email.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/optional/format/idn-email.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-optional-format-idn-hostname.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/optional/format/idn-hostname.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-optional-format-ipv4.json.internal.test`
-
-- Area: `schema`, kind: `test`
-- Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/optional/format/ipv4.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-optional-format-ipv6.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/optional/format/ipv6.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-optional-format-iri-reference.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/optional/format/iri-reference.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-optional-format-iri.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/optional/format/iri.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-optional-format-json-pointer.json.internal.test`
-
-- Area: `schema`, kind: `test`
-- Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/optional/format/json-pointer.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-optional-format-regex.json.internal.test`
-
-- Area: `schema`, kind: `test`
-- Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/optional/format/regex.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-optional-format-relative-json-pointer.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/optional/format/relative-json-pointer.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-optional-format-time.json.internal.test`
-
-- Area: `schema`, kind: `test`
-- Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/optional/format/time.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-optional-format-unknown.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/optional/format/unknown.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-optional-format-uri-reference.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/optional/format/uri-reference.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-optional-format-uri-template.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/optional/format/uri-template.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-optional-format-uri.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/optional/format/uri.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-optional-id.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/optional/id.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-optional-non-bmp-regex.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/optional/non-bmp-regex.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-optional-unknownkeyword.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/optional/unknownKeyword.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-pattern.json.internal.test`
-
-- Area: `schema`, kind: `test`
-- Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/pattern.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-patternproperties.json.internal.test`
-
-- Area: `schema`, kind: `test`
-- Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/patternProperties.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-properties.json.internal.test`
-
-- Area: `schema`, kind: `test`
-- Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/properties.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-propertynames.json.internal.test`
-
-- Area: `schema`, kind: `test`
-- Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/propertyNames.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-ref.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/ref.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-refremote.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/refRemote.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-required.json.internal.test`
-
-- Area: `schema`, kind: `test`
-- Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/required.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-type.json.internal.test`
-
-- Area: `schema`, kind: `test`
-- Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/type.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `schema.packages-schema-test-fixtures-json-schema-test-suite-tests-draft7-uniqueitems.json.internal.test`
-
-- Area: `schema`, kind: `test`
-- Upstream: `packages/schema/test/fixtures/json-schema-test-suite/tests/draft7/uniqueItems.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-meta-schemas-draft-07-schema.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/meta-schemas/draft-07-schema.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-meta-schemas-draft2020-12-meta-applicator.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/meta-schemas/draft2020-12-meta-applicator.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-meta-schemas-draft2020-12-meta-content.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/meta-schemas/draft2020-12-meta-content.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-meta-schemas-draft2020-12-meta-core.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/meta-schemas/draft2020-12-meta-core.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-meta-schemas-draft2020-12-meta-format-annotation.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/meta-schemas/draft2020-12-meta-format-annotation.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-meta-schemas-draft2020-12-meta-meta-data.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/meta-schemas/draft2020-12-meta-meta-data.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-meta-schemas-draft2020-12-meta-unevaluated.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/meta-schemas/draft2020-12-meta-unevaluated.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-meta-schemas-draft2020-12-meta-validation.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/meta-schemas/draft2020-12-meta-validation.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-meta-schemas-draft2020-12-schema.json.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/meta-schemas/draft2020-12-schema.json`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-fixtures-meta-schemas-readme.md.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/fixtures/meta-schemas/README.md`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-shared.test.ts.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/shared.test.ts`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-suite.ts.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/suite.ts`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-typebox-static.test.ts.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/typebox-static.test.ts`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `schema.packages-schema-test-validator.test.ts.internal.test`
 
 - Area: `schema`, kind: `test`
 - Upstream: `packages/schema/test/validator.test.ts`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-src-index.ts.AttributeValue.api`
-
-- Area: `telemetry`, kind: `api`
-- Upstream: `packages/telemetry/src/index.ts` → `AttributeValue`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-src-index.ts.createTypedMetrics.api`
-
-- Area: `telemetry`, kind: `api`
-- Upstream: `packages/telemetry/src/index.ts` → `createTypedMetrics`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-src-index.ts.createTypedSpanStarter.api`
-
-- Area: `telemetry`, kind: `api`
-- Upstream: `packages/telemetry/src/index.ts` → `createTypedSpanStarter`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-src-index.ts.defineTelemetrySchema.api`
-
-- Area: `telemetry`, kind: `api`
-- Upstream: `packages/telemetry/src/index.ts` → `defineTelemetrySchema`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-src-index.ts.ExactTelemetryAttributes.api`
-
-- Area: `telemetry`, kind: `api`
-- Upstream: `packages/telemetry/src/index.ts` → `ExactTelemetryAttributes`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-src-index.ts.InferEventAttributes.api`
-
-- Area: `telemetry`, kind: `api`
-- Upstream: `packages/telemetry/src/index.ts` → `InferEventAttributes`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-src-index.ts.InferOptionalAttributes.api`
-
-- Area: `telemetry`, kind: `api`
-- Upstream: `packages/telemetry/src/index.ts` → `InferOptionalAttributes`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-src-index.ts.InferRequiredAndOptionalAttributes.api`
-
-- Area: `telemetry`, kind: `api`
-- Upstream: `packages/telemetry/src/index.ts` → `InferRequiredAndOptionalAttributes`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-src-index.ts.InferStartAttributes.api`
-
-- Area: `telemetry`, kind: `api`
-- Upstream: `packages/telemetry/src/index.ts` → `InferStartAttributes`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-src-index.ts.InMemoryTelemetryContext.api`
-
-- Area: `telemetry`, kind: `api`
-- Upstream: `packages/telemetry/src/index.ts` → `InMemoryTelemetryContext`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-src-index.ts.MetricQuery.api`
-
-- Area: `telemetry`, kind: `api`
-- Upstream: `packages/telemetry/src/index.ts` → `MetricQuery`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-src-index.ts.NOOP_TELEMETRY_CONTEXT.api`
-
-- Area: `telemetry`, kind: `api`
-- Upstream: `packages/telemetry/src/index.ts` → `NOOP_TELEMETRY_CONTEXT`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-src-index.ts.NOOP_TELEMETRY_METRICS.api`
-
-- Area: `telemetry`, kind: `api`
-- Upstream: `packages/telemetry/src/index.ts` → `NOOP_TELEMETRY_METRICS`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-src-index.ts.NOOP_TELEMETRY_PROPAGATION.api`
-
-- Area: `telemetry`, kind: `api`
-- Upstream: `packages/telemetry/src/index.ts` → `NOOP_TELEMETRY_PROPAGATION`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-src-index.ts.SchemaTelemetrySpan.api`
-
-- Area: `telemetry`, kind: `api`
-- Upstream: `packages/telemetry/src/index.ts` → `SchemaTelemetrySpan`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-src-index.ts.SpanAttributes.api`
-
-- Area: `telemetry`, kind: `api`
-- Upstream: `packages/telemetry/src/index.ts` → `SpanAttributes`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-src-index.ts.SpanLink.api`
-
-- Area: `telemetry`, kind: `api`
-- Upstream: `packages/telemetry/src/index.ts` → `SpanLink`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-src-index.ts.SpanOptions.api`
-
-- Area: `telemetry`, kind: `api`
-- Upstream: `packages/telemetry/src/index.ts` → `SpanOptions`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-src-index.ts.SpanStatus.api`
-
-- Area: `telemetry`, kind: `api`
-- Upstream: `packages/telemetry/src/index.ts` → `SpanStatus`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-src-index.ts.StoredMetric.api`
-
-- Area: `telemetry`, kind: `api`
-- Upstream: `packages/telemetry/src/index.ts` → `StoredMetric`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-src-index.ts.StoredSpan.api`
-
-- Area: `telemetry`, kind: `api`
-- Upstream: `packages/telemetry/src/index.ts` → `StoredSpan`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-src-index.ts.StoredTrace.api`
-
-- Area: `telemetry`, kind: `api`
-- Upstream: `packages/telemetry/src/index.ts` → `StoredTrace`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-src-index.ts.TelemetryAttributeDefinition.api`
-
-- Area: `telemetry`, kind: `api`
-- Upstream: `packages/telemetry/src/index.ts` → `TelemetryAttributeDefinition`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-src-index.ts.TelemetryAttributeMetadata.api`
-
-- Area: `telemetry`, kind: `api`
-- Upstream: `packages/telemetry/src/index.ts` → `TelemetryAttributeMetadata`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-src-index.ts.TelemetryAttributeType.api`
-
-- Area: `telemetry`, kind: `api`
-- Upstream: `packages/telemetry/src/index.ts` → `TelemetryAttributeType`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-src-index.ts.TelemetryCarrier.api`
-
-- Area: `telemetry`, kind: `api`
-- Upstream: `packages/telemetry/src/index.ts` → `TelemetryCarrier`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-src-index.ts.TelemetryContext.api`
-
-- Area: `telemetry`, kind: `api`
-- Upstream: `packages/telemetry/src/index.ts` → `TelemetryContext`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-src-index.ts.TelemetryEventAttributeDefinition.api`
-
-- Area: `telemetry`, kind: `api`
-- Upstream: `packages/telemetry/src/index.ts` → `TelemetryEventAttributeDefinition`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-src-index.ts.TelemetryEventDefinition.api`
-
-- Area: `telemetry`, kind: `api`
-- Upstream: `packages/telemetry/src/index.ts` → `TelemetryEventDefinition`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-src-index.ts.telemetryNow.api`
-
-- Area: `telemetry`, kind: `api`
-- Upstream: `packages/telemetry/src/index.ts` → `telemetryNow`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-src-index.ts.TelemetryParentDefinition.api`
-
-- Area: `telemetry`, kind: `api`
-- Upstream: `packages/telemetry/src/index.ts` → `TelemetryParentDefinition`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-src-index.ts.TelemetryPropagation.api`
-
-- Area: `telemetry`, kind: `api`
-- Upstream: `packages/telemetry/src/index.ts` → `TelemetryPropagation`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-src-index.ts.TelemetrySchemaDefinition.api`
-
-- Area: `telemetry`, kind: `api`
-- Upstream: `packages/telemetry/src/index.ts` → `TelemetrySchemaDefinition`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-src-index.ts.TelemetrySchemaSpanEndAttributes.api`
-
-- Area: `telemetry`, kind: `api`
-- Upstream: `packages/telemetry/src/index.ts` → `TelemetrySchemaSpanEndAttributes`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-src-index.ts.TelemetrySchemaSpanEventAttributes.api`
-
-- Area: `telemetry`, kind: `api`
-- Upstream: `packages/telemetry/src/index.ts` → `TelemetrySchemaSpanEventAttributes`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-src-index.ts.TelemetrySchemaSpanEventName.api`
-
-- Area: `telemetry`, kind: `api`
-- Upstream: `packages/telemetry/src/index.ts` → `TelemetrySchemaSpanEventName`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-src-index.ts.TelemetrySchemaSpanName.api`
-
-- Area: `telemetry`, kind: `api`
-- Upstream: `packages/telemetry/src/index.ts` → `TelemetrySchemaSpanName`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-src-index.ts.TelemetrySchemaSpanStartAttributes.api`
-
-- Area: `telemetry`, kind: `api`
-- Upstream: `packages/telemetry/src/index.ts` → `TelemetrySchemaSpanStartAttributes`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-src-index.ts.TelemetrySchemaSpanUnion.api`
-
-- Area: `telemetry`, kind: `api`
-- Upstream: `packages/telemetry/src/index.ts` → `TelemetrySchemaSpanUnion`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-src-index.ts.TelemetrySpan.api`
-
-- Area: `telemetry`, kind: `api`
-- Upstream: `packages/telemetry/src/index.ts` → `TelemetrySpan`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-src-index.ts.TelemetrySpanDefinition.api`
-
-- Area: `telemetry`, kind: `api`
-- Upstream: `packages/telemetry/src/index.ts` → `TelemetrySpanDefinition`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-src-index.ts.TelemetryStartAttributeDefinition.api`
-
-- Area: `telemetry`, kind: `api`
-- Upstream: `packages/telemetry/src/index.ts` → `TelemetryStartAttributeDefinition`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-src-index.ts.TelemetryStore.api`
-
-- Area: `telemetry`, kind: `api`
-- Upstream: `packages/telemetry/src/index.ts` → `TelemetryStore`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-src-index.ts.TraceQuery.api`
-
-- Area: `telemetry`, kind: `api`
-- Upstream: `packages/telemetry/src/index.ts` → `TraceQuery`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-src-index.ts.TypedSpanStarter.api`
-
-- Area: `telemetry`, kind: `api`
-- Upstream: `packages/telemetry/src/index.ts` → `TypedSpanStarter`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-src-render.ts.renderTrace.api`
-
-- Area: `telemetry`, kind: `api`
-- Upstream: `packages/telemetry/src/render.ts` → `renderTrace`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-src-testing-index.ts.createTelemetryAdapterConformance.api`
-
-- Area: `telemetry`, kind: `api`
-- Upstream: `packages/telemetry/src/testing/index.ts` → `createTelemetryAdapterConformance`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-test-conformance.test.ts.internal.test`
-
-- Area: `telemetry`, kind: `test`
-- Upstream: `packages/telemetry/test/conformance.test.ts`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-test-metrics.test.ts.internal.test`
-
-- Area: `telemetry`, kind: `test`
-- Upstream: `packages/telemetry/test/metrics.test.ts`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-test-propagation-worker.ts.internal.test`
-
-- Area: `telemetry`, kind: `test`
-- Upstream: `packages/telemetry/test/propagation-worker.ts`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-test-propagation.test.ts.internal.test`
-
-- Area: `telemetry`, kind: `test`
-- Upstream: `packages/telemetry/test/propagation.test.ts`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-test-render.test.ts.internal.test`
-
-- Area: `telemetry`, kind: `test`
-- Upstream: `packages/telemetry/test/render.test.ts`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-test-store-conformance.ts.internal.test`
-
-- Area: `telemetry`, kind: `test`
-- Upstream: `packages/telemetry/test/store-conformance.ts`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-test-store.test.ts.internal.test`
-
-- Area: `telemetry`, kind: `test`
-- Upstream: `packages/telemetry/test/store.test.ts`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `telemetry.packages-telemetry-test-telemetry.test.ts.internal.test`
-
-- Area: `telemetry`, kind: `test`
-- Upstream: `packages/telemetry/test/telemetry.test.ts`
-- Dart: `pi_agent/lib/src/types.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Dart: _(none)_
+- Divergence: Ported in a later slice (draft2020-12 keywords, IDNA/URI/IRI formats, compiler/explain/builders, remote $ref); tracked in pi#53.
+- Issue: `#https://github.com/arrrrny/pi/issues/53`
 
 ### `chord.packages-chord-src-context-index.ts.awaitWithContext.api`
 
 - Area: `chord`, kind: `api`
 - Upstream: `packages/chord/src/context/index.ts` → `awaitWithContext`
 - Dart: `pi_agent/lib/src/chord/context.dart`
-- Divergence: Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.
-- Issue: `#arrrrny/pi#11`
+- Divergence: Implemented in pi_agent/lib/src/chord with Dart test evidence (context_test.dart / chord_primitives_test.dart), but no upstream-derived differential scenario yet: JsonValue is a compile-time type alias with no runtime behavior, and the context rows are async cancellation the JSONL differential harness does not model. Tracked for differential coverage.
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-context-index.ts.BACKGROUND_CONTEXT.api`
 
 - Area: `chord`, kind: `api`
 - Upstream: `packages/chord/src/context/index.ts` → `BACKGROUND_CONTEXT`
 - Dart: `pi_agent/lib/src/chord/context.dart`
-- Divergence: Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.
-- Issue: `#arrrrny/pi#11`
+- Divergence: Implemented in pi_agent/lib/src/chord with Dart test evidence (context_test.dart / chord_primitives_test.dart), but no upstream-derived differential scenario yet: JsonValue is a compile-time type alias with no runtime behavior, and the context rows are async cancellation the JSONL differential harness does not model. Tracked for differential coverage.
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-context-index.ts.Context.api`
 
 - Area: `chord`, kind: `api`
 - Upstream: `packages/chord/src/context/index.ts` → `Context`
 - Dart: `pi_agent/lib/src/chord/context.dart`
-- Divergence: Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.
-- Issue: `#arrrrny/pi#11`
+- Divergence: Implemented in pi_agent/lib/src/chord with Dart test evidence (context_test.dart / chord_primitives_test.dart), but no upstream-derived differential scenario yet: JsonValue is a compile-time type alias with no runtime behavior, and the context rows are async cancellation the JSONL differential harness does not model. Tracked for differential coverage.
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-context-index.ts.ContextKey.api`
 
@@ -2294,7 +1462,7 @@
 - Upstream: `packages/chord/src/context/index.ts` → `ContextKey`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-context-index.ts.createContextKey.api`
 
@@ -2302,7 +1470,7 @@
 - Upstream: `packages/chord/src/context/index.ts` → `createContextKey`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-context-index.ts.TODO_CONTEXT.api`
 
@@ -2310,7 +1478,7 @@
 - Upstream: `packages/chord/src/context/index.ts` → `TODO_CONTEXT`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-context-index.ts.traceIn.api`
 
@@ -2318,7 +1486,7 @@
 - Upstream: `packages/chord/src/context/index.ts` → `traceIn`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-context-index.ts.withAbortSignal.api`
 
@@ -2326,7 +1494,7 @@
 - Upstream: `packages/chord/src/context/index.ts` → `withAbortSignal`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-context-index.ts.withCancel.api`
 
@@ -2334,7 +1502,7 @@
 - Upstream: `packages/chord/src/context/index.ts` → `withCancel`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-context-index.ts.withContextValue.api`
 
@@ -2342,7 +1510,7 @@
 - Upstream: `packages/chord/src/context/index.ts` → `withContextValue`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-context-index.ts.withoutAbortSignal.api`
 
@@ -2350,7 +1518,7 @@
 - Upstream: `packages/chord/src/context/index.ts` → `withoutAbortSignal`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-context-index.ts.withTelemetry.api`
 
@@ -2358,7 +1526,7 @@
 - Upstream: `packages/chord/src/context/index.ts` → `withTelemetry`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-contracts-index.ts.AcceptsTable.api`
 
@@ -2366,7 +1534,7 @@
 - Upstream: `packages/chord/src/contracts/index.ts` → `AcceptsTable`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-contracts-index.ts.evolve.api`
 
@@ -2374,7 +1542,7 @@
 - Upstream: `packages/chord/src/contracts/index.ts` → `evolve`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-contracts-index.ts.hostKind.api`
 
@@ -2382,7 +1550,7 @@
 - Upstream: `packages/chord/src/contracts/index.ts` → `hostKind`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-contracts-index.ts.local.api`
 
@@ -2390,7 +1558,7 @@
 - Upstream: `packages/chord/src/contracts/index.ts` → `local`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-contracts-index.ts.memberNames.api`
 
@@ -2398,7 +1566,7 @@
 - Upstream: `packages/chord/src/contracts/index.ts` → `memberNames`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-contracts-index.ts.remote.api`
 
@@ -2406,7 +1574,7 @@
 - Upstream: `packages/chord/src/contracts/index.ts` → `remote`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-data-index.ts.broken.api`
 
@@ -2414,7 +1582,7 @@
 - Upstream: `packages/chord/src/data/index.ts` → `broken`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-data-index.ts.Principal.api`
 
@@ -2422,7 +1590,7 @@
 - Upstream: `packages/chord/src/data/index.ts` → `Principal`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-data-index.ts.PrincipalKeyFunction.api`
 
@@ -2430,7 +1598,7 @@
 - Upstream: `packages/chord/src/data/index.ts` → `PrincipalKeyFunction`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-delta-index.ts.appendText.api`
 
@@ -2438,31 +1606,7 @@
 - Upstream: `packages/chord/src/delta/index.ts` → `appendText`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `chord.packages-chord-src-delta-index.ts.apply.api`
-
-- Area: `chord`, kind: `api`
-- Upstream: `packages/chord/src/delta/index.ts` → `apply`
-- Dart: `pi_agent/lib/src/chord/delta.dart`
-- Divergence: Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.
-- Issue: `#arrrrny/pi#11`
-
-### `chord.packages-chord-src-delta-index.ts.applyImmutable.api`
-
-- Area: `chord`, kind: `api`
-- Upstream: `packages/chord/src/delta/index.ts` → `applyImmutable`
-- Dart: `pi_agent/lib/src/chord/delta.dart`
-- Divergence: Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.
-- Issue: `#arrrrny/pi#11`
-
-### `chord.packages-chord-src-delta-index.ts.applyImmutableBatches.api`
-
-- Area: `chord`, kind: `api`
-- Upstream: `packages/chord/src/delta/index.ts` → `applyImmutableBatches`
-- Dart: `pi_agent/lib/src/chord/delta.dart`
-- Divergence: Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.
-- Issue: `#arrrrny/pi#11`
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-delta-index.ts.assertSafePath.api`
 
@@ -2470,7 +1614,7 @@
 - Upstream: `packages/chord/src/delta/index.ts` → `assertSafePath`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-delta-index.ts.assertValidOp.api`
 
@@ -2478,7 +1622,7 @@
 - Upstream: `packages/chord/src/delta/index.ts` → `assertValidOp`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-delta-index.ts.assertValidWireOp.api`
 
@@ -2486,7 +1630,7 @@
 - Upstream: `packages/chord/src/delta/index.ts` → `assertValidWireOp`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-delta-index.ts.decoder.api`
 
@@ -2494,7 +1638,7 @@
 - Upstream: `packages/chord/src/delta/index.ts` → `decoder`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-delta-index.ts.Decoder.api`
 
@@ -2502,7 +1646,7 @@
 - Upstream: `packages/chord/src/delta/index.ts` → `Decoder`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-delta-index.ts.diffRevisions.api`
 
@@ -2510,15 +1654,7 @@
 - Upstream: `packages/chord/src/delta/index.ts` → `diffRevisions`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `chord.packages-chord-src-delta-index.ts.Draft.api`
-
-- Area: `chord`, kind: `api`
-- Upstream: `packages/chord/src/delta/index.ts` → `Draft`
-- Dart: `pi_agent/lib/src/chord/delta.dart`
-- Divergence: Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.
-- Issue: `#arrrrny/pi#11`
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-delta-index.ts.encoder.api`
 
@@ -2526,7 +1662,7 @@
 - Upstream: `packages/chord/src/delta/index.ts` → `encoder`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-delta-index.ts.Encoder.api`
 
@@ -2534,7 +1670,7 @@
 - Upstream: `packages/chord/src/delta/index.ts` → `Encoder`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-delta-index.ts.isBase.api`
 
@@ -2542,39 +1678,15 @@
 - Upstream: `packages/chord/src/delta/index.ts` → `isBase`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `chord.packages-chord-src-delta-index.ts.isReplace.api`
-
-- Area: `chord`, kind: `api`
-- Upstream: `packages/chord/src/delta/index.ts` → `isReplace`
-- Dart: `pi_agent/lib/src/chord/delta.dart`
-- Divergence: Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.
-- Issue: `#arrrrny/pi#11`
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-delta-index.ts.JsonValue.api`
 
 - Area: `chord`, kind: `api`
 - Upstream: `packages/chord/src/delta/index.ts` → `JsonValue`
 - Dart: `pi_agent/lib/src/chord/delta.dart`
-- Divergence: Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.
-- Issue: `#arrrrny/pi#11`
-
-### `chord.packages-chord-src-delta-index.ts.NonEmptyPath.api`
-
-- Area: `chord`, kind: `api`
-- Upstream: `packages/chord/src/delta/index.ts` → `NonEmptyPath`
-- Dart: `pi_agent/lib/src/chord/delta.dart`
-- Divergence: Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.
-- Issue: `#arrrrny/pi#11`
-
-### `chord.packages-chord-src-delta-index.ts.Op.api`
-
-- Area: `chord`, kind: `api`
-- Upstream: `packages/chord/src/delta/index.ts` → `Op`
-- Dart: `pi_agent/lib/src/chord/delta.dart`
-- Divergence: Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.
-- Issue: `#arrrrny/pi#11`
+- Divergence: Implemented in pi_agent/lib/src/chord with Dart test evidence (context_test.dart / chord_primitives_test.dart), but no upstream-derived differential scenario yet: JsonValue is a compile-time type alias with no runtime behavior, and the context rows are async cancellation the JSONL differential harness does not model. Tracked for differential coverage.
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-delta-index.ts.overlap.api`
 
@@ -2582,7 +1694,7 @@
 - Upstream: `packages/chord/src/delta/index.ts` → `overlap`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-delta-index.ts.ownedSlice.api`
 
@@ -2590,23 +1702,7 @@
 - Upstream: `packages/chord/src/delta/index.ts` → `ownedSlice`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `chord.packages-chord-src-delta-index.ts.Path.api`
-
-- Area: `chord`, kind: `api`
-- Upstream: `packages/chord/src/delta/index.ts` → `Path`
-- Dart: `pi_agent/lib/src/chord/delta.dart`
-- Divergence: Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.
-- Issue: `#arrrrny/pi#11`
-
-### `chord.packages-chord-src-delta-index.ts.PathError.api`
-
-- Area: `chord`, kind: `api`
-- Upstream: `packages/chord/src/delta/index.ts` → `PathError`
-- Dart: `pi_agent/lib/src/chord/delta.dart`
-- Divergence: Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.
-- Issue: `#arrrrny/pi#11`
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-delta-index.ts.PathRef.api`
 
@@ -2614,7 +1710,7 @@
 - Upstream: `packages/chord/src/delta/index.ts` → `PathRef`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-delta-index.ts.PendingOps.api`
 
@@ -2622,23 +1718,7 @@
 - Upstream: `packages/chord/src/delta/index.ts` → `PendingOps`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `chord.packages-chord-src-delta-index.ts.RESERVED_SEGMENTS.api`
-
-- Area: `chord`, kind: `api`
-- Upstream: `packages/chord/src/delta/index.ts` → `RESERVED_SEGMENTS`
-- Dart: `pi_agent/lib/src/chord/delta.dart`
-- Divergence: Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.
-- Issue: `#arrrrny/pi#11`
-
-### `chord.packages-chord-src-delta-index.ts.Seg.api`
-
-- Area: `chord`, kind: `api`
-- Upstream: `packages/chord/src/delta/index.ts` → `Seg`
-- Dart: `pi_agent/lib/src/chord/delta.dart`
-- Divergence: Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.
-- Issue: `#arrrrny/pi#11`
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-delta-index.ts.track.api`
 
@@ -2646,7 +1726,7 @@
 - Upstream: `packages/chord/src/delta/index.ts` → `track`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-delta-index.ts.UnsafePathError.api`
 
@@ -2654,7 +1734,7 @@
 - Upstream: `packages/chord/src/delta/index.ts` → `UnsafePathError`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-delta-index.ts.WireOp.api`
 
@@ -2662,7 +1742,7 @@
 - Upstream: `packages/chord/src/delta/index.ts` → `WireOp`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-documents-index.ts.HandleOf.api`
 
@@ -2670,7 +1750,7 @@
 - Upstream: `packages/chord/src/documents/index.ts` → `HandleOf`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-documents-index.ts.KeyedHandle.api`
 
@@ -2678,7 +1758,7 @@
 - Upstream: `packages/chord/src/documents/index.ts` → `KeyedHandle`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-documents-index.ts.SingletonHandle.api`
 
@@ -2686,7 +1766,7 @@
 - Upstream: `packages/chord/src/documents/index.ts` → `SingletonHandle`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-documents-index.ts.Tx.api`
 
@@ -2694,7 +1774,7 @@
 - Upstream: `packages/chord/src/documents/index.ts` → `Tx`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-host-index.ts.ActivityCounts.api`
 
@@ -2702,7 +1782,7 @@
 - Upstream: `packages/chord/src/host/index.ts` → `ActivityCounts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-host-index.ts.allow.api`
 
@@ -2710,7 +1790,7 @@
 - Upstream: `packages/chord/src/host/index.ts` → `allow`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-host-index.ts.Ctx.api`
 
@@ -2718,7 +1798,7 @@
 - Upstream: `packages/chord/src/host/index.ts` → `Ctx`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-host-index.ts.defineFacet.api`
 
@@ -2726,7 +1806,7 @@
 - Upstream: `packages/chord/src/host/index.ts` → `defineFacet`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-host-index.ts.deny.api`
 
@@ -2734,7 +1814,7 @@
 - Upstream: `packages/chord/src/host/index.ts` → `deny`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-host-index.ts.FollowAttach.api`
 
@@ -2742,7 +1822,7 @@
 - Upstream: `packages/chord/src/host/index.ts` → `FollowAttach`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-host-index.ts.FollowAttachment.api`
 
@@ -2750,7 +1830,7 @@
 - Upstream: `packages/chord/src/host/index.ts` → `FollowAttachment`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-host-index.ts.FollowObserver.api`
 
@@ -2758,7 +1838,7 @@
 - Upstream: `packages/chord/src/host/index.ts` → `FollowObserver`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-host-index.ts.Held.api`
 
@@ -2766,7 +1846,7 @@
 - Upstream: `packages/chord/src/host/index.ts` → `Held`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-host-index.ts.ListOptions.api`
 
@@ -2774,7 +1854,7 @@
 - Upstream: `packages/chord/src/host/index.ts` → `ListOptions`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-host-index.ts.Native.api`
 
@@ -2782,7 +1862,7 @@
 - Upstream: `packages/chord/src/host/index.ts` → `Native`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-host-index.ts.NativeCloseReason.api`
 
@@ -2790,7 +1870,7 @@
 - Upstream: `packages/chord/src/host/index.ts` → `NativeCloseReason`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-host-index.ts.NativeOptions.api`
 
@@ -2798,7 +1878,7 @@
 - Upstream: `packages/chord/src/host/index.ts` → `NativeOptions`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-host-index.ts.OnHandler.api`
 
@@ -2806,7 +1886,7 @@
 - Upstream: `packages/chord/src/host/index.ts` → `OnHandler`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-host-index.ts.OnLiveHandler.api`
 
@@ -2814,7 +1894,7 @@
 - Upstream: `packages/chord/src/host/index.ts` → `OnLiveHandler`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-host-index.ts.OnNativeHandler.api`
 
@@ -2822,7 +1902,7 @@
 - Upstream: `packages/chord/src/host/index.ts` → `OnNativeHandler`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-host-index.ts.PartnerRow.api`
 
@@ -2830,7 +1910,7 @@
 - Upstream: `packages/chord/src/host/index.ts` → `PartnerRow`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-host-index.ts.PluginFacet.api`
 
@@ -2838,7 +1918,7 @@
 - Upstream: `packages/chord/src/host/index.ts` → `PluginFacet`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-host-index.ts.Presence.api`
 
@@ -2846,7 +1926,7 @@
 - Upstream: `packages/chord/src/host/index.ts` → `Presence`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-host-index.ts.QueriesOptions.api`
 
@@ -2854,7 +1934,7 @@
 - Upstream: `packages/chord/src/host/index.ts` → `QueriesOptions`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-host-index.ts.Reference.api`
 
@@ -2862,7 +1942,7 @@
 - Upstream: `packages/chord/src/host/index.ts` → `Reference`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-host-index.ts.RefIn.api`
 
@@ -2870,7 +1950,7 @@
 - Upstream: `packages/chord/src/host/index.ts` → `RefIn`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-host-index.ts.RefState.api`
 
@@ -2878,7 +1958,7 @@
 - Upstream: `packages/chord/src/host/index.ts` → `RefState`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-host-index.ts.RevokedBy.api`
 
@@ -2886,7 +1966,7 @@
 - Upstream: `packages/chord/src/host/index.ts` → `RevokedBy`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-host-index.ts.RootOptions.api`
 
@@ -2894,7 +1974,7 @@
 - Upstream: `packages/chord/src/host/index.ts` → `RootOptions`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-host-index.ts.RouteHandle.api`
 
@@ -2902,7 +1982,7 @@
 - Upstream: `packages/chord/src/host/index.ts` → `RouteHandle`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-host-index.ts.RouteOptions.api`
 
@@ -2910,7 +1990,7 @@
 - Upstream: `packages/chord/src/host/index.ts` → `RouteOptions`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-host-index.ts.RoutineDeclarations.api`
 
@@ -2918,7 +1998,7 @@
 - Upstream: `packages/chord/src/host/index.ts` → `RoutineDeclarations`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-host-index.ts.sleep.api`
 
@@ -2926,7 +2006,7 @@
 - Upstream: `packages/chord/src/host/index.ts` → `sleep`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-host-index.ts.untilAborted.api`
 
@@ -2934,7 +2014,7 @@
 - Upstream: `packages/chord/src/host/index.ts` → `untilAborted`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-index.ts.applyBatch.api`
 
@@ -2942,7 +2022,7 @@
 - Upstream: `packages/chord/src/index.ts` → `applyBatch`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-index.ts.CHORD_TELEMETRY_SCHEMA.api`
 
@@ -2950,7 +2030,7 @@
 - Upstream: `packages/chord/src/index.ts` → `CHORD_TELEMETRY_SCHEMA`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-index.ts.ChordStore.api`
 
@@ -2958,7 +2038,7 @@
 - Upstream: `packages/chord/src/index.ts` → `ChordStore`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-index.ts.Claimant.api`
 
@@ -2966,7 +2046,7 @@
 - Upstream: `packages/chord/src/index.ts` → `Claimant`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-index.ts.EncodedRow.api`
 
@@ -2974,7 +2054,7 @@
 - Upstream: `packages/chord/src/index.ts` → `EncodedRow`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-index.ts.Order.api`
 
@@ -2982,7 +2062,7 @@
 - Upstream: `packages/chord/src/index.ts` → `Order`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-index.ts.OwnerTable.api`
 
@@ -2990,7 +2070,7 @@
 - Upstream: `packages/chord/src/index.ts` → `OwnerTable`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-index.ts.SeriesCommit.api`
 
@@ -2998,7 +2078,7 @@
 - Upstream: `packages/chord/src/index.ts` → `SeriesCommit`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-index.ts.SeriesResult.api`
 
@@ -3006,7 +2086,7 @@
 - Upstream: `packages/chord/src/index.ts` → `SeriesResult`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-index.ts.StagedWrite.api`
 
@@ -3014,7 +2094,7 @@
 - Upstream: `packages/chord/src/index.ts` → `StagedWrite`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-index.ts.Step.api`
 
@@ -3022,7 +2102,7 @@
 - Upstream: `packages/chord/src/index.ts` → `Step`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-index.ts.StoreOwnerTables.api`
 
@@ -3030,7 +2110,7 @@
 - Upstream: `packages/chord/src/index.ts` → `StoreOwnerTables`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-jobs-index.ts.BlockedReason.api`
 
@@ -3038,7 +2118,7 @@
 - Upstream: `packages/chord/src/jobs/index.ts` → `BlockedReason`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-jobs-index.ts.JobCtx.api`
 
@@ -3046,7 +2126,7 @@
 - Upstream: `packages/chord/src/jobs/index.ts` → `JobCtx`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-jobs-index.ts.JobHandle.api`
 
@@ -3054,7 +2134,7 @@
 - Upstream: `packages/chord/src/jobs/index.ts` → `JobHandle`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-jobs-index.ts.JobImplementation.api`
 
@@ -3062,7 +2142,7 @@
 - Upstream: `packages/chord/src/jobs/index.ts` → `JobImplementation`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-jobs-index.ts.Run.api`
 
@@ -3070,7 +2150,7 @@
 - Upstream: `packages/chord/src/jobs/index.ts` → `Run`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-jobs-index.ts.RunningEntry.api`
 
@@ -3078,7 +2158,7 @@
 - Upstream: `packages/chord/src/jobs/index.ts` → `RunningEntry`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-jobs-index.ts.RunState.api`
 
@@ -3086,7 +2166,7 @@
 - Upstream: `packages/chord/src/jobs/index.ts` → `RunState`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-jobs-index.ts.StartOptions.api`
 
@@ -3094,15 +2174,7 @@
 - Upstream: `packages/chord/src/jobs/index.ts` → `StartOptions`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `chord.packages-chord-src-json.ts.copyJson.api`
-
-- Area: `chord`, kind: `api`
-- Upstream: `packages/chord/src/json.ts` → `copyJson`
-- Dart: `pi_agent/lib/src/chord/json.dart`
-- Divergence: Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.
-- Issue: `#arrrrny/pi#11`
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-json.ts.CopyJsonOptions.api`
 
@@ -3110,15 +2182,7 @@
 - Upstream: `packages/chord/src/json.ts` → `CopyJsonOptions`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `chord.packages-chord-src-json.ts.isJsonValue.api`
-
-- Area: `chord`, kind: `api`
-- Upstream: `packages/chord/src/json.ts` → `isJsonValue`
-- Dart: `pi_agent/lib/src/chord/json.dart`
-- Divergence: Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.
-- Issue: `#arrrrny/pi#11`
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-json.ts.JsonRepresentation.api`
 
@@ -3126,7 +2190,7 @@
 - Upstream: `packages/chord/src/json.ts` → `JsonRepresentation`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-link-index.ts.binaryCodec.api`
 
@@ -3134,7 +2198,7 @@
 - Upstream: `packages/chord/src/link/index.ts` → `binaryCodec`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-link-index.ts.Codec.api`
 
@@ -3142,7 +2206,7 @@
 - Upstream: `packages/chord/src/link/index.ts` → `Codec`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-link-index.ts.Compression.api`
 
@@ -3150,7 +2214,7 @@
 - Upstream: `packages/chord/src/link/index.ts` → `Compression`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-link-index.ts.describeMessage.api`
 
@@ -3158,7 +2222,7 @@
 - Upstream: `packages/chord/src/link/index.ts` → `describeMessage`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-link-index.ts.Inflated.api`
 
@@ -3166,7 +2230,7 @@
 - Upstream: `packages/chord/src/link/index.ts` → `Inflated`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-link-index.ts.ipcLink.api`
 
@@ -3174,7 +2238,7 @@
 - Upstream: `packages/chord/src/link/index.ts` → `ipcLink`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-link-index.ts.memoryLinkPair.api`
 
@@ -3182,7 +2246,7 @@
 - Upstream: `packages/chord/src/link/index.ts` → `memoryLinkPair`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-link-index.ts.Message.api`
 
@@ -3190,7 +2254,7 @@
 - Upstream: `packages/chord/src/link/index.ts` → `Message`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-link-index.ts.PartLimits.api`
 
@@ -3198,7 +2262,7 @@
 - Upstream: `packages/chord/src/link/index.ts` → `PartLimits`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-link-index.ts.textCodec.api`
 
@@ -3206,7 +2270,7 @@
 - Upstream: `packages/chord/src/link/index.ts` → `textCodec`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-link-index.ts.webSocketLink.api`
 
@@ -3214,7 +2278,7 @@
 - Upstream: `packages/chord/src/link/index.ts` → `webSocketLink`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-app-files-entry.ts.copyFiles.api`
 
@@ -3222,7 +2286,7 @@
 - Upstream: `packages/chord/src/node/app/files-entry.ts` → `copyFiles`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-app-files-entry.ts.privateDirectory.api`
 
@@ -3230,7 +2294,7 @@
 - Upstream: `packages/chord/src/node/app/files-entry.ts` → `privateDirectory`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-app-files-entry.ts.privateStore.api`
 
@@ -3238,7 +2302,7 @@
 - Upstream: `packages/chord/src/node/app/files-entry.ts` → `privateStore`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-app-index.ts.AppInfo.api`
 
@@ -3246,7 +2310,7 @@
 - Upstream: `packages/chord/src/node/app/index.ts` → `AppInfo`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-app-index.ts.appInfoFacet.api`
 
@@ -3254,7 +2318,7 @@
 - Upstream: `packages/chord/src/node/app/index.ts` → `appInfoFacet`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-app-index.ts.ARCHIVE_FORMAT.api`
 
@@ -3262,7 +2326,7 @@
 - Upstream: `packages/chord/src/node/app/index.ts` → `ARCHIVE_FORMAT`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-app-index.ts.defineUsers.api`
 
@@ -3270,7 +2334,7 @@
 - Upstream: `packages/chord/src/node/app/index.ts` → `defineUsers`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-app-index.ts.ephemeralLoginFacet.api`
 
@@ -3278,7 +2342,7 @@
 - Upstream: `packages/chord/src/node/app/index.ts` → `ephemeralLoginFacet`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-app-index.ts.inviteFacet.api`
 
@@ -3286,7 +2350,7 @@
 - Upstream: `packages/chord/src/node/app/index.ts` → `inviteFacet`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-app-index.ts.SIGN_IN_COOKIE.api`
 
@@ -3294,7 +2358,7 @@
 - Upstream: `packages/chord/src/node/app/index.ts` → `SIGN_IN_COOKIE`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-app-index.ts.SignIns.api`
 
@@ -3302,7 +2366,7 @@
 - Upstream: `packages/chord/src/node/app/index.ts` → `SignIns`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-app-index.ts.startWorker.api`
 
@@ -3310,7 +2374,7 @@
 - Upstream: `packages/chord/src/node/app/index.ts` → `startWorker`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-app-index.ts.WorkerInfo.api`
 
@@ -3318,7 +2382,7 @@
 - Upstream: `packages/chord/src/node/app/index.ts` → `WorkerInfo`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-app-index.ts.workerInfoFacet.api`
 
@@ -3326,7 +2390,7 @@
 - Upstream: `packages/chord/src/node/app/index.ts` → `workerInfoFacet`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-compression.ts.nodeCompression.api`
 
@@ -3334,7 +2398,7 @@
 - Upstream: `packages/chord/src/node/compression.ts` → `nodeCompression`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-http-index.ts.Authenticators.api`
 
@@ -3342,7 +2406,7 @@
 - Upstream: `packages/chord/src/node/http/index.ts` → `Authenticators`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-http-index.ts.Connection.api`
 
@@ -3350,7 +2414,7 @@
 - Upstream: `packages/chord/src/node/http/index.ts` → `Connection`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-http-index.ts.cookie.api`
 
@@ -3358,7 +2422,7 @@
 - Upstream: `packages/chord/src/node/http/index.ts` → `cookie`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-http-index.ts.fileResponse.api`
 
@@ -3366,7 +2430,7 @@
 - Upstream: `packages/chord/src/node/http/index.ts` → `fileResponse`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-http-index.ts.HttpFailure.api`
 
@@ -3374,7 +2438,7 @@
 - Upstream: `packages/chord/src/node/http/index.ts` → `HttpFailure`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-http-index.ts.HttpResponse.api`
 
@@ -3382,7 +2446,7 @@
 - Upstream: `packages/chord/src/node/http/index.ts` → `HttpResponse`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-http-index.ts.LinkOptions.api`
 
@@ -3390,7 +2454,7 @@
 - Upstream: `packages/chord/src/node/http/index.ts` → `LinkOptions`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-http-index.ts.nodeRequest.api`
 
@@ -3398,7 +2462,7 @@
 - Upstream: `packages/chord/src/node/http/index.ts` → `nodeRequest`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-http-index.ts.Provenance.api`
 
@@ -3406,7 +2470,7 @@
 - Upstream: `packages/chord/src/node/http/index.ts` → `Provenance`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-http-index.ts.readCookie.api`
 
@@ -3414,7 +2478,7 @@
 - Upstream: `packages/chord/src/node/http/index.ts` → `readCookie`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-http-index.ts.readSignedCookie.api`
 
@@ -3422,7 +2486,7 @@
 - Upstream: `packages/chord/src/node/http/index.ts` → `readSignedCookie`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-plugins-index.ts.BaseInputs.api`
 
@@ -3430,7 +2494,7 @@
 - Upstream: `packages/chord/src/node/plugins/index.ts` → `BaseInputs`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-plugins-index.ts.buildFacet.api`
 
@@ -3438,7 +2502,7 @@
 - Upstream: `packages/chord/src/node/plugins/index.ts` → `buildFacet`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-plugins-index.ts.evaluateFacet.api`
 
@@ -3446,7 +2510,7 @@
 - Upstream: `packages/chord/src/node/plugins/index.ts` → `evaluateFacet`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-plugins-index.ts.mapStack.api`
 
@@ -3454,7 +2518,7 @@
 - Upstream: `packages/chord/src/node/plugins/index.ts` → `mapStack`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-plugins-index.ts.pluginFile.api`
 
@@ -3462,7 +2526,7 @@
 - Upstream: `packages/chord/src/node/plugins/index.ts` → `pluginFile`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-plugins-index.ts.PluginsState.api`
 
@@ -3470,7 +2534,7 @@
 - Upstream: `packages/chord/src/node/plugins/index.ts` → `PluginsState`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-plugins-index.ts.testPlugin.api`
 
@@ -3478,7 +2542,7 @@
 - Upstream: `packages/chord/src/node/plugins/index.ts` → `testPlugin`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-plugins-runtime.ts.createPluginRuntime.api`
 
@@ -3486,7 +2550,7 @@
 - Upstream: `packages/chord/src/node/plugins/runtime.ts` → `createPluginRuntime`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-plugins-runtime.ts.PluginError.api`
 
@@ -3494,7 +2558,7 @@
 - Upstream: `packages/chord/src/node/plugins/runtime.ts` → `PluginError`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-plugins-runtime.ts.PluginRuntime.api`
 
@@ -3502,7 +2566,7 @@
 - Upstream: `packages/chord/src/node/plugins/runtime.ts` → `PluginRuntime`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-plugins-runtime.ts.PluginScript.api`
 
@@ -3510,7 +2574,7 @@
 - Upstream: `packages/chord/src/node/plugins/runtime.ts` → `PluginScript`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-plugins-runtime.ts.RuntimeLoad.api`
 
@@ -3518,7 +2582,7 @@
 - Upstream: `packages/chord/src/node/plugins/runtime.ts` → `RuntimeLoad`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-surfaces-index.ts.buildBase.api`
 
@@ -3526,7 +2590,7 @@
 - Upstream: `packages/chord/src/node/surfaces/index.ts` → `buildBase`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-surfaces-index.ts.processConditions.api`
 
@@ -3534,7 +2598,7 @@
 - Upstream: `packages/chord/src/node/surfaces/index.ts` → `processConditions`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-surfaces-index.ts.ServedFile.api`
 
@@ -3542,7 +2606,7 @@
 - Upstream: `packages/chord/src/node/surfaces/index.ts` → `ServedFile`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-surfaces-index.ts.SurfaceBuilt.api`
 
@@ -3550,7 +2614,7 @@
 - Upstream: `packages/chord/src/node/surfaces/index.ts` → `SurfaceBuilt`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-surfaces-index.ts.TUI_PREFIX.api`
 
@@ -3558,7 +2622,7 @@
 - Upstream: `packages/chord/src/node/surfaces/index.ts` → `TUI_PREFIX`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-surfaces-index.ts.tuiSurface.api`
 
@@ -3566,7 +2630,7 @@
 - Upstream: `packages/chord/src/node/surfaces/index.ts` → `tuiSurface`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-tui-index.ts.filterOutput.api`
 
@@ -3574,7 +2638,7 @@
 - Upstream: `packages/chord/src/node/tui/index.ts` → `filterOutput`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-tui-index.ts.PromptTerminal.api`
 
@@ -3582,7 +2646,7 @@
 - Upstream: `packages/chord/src/node/tui/index.ts` → `PromptTerminal`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-tui-index.ts.requireSandboxNode.api`
 
@@ -3590,7 +2654,7 @@
 - Upstream: `packages/chord/src/node/tui/index.ts` → `requireSandboxNode`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-tui-index.ts.startTerminal.api`
 
@@ -3598,7 +2662,7 @@
 - Upstream: `packages/chord/src/node/tui/index.ts` → `startTerminal`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-tui-index.ts.TerminalCredentials.api`
 
@@ -3606,7 +2670,7 @@
 - Upstream: `packages/chord/src/node/tui/index.ts` → `TerminalCredentials`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-tui-index.ts.terminalFile.api`
 
@@ -3614,7 +2678,7 @@
 - Upstream: `packages/chord/src/node/tui/index.ts` → `terminalFile`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-workers-child.ts.CrossedError.api`
 
@@ -3622,7 +2686,7 @@
 - Upstream: `packages/chord/src/node/workers/child.ts` → `CrossedError`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-workers-child.ts.processLock.api`
 
@@ -3630,7 +2694,7 @@
 - Upstream: `packages/chord/src/node/workers/child.ts` → `processLock`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-node-workers-index.ts.nodeBaseInputs.api`
 
@@ -3638,7 +2702,7 @@
 - Upstream: `packages/chord/src/node/workers/index.ts` → `nodeBaseInputs`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-output.ts.BoundedOutput.api`
 
@@ -3646,7 +2710,7 @@
 - Upstream: `packages/chord/src/output.ts` → `BoundedOutput`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-output.ts.boundOutput.api`
 
@@ -3654,7 +2718,7 @@
 - Upstream: `packages/chord/src/output.ts` → `boundOutput`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-output.ts.characterEnd.api`
 
@@ -3662,7 +2726,7 @@
 - Upstream: `packages/chord/src/output.ts` → `characterEnd`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-output.ts.OutputBuffer.api`
 
@@ -3670,7 +2734,7 @@
 - Upstream: `packages/chord/src/output.ts` → `OutputBuffer`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-output.ts.OutputLimits.api`
 
@@ -3678,7 +2742,7 @@
 - Upstream: `packages/chord/src/output.ts` → `OutputLimits`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-output.ts.OutputSkip.api`
 
@@ -3686,7 +2750,7 @@
 - Upstream: `packages/chord/src/output.ts` → `OutputSkip`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-output.ts.OutputSlice.api`
 
@@ -3694,7 +2758,7 @@
 - Upstream: `packages/chord/src/output.ts` → `OutputSlice`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-output.ts.PROGRESS_BYTES_PER_SECOND.api`
 
@@ -3702,7 +2766,7 @@
 - Upstream: `packages/chord/src/output.ts` → `PROGRESS_BYTES_PER_SECOND`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-output.ts.Progress.api`
 
@@ -3710,7 +2774,7 @@
 - Upstream: `packages/chord/src/output.ts` → `Progress`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-output.ts.ProgressClock.api`
 
@@ -3718,7 +2782,7 @@
 - Upstream: `packages/chord/src/output.ts` → `ProgressClock`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-output.ts.sanitizeOutput.api`
 
@@ -3726,7 +2790,7 @@
 - Upstream: `packages/chord/src/output.ts` → `sanitizeOutput`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-output.ts.utf8ByteLength.api`
 
@@ -3734,7 +2798,7 @@
 - Upstream: `packages/chord/src/output.ts` → `utf8ByteLength`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-react-index.ts.InVariant.api`
 
@@ -3742,7 +2806,7 @@
 - Upstream: `packages/chord/src/react/index.ts` → `InVariant`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-react-index.ts.VariantOf.api`
 
@@ -3750,7 +2814,7 @@
 - Upstream: `packages/chord/src/react/index.ts` → `VariantOf`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-react-index.ts.VariantRef.api`
 
@@ -3758,7 +2822,7 @@
 - Upstream: `packages/chord/src/react/index.ts` → `VariantRef`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-react-index.ts.watchStore.api`
 
@@ -3766,7 +2830,7 @@
 - Upstream: `packages/chord/src/react/index.ts` → `watchStore`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-registries-index.ts.keyedEntries.api`
 
@@ -3774,7 +2838,7 @@
 - Upstream: `packages/chord/src/registries/index.ts` → `keyedEntries`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-registries-index.ts.orderedEntries.api`
 
@@ -3782,7 +2846,7 @@
 - Upstream: `packages/chord/src/registries/index.ts` → `orderedEntries`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-sqlite-cloudflare.ts.DurableObjectSqliteDatabase.api`
 
@@ -3790,7 +2854,7 @@
 - Upstream: `packages/chord/src/sqlite/cloudflare.ts` → `DurableObjectSqliteDatabase`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-sqlite-cloudflare.ts.DurableObjectSqliteStorage.api`
 
@@ -3798,7 +2862,7 @@
 - Upstream: `packages/chord/src/sqlite/cloudflare.ts` → `DurableObjectSqliteStorage`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-sqlite-index.ts.applySqliteMigrations.api`
 
@@ -3806,7 +2870,7 @@
 - Upstream: `packages/chord/src/sqlite/index.ts` → `applySqliteMigrations`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-sqlite-index.ts.SqliteDatabase.api`
 
@@ -3814,7 +2878,7 @@
 - Upstream: `packages/chord/src/sqlite/index.ts` → `SqliteDatabase`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-sqlite-index.ts.SqliteExecutor.api`
 
@@ -3822,7 +2886,7 @@
 - Upstream: `packages/chord/src/sqlite/index.ts` → `SqliteExecutor`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-sqlite-index.ts.SqliteValue.api`
 
@@ -3830,7 +2894,7 @@
 - Upstream: `packages/chord/src/sqlite/index.ts` → `SqliteValue`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-sqlite-index.ts.validateSqliteSchemaPrefix.api`
 
@@ -3838,7 +2902,7 @@
 - Upstream: `packages/chord/src/sqlite/index.ts` → `validateSqliteSchemaPrefix`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-sqlite-node.ts.NodeSqliteDatabase.api`
 
@@ -3846,7 +2910,7 @@
 - Upstream: `packages/chord/src/sqlite/node.ts` → `NodeSqliteDatabase`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-sqlite-node.ts.NodeSqliteDatabaseOptions.api`
 
@@ -3854,7 +2918,7 @@
 - Upstream: `packages/chord/src/sqlite/node.ts` → `NodeSqliteDatabaseOptions`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-sqlite-node.ts.NodeSqliteMode.api`
 
@@ -3862,7 +2926,7 @@
 - Upstream: `packages/chord/src/sqlite/node.ts` → `NodeSqliteMode`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-sqlite-node.ts.openNodeSqliteDatabase.api`
 
@@ -3870,7 +2934,7 @@
 - Upstream: `packages/chord/src/sqlite/node.ts` → `openNodeSqliteDatabase`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-state-index.ts.constant.api`
 
@@ -3878,7 +2942,7 @@
 - Upstream: `packages/chord/src/state/index.ts` → `constant`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-state-index.ts.mapShared.api`
 
@@ -3886,7 +2950,7 @@
 - Upstream: `packages/chord/src/state/index.ts` → `mapShared`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-state-index.ts.NativeObservation.api`
 
@@ -3894,7 +2958,7 @@
 - Upstream: `packages/chord/src/state/index.ts` → `NativeObservation`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-state-index.ts.NativeObserver.api`
 
@@ -3902,7 +2966,7 @@
 - Upstream: `packages/chord/src/state/index.ts` → `NativeObserver`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-state-index.ts.Watchable.api`
 
@@ -3910,7 +2974,7 @@
 - Upstream: `packages/chord/src/state/index.ts` → `Watchable`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-state-index.ts.Writable.api`
 
@@ -3918,7 +2982,7 @@
 - Upstream: `packages/chord/src/state/index.ts` → `Writable`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-store-index.ts.ArchiveManifest.api`
 
@@ -3926,7 +2990,7 @@
 - Upstream: `packages/chord/src/store/index.ts` → `ArchiveManifest`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-store-index.ts.ArchivePart.api`
 
@@ -3934,7 +2998,7 @@
 - Upstream: `packages/chord/src/store/index.ts` → `ArchivePart`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-store-index.ts.Columns.api`
 
@@ -3942,7 +3006,7 @@
 - Upstream: `packages/chord/src/store/index.ts` → `Columns`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-store-index.ts.compareText.api`
 
@@ -3950,7 +3014,7 @@
 - Upstream: `packages/chord/src/store/index.ts` → `compareText`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-store-index.ts.decodeJsonl.api`
 
@@ -3958,7 +3022,7 @@
 - Upstream: `packages/chord/src/store/index.ts` → `decodeJsonl`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-store-index.ts.defineColumns.api`
 
@@ -3966,7 +3030,7 @@
 - Upstream: `packages/chord/src/store/index.ts` → `defineColumns`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-store-index.ts.defineTable.api`
 
@@ -3974,7 +3038,7 @@
 - Upstream: `packages/chord/src/store/index.ts` → `defineTable`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-store-index.ts.encodeJsonl.api`
 
@@ -3982,7 +3046,7 @@
 - Upstream: `packages/chord/src/store/index.ts` → `encodeJsonl`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-store-index.ts.host.api`
 
@@ -3990,7 +3054,7 @@
 - Upstream: `packages/chord/src/store/index.ts` → `host`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-store-index.ts.importStore.api`
 
@@ -3998,7 +3062,7 @@
 - Upstream: `packages/chord/src/store/index.ts` → `importStore`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-store-index.ts.json.api`
 
@@ -4006,7 +3070,7 @@
 - Upstream: `packages/chord/src/store/index.ts` → `json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-store-index.ts.openStore.api`
 
@@ -4014,7 +3078,7 @@
 - Upstream: `packages/chord/src/store/index.ts` → `openStore`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-store-index.ts.Outbox.api`
 
@@ -4022,7 +3086,7 @@
 - Upstream: `packages/chord/src/store/index.ts` → `Outbox`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-store-index.ts.OutboxCommit.api`
 
@@ -4030,7 +3094,7 @@
 - Upstream: `packages/chord/src/store/index.ts` → `OutboxCommit`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-store-index.ts.Page.api`
 
@@ -4038,7 +3102,7 @@
 - Upstream: `packages/chord/src/store/index.ts` → `Page`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-store-index.ts.PageOptions.api`
 
@@ -4046,7 +3110,7 @@
 - Upstream: `packages/chord/src/store/index.ts` → `PageOptions`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-store-index.ts.PutRowOf.api`
 
@@ -4054,7 +3118,7 @@
 - Upstream: `packages/chord/src/store/index.ts` → `PutRowOf`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-store-index.ts.query.api`
 
@@ -4062,7 +3126,7 @@
 - Upstream: `packages/chord/src/store/index.ts` → `query`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-store-index.ts.RowOf.api`
 
@@ -4070,7 +3134,7 @@
 - Upstream: `packages/chord/src/store/index.ts` → `RowOf`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-store-index.ts.sqliteBackend.api`
 
@@ -4078,7 +3142,7 @@
 - Upstream: `packages/chord/src/store/index.ts` → `sqliteBackend`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-store-index.ts.StoreWrite.api`
 
@@ -4086,7 +3150,7 @@
 - Upstream: `packages/chord/src/store/index.ts` → `StoreWrite`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-store-index.ts.Table.api`
 
@@ -4094,7 +3158,7 @@
 - Upstream: `packages/chord/src/store/index.ts` → `Table`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-store-index.ts.TableOf.api`
 
@@ -4102,7 +3166,7 @@
 - Upstream: `packages/chord/src/store/index.ts` → `TableOf`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-surfaces-index.ts.createLanguage.api`
 
@@ -4110,7 +3174,7 @@
 - Upstream: `packages/chord/src/surfaces/index.ts` → `createLanguage`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-surfaces-index.ts.followActiveLanguage.api`
 
@@ -4118,7 +3182,7 @@
 - Upstream: `packages/chord/src/surfaces/index.ts` → `followActiveLanguage`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-surfaces-index.ts.followActiveTheme.api`
 
@@ -4126,7 +3190,7 @@
 - Upstream: `packages/chord/src/surfaces/index.ts` → `followActiveTheme`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-surfaces-index.ts.formatNumber.api`
 
@@ -4134,7 +3198,7 @@
 - Upstream: `packages/chord/src/surfaces/index.ts` → `formatNumber`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-surfaces-index.ts.formatTime.api`
 
@@ -4142,7 +3206,7 @@
 - Upstream: `packages/chord/src/surfaces/index.ts` → `formatTime`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-surfaces-index.ts.hostLanguage.api`
 
@@ -4150,7 +3214,7 @@
 - Upstream: `packages/chord/src/surfaces/index.ts` → `hostLanguage`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-surfaces-index.ts.LoadedFacets.api`
 
@@ -4158,7 +3222,7 @@
 - Upstream: `packages/chord/src/surfaces/index.ts` → `LoadedFacets`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-surfaces-index.ts.LocaleChoice.api`
 
@@ -4166,7 +3230,7 @@
 - Upstream: `packages/chord/src/surfaces/index.ts` → `LocaleChoice`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-surfaces-index.ts.localeChoiceFacet.api`
 
@@ -4174,7 +3238,7 @@
 - Upstream: `packages/chord/src/surfaces/index.ts` → `localeChoiceFacet`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-surfaces-index.ts.ScriptSet.api`
 
@@ -4182,7 +3246,7 @@
 - Upstream: `packages/chord/src/surfaces/index.ts` → `ScriptSet`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-surfaces-index.ts.ThemeChoice.api`
 
@@ -4190,7 +3254,7 @@
 - Upstream: `packages/chord/src/surfaces/index.ts` → `ThemeChoice`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-surfaces-index.ts.themeChoiceFacet.api`
 
@@ -4198,7 +3262,7 @@
 - Upstream: `packages/chord/src/surfaces/index.ts` → `themeChoiceFacet`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-surfaces-index.ts.TuiScripts.api`
 
@@ -4206,7 +3270,7 @@
 - Upstream: `packages/chord/src/surfaces/index.ts` → `TuiScripts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-surfaces-index.ts.WebScripts.api`
 
@@ -4214,7 +3278,7 @@
 - Upstream: `packages/chord/src/surfaces/index.ts` → `WebScripts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-sync-index.ts.checkSessionId.api`
 
@@ -4222,7 +3286,7 @@
 - Upstream: `packages/chord/src/sync/index.ts` → `checkSessionId`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-sync-index.ts.decodeLogLine.api`
 
@@ -4230,7 +3294,7 @@
 - Upstream: `packages/chord/src/sync/index.ts` → `decodeLogLine`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-sync-index.ts.encodeLogLine.api`
 
@@ -4238,7 +3302,7 @@
 - Upstream: `packages/chord/src/sync/index.ts` → `encodeLogLine`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-sync-index.ts.FileResult.api`
 
@@ -4246,7 +3310,7 @@
 - Upstream: `packages/chord/src/sync/index.ts` → `FileResult`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-sync-index.ts.FileSyncStateStore.api`
 
@@ -4254,7 +3318,7 @@
 - Upstream: `packages/chord/src/sync/index.ts` → `FileSyncStateStore`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-sync-index.ts.FileSystemSyncRemote.api`
 
@@ -4262,7 +3326,7 @@
 - Upstream: `packages/chord/src/sync/index.ts` → `FileSystemSyncRemote`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-sync-index.ts.LOG_VERSION.api`
 
@@ -4270,7 +3334,7 @@
 - Upstream: `packages/chord/src/sync/index.ts` → `LOG_VERSION`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-sync-index.ts.LogFormatError.api`
 
@@ -4278,7 +3342,7 @@
 - Upstream: `packages/chord/src/sync/index.ts` → `LogFormatError`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-sync-index.ts.SyncFileInfo.api`
 
@@ -4286,7 +3350,7 @@
 - Upstream: `packages/chord/src/sync/index.ts` → `SyncFileInfo`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-sync-index.ts.SyncFileReader.api`
 
@@ -4294,7 +3358,7 @@
 - Upstream: `packages/chord/src/sync/index.ts` → `SyncFileReader`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-sync-index.ts.SyncFileSystem.api`
 
@@ -4302,7 +3366,7 @@
 - Upstream: `packages/chord/src/sync/index.ts` → `SyncFileSystem`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-telemetry-ingest-index.ts.sendPageTelemetry.api`
 
@@ -4310,7 +3374,7 @@
 - Upstream: `packages/chord/src/telemetry-ingest/index.ts` → `sendPageTelemetry`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-telemetry-ingest-index.ts.sendWorkerTelemetry.api`
 
@@ -4318,7 +3382,7 @@
 - Upstream: `packages/chord/src/telemetry-ingest/index.ts` → `sendWorkerTelemetry`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-telemetry-ingest-index.ts.TelemetryRecorder.api`
 
@@ -4326,7 +3390,7 @@
 - Upstream: `packages/chord/src/telemetry-ingest/index.ts` → `TelemetryRecorder`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-telemetry-sqlite-index.ts.createSqliteTelemetry.api`
 
@@ -4334,7 +3398,7 @@
 - Upstream: `packages/chord/src/telemetry-sqlite/index.ts` → `createSqliteTelemetry`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-telemetry-sqlite-index.ts.SqliteTelemetry.api`
 
@@ -4342,7 +3406,7 @@
 - Upstream: `packages/chord/src/telemetry-sqlite/index.ts` → `SqliteTelemetry`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-telemetry-sqlite-index.ts.SqliteTelemetryOptions.api`
 
@@ -4350,7 +3414,7 @@
 - Upstream: `packages/chord/src/telemetry-sqlite/index.ts` → `SqliteTelemetryOptions`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-telemetry-sqlite-index.ts.TelemetryBatch.api`
 
@@ -4358,7 +3422,7 @@
 - Upstream: `packages/chord/src/telemetry-sqlite/index.ts` → `TelemetryBatch`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-telemetry-sqlite-node.ts.openTelemetryStore.api`
 
@@ -4366,7 +3430,7 @@
 - Upstream: `packages/chord/src/telemetry-sqlite/node.ts` → `openTelemetryStore`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-telemetry-sqlite-node.ts.SqliteTelemetryStore.api`
 
@@ -4374,7 +3438,7 @@
 - Upstream: `packages/chord/src/telemetry-sqlite/node.ts` → `SqliteTelemetryStore`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-tui-index.ts.Bridge.api`
 
@@ -4382,7 +3446,7 @@
 - Upstream: `packages/chord/src/tui/index.ts` → `Bridge`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-tui-index.ts.BridgeRequest.api`
 
@@ -4390,7 +3454,7 @@
 - Upstream: `packages/chord/src/tui/index.ts` → `BridgeRequest`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-tui-index.ts.BridgeStart.api`
 
@@ -4398,7 +3462,7 @@
 - Upstream: `packages/chord/src/tui/index.ts` → `BridgeStart`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-tui-index.ts.BridgeTerminal.api`
 
@@ -4406,7 +3470,7 @@
 - Upstream: `packages/chord/src/tui/index.ts` → `BridgeTerminal`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-tui-index.ts.LauncherMessage.api`
 
@@ -4414,7 +3478,7 @@
 - Upstream: `packages/chord/src/tui/index.ts` → `LauncherMessage`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-tui-index.ts.PageState.api`
 
@@ -4422,7 +3486,7 @@
 - Upstream: `packages/chord/src/tui/index.ts` → `PageState`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-tui-index.ts.SandboxMessage.api`
 
@@ -4430,7 +3494,7 @@
 - Upstream: `packages/chord/src/tui/index.ts` → `SandboxMessage`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-tui-index.ts.TerminalTheme.api`
 
@@ -4438,7 +3502,7 @@
 - Upstream: `packages/chord/src/tui/index.ts` → `TerminalTheme`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-tui-index.ts.TuiScope.api`
 
@@ -4446,7 +3510,7 @@
 - Upstream: `packages/chord/src/tui/index.ts` → `TuiScope`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-watch.ts.NativeWatch.api`
 
@@ -4454,7 +3518,7 @@
 - Upstream: `packages/chord/src/watch.ts` → `NativeWatch`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-watch.ts.NativeWatchable.api`
 
@@ -4462,7 +3526,7 @@
 - Upstream: `packages/chord/src/watch.ts` → `NativeWatchable`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-watch.ts.NativeWatchCall.api`
 
@@ -4470,7 +3534,7 @@
 - Upstream: `packages/chord/src/watch.ts` → `NativeWatchCall`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-watch.ts.NativeWatchHandle.api`
 
@@ -4478,7 +3542,7 @@
 - Upstream: `packages/chord/src/watch.ts` → `NativeWatchHandle`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-watch.ts.Watch.api`
 
@@ -4486,7 +3550,7 @@
 - Upstream: `packages/chord/src/watch.ts` → `Watch`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-watch.ts.WatchCall.api`
 
@@ -4494,7 +3558,7 @@
 - Upstream: `packages/chord/src/watch.ts` → `WatchCall`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-watch.ts.WatchEnd.api`
 
@@ -4502,7 +3566,7 @@
 - Upstream: `packages/chord/src/watch.ts` → `WatchEnd`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-watch.ts.WatchHandle.api`
 
@@ -4510,7 +3574,7 @@
 - Upstream: `packages/chord/src/watch.ts` → `WatchHandle`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-web-index.ts.followLanguage.api`
 
@@ -4518,7 +3582,7 @@
 - Upstream: `packages/chord/src/web/index.ts` → `followLanguage`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-web-index.ts.followThemes.api`
 
@@ -4526,7 +3590,7 @@
 - Upstream: `packages/chord/src/web/index.ts` → `followThemes`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-web-index.ts.pageEnvironment.api`
 
@@ -4534,7 +3598,7 @@
 - Upstream: `packages/chord/src/web/index.ts` → `pageEnvironment`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-web-index.ts.startPage.api`
 
@@ -4542,7 +3606,7 @@
 - Upstream: `packages/chord/src/web/index.ts` → `startPage`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-bench-calls.ts.internal.test`
 
@@ -4550,7 +3614,7 @@
 - Upstream: `packages/chord/test/bench/calls.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-bench-compression.ts.internal.test`
 
@@ -4558,7 +3622,7 @@
 - Upstream: `packages/chord/test/bench/compression.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-bench-derives.ts.internal.test`
 
@@ -4566,7 +3630,7 @@
 - Upstream: `packages/chord/test/bench/derives.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-bench-events.ts.internal.test`
 
@@ -4574,7 +3638,7 @@
 - Upstream: `packages/chord/test/bench/events.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-bench-http.ts.internal.test`
 
@@ -4582,7 +3646,7 @@
 - Upstream: `packages/chord/test/bench/http.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-bench-jobs.ts.internal.test`
 
@@ -4590,7 +3654,7 @@
 - Upstream: `packages/chord/test/bench/jobs.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-bench-links.ts.internal.test`
 
@@ -4598,7 +3662,7 @@
 - Upstream: `packages/chord/test/bench/links.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-bench-live-query.ts.internal.test`
 
@@ -4606,7 +3670,7 @@
 - Upstream: `packages/chord/test/bench/live-query.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-bench-plugins.ts.internal.test`
 
@@ -4614,7 +3678,7 @@
 - Upstream: `packages/chord/test/bench/plugins.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-bench-registries.ts.internal.test`
 
@@ -4622,7 +3686,7 @@
 - Upstream: `packages/chord/test/bench/registries.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-bench-relay.ts.internal.test`
 
@@ -4630,7 +3694,7 @@
 - Upstream: `packages/chord/test/bench/relay.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-bench-reload.ts.internal.test`
 
@@ -4638,7 +3702,7 @@
 - Upstream: `packages/chord/test/bench/reload.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-bench-shared-holds.ts.internal.test`
 
@@ -4646,7 +3710,7 @@
 - Upstream: `packages/chord/test/bench/shared-holds.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-bench-slice-14.ts.internal.test`
 
@@ -4654,7 +3718,7 @@
 - Upstream: `packages/chord/test/bench/slice-14.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-bench-state-binding.ts.internal.test`
 
@@ -4662,7 +3726,7 @@
 - Upstream: `packages/chord/test/bench/state-binding.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-bench-store.ts.internal.test`
 
@@ -4670,7 +3734,7 @@
 - Upstream: `packages/chord/test/bench/store.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-bench-sync-memory.ts.internal.test`
 
@@ -4678,7 +3742,7 @@
 - Upstream: `packages/chord/test/bench/sync-memory.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-bench-sync-worker.ts.internal.test`
 
@@ -4686,7 +3750,7 @@
 - Upstream: `packages/chord/test/bench/sync-worker.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-bench-telemetry.ts.internal.test`
 
@@ -4694,7 +3758,7 @@
 - Upstream: `packages/chord/test/bench/telemetry.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-bench-workers.ts.internal.test`
 
@@ -4702,7 +3766,7 @@
 - Upstream: `packages/chord/test/bench/workers.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-boundary.test.ts.internal.test`
 
@@ -4710,7 +3774,7 @@
 - Upstream: `packages/chord/test/boundary.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-context.test.ts.internal.test`
 
@@ -4718,7 +3782,7 @@
 - Upstream: `packages/chord/test/context.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-contracts-accepts.test.ts.internal.test`
 
@@ -4726,7 +3790,7 @@
 - Upstream: `packages/chord/test/contracts/accepts.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-contracts-contract.test.ts.internal.test`
 
@@ -4734,7 +3798,7 @@
 - Upstream: `packages/chord/test/contracts/contract.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-contracts-declare.test.ts.internal.test`
 
@@ -4742,7 +3806,7 @@
 - Upstream: `packages/chord/test/contracts/declare.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-contracts-evolve.test.ts.internal.test`
 
@@ -4750,7 +3814,7 @@
 - Upstream: `packages/chord/test/contracts/evolve.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-contracts-fingerprint.test.ts.internal.test`
 
@@ -4758,7 +3822,7 @@
 - Upstream: `packages/chord/test/contracts/fingerprint.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-contracts-history.test.ts.internal.test`
 
@@ -4766,7 +3830,7 @@
 - Upstream: `packages/chord/test/contracts/history.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-contracts-host-kind.test.ts.internal.test`
 
@@ -4774,7 +3838,7 @@
 - Upstream: `packages/chord/test/contracts/host-kind.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-contracts-params.test.ts.internal.test`
 
@@ -4782,7 +3846,7 @@
 - Upstream: `packages/chord/test/contracts/params.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-contracts-schema.test.ts.internal.test`
 
@@ -4790,7 +3854,7 @@
 - Upstream: `packages/chord/test/contracts/schema.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-contracts-snapshot.test.ts.internal.test`
 
@@ -4798,7 +3862,7 @@
 - Upstream: `packages/chord/test/contracts/snapshot.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-data-args.test.ts.internal.test`
 
@@ -4806,7 +3870,7 @@
 - Upstream: `packages/chord/test/data/args.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-data-errors.test.ts.internal.test`
 
@@ -4814,7 +3878,7 @@
 - Upstream: `packages/chord/test/data/errors.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-data-failure.test.ts.internal.test`
 
@@ -4822,7 +3886,7 @@
 - Upstream: `packages/chord/test/data/failure.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-data-params.test.ts.internal.test`
 
@@ -4830,7 +3894,7 @@
 - Upstream: `packages/chord/test/data/params.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-data-principal.test.ts.internal.test`
 
@@ -4838,7 +3902,7 @@
 - Upstream: `packages/chord/test/data/principal.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-data-validator.test.ts.internal.test`
 
@@ -4846,7 +3910,7 @@
 - Upstream: `packages/chord/test/data/validator.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-delta-append-text.test.ts.internal.test`
 
@@ -4854,7 +3918,7 @@
 - Upstream: `packages/chord/test/delta-append-text.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-delta-apply-immutable.test.ts.internal.test`
 
@@ -4862,7 +3926,7 @@
 - Upstream: `packages/chord/test/delta-apply-immutable.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-delta-benchmark-benchmark.ts.internal.test`
 
@@ -4870,7 +3934,7 @@
 - Upstream: `packages/chord/test/delta-benchmark/benchmark.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-delta-benchmark-benchmark.worker.ts.internal.test`
 
@@ -4878,7 +3942,7 @@
 - Upstream: `packages/chord/test/delta-benchmark/benchmark.worker.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-delta-benchmark-conversation-view-benchmark.ts.internal.test`
 
@@ -4886,7 +3950,7 @@
 - Upstream: `packages/chord/test/delta-benchmark/conversation-view-benchmark.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-delta-benchmark-conversation-view-benchmark.worker.ts.internal.test`
 
@@ -4894,7 +3958,7 @@
 - Upstream: `packages/chord/test/delta-benchmark/conversation-view-benchmark.worker.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-delta-benchmark-memory-benchmark.ts.internal.test`
 
@@ -4902,7 +3966,7 @@
 - Upstream: `packages/chord/test/delta-benchmark/memory-benchmark.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-delta-benchmark-memory-benchmark.worker.ts.internal.test`
 
@@ -4910,7 +3974,7 @@
 - Upstream: `packages/chord/test/delta-benchmark/memory-benchmark.worker.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-delta-clone.test.ts.internal.test`
 
@@ -4918,7 +3982,7 @@
 - Upstream: `packages/chord/test/delta-clone.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-delta-diff.test.ts.internal.test`
 
@@ -4926,7 +3990,7 @@
 - Upstream: `packages/chord/test/delta-diff.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-delta-op-text-retention.test.ts.internal.test`
 
@@ -4934,7 +3998,7 @@
 - Upstream: `packages/chord/test/delta-op-text-retention.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-delta-pending.test.ts.internal.test`
 
@@ -4942,7 +4006,7 @@
 - Upstream: `packages/chord/test/delta-pending.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-delta-tracker-retention.test.ts.internal.test`
 
@@ -4950,7 +4014,7 @@
 - Upstream: `packages/chord/test/delta-tracker/retention.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-delta-tracker-retention.worker.ts.internal.test`
 
@@ -4958,7 +4022,7 @@
 - Upstream: `packages/chord/test/delta-tracker/retention.worker.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-delta-tracker-tracker.test.ts.internal.test`
 
@@ -4966,7 +4030,7 @@
 - Upstream: `packages/chord/test/delta-tracker/tracker.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-delta-traversal.bench.ts.internal.test`
 
@@ -4974,7 +4038,7 @@
 - Upstream: `packages/chord/test/delta-traversal.bench.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-delta.test.ts.internal.test`
 
@@ -4982,7 +4046,7 @@
 - Upstream: `packages/chord/test/delta.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-documents-address-source.test.ts.internal.test`
 
@@ -4990,7 +4054,7 @@
 - Upstream: `packages/chord/test/documents/address-source.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-documents-definition.test.ts.internal.test`
 
@@ -4998,7 +4062,7 @@
 - Upstream: `packages/chord/test/documents/definition.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-documents-documents.test.ts.internal.test`
 
@@ -5006,7 +4070,7 @@
 - Upstream: `packages/chord/test/documents/documents.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-documents-fence.test.ts.internal.test`
 
@@ -5014,7 +4078,7 @@
 - Upstream: `packages/chord/test/documents/fence.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-documents-handles.test.ts.internal.test`
 
@@ -5022,7 +4086,7 @@
 - Upstream: `packages/chord/test/documents/handles.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-documents-keyed-slot.test.ts.internal.test`
 
@@ -5030,7 +4094,7 @@
 - Upstream: `packages/chord/test/documents/keyed-slot.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-documents-line.test.ts.internal.test`
 
@@ -5038,7 +4102,7 @@
 - Upstream: `packages/chord/test/documents/line.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-documents-persistence.test.ts.internal.test`
 
@@ -5046,7 +4110,7 @@
 - Upstream: `packages/chord/test/documents/persistence.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-documents-residency.test.ts.internal.test`
 
@@ -5054,7 +4118,7 @@
 - Upstream: `packages/chord/test/documents/residency.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-documents-slot.test.ts.internal.test`
 
@@ -5062,7 +4126,7 @@
 - Upstream: `packages/chord/test/documents/slot.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-documents-transaction.test.ts.internal.test`
 
@@ -5070,7 +4134,7 @@
 - Upstream: `packages/chord/test/documents/transaction.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-01-objects.ts.internal.test`
 
@@ -5078,7 +4142,7 @@
 - Upstream: `packages/chord/test/examples/01-objects.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-02-documents.ts.internal.test`
 
@@ -5086,7 +4150,7 @@
 - Upstream: `packages/chord/test/examples/02-documents.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-03-derives.ts.internal.test`
 
@@ -5094,7 +4158,7 @@
 - Upstream: `packages/chord/test/examples/03-derives.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-04-watches.ts.internal.test`
 
@@ -5102,7 +4166,7 @@
 - Upstream: `packages/chord/test/examples/04-watches.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-05-errors.ts.internal.test`
 
@@ -5110,7 +4174,7 @@
 - Upstream: `packages/chord/test/examples/05-errors.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-06-natives.ts.internal.test`
 
@@ -5118,7 +4182,7 @@
 - Upstream: `packages/chord/test/examples/06-natives.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-07-failures.ts.internal.test`
 
@@ -5126,7 +4190,7 @@
 - Upstream: `packages/chord/test/examples/07-failures.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-08-remote.ts.internal.test`
 
@@ -5134,7 +4198,7 @@
 - Upstream: `packages/chord/test/examples/08-remote.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-09-calls.ts.internal.test`
 
@@ -5142,7 +4206,7 @@
 - Upstream: `packages/chord/test/examples/09-calls.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-10-drops.ts.internal.test`
 
@@ -5150,7 +4214,7 @@
 - Upstream: `packages/chord/test/examples/10-drops.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-11-linger-and-retry.ts.internal.test`
 
@@ -5158,7 +4222,7 @@
 - Upstream: `packages/chord/test/examples/11-linger-and-retry.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-12-routes.ts.internal.test`
 
@@ -5166,7 +4230,7 @@
 - Upstream: `packages/chord/test/examples/12-routes.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-13-relay.ts.internal.test`
 
@@ -5174,7 +4238,7 @@
 - Upstream: `packages/chord/test/examples/13-relay.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-14-flow-control.ts.internal.test`
 
@@ -5182,7 +4246,7 @@
 - Upstream: `packages/chord/test/examples/14-flow-control.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-15-revocation.ts.internal.test`
 
@@ -5190,7 +4254,7 @@
 - Upstream: `packages/chord/test/examples/15-revocation.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-16-presence-and-activity.ts.internal.test`
 
@@ -5198,7 +4262,7 @@
 - Upstream: `packages/chord/test/examples/16-presence-and-activity.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-17-limits-and-compression.ts.internal.test`
 
@@ -5206,7 +4270,7 @@
 - Upstream: `packages/chord/test/examples/17-limits-and-compression.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-18-routines.ts.internal.test`
 
@@ -5214,7 +4278,7 @@
 - Upstream: `packages/chord/test/examples/18-routines.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-19-jobs.ts.internal.test`
 
@@ -5222,7 +4286,7 @@
 - Upstream: `packages/chord/test/examples/19-jobs.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-20-tables.ts.internal.test`
 
@@ -5230,7 +4294,7 @@
 - Upstream: `packages/chord/test/examples/20-tables.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-21-persisted-documents.ts.internal.test`
 
@@ -5238,7 +4302,7 @@
 - Upstream: `packages/chord/test/examples/21-persisted-documents.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-22-migrations.ts.internal.test`
 
@@ -5246,7 +4310,7 @@
 - Upstream: `packages/chord/test/examples/22-migrations.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-23-keyed-watches.ts.internal.test`
 
@@ -5254,7 +4318,7 @@
 - Upstream: `packages/chord/test/examples/23-keyed-watches.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-24-keyed-members.ts.internal.test`
 
@@ -5262,7 +4326,7 @@
 - Upstream: `packages/chord/test/examples/24-keyed-members.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-25-export-import.ts.internal.test`
 
@@ -5270,7 +4334,7 @@
 - Upstream: `packages/chord/test/examples/25-export-import.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-28-persisted-jobs.ts.internal.test`
 
@@ -5278,7 +4342,7 @@
 - Upstream: `packages/chord/test/examples/28-persisted-jobs.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-29-registries.ts.internal.test`
 
@@ -5286,7 +4350,7 @@
 - Upstream: `packages/chord/test/examples/29-registries.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-30-host-root.ts.internal.test`
 
@@ -5294,7 +4358,7 @@
 - Upstream: `packages/chord/test/examples/30-host-root.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-31-parked-dependencies.ts.internal.test`
 
@@ -5302,7 +4366,7 @@
 - Upstream: `packages/chord/test/examples/31-parked-dependencies.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-32-startup.ts.internal.test`
 
@@ -5310,7 +4374,7 @@
 - Upstream: `packages/chord/test/examples/32-startup.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-33-reload.ts.internal.test`
 
@@ -5318,7 +4382,7 @@
 - Upstream: `packages/chord/test/examples/33-reload.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-34-versions.ts.internal.test`
 
@@ -5326,7 +4390,7 @@
 - Upstream: `packages/chord/test/examples/34-versions.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-35-plugins-main.ts.internal.test`
 
@@ -5334,7 +4398,7 @@
 - Upstream: `packages/chord/test/examples/35-plugins/main.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-35-plugins-plugins-clock-package.json.internal.test`
 
@@ -5342,7 +4406,7 @@
 - Upstream: `packages/chord/test/examples/35-plugins/plugins/clock/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-35-plugins-plugins-clock-server.ts.internal.test`
 
@@ -5350,7 +4414,7 @@
 - Upstream: `packages/chord/test/examples/35-plugins/plugins/clock/server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-35-plugins-plugins-contracts-contract.ts.internal.test`
 
@@ -5358,7 +4422,7 @@
 - Upstream: `packages/chord/test/examples/35-plugins/plugins/contracts/contract.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-35-plugins-plugins-contracts-package.json.internal.test`
 
@@ -5366,7 +4430,7 @@
 - Upstream: `packages/chord/test/examples/35-plugins/plugins/contracts/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-35-plugins-plugins-notes-label.ts.internal.test`
 
@@ -5374,7 +4438,7 @@
 - Upstream: `packages/chord/test/examples/35-plugins/plugins/notes/label.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-35-plugins-plugins-notes-package.json.internal.test`
 
@@ -5382,7 +4446,7 @@
 - Upstream: `packages/chord/test/examples/35-plugins/plugins/notes/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-35-plugins-plugins-notes-server.ts.internal.test`
 
@@ -5390,7 +4454,7 @@
 - Upstream: `packages/chord/test/examples/35-plugins/plugins/notes/server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-35-plugins-plugins-notes-worker.ts.internal.test`
 
@@ -5398,7 +4462,7 @@
 - Upstream: `packages/chord/test/examples/35-plugins/plugins/notes/worker.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-36-plugin-failures-main.ts.internal.test`
 
@@ -5406,7 +4470,7 @@
 - Upstream: `packages/chord/test/examples/36-plugin-failures/main.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-36-plugin-failures-plugins-boot-package.json.internal.test`
 
@@ -5414,7 +4478,7 @@
 - Upstream: `packages/chord/test/examples/36-plugin-failures/plugins/boot/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-36-plugin-failures-plugins-boot-server.ts.internal.test`
 
@@ -5422,7 +4486,7 @@
 - Upstream: `packages/chord/test/examples/36-plugin-failures/plugins/boot/server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-36-plugin-failures-plugins-cache-package.json.internal.test`
 
@@ -5430,7 +4494,7 @@
 - Upstream: `packages/chord/test/examples/36-plugin-failures/plugins/cache/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-36-plugin-failures-plugins-cache-server.ts.internal.test`
 
@@ -5438,7 +4502,7 @@
 - Upstream: `packages/chord/test/examples/36-plugin-failures/plugins/cache/server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-36-plugin-failures-plugins-counter-package.json.internal.test`
 
@@ -5446,7 +4510,7 @@
 - Upstream: `packages/chord/test/examples/36-plugin-failures/plugins/counter/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-36-plugin-failures-plugins-counter-server.ts.internal.test`
 
@@ -5454,7 +4518,7 @@
 - Upstream: `packages/chord/test/examples/36-plugin-failures/plugins/counter/server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-36-plugin-failures-plugins-forecast-package.json.internal.test`
 
@@ -5462,7 +4526,7 @@
 - Upstream: `packages/chord/test/examples/36-plugin-failures/plugins/forecast/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-36-plugin-failures-plugins-forecast-server.ts.internal.test`
 
@@ -5470,7 +4534,7 @@
 - Upstream: `packages/chord/test/examples/36-plugin-failures/plugins/forecast/server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-36-plugin-failures-plugins-greeter-label.ts.internal.test`
 
@@ -5478,7 +4542,7 @@
 - Upstream: `packages/chord/test/examples/36-plugin-failures/plugins/greeter/label.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-36-plugin-failures-plugins-greeter-package.json.internal.test`
 
@@ -5486,7 +4550,7 @@
 - Upstream: `packages/chord/test/examples/36-plugin-failures/plugins/greeter/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-36-plugin-failures-plugins-greeter-server.ts.internal.test`
 
@@ -5494,7 +4558,7 @@
 - Upstream: `packages/chord/test/examples/36-plugin-failures/plugins/greeter/server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-36-plugin-failures-plugins-prices-contract.ts.internal.test`
 
@@ -5502,7 +4566,7 @@
 - Upstream: `packages/chord/test/examples/36-plugin-failures/plugins/prices/contract.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-36-plugin-failures-plugins-prices-package.json.internal.test`
 
@@ -5510,7 +4574,7 @@
 - Upstream: `packages/chord/test/examples/36-plugin-failures/plugins/prices/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-36-plugin-failures-plugins-prices-server.ts.internal.test`
 
@@ -5518,7 +4582,7 @@
 - Upstream: `packages/chord/test/examples/36-plugin-failures/plugins/prices/server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-36-plugin-failures-plugins-summary-package.json.internal.test`
 
@@ -5526,7 +4590,7 @@
 - Upstream: `packages/chord/test/examples/36-plugin-failures/plugins/summary/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-36-plugin-failures-plugins-summary-server.ts.internal.test`
 
@@ -5534,7 +4598,7 @@
 - Upstream: `packages/chord/test/examples/36-plugin-failures/plugins/summary/server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-36-plugin-failures-plugins-weather-contract.ts.internal.test`
 
@@ -5542,7 +4606,7 @@
 - Upstream: `packages/chord/test/examples/36-plugin-failures/plugins/weather/contract.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-36-plugin-failures-plugins-weather-package.json.internal.test`
 
@@ -5550,7 +4614,7 @@
 - Upstream: `packages/chord/test/examples/36-plugin-failures/plugins/weather/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-36-plugin-failures-plugins-weather-server.ts.internal.test`
 
@@ -5558,7 +4622,7 @@
 - Upstream: `packages/chord/test/examples/36-plugin-failures/plugins/weather/server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-37-plugin-imports-app-index.ts.internal.test`
 
@@ -5566,7 +4630,7 @@
 - Upstream: `packages/chord/test/examples/37-plugin-imports/app/index.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-37-plugin-imports-app-legacy.cjs.internal.test`
 
@@ -5574,7 +4638,7 @@
 - Upstream: `packages/chord/test/examples/37-plugin-imports/app/legacy.cjs`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-37-plugin-imports-deps-example-greeting-index.js.internal.test`
 
@@ -5582,7 +4646,7 @@
 - Upstream: `packages/chord/test/examples/37-plugin-imports/deps/example-greeting/index.js`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-37-plugin-imports-deps-example-greeting-package.json.internal.test`
 
@@ -5590,7 +4654,7 @@
 - Upstream: `packages/chord/test/examples/37-plugin-imports/deps/example-greeting/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-37-plugin-imports-deps-example-native-index.js.internal.test`
 
@@ -5598,7 +4662,7 @@
 - Upstream: `packages/chord/test/examples/37-plugin-imports/deps/example-native/index.js`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-37-plugin-imports-deps-example-native-package.json.internal.test`
 
@@ -5606,7 +4670,7 @@
 - Upstream: `packages/chord/test/examples/37-plugin-imports/deps/example-native/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-37-plugin-imports-fake-npm.mjs.internal.test`
 
@@ -5614,7 +4678,7 @@
 - Upstream: `packages/chord/test/examples/37-plugin-imports/fake-npm.mjs`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-37-plugin-imports-main.ts.internal.test`
 
@@ -5622,7 +4686,7 @@
 - Upstream: `packages/chord/test/examples/37-plugin-imports/main.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-37-plugin-imports-plugins-paths-package.json.internal.test`
 
@@ -5630,7 +4694,7 @@
 - Upstream: `packages/chord/test/examples/37-plugin-imports/plugins/paths/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-37-plugin-imports-plugins-paths-server.ts.internal.test`
 
@@ -5638,7 +4702,7 @@
 - Upstream: `packages/chord/test/examples/37-plugin-imports/plugins/paths/server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-37-plugin-imports-plugins-refused-other.ts.internal.test`
 
@@ -5646,7 +4710,7 @@
 - Upstream: `packages/chord/test/examples/37-plugin-imports/plugins/refused/other.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-37-plugin-imports-plugins-refused-package.json.internal.test`
 
@@ -5654,7 +4718,7 @@
 - Upstream: `packages/chord/test/examples/37-plugin-imports/plugins/refused/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-37-plugin-imports-plugins-refused-server.ts.internal.test`
 
@@ -5662,7 +4726,7 @@
 - Upstream: `packages/chord/test/examples/37-plugin-imports/plugins/refused/server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-37-plugin-imports-plugins-report-data-rates.json.internal.test`
 
@@ -5670,7 +4734,7 @@
 - Upstream: `packages/chord/test/examples/37-plugin-imports/plugins/report/data/rates.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-37-plugin-imports-plugins-report-env.d.ts.internal.test`
 
@@ -5678,7 +4742,7 @@
 - Upstream: `packages/chord/test/examples/37-plugin-imports/plugins/report/env.d.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-37-plugin-imports-plugins-report-package.json.internal.test`
 
@@ -5686,7 +4750,7 @@
 - Upstream: `packages/chord/test/examples/37-plugin-imports/plugins/report/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-37-plugin-imports-plugins-report-server.ts.internal.test`
 
@@ -5694,7 +4758,7 @@
 - Upstream: `packages/chord/test/examples/37-plugin-imports/plugins/report/server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-37-plugin-imports-plugins-ruler-package.json.internal.test`
 
@@ -5702,7 +4766,7 @@
 - Upstream: `packages/chord/test/examples/37-plugin-imports/plugins/ruler/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-37-plugin-imports-plugins-ruler-server.ts.internal.test`
 
@@ -5710,7 +4774,7 @@
 - Upstream: `packages/chord/test/examples/37-plugin-imports/plugins/ruler/server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-37-plugin-imports-plugins-shapes-contract.ts.internal.test`
 
@@ -5718,7 +4782,7 @@
 - Upstream: `packages/chord/test/examples/37-plugin-imports/plugins/shapes/contract.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-37-plugin-imports-plugins-shapes-package.json.internal.test`
 
@@ -5726,7 +4790,7 @@
 - Upstream: `packages/chord/test/examples/37-plugin-imports/plugins/shapes/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-37-plugin-imports-plugins-shapes-units.ts.internal.test`
 
@@ -5734,7 +4798,7 @@
 - Upstream: `packages/chord/test/examples/37-plugin-imports/plugins/shapes/units.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-38-watch-and-rollout-app-config.ts.internal.test`
 
@@ -5742,7 +4806,7 @@
 - Upstream: `packages/chord/test/examples/38-watch-and-rollout/app/config.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-38-watch-and-rollout-incoming-extra-package.json.internal.test`
 
@@ -5750,7 +4814,7 @@
 - Upstream: `packages/chord/test/examples/38-watch-and-rollout/incoming/extra/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-38-watch-and-rollout-incoming-extra-server.ts.internal.test`
 
@@ -5758,7 +4822,7 @@
 - Upstream: `packages/chord/test/examples/38-watch-and-rollout/incoming/extra/server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-38-watch-and-rollout-main.ts.internal.test`
 
@@ -5766,7 +4830,7 @@
 - Upstream: `packages/chord/test/examples/38-watch-and-rollout/main.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-38-watch-and-rollout-plugins-contracts-contract.ts.internal.test`
 
@@ -5774,7 +4838,7 @@
 - Upstream: `packages/chord/test/examples/38-watch-and-rollout/plugins/contracts/contract.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-38-watch-and-rollout-plugins-contracts-package.json.internal.test`
 
@@ -5782,7 +4846,7 @@
 - Upstream: `packages/chord/test/examples/38-watch-and-rollout/plugins/contracts/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-38-watch-and-rollout-plugins-notes-label.ts.internal.test`
 
@@ -5790,7 +4854,7 @@
 - Upstream: `packages/chord/test/examples/38-watch-and-rollout/plugins/notes/label.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-38-watch-and-rollout-plugins-notes-package.json.internal.test`
 
@@ -5798,7 +4862,7 @@
 - Upstream: `packages/chord/test/examples/38-watch-and-rollout/plugins/notes/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-38-watch-and-rollout-plugins-notes-server.ts.internal.test`
 
@@ -5806,7 +4870,7 @@
 - Upstream: `packages/chord/test/examples/38-watch-and-rollout/plugins/notes/server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-38-watch-and-rollout-plugins-notes-worker.ts.internal.test`
 
@@ -5814,7 +4878,7 @@
 - Upstream: `packages/chord/test/examples/38-watch-and-rollout/plugins/notes/worker.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-38-watch-and-rollout-plugins-old-package.json.internal.test`
 
@@ -5822,7 +4886,7 @@
 - Upstream: `packages/chord/test/examples/38-watch-and-rollout/plugins/old/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-38-watch-and-rollout-plugins-old-server.ts.internal.test`
 
@@ -5830,7 +4894,7 @@
 - Upstream: `packages/chord/test/examples/38-watch-and-rollout/plugins/old/server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-38-watch-and-rollout-plugins-tags-package.json.internal.test`
 
@@ -5838,7 +4902,7 @@
 - Upstream: `packages/chord/test/examples/38-watch-and-rollout/plugins/tags/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-38-watch-and-rollout-plugins-tags-server.ts.internal.test`
 
@@ -5846,7 +4910,7 @@
 - Upstream: `packages/chord/test/examples/38-watch-and-rollout/plugins/tags/server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-38-watch-and-rollout-plugins-tags-worker.ts.internal.test`
 
@@ -5854,7 +4918,7 @@
 - Upstream: `packages/chord/test/examples/38-watch-and-rollout/plugins/tags/worker.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-39-browser-build-main.ts.internal.test`
 
@@ -5862,7 +4926,7 @@
 - Upstream: `packages/chord/test/examples/39-browser-build/main.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-39-browser-build-plugins-bad-web-package.json.internal.test`
 
@@ -5870,7 +4934,7 @@
 - Upstream: `packages/chord/test/examples/39-browser-build/plugins/bad-web/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-39-browser-build-plugins-bad-web-web.ts.internal.test`
 
@@ -5878,7 +4942,7 @@
 - Upstream: `packages/chord/test/examples/39-browser-build/plugins/bad-web/web.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-39-browser-build-plugins-gallery-assets-logo.svg.internal.test`
 
@@ -5886,7 +4950,7 @@
 - Upstream: `packages/chord/test/examples/39-browser-build/plugins/gallery/assets/logo.svg`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-39-browser-build-plugins-gallery-assets.d.ts.internal.test`
 
@@ -5894,7 +4958,7 @@
 - Upstream: `packages/chord/test/examples/39-browser-build/plugins/gallery/assets.d.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-39-browser-build-plugins-gallery-gallery.css.internal.test`
 
@@ -5902,7 +4966,7 @@
 - Upstream: `packages/chord/test/examples/39-browser-build/plugins/gallery/gallery.css`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-39-browser-build-plugins-gallery-package.json.internal.test`
 
@@ -5910,7 +4974,7 @@
 - Upstream: `packages/chord/test/examples/39-browser-build/plugins/gallery/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-39-browser-build-plugins-gallery-web.ts.internal.test`
 
@@ -5918,7 +4982,7 @@
 - Upstream: `packages/chord/test/examples/39-browser-build/plugins/gallery/web.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-40-http-main.ts.internal.test`
 
@@ -5926,7 +4990,7 @@
 - Upstream: `packages/chord/test/examples/40-http/main.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-40-http-plugins-notes-files-hello.md.internal.test`
 
@@ -5934,7 +4998,7 @@
 - Upstream: `packages/chord/test/examples/40-http/plugins/notes/files/hello.md`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-40-http-plugins-notes-package.json.internal.test`
 
@@ -5942,7 +5006,7 @@
 - Upstream: `packages/chord/test/examples/40-http/plugins/notes/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-40-http-plugins-notes-server.ts.internal.test`
 
@@ -5950,7 +5014,7 @@
 - Upstream: `packages/chord/test/examples/40-http/plugins/notes/server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-41-workers-main.ts.internal.test`
 
@@ -5958,7 +5022,7 @@
 - Upstream: `packages/chord/test/examples/41-workers/main.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-41-workers-plugins-sessions-contract.ts.internal.test`
 
@@ -5966,7 +5030,7 @@
 - Upstream: `packages/chord/test/examples/41-workers/plugins/sessions/contract.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-41-workers-plugins-sessions-package.json.internal.test`
 
@@ -5974,7 +5038,7 @@
 - Upstream: `packages/chord/test/examples/41-workers/plugins/sessions/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-41-workers-plugins-sessions-worker.ts.internal.test`
 
@@ -5982,7 +5046,7 @@
 - Upstream: `packages/chord/test/examples/41-workers/plugins/sessions/worker.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-41-workers-worker.ts.internal.test`
 
@@ -5990,7 +5054,7 @@
 - Upstream: `packages/chord/test/examples/41-workers/worker.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-42-worker-crash-main.ts.internal.test`
 
@@ -5998,7 +5062,7 @@
 - Upstream: `packages/chord/test/examples/42-worker-crash/main.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-42-worker-crash-plugins-sessions-contract.ts.internal.test`
 
@@ -6006,7 +5070,7 @@
 - Upstream: `packages/chord/test/examples/42-worker-crash/plugins/sessions/contract.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-42-worker-crash-plugins-sessions-package.json.internal.test`
 
@@ -6014,7 +5078,7 @@
 - Upstream: `packages/chord/test/examples/42-worker-crash/plugins/sessions/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-42-worker-crash-plugins-sessions-worker.ts.internal.test`
 
@@ -6022,7 +5086,7 @@
 - Upstream: `packages/chord/test/examples/42-worker-crash/plugins/sessions/worker.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-42-worker-crash-worker.ts.internal.test`
 
@@ -6030,7 +5094,7 @@
 - Upstream: `packages/chord/test/examples/42-worker-crash/worker.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-43-rollout-main.ts.internal.test`
 
@@ -6038,7 +5102,7 @@
 - Upstream: `packages/chord/test/examples/43-rollout/main.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-43-rollout-plugins-notes-contract.ts.internal.test`
 
@@ -6046,7 +5110,7 @@
 - Upstream: `packages/chord/test/examples/43-rollout/plugins/notes/contract.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-43-rollout-plugins-notes-label.ts.internal.test`
 
@@ -6054,7 +5118,7 @@
 - Upstream: `packages/chord/test/examples/43-rollout/plugins/notes/label.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-43-rollout-plugins-notes-package.json.internal.test`
 
@@ -6062,7 +5126,7 @@
 - Upstream: `packages/chord/test/examples/43-rollout/plugins/notes/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-43-rollout-plugins-notes-server.ts.internal.test`
 
@@ -6070,7 +5134,7 @@
 - Upstream: `packages/chord/test/examples/43-rollout/plugins/notes/server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-43-rollout-plugins-notes-worker.ts.internal.test`
 
@@ -6078,7 +5142,7 @@
 - Upstream: `packages/chord/test/examples/43-rollout/plugins/notes/worker.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-43-rollout-worker.ts.internal.test`
 
@@ -6086,7 +5150,7 @@
 - Upstream: `packages/chord/test/examples/43-rollout/worker.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-44-http-wraps-main.ts.internal.test`
 
@@ -6094,7 +5158,7 @@
 - Upstream: `packages/chord/test/examples/44-http-wraps/main.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-44-http-wraps-plugins-audit-package.json.internal.test`
 
@@ -6102,7 +5166,7 @@
 - Upstream: `packages/chord/test/examples/44-http-wraps/plugins/audit/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-44-http-wraps-plugins-audit-server.ts.internal.test`
 
@@ -6110,7 +5174,7 @@
 - Upstream: `packages/chord/test/examples/44-http-wraps/plugins/audit/server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-44-http-wraps-plugins-notes-package.json.internal.test`
 
@@ -6118,7 +5182,7 @@
 - Upstream: `packages/chord/test/examples/44-http-wraps/plugins/notes/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-44-http-wraps-plugins-notes-server.ts.internal.test`
 
@@ -6126,7 +5190,7 @@
 - Upstream: `packages/chord/test/examples/44-http-wraps/plugins/notes/server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-45-plugin-socket-main.ts.internal.test`
 
@@ -6134,7 +5198,7 @@
 - Upstream: `packages/chord/test/examples/45-plugin-socket/main.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-45-plugin-socket-plugins-echo-package.json.internal.test`
 
@@ -6142,7 +5206,7 @@
 - Upstream: `packages/chord/test/examples/45-plugin-socket/plugins/echo/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-45-plugin-socket-plugins-echo-server.ts.internal.test`
 
@@ -6150,7 +5214,7 @@
 - Upstream: `packages/chord/test/examples/45-plugin-socket/plugins/echo/server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-46-allowed-hosts-main.ts.internal.test`
 
@@ -6158,7 +5222,7 @@
 - Upstream: `packages/chord/test/examples/46-allowed-hosts/main.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-46-allowed-hosts-plugins-tunnel-package.json.internal.test`
 
@@ -6166,7 +5230,7 @@
 - Upstream: `packages/chord/test/examples/46-allowed-hosts/plugins/tunnel/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-46-allowed-hosts-plugins-tunnel-server.ts.internal.test`
 
@@ -6174,7 +5238,7 @@
 - Upstream: `packages/chord/test/examples/46-allowed-hosts/plugins/tunnel/server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-47-http-own-server-main.ts.internal.test`
 
@@ -6182,7 +5246,7 @@
 - Upstream: `packages/chord/test/examples/47-http-own-server/main.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-47-http-own-server-plugins-notes-package.json.internal.test`
 
@@ -6190,7 +5254,7 @@
 - Upstream: `packages/chord/test/examples/47-http-own-server/plugins/notes/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-47-http-own-server-plugins-notes-server.ts.internal.test`
 
@@ -6198,7 +5262,7 @@
 - Upstream: `packages/chord/test/examples/47-http-own-server/plugins/notes/server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-48-http-baseline-main.ts.internal.test`
 
@@ -6206,7 +5270,7 @@
 - Upstream: `packages/chord/test/examples/48-http-baseline/main.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-48-http-baseline-plugins-notes-package.json.internal.test`
 
@@ -6214,7 +5278,7 @@
 - Upstream: `packages/chord/test/examples/48-http-baseline/plugins/notes/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-48-http-baseline-plugins-notes-server.ts.internal.test`
 
@@ -6222,7 +5286,7 @@
 - Upstream: `packages/chord/test/examples/48-http-baseline/plugins/notes/server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-49-plugin-api-app-v2.ts.internal.test`
 
@@ -6230,7 +5294,7 @@
 - Upstream: `packages/chord/test/examples/49-plugin-api/app/v2.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-49-plugin-api-app-v3-server.ts.internal.test`
 
@@ -6238,7 +5302,7 @@
 - Upstream: `packages/chord/test/examples/49-plugin-api/app/v3/server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-49-plugin-api-app-v3-web.ts.internal.test`
 
@@ -6246,7 +5310,7 @@
 - Upstream: `packages/chord/test/examples/49-plugin-api/app/v3/web.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-49-plugin-api-app-v3-worker.ts.internal.test`
 
@@ -6254,7 +5318,7 @@
 - Upstream: `packages/chord/test/examples/49-plugin-api/app/v3/worker.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-49-plugin-api-app-v3.ts.internal.test`
 
@@ -6262,7 +5326,7 @@
 - Upstream: `packages/chord/test/examples/49-plugin-api/app/v3.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-49-plugin-api-main.ts.internal.test`
 
@@ -6270,7 +5334,7 @@
 - Upstream: `packages/chord/test/examples/49-plugin-api/main.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-49-plugin-api-plugins-ancient-env.d.ts.internal.test`
 
@@ -6278,7 +5342,7 @@
 - Upstream: `packages/chord/test/examples/49-plugin-api/plugins/ancient/env.d.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-49-plugin-api-plugins-ancient-package.json.internal.test`
 
@@ -6286,7 +5350,7 @@
 - Upstream: `packages/chord/test/examples/49-plugin-api/plugins/ancient/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-49-plugin-api-plugins-ancient-server.ts.internal.test`
 
@@ -6294,7 +5358,7 @@
 - Upstream: `packages/chord/test/examples/49-plugin-api/plugins/ancient/server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-49-plugin-api-plugins-direct-package.json.internal.test`
 
@@ -6302,7 +5366,7 @@
 - Upstream: `packages/chord/test/examples/49-plugin-api/plugins/direct/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-49-plugin-api-plugins-direct-server.ts.internal.test`
 
@@ -6310,7 +5374,7 @@
 - Upstream: `packages/chord/test/examples/49-plugin-api/plugins/direct/server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-49-plugin-api-plugins-hello-package.json.internal.test`
 
@@ -6318,7 +5382,7 @@
 - Upstream: `packages/chord/test/examples/49-plugin-api/plugins/hello/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-49-plugin-api-plugins-hello-server.ts.internal.test`
 
@@ -6326,7 +5390,7 @@
 - Upstream: `packages/chord/test/examples/49-plugin-api/plugins/hello/server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-49-plugin-api-plugins-legacy-package.json.internal.test`
 
@@ -6334,7 +5398,7 @@
 - Upstream: `packages/chord/test/examples/49-plugin-api/plugins/legacy/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-49-plugin-api-plugins-legacy-server.ts.internal.test`
 
@@ -6342,7 +5406,7 @@
 - Upstream: `packages/chord/test/examples/49-plugin-api/plugins/legacy/server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-49-plugin-api-plugins-mixed-package.json.internal.test`
 
@@ -6350,7 +5414,7 @@
 - Upstream: `packages/chord/test/examples/49-plugin-api/plugins/mixed/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-49-plugin-api-plugins-mixed-server.ts.internal.test`
 
@@ -6358,7 +5422,7 @@
 - Upstream: `packages/chord/test/examples/49-plugin-api/plugins/mixed/server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-49-plugin-api-plugins-panel-package.json.internal.test`
 
@@ -6366,7 +5430,7 @@
 - Upstream: `packages/chord/test/examples/49-plugin-api/plugins/panel/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-49-plugin-api-plugins-panel-server.ts.internal.test`
 
@@ -6374,7 +5438,7 @@
 - Upstream: `packages/chord/test/examples/49-plugin-api/plugins/panel/server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-49-plugin-api-plugins-panel-web.ts.internal.test`
 
@@ -6382,7 +5446,7 @@
 - Upstream: `packages/chord/test/examples/49-plugin-api/plugins/panel/web.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-50-plugin-imports-main.ts.internal.test`
 
@@ -6390,7 +5454,7 @@
 - Upstream: `packages/chord/test/examples/50-plugin-imports/main.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-50-plugin-imports-plugins-notes-contract.ts.internal.test`
 
@@ -6398,7 +5462,7 @@
 - Upstream: `packages/chord/test/examples/50-plugin-imports/plugins/notes/contract.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-50-plugin-imports-plugins-notes-contract.web.ts.internal.test`
 
@@ -6406,7 +5470,7 @@
 - Upstream: `packages/chord/test/examples/50-plugin-imports/plugins/notes/contract.web.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-50-plugin-imports-plugins-notes-package.json.internal.test`
 
@@ -6414,7 +5478,7 @@
 - Upstream: `packages/chord/test/examples/50-plugin-imports/plugins/notes/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-50-plugin-imports-plugins-notes-server.ts.internal.test`
 
@@ -6422,7 +5486,7 @@
 - Upstream: `packages/chord/test/examples/50-plugin-imports/plugins/notes/server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-50-plugin-imports-plugins-peek-package.json.internal.test`
 
@@ -6430,7 +5494,7 @@
 - Upstream: `packages/chord/test/examples/50-plugin-imports/plugins/peek/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-50-plugin-imports-plugins-peek-server.ts.internal.test`
 
@@ -6438,7 +5502,7 @@
 - Upstream: `packages/chord/test/examples/50-plugin-imports/plugins/peek/server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-50-plugin-imports-plugins-peek-view.ts.internal.test`
 
@@ -6446,7 +5510,7 @@
 - Upstream: `packages/chord/test/examples/50-plugin-imports/plugins/peek/view.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-50-plugin-imports-plugins-search-package.json.internal.test`
 
@@ -6454,7 +5518,7 @@
 - Upstream: `packages/chord/test/examples/50-plugin-imports/plugins/search/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-50-plugin-imports-plugins-search-server.ts.internal.test`
 
@@ -6462,7 +5526,7 @@
 - Upstream: `packages/chord/test/examples/50-plugin-imports/plugins/search/server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-50-plugin-imports-plugins-search-web.ts.internal.test`
 
@@ -6470,7 +5534,7 @@
 - Upstream: `packages/chord/test/examples/50-plugin-imports/plugins/search/web.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-50-plugin-imports-user-reach-package.json.internal.test`
 
@@ -6478,7 +5542,7 @@
 - Upstream: `packages/chord/test/examples/50-plugin-imports/user/reach/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-50-plugin-imports-user-reach-server.ts.internal.test`
 
@@ -6486,7 +5550,7 @@
 - Upstream: `packages/chord/test/examples/50-plugin-imports/user/reach/server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-50-plugin-imports-user-stats-env.d.ts.internal.test`
 
@@ -6494,7 +5558,7 @@
 - Upstream: `packages/chord/test/examples/50-plugin-imports/user/stats/env.d.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-50-plugin-imports-user-stats-package.json.internal.test`
 
@@ -6502,7 +5566,7 @@
 - Upstream: `packages/chord/test/examples/50-plugin-imports/user/stats/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-50-plugin-imports-user-stats-server.ts.internal.test`
 
@@ -6510,7 +5574,7 @@
 - Upstream: `packages/chord/test/examples/50-plugin-imports/user/stats/server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-50-plugin-imports-words-package.json.internal.test`
 
@@ -6518,7 +5582,7 @@
 - Upstream: `packages/chord/test/examples/50-plugin-imports/words/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-50-plugin-imports-words-words.ts.internal.test`
 
@@ -6526,7 +5590,7 @@
 - Upstream: `packages/chord/test/examples/50-plugin-imports/words/words.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-51-single-file-plugin-main.ts.internal.test`
 
@@ -6534,7 +5598,7 @@
 - Upstream: `packages/chord/test/examples/51-single-file-plugin/main.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-51-single-file-plugin-plugins-bad.server.ts.internal.test`
 
@@ -6542,7 +5606,7 @@
 - Upstream: `packages/chord/test/examples/51-single-file-plugin/plugins/bad.server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-51-single-file-plugin-plugins-clock.server.ts.internal.test`
 
@@ -6550,7 +5614,7 @@
 - Upstream: `packages/chord/test/examples/51-single-file-plugin/plugins/clock.server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-51-single-file-plugin-plugins-hello.server.ts.internal.test`
 
@@ -6558,7 +5622,7 @@
 - Upstream: `packages/chord/test/examples/51-single-file-plugin/plugins/hello.server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-51-single-file-plugin-plugins-hello.web.ts.internal.test`
 
@@ -6566,7 +5630,7 @@
 - Upstream: `packages/chord/test/examples/51-single-file-plugin/plugins/hello.web.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-51-single-file-plugin-plugins-helper.ts.internal.test`
 
@@ -6574,7 +5638,7 @@
 - Upstream: `packages/chord/test/examples/51-single-file-plugin/plugins/helper.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-52-test-plugin-main.ts.internal.test`
 
@@ -6582,7 +5646,7 @@
 - Upstream: `packages/chord/test/examples/52-test-plugin/main.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-52-test-plugin-plugins-notes-contract.ts.internal.test`
 
@@ -6590,7 +5654,7 @@
 - Upstream: `packages/chord/test/examples/52-test-plugin/plugins/notes/contract.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-52-test-plugin-plugins-notes-package.json.internal.test`
 
@@ -6598,7 +5662,7 @@
 - Upstream: `packages/chord/test/examples/52-test-plugin/plugins/notes/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-52-test-plugin-plugins-stats-package.json.internal.test`
 
@@ -6606,7 +5670,7 @@
 - Upstream: `packages/chord/test/examples/52-test-plugin/plugins/stats/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-52-test-plugin-plugins-stats-worker.ts.internal.test`
 
@@ -6614,7 +5678,7 @@
 - Upstream: `packages/chord/test/examples/52-test-plugin/plugins/stats/worker.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-53-app-app-principals.ts.internal.test`
 
@@ -6622,7 +5686,7 @@
 - Upstream: `packages/chord/test/examples/53-app/app/principals.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-53-app-app-v1-server.ts.internal.test`
 
@@ -6630,7 +5694,7 @@
 - Upstream: `packages/chord/test/examples/53-app/app/v1/server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-53-app-app-v1.ts.internal.test`
 
@@ -6638,7 +5702,7 @@
 - Upstream: `packages/chord/test/examples/53-app/app/v1.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-53-app-client.ts.internal.test`
 
@@ -6646,7 +5710,7 @@
 - Upstream: `packages/chord/test/examples/53-app/client.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-53-app-main.ts.internal.test`
 
@@ -6654,7 +5718,7 @@
 - Upstream: `packages/chord/test/examples/53-app/main.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-53-app-plugins-home-package.json.internal.test`
 
@@ -6662,7 +5726,7 @@
 - Upstream: `packages/chord/test/examples/53-app/plugins/home/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-53-app-plugins-home-server.ts.internal.test`
 
@@ -6670,7 +5734,7 @@
 - Upstream: `packages/chord/test/examples/53-app/plugins/home/server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-53-app-plugins-notes-contract.ts.internal.test`
 
@@ -6678,7 +5742,7 @@
 - Upstream: `packages/chord/test/examples/53-app/plugins/notes/contract.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-53-app-plugins-notes-package.json.internal.test`
 
@@ -6686,7 +5750,7 @@
 - Upstream: `packages/chord/test/examples/53-app/plugins/notes/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-53-app-plugins-notes-server.ts.internal.test`
 
@@ -6694,7 +5758,7 @@
 - Upstream: `packages/chord/test/examples/53-app/plugins/notes/server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-53-app-plugins-notes-worker.ts.internal.test`
 
@@ -6702,7 +5766,7 @@
 - Upstream: `packages/chord/test/examples/53-app/plugins/notes/worker.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-53-app-start.ts.internal.test`
 
@@ -6710,7 +5774,7 @@
 - Upstream: `packages/chord/test/examples/53-app/start.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-53-app-worker.ts.internal.test`
 
@@ -6718,7 +5782,7 @@
 - Upstream: `packages/chord/test/examples/53-app/worker.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-54-app-sign-ins-main.ts.internal.test`
 
@@ -6726,7 +5790,7 @@
 - Upstream: `packages/chord/test/examples/54-app-sign-ins/main.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-55-app-export-main.ts.internal.test`
 
@@ -6734,7 +5798,7 @@
 - Upstream: `packages/chord/test/examples/55-app-export/main.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-56-web-app-principals.ts.internal.test`
 
@@ -6742,7 +5806,7 @@
 - Upstream: `packages/chord/test/examples/56-web/app/principals.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-56-web-app-v1-tui.ts.internal.test`
 
@@ -6750,7 +5814,7 @@
 - Upstream: `packages/chord/test/examples/56-web/app/v1/tui.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-56-web-app-v1-web.ts.internal.test`
 
@@ -6758,7 +5822,7 @@
 - Upstream: `packages/chord/test/examples/56-web/app/v1/web.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-56-web-app-v1.ts.internal.test`
 
@@ -6766,7 +5830,7 @@
 - Upstream: `packages/chord/test/examples/56-web/app/v1.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-56-web-headless.ts.internal.test`
 
@@ -6774,7 +5838,7 @@
 - Upstream: `packages/chord/test/examples/56-web/headless.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-56-web-main.ts.internal.test`
 
@@ -6782,7 +5846,7 @@
 - Upstream: `packages/chord/test/examples/56-web/main.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-56-web-plugins-clock-package.json.internal.test`
 
@@ -6790,7 +5854,7 @@
 - Upstream: `packages/chord/test/examples/56-web/plugins/clock/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-56-web-plugins-clock-web.ts.internal.test`
 
@@ -6798,7 +5862,7 @@
 - Upstream: `packages/chord/test/examples/56-web/plugins/clock/web.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-56-web-plugins-notes-package.json.internal.test`
 
@@ -6806,7 +5870,7 @@
 - Upstream: `packages/chord/test/examples/56-web/plugins/notes/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-56-web-plugins-notes-tui.ts.internal.test`
 
@@ -6814,7 +5878,7 @@
 - Upstream: `packages/chord/test/examples/56-web/plugins/notes/tui.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-56-web-plugins-notes-web.ts.internal.test`
 
@@ -6822,7 +5886,7 @@
 - Upstream: `packages/chord/test/examples/56-web/plugins/notes/web.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-56-web-start.ts.internal.test`
 
@@ -6830,7 +5894,7 @@
 - Upstream: `packages/chord/test/examples/56-web/start.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-56-web-tui-main.ts.internal.test`
 
@@ -6838,7 +5902,7 @@
 - Upstream: `packages/chord/test/examples/56-web/tui/main.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-56-web-web-main.ts.internal.test`
 
@@ -6846,7 +5910,7 @@
 - Upstream: `packages/chord/test/examples/56-web/web/main.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-57-tui-main.ts.internal.test`
 
@@ -6854,7 +5918,7 @@
 - Upstream: `packages/chord/test/examples/57-tui/main.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-57-tui-terminal.ts.internal.test`
 
@@ -6862,7 +5926,7 @@
 - Upstream: `packages/chord/test/examples/57-tui/terminal.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-58-themes-main.ts.internal.test`
 
@@ -6870,7 +5934,7 @@
 - Upstream: `packages/chord/test/examples/58-themes/main.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-58-themes-plugins-midnight.web.ts.internal.test`
 
@@ -6878,7 +5942,7 @@
 - Upstream: `packages/chord/test/examples/58-themes/plugins/midnight.web.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-58-themes-plugins-solarized-package.json.internal.test`
 
@@ -6886,7 +5950,7 @@
 - Upstream: `packages/chord/test/examples/58-themes/plugins/solarized/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-58-themes-plugins-solarized-theme.ts.internal.test`
 
@@ -6894,7 +5958,7 @@
 - Upstream: `packages/chord/test/examples/58-themes/plugins/solarized/theme.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-58-themes-plugins-solarized-tui.ts.internal.test`
 
@@ -6902,7 +5966,7 @@
 - Upstream: `packages/chord/test/examples/58-themes/plugins/solarized/tui.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-58-themes-plugins-solarized-web.ts.internal.test`
 
@@ -6910,7 +5974,7 @@
 - Upstream: `packages/chord/test/examples/58-themes/plugins/solarized/web.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-59-chat-app-principals.ts.internal.test`
 
@@ -6918,7 +5982,7 @@
 - Upstream: `packages/chord/test/examples/59-chat/app/principals.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-59-chat-app-v1-server.ts.internal.test`
 
@@ -6926,7 +5990,7 @@
 - Upstream: `packages/chord/test/examples/59-chat/app/v1/server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-59-chat-app-v1-worker.ts.internal.test`
 
@@ -6934,7 +5998,7 @@
 - Upstream: `packages/chord/test/examples/59-chat/app/v1/worker.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-59-chat-app-v1.ts.internal.test`
 
@@ -6942,7 +6006,7 @@
 - Upstream: `packages/chord/test/examples/59-chat/app/v1.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-59-chat-main.ts.internal.test`
 
@@ -6950,7 +6014,7 @@
 - Upstream: `packages/chord/test/examples/59-chat/main.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-59-chat-plugins-chat-package.json.internal.test`
 
@@ -6958,7 +6022,7 @@
 - Upstream: `packages/chord/test/examples/59-chat/plugins/chat/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-59-chat-plugins-chat-server.ts.internal.test`
 
@@ -6966,7 +6030,7 @@
 - Upstream: `packages/chord/test/examples/59-chat/plugins/chat/server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-59-chat-plugins-chat-worker.ts.internal.test`
 
@@ -6974,7 +6038,7 @@
 - Upstream: `packages/chord/test/examples/59-chat/plugins/chat/worker.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-59-chat-plugins-login.server.ts.internal.test`
 
@@ -6982,7 +6046,7 @@
 - Upstream: `packages/chord/test/examples/59-chat/plugins/login.server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-59-chat-start.ts.internal.test`
 
@@ -6990,7 +6054,7 @@
 - Upstream: `packages/chord/test/examples/59-chat/start.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-59-chat-tui-main.ts.internal.test`
 
@@ -6998,7 +6062,7 @@
 - Upstream: `packages/chord/test/examples/59-chat/tui/main.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-59-chat-web-main.ts.internal.test`
 
@@ -7006,7 +6070,7 @@
 - Upstream: `packages/chord/test/examples/59-chat/web/main.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-59-chat-web-style.css.internal.test`
 
@@ -7014,7 +6078,7 @@
 - Upstream: `packages/chord/test/examples/59-chat/web/style.css`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-59-chat-worker.ts.internal.test`
 
@@ -7022,7 +6086,7 @@
 - Upstream: `packages/chord/test/examples/59-chat/worker.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-60-session-sync-main.ts.internal.test`
 
@@ -7030,7 +6094,7 @@
 - Upstream: `packages/chord/test/examples/60-session-sync/main.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-60-session-sync-radius.ts.internal.test`
 
@@ -7038,7 +6102,7 @@
 - Upstream: `packages/chord/test/examples/60-session-sync/radius.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-60-session-sync-session.ts.internal.test`
 
@@ -7046,7 +6110,7 @@
 - Upstream: `packages/chord/test/examples/60-session-sync/session.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-60-session-sync-sync.ts.internal.test`
 
@@ -7054,7 +6118,7 @@
 - Upstream: `packages/chord/test/examples/60-session-sync/sync.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-61-tutorial-later-harbor-package.json.internal.test`
 
@@ -7062,7 +6126,7 @@
 - Upstream: `packages/chord/test/examples/61-tutorial/later/harbor/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-61-tutorial-later-harbor-theme.ts.internal.test`
 
@@ -7070,7 +6134,7 @@
 - Upstream: `packages/chord/test/examples/61-tutorial/later/harbor/theme.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-61-tutorial-later-harbor-tui.ts.internal.test`
 
@@ -7078,7 +6142,7 @@
 - Upstream: `packages/chord/test/examples/61-tutorial/later/harbor/tui.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-61-tutorial-later-harbor-web.ts.internal.test`
 
@@ -7086,7 +6150,7 @@
 - Upstream: `packages/chord/test/examples/61-tutorial/later/harbor/web.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-61-tutorial-main.ts.internal.test`
 
@@ -7094,7 +6158,7 @@
 - Upstream: `packages/chord/test/examples/61-tutorial/main.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-61-tutorial-package.json.internal.test`
 
@@ -7102,7 +6166,7 @@
 - Upstream: `packages/chord/test/examples/61-tutorial/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-61-tutorial-plugins-french-fr.ts.internal.test`
 
@@ -7110,7 +6174,7 @@
 - Upstream: `packages/chord/test/examples/61-tutorial/plugins/french/fr.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-61-tutorial-plugins-french-package.json.internal.test`
 
@@ -7118,7 +6182,7 @@
 - Upstream: `packages/chord/test/examples/61-tutorial/plugins/french/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-61-tutorial-plugins-french-tui.ts.internal.test`
 
@@ -7126,7 +6190,7 @@
 - Upstream: `packages/chord/test/examples/61-tutorial/plugins/french/tui.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-61-tutorial-plugins-french-web.ts.internal.test`
 
@@ -7134,7 +6198,7 @@
 - Upstream: `packages/chord/test/examples/61-tutorial/plugins/french/web.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-61-tutorial-plugins-lists-contract.ts.internal.test`
 
@@ -7142,7 +6206,7 @@
 - Upstream: `packages/chord/test/examples/61-tutorial/plugins/lists/contract.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-61-tutorial-plugins-lists-lists.css.internal.test`
 
@@ -7150,7 +6214,7 @@
 - Upstream: `packages/chord/test/examples/61-tutorial/plugins/lists/lists.css`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-61-tutorial-plugins-lists-messages.ts.internal.test`
 
@@ -7158,7 +6222,7 @@
 - Upstream: `packages/chord/test/examples/61-tutorial/plugins/lists/messages.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-61-tutorial-plugins-lists-package.json.internal.test`
 
@@ -7166,7 +6230,7 @@
 - Upstream: `packages/chord/test/examples/61-tutorial/plugins/lists/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-61-tutorial-plugins-lists-server.ts.internal.test`
 
@@ -7174,7 +6238,7 @@
 - Upstream: `packages/chord/test/examples/61-tutorial/plugins/lists/server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-61-tutorial-plugins-lists-tui.ts.internal.test`
 
@@ -7182,7 +6246,7 @@
 - Upstream: `packages/chord/test/examples/61-tutorial/plugins/lists/tui.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-61-tutorial-plugins-lists-web.ts.internal.test`
 
@@ -7190,7 +6254,7 @@
 - Upstream: `packages/chord/test/examples/61-tutorial/plugins/lists/web.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-61-tutorial-plugins-lists-worker.test.ts.internal.test`
 
@@ -7198,7 +6262,7 @@
 - Upstream: `packages/chord/test/examples/61-tutorial/plugins/lists/worker.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-61-tutorial-plugins-lists-worker.ts.internal.test`
 
@@ -7206,7 +6270,7 @@
 - Upstream: `packages/chord/test/examples/61-tutorial/plugins/lists/worker.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-61-tutorial-plugins-login.server.ts.internal.test`
 
@@ -7214,7 +6278,7 @@
 - Upstream: `packages/chord/test/examples/61-tutorial/plugins/login.server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-61-tutorial-plugins-traces-clock.test.ts.internal.test`
 
@@ -7222,7 +6286,7 @@
 - Upstream: `packages/chord/test/examples/61-tutorial/plugins/traces/clock.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-61-tutorial-plugins-traces-clock.ts.internal.test`
 
@@ -7230,7 +6294,7 @@
 - Upstream: `packages/chord/test/examples/61-tutorial/plugins/traces/clock.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-61-tutorial-plugins-traces-package.json.internal.test`
 
@@ -7238,7 +6302,7 @@
 - Upstream: `packages/chord/test/examples/61-tutorial/plugins/traces/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-61-tutorial-plugins-traces-server.ts.internal.test`
 
@@ -7246,7 +6310,7 @@
 - Upstream: `packages/chord/test/examples/61-tutorial/plugins/traces/server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-61-tutorial-screenshots.ts.internal.test`
 
@@ -7254,7 +6318,7 @@
 - Upstream: `packages/chord/test/examples/61-tutorial/screenshots.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-61-tutorial-src-api-v1-index.ts.internal.test`
 
@@ -7262,7 +6326,7 @@
 - Upstream: `packages/chord/test/examples/61-tutorial/src/api/v1/index.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-61-tutorial-src-api-v1-server.ts.internal.test`
 
@@ -7270,7 +6334,7 @@
 - Upstream: `packages/chord/test/examples/61-tutorial/src/api/v1/server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-61-tutorial-src-api-v1-tui.ts.internal.test`
 
@@ -7278,7 +6342,7 @@
 - Upstream: `packages/chord/test/examples/61-tutorial/src/api/v1/tui.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-61-tutorial-src-api-v1-web.ts.internal.test`
 
@@ -7286,7 +6350,7 @@
 - Upstream: `packages/chord/test/examples/61-tutorial/src/api/v1/web.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-61-tutorial-src-principals.ts.internal.test`
 
@@ -7294,7 +6358,7 @@
 - Upstream: `packages/chord/test/examples/61-tutorial/src/principals.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-61-tutorial-src-telemetry.ts.internal.test`
 
@@ -7302,7 +6366,7 @@
 - Upstream: `packages/chord/test/examples/61-tutorial/src/telemetry.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-61-tutorial-src-tui-main.ts.internal.test`
 
@@ -7310,7 +6374,7 @@
 - Upstream: `packages/chord/test/examples/61-tutorial/src/tui/main.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-61-tutorial-src-web-main.ts.internal.test`
 
@@ -7318,7 +6382,7 @@
 - Upstream: `packages/chord/test/examples/61-tutorial/src/web/main.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-61-tutorial-src-web-style.css.internal.test`
 
@@ -7326,7 +6390,7 @@
 - Upstream: `packages/chord/test/examples/61-tutorial/src/web/style.css`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-61-tutorial-src-web-traces.ts.internal.test`
 
@@ -7334,7 +6398,7 @@
 - Upstream: `packages/chord/test/examples/61-tutorial/src/web/traces.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-61-tutorial-start.ts.internal.test`
 
@@ -7342,7 +6406,7 @@
 - Upstream: `packages/chord/test/examples/61-tutorial/start.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-61-tutorial-trace.ts.internal.test`
 
@@ -7350,7 +6414,7 @@
 - Upstream: `packages/chord/test/examples/61-tutorial/trace.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-61-tutorial-tutorial.test.ts.internal.test`
 
@@ -7358,7 +6422,7 @@
 - Upstream: `packages/chord/test/examples/61-tutorial/tutorial.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-61-tutorial-worker.ts.internal.test`
 
@@ -7366,7 +6430,7 @@
 - Upstream: `packages/chord/test/examples/61-tutorial/worker.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-62-telemetry-app-principals.ts.internal.test`
 
@@ -7374,7 +6438,7 @@
 - Upstream: `packages/chord/test/examples/62-telemetry/app/principals.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-62-telemetry-app-v1.ts.internal.test`
 
@@ -7382,7 +6446,7 @@
 - Upstream: `packages/chord/test/examples/62-telemetry/app/v1.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-62-telemetry-main.ts.internal.test`
 
@@ -7390,7 +6454,7 @@
 - Upstream: `packages/chord/test/examples/62-telemetry/main.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-62-telemetry-plugins-tally-package.json.internal.test`
 
@@ -7398,7 +6462,7 @@
 - Upstream: `packages/chord/test/examples/62-telemetry/plugins/tally/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-62-telemetry-plugins-tally-worker.ts.internal.test`
 
@@ -7406,7 +6470,7 @@
 - Upstream: `packages/chord/test/examples/62-telemetry/plugins/tally/worker.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-62-telemetry-start.ts.internal.test`
 
@@ -7414,7 +6478,7 @@
 - Upstream: `packages/chord/test/examples/62-telemetry/start.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-62-telemetry-worker.ts.internal.test`
 
@@ -7422,7 +6486,7 @@
 - Upstream: `packages/chord/test/examples/62-telemetry/worker.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-63-optimistic-answers.ts.internal.test`
 
@@ -7430,7 +6494,7 @@
 - Upstream: `packages/chord/test/examples/63-optimistic-answers.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-64-old-work.ts.internal.test`
 
@@ -7438,7 +6502,7 @@
 - Upstream: `packages/chord/test/examples/64-old-work.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-65-files.ts.internal.test`
 
@@ -7446,7 +6510,7 @@
 - Upstream: `packages/chord/test/examples/65-files.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-66-host-data.ts.internal.test`
 
@@ -7454,7 +6518,7 @@
 - Upstream: `packages/chord/test/examples/66-host-data.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-66-websocket-limits.ts.internal.test`
 
@@ -7462,7 +6526,7 @@
 - Upstream: `packages/chord/test/examples/66-websocket-limits.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-67-events.ts.internal.test`
 
@@ -7470,7 +6534,7 @@
 - Upstream: `packages/chord/test/examples/67-events.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-68-shared-holds.ts.internal.test`
 
@@ -7478,7 +6542,7 @@
 - Upstream: `packages/chord/test/examples/68-shared-holds.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-69-admission.ts.internal.test`
 
@@ -7486,7 +6550,7 @@
 - Upstream: `packages/chord/test/examples/69-admission.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-70-named-queries.ts.internal.test`
 
@@ -7494,7 +6558,7 @@
 - Upstream: `packages/chord/test/examples/70-named-queries.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-71-lists.ts.internal.test`
 
@@ -7502,7 +6566,7 @@
 - Upstream: `packages/chord/test/examples/71-lists.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-72-exists-and-joins.ts.internal.test`
 
@@ -7510,7 +6574,7 @@
 - Upstream: `packages/chord/test/examples/72-exists-and-joins.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-76-worker-reports-contract.ts.internal.test`
 
@@ -7518,7 +6582,7 @@
 - Upstream: `packages/chord/test/examples/76-worker-reports/contract.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-76-worker-reports-main.ts.internal.test`
 
@@ -7526,7 +6590,7 @@
 - Upstream: `packages/chord/test/examples/76-worker-reports/main.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-examples-76-worker-reports-worker.ts.internal.test`
 
@@ -7534,7 +6598,7 @@
 - Upstream: `packages/chord/test/examples/76-worker-reports/worker.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-host-activity.test.ts.internal.test`
 
@@ -7542,7 +6606,7 @@
 - Upstream: `packages/chord/test/host/activity.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-host-adapted.test.ts.internal.test`
 
@@ -7550,7 +6614,7 @@
 - Upstream: `packages/chord/test/host/adapted.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-host-admission.test.ts.internal.test`
 
@@ -7558,7 +6622,7 @@
 - Upstream: `packages/chord/test/host/admission.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-host-attempt.test.ts.internal.test`
 
@@ -7566,7 +6630,7 @@
 - Upstream: `packages/chord/test/host/attempt.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-host-backoff.test.ts.internal.test`
 
@@ -7574,7 +6638,7 @@
 - Upstream: `packages/chord/test/host/backoff.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-host-ctx.test.ts.internal.test`
 
@@ -7582,7 +6646,7 @@
 - Upstream: `packages/chord/test/host/ctx.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-host-deadline.test.ts.internal.test`
 
@@ -7590,7 +6654,7 @@
 - Upstream: `packages/chord/test/host/deadline.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-host-dependencies.test.ts.internal.test`
 
@@ -7598,7 +6662,7 @@
 - Upstream: `packages/chord/test/host/dependencies.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-host-events.test.ts.internal.test`
 
@@ -7606,7 +6670,7 @@
 - Upstream: `packages/chord/test/host/events.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-host-facet.test.ts.internal.test`
 
@@ -7614,7 +6678,7 @@
 - Upstream: `packages/chord/test/host/facet.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-host-follow.test.ts.internal.test`
 
@@ -7622,7 +6686,7 @@
 - Upstream: `packages/chord/test/host/follow.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-host-host-data.test.ts.internal.test`
 
@@ -7630,7 +6694,7 @@
 - Upstream: `packages/chord/test/host/host-data.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-host-host.test.ts.internal.test`
 
@@ -7638,7 +6702,7 @@
 - Upstream: `packages/chord/test/host/host.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-host-list.test.ts.internal.test`
 
@@ -7646,7 +6710,7 @@
 - Upstream: `packages/chord/test/host/list.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-host-members.test.ts.internal.test`
 
@@ -7654,7 +6718,7 @@
 - Upstream: `packages/chord/test/host/members.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-host-named-query.test.ts.internal.test`
 
@@ -7662,7 +6726,7 @@
 - Upstream: `packages/chord/test/host/named-query.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-host-native.test.ts.internal.test`
 
@@ -7670,7 +6734,7 @@
 - Upstream: `packages/chord/test/host/native.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-host-object.test.ts.internal.test`
 
@@ -7678,7 +6742,7 @@
 - Upstream: `packages/chord/test/host/object.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-host-old-work.test.ts.internal.test`
 
@@ -7686,7 +6750,7 @@
 - Upstream: `packages/chord/test/host/old-work.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-host-parked.test.ts.internal.test`
 
@@ -7694,7 +6758,7 @@
 - Upstream: `packages/chord/test/host/parked.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-host-presence.test.ts.internal.test`
 
@@ -7702,7 +6766,7 @@
 - Upstream: `packages/chord/test/host/presence.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-host-query-reader.test.ts.internal.test`
 
@@ -7710,7 +6774,7 @@
 - Upstream: `packages/chord/test/host/query-reader.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-host-read-declarations.test.ts.internal.test`
 
@@ -7718,7 +6782,7 @@
 - Upstream: `packages/chord/test/host/read-declarations.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-host-readiness.test.ts.internal.test`
 
@@ -7726,7 +6790,7 @@
 - Upstream: `packages/chord/test/host/readiness.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-host-ref-state.test.ts.internal.test`
 
@@ -7734,7 +6798,7 @@
 - Upstream: `packages/chord/test/host/ref-state.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-host-reference-events.test.ts.internal.test`
 
@@ -7742,7 +6806,7 @@
 - Upstream: `packages/chord/test/host/reference-events.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-host-reference-keys.test.ts.internal.test`
 
@@ -7750,7 +6814,7 @@
 - Upstream: `packages/chord/test/host/reference-keys.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-host-reference-source.test.ts.internal.test`
 
@@ -7758,7 +6822,7 @@
 - Upstream: `packages/chord/test/host/reference-source.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-host-reference.test.ts.internal.test`
 
@@ -7766,7 +6830,7 @@
 - Upstream: `packages/chord/test/host/reference.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-host-reload-cycle.test.ts.internal.test`
 
@@ -7774,7 +6838,7 @@
 - Upstream: `packages/chord/test/host/reload-cycle.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-host-retry-on.test.ts.internal.test`
 
@@ -7782,7 +6846,7 @@
 - Upstream: `packages/chord/test/host/retry-on.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-host-revocation.test.ts.internal.test`
 
@@ -7790,7 +6854,7 @@
 - Upstream: `packages/chord/test/host/revocation.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-host-root.test.ts.internal.test`
 
@@ -7798,7 +6862,7 @@
 - Upstream: `packages/chord/test/host/root.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-host-route-admission.test.ts.internal.test`
 
@@ -7806,7 +6870,7 @@
 - Upstream: `packages/chord/test/host/route-admission.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-host-route.test.ts.internal.test`
 
@@ -7814,7 +6878,7 @@
 - Upstream: `packages/chord/test/host/route.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-host-routines.test.ts.internal.test`
 
@@ -7822,7 +6886,7 @@
 - Upstream: `packages/chord/test/host/routines.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-host-sleep.test.ts.internal.test`
 
@@ -7830,7 +6894,7 @@
 - Upstream: `packages/chord/test/host/sleep.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-host-staging.test.ts.internal.test`
 
@@ -7838,7 +6902,7 @@
 - Upstream: `packages/chord/test/host/staging.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-host-tiling.test.ts.internal.test`
 
@@ -7846,7 +6910,7 @@
 - Upstream: `packages/chord/test/host/tiling.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-host-unbound-clock.test.ts.internal.test`
 
@@ -7854,7 +6918,7 @@
 - Upstream: `packages/chord/test/host/unbound-clock.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-host-unbound.test.ts.internal.test`
 
@@ -7862,7 +6926,7 @@
 - Upstream: `packages/chord/test/host/unbound.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-jobs-definition.test.ts.internal.test`
 
@@ -7870,7 +6934,7 @@
 - Upstream: `packages/chord/test/jobs/definition.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-jobs-job.test.ts.internal.test`
 
@@ -7878,7 +6942,7 @@
 - Upstream: `packages/chord/test/jobs/job.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-jobs-persisted.test.ts.internal.test`
 
@@ -7886,7 +6950,7 @@
 - Upstream: `packages/chord/test/jobs/persisted.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-jobs-records.test.ts.internal.test`
 
@@ -7894,7 +6958,7 @@
 - Upstream: `packages/chord/test/jobs/records.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-jobs-run.test.ts.internal.test`
 
@@ -7902,7 +6966,7 @@
 - Upstream: `packages/chord/test/jobs/run.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-jobs-running.test.ts.internal.test`
 
@@ -7910,7 +6974,7 @@
 - Upstream: `packages/chord/test/jobs/running.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-json.test.ts.internal.test`
 
@@ -7918,7 +6982,7 @@
 - Upstream: `packages/chord/test/json.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-link-channel.test.ts.internal.test`
 
@@ -7926,7 +6990,7 @@
 - Upstream: `packages/chord/test/link/channel.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-link-errors.test.ts.internal.test`
 
@@ -7934,7 +6998,7 @@
 - Upstream: `packages/chord/test/link/errors.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-link-fixtures-ipc-echo.ts.internal.test`
 
@@ -7942,7 +7006,7 @@
 - Upstream: `packages/chord/test/link/fixtures/ipc-echo.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-link-ipc.test.ts.internal.test`
 
@@ -7950,7 +7014,7 @@
 - Upstream: `packages/chord/test/link/ipc.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-link-link.test.ts.internal.test`
 
@@ -7958,7 +7022,7 @@
 - Upstream: `packages/chord/test/link/link.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-link-message.test.ts.internal.test`
 
@@ -7966,7 +7030,7 @@
 - Upstream: `packages/chord/test/link/message.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-link-part.test.ts.internal.test`
 
@@ -7974,7 +7038,7 @@
 - Upstream: `packages/chord/test/link/part.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-link-values.test.ts.internal.test`
 
@@ -7982,7 +7046,7 @@
 - Upstream: `packages/chord/test/link/values.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-link-websocket.test.ts.internal.test`
 
@@ -7990,7 +7054,7 @@
 - Upstream: `packages/chord/test/link/websocket.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-app-app.test.ts.internal.test`
 
@@ -7998,7 +7062,7 @@
 - Upstream: `packages/chord/test/node/app/app.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-app-archive.test.ts.internal.test`
 
@@ -8006,7 +7070,7 @@
 - Upstream: `packages/chord/test/node/app/archive.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-app-blobs.test.ts.internal.test`
 
@@ -8014,7 +7078,7 @@
 - Upstream: `packages/chord/test/node/app/blobs.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-app-ephemeral-sign-ins.test.ts.internal.test`
 
@@ -8022,7 +7086,7 @@
 - Upstream: `packages/chord/test/node/app/ephemeral-sign-ins.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-app-ephemeral.test.ts.internal.test`
 
@@ -8030,7 +7094,7 @@
 - Upstream: `packages/chord/test/node/app/ephemeral.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-app-files-copy.test.ts.internal.test`
 
@@ -8038,7 +7102,7 @@
 - Upstream: `packages/chord/test/node/app/files-copy.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-app-files-index.test.ts.internal.test`
 
@@ -8046,7 +7110,7 @@
 - Upstream: `packages/chord/test/node/app/files-index.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-app-files.test.ts.internal.test`
 
@@ -8054,7 +7118,7 @@
 - Upstream: `packages/chord/test/node/app/files.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-app-folder-views.test.ts.internal.test`
 
@@ -8062,7 +7126,7 @@
 - Upstream: `packages/chord/test/node/app/folder-views.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-app-info.test.ts.internal.test`
 
@@ -8070,7 +7134,7 @@
 - Upstream: `packages/chord/test/node/app/info.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-app-invite.test.ts.internal.test`
 
@@ -8078,7 +7142,7 @@
 - Upstream: `packages/chord/test/node/app/invite.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-app-layout.test.ts.internal.test`
 
@@ -8086,7 +7150,7 @@
 - Upstream: `packages/chord/test/node/app/layout.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-app-owner.test.ts.internal.test`
 
@@ -8094,7 +7158,7 @@
 - Upstream: `packages/chord/test/node/app/owner.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-app-pairing.test.ts.internal.test`
 
@@ -8102,7 +7166,7 @@
 - Upstream: `packages/chord/test/node/app/pairing.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-app-secrets.test.ts.internal.test`
 
@@ -8110,7 +7174,7 @@
 - Upstream: `packages/chord/test/node/app/secrets.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-app-sign-ins.test.ts.internal.test`
 
@@ -8118,7 +7182,7 @@
 - Upstream: `packages/chord/test/node/app/sign-ins.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-app-support.ts.internal.test`
 
@@ -8126,7 +7190,7 @@
 - Upstream: `packages/chord/test/node/app/support.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-app-tar.test.ts.internal.test`
 
@@ -8134,7 +7198,7 @@
 - Upstream: `packages/chord/test/node/app/tar.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-app-uploads.test.ts.internal.test`
 
@@ -8142,7 +7206,7 @@
 - Upstream: `packages/chord/test/node/app/uploads.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-app-users.test.ts.internal.test`
 
@@ -8150,7 +7214,7 @@
 - Upstream: `packages/chord/test/node/app/users.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-app-worker.test.ts.internal.test`
 
@@ -8158,7 +7222,7 @@
 - Upstream: `packages/chord/test/node/app/worker.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-compression.test.ts.internal.test`
 
@@ -8166,7 +7230,7 @@
 - Upstream: `packages/chord/test/node/compression.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-fixtures-app-worker.ts.internal.test`
 
@@ -8174,7 +7238,7 @@
 - Upstream: `packages/chord/test/node/fixtures/app/worker.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-fixtures-esm-host.ts.internal.test`
 
@@ -8182,7 +7246,7 @@
 - Upstream: `packages/chord/test/node/fixtures/esm-host.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-fixtures-plugins-contracts-contract.ts.internal.test`
 
@@ -8190,7 +7254,7 @@
 - Upstream: `packages/chord/test/node/fixtures/plugins/contracts/contract.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-fixtures-plugins-contracts-package.json.internal.test`
 
@@ -8198,7 +7262,7 @@
 - Upstream: `packages/chord/test/node/fixtures/plugins/contracts/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-fixtures-plugins-files-assets-data.txt.internal.test`
 
@@ -8206,7 +7270,7 @@
 - Upstream: `packages/chord/test/node/fixtures/plugins/files/assets/data.txt`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-fixtures-plugins-files-package.json.internal.test`
 
@@ -8214,7 +7278,7 @@
 - Upstream: `packages/chord/test/node/fixtures/plugins/files/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-fixtures-plugins-files-worker.ts.internal.test`
 
@@ -8222,7 +7286,7 @@
 - Upstream: `packages/chord/test/node/fixtures/plugins/files/worker.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-fixtures-plugins-notes-label.ts.internal.test`
 
@@ -8230,7 +7294,7 @@
 - Upstream: `packages/chord/test/node/fixtures/plugins/notes/label.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-fixtures-plugins-notes-package.json.internal.test`
 
@@ -8238,7 +7302,7 @@
 - Upstream: `packages/chord/test/node/fixtures/plugins/notes/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-fixtures-plugins-notes-server.ts.internal.test`
 
@@ -8246,7 +7310,7 @@
 - Upstream: `packages/chord/test/node/fixtures/plugins/notes/server.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-fixtures-plugins-notes-worker.ts.internal.test`
 
@@ -8254,7 +7318,7 @@
 - Upstream: `packages/chord/test/node/fixtures/plugins/notes/worker.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-fixtures-reload-app.ts.internal.test`
 
@@ -8262,7 +7326,7 @@
 - Upstream: `packages/chord/test/node/fixtures/reload/app.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-fixtures-reload-entry.ts.internal.test`
 
@@ -8270,7 +7334,7 @@
 - Upstream: `packages/chord/test/node/fixtures/reload/entry.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-fixtures-reload-main.ts.internal.test`
 
@@ -8278,7 +7342,7 @@
 - Upstream: `packages/chord/test/node/fixtures/reload/main.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-fixtures-reload-plugins.ts.internal.test`
 
@@ -8286,7 +7350,7 @@
 - Upstream: `packages/chord/test/node/fixtures/reload/plugins.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-fixtures-reload-web-api.ts.internal.test`
 
@@ -8294,7 +7358,7 @@
 - Upstream: `packages/chord/test/node/fixtures/reload/web-api.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-fixtures-tui-api.ts.internal.test`
 
@@ -8302,7 +7366,7 @@
 - Upstream: `packages/chord/test/node/fixtures/tui/api.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-fixtures-tui-drive.ts.internal.test`
 
@@ -8310,7 +7374,7 @@
 - Upstream: `packages/chord/test/node/fixtures/tui/drive.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-fixtures-tui-escapes.ts.internal.test`
 
@@ -8318,7 +7382,7 @@
 - Upstream: `packages/chord/test/node/fixtures/tui/escapes.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-fixtures-tui-main.ts.internal.test`
 
@@ -8326,7 +7390,7 @@
 - Upstream: `packages/chord/test/node/fixtures/tui/main.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-fixtures-tui-os-layer.ts.internal.test`
 
@@ -8334,7 +7398,7 @@
 - Upstream: `packages/chord/test/node/fixtures/tui/os-layer.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-fixtures-tui-sandbox-run.ts.internal.test`
 
@@ -8342,7 +7406,7 @@
 - Upstream: `packages/chord/test/node/fixtures/tui/sandbox-run.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-fixtures-web-api.ts.internal.test`
 
@@ -8350,7 +7414,7 @@
 - Upstream: `packages/chord/test/node/fixtures/web/api.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-fixtures-web-main.ts.internal.test`
 
@@ -8358,7 +7422,7 @@
 - Upstream: `packages/chord/test/node/fixtures/web/main.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-fixtures-web-telemetry.ts.internal.test`
 
@@ -8366,7 +7430,7 @@
 - Upstream: `packages/chord/test/node/fixtures/web/telemetry.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-fixtures-workers-child.ts.internal.test`
 
@@ -8374,7 +7438,7 @@
 - Upstream: `packages/chord/test/node/fixtures/workers/child.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-fixtures-workers-control.ts.internal.test`
 
@@ -8382,7 +7446,7 @@
 - Upstream: `packages/chord/test/node/fixtures/workers/control.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-fixtures-workers-lazy-close.ts.internal.test`
 
@@ -8390,7 +7454,7 @@
 - Upstream: `packages/chord/test/node/fixtures/workers/lazy-close.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-fixtures-workers-plugins-notes-label.ts.internal.test`
 
@@ -8398,7 +7462,7 @@
 - Upstream: `packages/chord/test/node/fixtures/workers/plugins/notes/label.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-fixtures-workers-plugins-notes-package.json.internal.test`
 
@@ -8406,7 +7470,7 @@
 - Upstream: `packages/chord/test/node/fixtures/workers/plugins/notes/package.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-fixtures-workers-plugins-notes-worker.ts.internal.test`
 
@@ -8414,7 +7478,7 @@
 - Upstream: `packages/chord/test/node/fixtures/workers/plugins/notes/worker.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-fixtures-workers-worker.ts.internal.test`
 
@@ -8422,7 +7486,7 @@
 - Upstream: `packages/chord/test/node/fixtures/workers/worker.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-http-admission.test.ts.internal.test`
 
@@ -8430,7 +7494,7 @@
 - Upstream: `packages/chord/test/node/http/admission.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-http-authenticate.test.ts.internal.test`
 
@@ -8438,7 +7502,7 @@
 - Upstream: `packages/chord/test/node/http/authenticate.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-http-cookies.test.ts.internal.test`
 
@@ -8446,7 +7510,7 @@
 - Upstream: `packages/chord/test/node/http/cookies.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-http-file.test.ts.internal.test`
 
@@ -8454,7 +7518,7 @@
 - Upstream: `packages/chord/test/node/http/file.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-http-headers.test.ts.internal.test`
 
@@ -8462,7 +7526,7 @@
 - Upstream: `packages/chord/test/node/http/headers.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-http-http.test.ts.internal.test`
 
@@ -8470,7 +7534,7 @@
 - Upstream: `packages/chord/test/node/http/http.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-http-node.test.ts.internal.test`
 
@@ -8478,7 +7542,7 @@
 - Upstream: `packages/chord/test/node/http/node.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-http-request.test.ts.internal.test`
 
@@ -8486,7 +7550,7 @@
 - Upstream: `packages/chord/test/node/http/request.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-http-response.test.ts.internal.test`
 
@@ -8494,7 +7558,7 @@
 - Upstream: `packages/chord/test/node/http/response.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-http-router.test.ts.internal.test`
 
@@ -8502,7 +7566,7 @@
 - Upstream: `packages/chord/test/node/http/router.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-http-support.ts.internal.test`
 
@@ -8510,7 +7574,7 @@
 - Upstream: `packages/chord/test/node/http/support.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-http-upgrades.test.ts.internal.test`
 
@@ -8518,7 +7582,7 @@
 - Upstream: `packages/chord/test/node/http/upgrades.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-plugins-base-inputs.test.ts.internal.test`
 
@@ -8526,7 +7590,7 @@
 - Upstream: `packages/chord/test/node/plugins/base-inputs.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-plugins-build.test.ts.internal.test`
 
@@ -8534,7 +7598,7 @@
 - Upstream: `packages/chord/test/node/plugins/build.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-plugins-discover.test.ts.internal.test`
 
@@ -8542,7 +7606,7 @@
 - Upstream: `packages/chord/test/node/plugins/discover.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-plugins-evaluate.test.ts.internal.test`
 
@@ -8550,7 +7614,7 @@
 - Upstream: `packages/chord/test/node/plugins/evaluate.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-plugins-install.test.ts.internal.test`
 
@@ -8558,7 +7622,7 @@
 - Upstream: `packages/chord/test/node/plugins/install.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-plugins-plugins.test.ts.internal.test`
 
@@ -8566,7 +7630,7 @@
 - Upstream: `packages/chord/test/node/plugins/plugins.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-plugins-runtime.test.ts.internal.test`
 
@@ -8574,7 +7638,7 @@
 - Upstream: `packages/chord/test/node/plugins/runtime.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-plugins-stack.test.ts.internal.test`
 
@@ -8582,7 +7646,7 @@
 - Upstream: `packages/chord/test/node/plugins/stack.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-plugins-support.ts.internal.test`
 
@@ -8590,7 +7654,7 @@
 - Upstream: `packages/chord/test/node/plugins/support.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-plugins-testing.test.ts.internal.test`
 
@@ -8598,7 +7662,7 @@
 - Upstream: `packages/chord/test/node/plugins/testing.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-plugins-watcher.test.ts.internal.test`
 
@@ -8606,7 +7670,7 @@
 - Upstream: `packages/chord/test/node/plugins/watcher.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-react-hooks.test.ts.internal.test`
 
@@ -8614,7 +7678,7 @@
 - Upstream: `packages/chord/test/node/react/hooks.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-react-stores.test.ts.internal.test`
 
@@ -8622,7 +7686,7 @@
 - Upstream: `packages/chord/test/node/react/stores.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-reload-base.test.ts.internal.test`
 
@@ -8630,7 +7694,7 @@
 - Upstream: `packages/chord/test/node/reload/base.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-reload-contracts.test.ts.internal.test`
 
@@ -8638,7 +7702,7 @@
 - Upstream: `packages/chord/test/node/reload/contracts.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-reload-failed.test.ts.internal.test`
 
@@ -8646,7 +7710,7 @@
 - Upstream: `packages/chord/test/node/reload/failed.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-reload-jobs.test.ts.internal.test`
 
@@ -8654,7 +7718,7 @@
 - Upstream: `packages/chord/test/node/reload/jobs.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-reload-pure.test.ts.internal.test`
 
@@ -8662,7 +7726,7 @@
 - Upstream: `packages/chord/test/node/reload/pure.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-reload-restart.test.ts.internal.test`
 
@@ -8670,7 +7734,7 @@
 - Upstream: `packages/chord/test/node/reload/restart.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-reload-rollout.test.ts.internal.test`
 
@@ -8678,7 +7742,7 @@
 - Upstream: `packages/chord/test/node/reload/rollout.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-reload-web.test.ts.internal.test`
 
@@ -8686,7 +7750,7 @@
 - Upstream: `packages/chord/test/node/reload/web.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-surfaces-bundle.test.ts.internal.test`
 
@@ -8694,7 +7758,7 @@
 - Upstream: `packages/chord/test/node/surfaces/bundle.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-surfaces-surface-build.test.ts.internal.test`
 
@@ -8702,7 +7766,7 @@
 - Upstream: `packages/chord/test/node/surfaces/surface-build.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-surfaces-tui.test.ts.internal.test`
 
@@ -8710,7 +7774,7 @@
 - Upstream: `packages/chord/test/node/surfaces/tui.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-surfaces-web.test.ts.internal.test`
 
@@ -8718,7 +7782,7 @@
 - Upstream: `packages/chord/test/node/surfaces/web.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-tui-actions.test.ts.internal.test`
 
@@ -8726,7 +7790,7 @@
 - Upstream: `packages/chord/test/node/tui/actions.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-tui-credentials.test.ts.internal.test`
 
@@ -8734,7 +7798,7 @@
 - Upstream: `packages/chord/test/node/tui/credentials.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-tui-filter.test.ts.internal.test`
 
@@ -8742,7 +7806,7 @@
 - Upstream: `packages/chord/test/node/tui/filter.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-tui-launcher.test.ts.internal.test`
 
@@ -8750,7 +7814,7 @@
 - Upstream: `packages/chord/test/node/tui/launcher.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-tui-pipe.test.ts.internal.test`
 
@@ -8758,7 +7822,7 @@
 - Upstream: `packages/chord/test/node/tui/pipe.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-tui-sandbox.test.ts.internal.test`
 
@@ -8766,7 +7830,7 @@
 - Upstream: `packages/chord/test/node/tui/sandbox.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-tui-support.ts.internal.test`
 
@@ -8774,7 +7838,7 @@
 - Upstream: `packages/chord/test/node/tui/support.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-web-browser.ts.internal.test`
 
@@ -8782,7 +7846,7 @@
 - Upstream: `packages/chord/test/node/web/browser.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-web-language.test.ts.internal.test`
 
@@ -8790,7 +7854,7 @@
 - Upstream: `packages/chord/test/node/web/language.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-web-page.test.ts.internal.test`
 
@@ -8798,7 +7862,7 @@
 - Upstream: `packages/chord/test/node/web/page.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-web-styles.test.ts.internal.test`
 
@@ -8806,7 +7870,7 @@
 - Upstream: `packages/chord/test/node/web/styles.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-web-support.ts.internal.test`
 
@@ -8814,7 +7878,7 @@
 - Upstream: `packages/chord/test/node/web/support.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-workers-base.test.ts.internal.test`
 
@@ -8822,7 +7886,7 @@
 - Upstream: `packages/chord/test/node/workers/base.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-workers-child.test.ts.internal.test`
 
@@ -8830,7 +7894,7 @@
 - Upstream: `packages/chord/test/node/workers/child.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-workers-control.test.ts.internal.test`
 
@@ -8838,7 +7902,7 @@
 - Upstream: `packages/chord/test/node/workers/control.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-workers-lock.test.ts.internal.test`
 
@@ -8846,7 +7910,7 @@
 - Upstream: `packages/chord/test/node/workers/lock.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-workers-main.test.ts.internal.test`
 
@@ -8854,7 +7918,7 @@
 - Upstream: `packages/chord/test/node/workers/main.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-workers-process.test.ts.internal.test`
 
@@ -8862,7 +7926,7 @@
 - Upstream: `packages/chord/test/node/workers/process.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-workers-support.ts.internal.test`
 
@@ -8870,7 +7934,7 @@
 - Upstream: `packages/chord/test/node/workers/support.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-node-workers-workers.test.ts.internal.test`
 
@@ -8878,7 +7942,7 @@
 - Upstream: `packages/chord/test/node/workers/workers.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-output-skip.test.ts.internal.test`
 
@@ -8886,7 +7950,7 @@
 - Upstream: `packages/chord/test/output-skip.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-output.test.ts.internal.test`
 
@@ -8894,7 +7958,7 @@
 - Upstream: `packages/chord/test/output.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-registries-entries.test.ts.internal.test`
 
@@ -8902,7 +7966,7 @@
 - Upstream: `packages/chord/test/registries/entries.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-registries-record.test.ts.internal.test`
 
@@ -8910,7 +7974,7 @@
 - Upstream: `packages/chord/test/registries/record.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-registries-registry.test.ts.internal.test`
 
@@ -8918,7 +7982,7 @@
 - Upstream: `packages/chord/test/registries/registry.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-registries-value.test.ts.internal.test`
 
@@ -8926,7 +7990,7 @@
 - Upstream: `packages/chord/test/registries/value.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-remote-calls.test.ts.internal.test`
 
@@ -8934,7 +7998,7 @@
 - Upstream: `packages/chord/test/remote/calls.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-remote-consumer.test.ts.internal.test`
 
@@ -8942,7 +8006,7 @@
 - Upstream: `packages/chord/test/remote/consumer.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-remote-hold.test.ts.internal.test`
 
@@ -8950,7 +8014,7 @@
 - Upstream: `packages/chord/test/remote/hold.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-remote-host-link.test.ts.internal.test`
 
@@ -8958,7 +8022,7 @@
 - Upstream: `packages/chord/test/remote/host-link.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-remote-path.test.ts.internal.test`
 
@@ -8966,7 +8030,7 @@
 - Upstream: `packages/chord/test/remote/path.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-remote-provider.test.ts.internal.test`
 
@@ -8974,7 +8038,7 @@
 - Upstream: `packages/chord/test/remote/provider.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-remote-relay.test.ts.internal.test`
 
@@ -8982,7 +8046,7 @@
 - Upstream: `packages/chord/test/remote/relay.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-remote-remote-object.test.ts.internal.test`
 
@@ -8990,7 +8054,7 @@
 - Upstream: `packages/chord/test/remote/remote-object.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-remote-replica.test.ts.internal.test`
 
@@ -8998,7 +8062,7 @@
 - Upstream: `packages/chord/test/remote/replica.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-schema-declarations.ts.internal.test`
 
@@ -9006,7 +8070,7 @@
 - Upstream: `packages/chord/test/schema/declarations.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-schema-owner.ts.internal.test`
 
@@ -9014,7 +8078,7 @@
 - Upstream: `packages/chord/test/schema/owner.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-schema-proofs.ts.internal.test`
 
@@ -9022,7 +8086,7 @@
 - Upstream: `packages/chord/test/schema/proofs.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-schema-recorded.json.internal.test`
 
@@ -9030,7 +8094,7 @@
 - Upstream: `packages/chord/test/schema/recorded.json`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-schema-schema-switch.test.ts.internal.test`
 
@@ -9038,7 +8102,7 @@
 - Upstream: `packages/chord/test/schema/schema-switch.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-schema-stored-archive.jsonl.internal.test`
 
@@ -9046,7 +8110,7 @@
 - Upstream: `packages/chord/test/schema/stored/archive.jsonl`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-schema-stored-store.db.internal.test`
 
@@ -9054,7 +8118,7 @@
 - Upstream: `packages/chord/test/schema/stored/store.db`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-schema-write-stored.ts.internal.test`
 
@@ -9062,7 +8126,7 @@
 - Upstream: `packages/chord/test/schema/write-stored.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-sqlite-cloudflare.test.ts.internal.test`
 
@@ -9070,7 +8134,7 @@
 - Upstream: `packages/chord/test/sqlite/cloudflare.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-sqlite-helpers.ts.internal.test`
 
@@ -9078,7 +8142,7 @@
 - Upstream: `packages/chord/test/sqlite/helpers.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-sqlite-migrations.test.ts.internal.test`
 
@@ -9086,7 +8150,7 @@
 - Upstream: `packages/chord/test/sqlite/migrations.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-sqlite-node.test.ts.internal.test`
 
@@ -9094,7 +8158,7 @@
 - Upstream: `packages/chord/test/sqlite/node.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-state-batch.test.ts.internal.test`
 
@@ -9102,7 +8166,7 @@
 - Upstream: `packages/chord/test/state/batch.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-state-derive.test.ts.internal.test`
 
@@ -9110,7 +8174,7 @@
 - Upstream: `packages/chord/test/state/derive.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-state-diff.test.ts.internal.test`
 
@@ -9118,7 +8182,7 @@
 - Upstream: `packages/chord/test/state-diff.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-state-draft.test.ts.internal.test`
 
@@ -9126,7 +8190,7 @@
 - Upstream: `packages/chord/test/state-draft.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-state-framed.test.ts.internal.test`
 
@@ -9134,7 +8198,7 @@
 - Upstream: `packages/chord/test/state/framed.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-state-fuzz.test.ts.internal.test`
 
@@ -9142,7 +8206,7 @@
 - Upstream: `packages/chord/test/state-fuzz.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-state-native-source.test.ts.internal.test`
 
@@ -9150,7 +8214,7 @@
 - Upstream: `packages/chord/test/state/native-source.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-state-value.test.ts.internal.test`
 
@@ -9158,7 +8222,7 @@
 - Upstream: `packages/chord/test/state-value.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-state-watchable.test.ts.internal.test`
 
@@ -9166,7 +8230,7 @@
 - Upstream: `packages/chord/test/state/watchable.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-state-writable.test.ts.internal.test`
 
@@ -9174,7 +8238,7 @@
 - Upstream: `packages/chord/test/state/writable.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-store-allocator.test.ts.internal.test`
 
@@ -9182,7 +8246,7 @@
 - Upstream: `packages/chord/test/store/allocator.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-store-applier.test.ts.internal.test`
 
@@ -9190,7 +8254,7 @@
 - Upstream: `packages/chord/test/store/applier.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-store-apply-batch.test.ts.internal.test`
 
@@ -9198,7 +8262,7 @@
 - Upstream: `packages/chord/test/store/apply-batch.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-store-archive.test.ts.internal.test`
 
@@ -9206,7 +8270,7 @@
 - Upstream: `packages/chord/test/store/archive.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-store-catalog.test.ts.internal.test`
 
@@ -9214,7 +8278,7 @@
 - Upstream: `packages/chord/test/store/catalog.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-store-claims.test.ts.internal.test`
 
@@ -9222,7 +8286,7 @@
 - Upstream: `packages/chord/test/store/claims.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-store-column-set.test.ts.internal.test`
 
@@ -9230,7 +8294,7 @@
 - Upstream: `packages/chord/test/store/column-set.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-store-columns.test.ts.internal.test`
 
@@ -9238,7 +8302,7 @@
 - Upstream: `packages/chord/test/store/columns.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-store-engine.test.ts.internal.test`
 
@@ -9246,7 +8310,7 @@
 - Upstream: `packages/chord/test/store/engine.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-store-evaluate.test.ts.internal.test`
 
@@ -9254,7 +8318,7 @@
 - Upstream: `packages/chord/test/store/evaluate.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-store-export.test.ts.internal.test`
 
@@ -9262,7 +8326,7 @@
 - Upstream: `packages/chord/test/store/export.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-store-expression.test.ts.internal.test`
 
@@ -9270,7 +8334,7 @@
 - Upstream: `packages/chord/test/store/expression.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-store-host-column.test.ts.internal.test`
 
@@ -9278,7 +8342,7 @@
 - Upstream: `packages/chord/test/store/host-column.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-store-host-data.test.ts.internal.test`
 
@@ -9286,7 +8350,7 @@
 - Upstream: `packages/chord/test/store/host-data.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-store-import-migration.test.ts.internal.test`
 
@@ -9294,7 +8358,7 @@
 - Upstream: `packages/chord/test/store/import-migration.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-store-import.test.ts.internal.test`
 
@@ -9302,7 +8366,7 @@
 - Upstream: `packages/chord/test/store/import.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-store-json-column.test.ts.internal.test`
 
@@ -9310,7 +8374,7 @@
 - Upstream: `packages/chord/test/store/json-column.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-store-jsonl.test.ts.internal.test`
 
@@ -9318,7 +8382,7 @@
 - Upstream: `packages/chord/test/store/jsonl.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-store-live-query.test.ts.internal.test`
 
@@ -9326,7 +8390,7 @@
 - Upstream: `packages/chord/test/store/live-query.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-store-outbox.test.ts.internal.test`
 
@@ -9334,7 +8398,7 @@
 - Upstream: `packages/chord/test/store/outbox.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-store-query.test.ts.internal.test`
 
@@ -9342,7 +8406,7 @@
 - Upstream: `packages/chord/test/store/query.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-store-read-plan.test.ts.internal.test`
 
@@ -9350,7 +8414,7 @@
 - Upstream: `packages/chord/test/store/read-plan.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-store-reads.test.ts.internal.test`
 
@@ -9358,7 +8422,7 @@
 - Upstream: `packages/chord/test/store/reads.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-store-refusal.test.ts.internal.test`
 
@@ -9366,7 +8430,7 @@
 - Upstream: `packages/chord/test/store/refusal.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-store-rows.test.ts.internal.test`
 
@@ -9374,7 +8438,7 @@
 - Upstream: `packages/chord/test/store/rows.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-store-skip.test.ts.internal.test`
 
@@ -9382,7 +8446,7 @@
 - Upstream: `packages/chord/test/store/skip.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-store-sql.test.ts.internal.test`
 
@@ -9390,7 +8454,7 @@
 - Upstream: `packages/chord/test/store/sql.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-store-store.test.ts.internal.test`
 
@@ -9398,7 +8462,7 @@
 - Upstream: `packages/chord/test/store/store.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-store-table-changes.test.ts.internal.test`
 
@@ -9406,7 +8470,7 @@
 - Upstream: `packages/chord/test/store/table-changes.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-store-table-evolve.test.ts.internal.test`
 
@@ -9414,7 +8478,7 @@
 - Upstream: `packages/chord/test/store/table-evolve.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-store-table-handle.test.ts.internal.test`
 
@@ -9422,7 +8486,7 @@
 - Upstream: `packages/chord/test/store/table-handle.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-store-table-history.test.ts.internal.test`
 
@@ -9430,7 +8494,7 @@
 - Upstream: `packages/chord/test/store/table-history.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-store-table-migration.test.ts.internal.test`
 
@@ -9438,7 +8502,7 @@
 - Upstream: `packages/chord/test/store/table-migration.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-store-table-writes.test.ts.internal.test`
 
@@ -9446,7 +8510,7 @@
 - Upstream: `packages/chord/test/store/table-writes.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-store-table.test.ts.internal.test`
 
@@ -9454,7 +8518,7 @@
 - Upstream: `packages/chord/test/store/table.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-store-text.test.ts.internal.test`
 
@@ -9462,7 +8526,7 @@
 - Upstream: `packages/chord/test/store/text.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-support.ts.internal.test`
 
@@ -9470,7 +8534,7 @@
 - Upstream: `packages/chord/test/support.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-surfaces-active-language.test.ts.internal.test`
 
@@ -9478,7 +8542,7 @@
 - Upstream: `packages/chord/test/surfaces/active-language.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-surfaces-active-theme.test.ts.internal.test`
 
@@ -9486,7 +8550,7 @@
 - Upstream: `packages/chord/test/surfaces/active-theme.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-surfaces-client.test.ts.internal.test`
 
@@ -9494,7 +8558,7 @@
 - Upstream: `packages/chord/test/surfaces/client.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-surfaces-connection.test.ts.internal.test`
 
@@ -9502,7 +8566,7 @@
 - Upstream: `packages/chord/test/surfaces/connection.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-surfaces-format.test.ts.internal.test`
 
@@ -9510,7 +8574,7 @@
 - Upstream: `packages/chord/test/surfaces/format.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-surfaces-language.test.ts.internal.test`
 
@@ -9518,7 +8582,7 @@
 - Upstream: `packages/chord/test/surfaces/language.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-surfaces-locale-choice.test.ts.internal.test`
 
@@ -9526,7 +8590,7 @@
 - Upstream: `packages/chord/test/surfaces/locale-choice.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-surfaces-messages.test.ts.internal.test`
 
@@ -9534,7 +8598,7 @@
 - Upstream: `packages/chord/test/surfaces/messages.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-surfaces-page-state.test.ts.internal.test`
 
@@ -9542,7 +8606,7 @@
 - Upstream: `packages/chord/test/surfaces/page-state.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-surfaces-preference.test.ts.internal.test`
 
@@ -9550,7 +8614,7 @@
 - Upstream: `packages/chord/test/surfaces/preference.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-surfaces-registered.test.ts.internal.test`
 
@@ -9558,7 +8622,7 @@
 - Upstream: `packages/chord/test/surfaces/registered.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-surfaces-themes.test.ts.internal.test`
 
@@ -9566,7 +8630,7 @@
 - Upstream: `packages/chord/test/surfaces/themes.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-surfaces-translations.test.ts.internal.test`
 
@@ -9574,7 +8638,7 @@
 - Upstream: `packages/chord/test/surfaces/translations.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-surfaces-variant.test.ts.internal.test`
 
@@ -9582,7 +8646,7 @@
 - Upstream: `packages/chord/test/surfaces/variant.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-sync-lines.test.ts.internal.test`
 
@@ -9590,7 +8654,7 @@
 - Upstream: `packages/chord/test/sync/lines.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-sync-node-files.ts.internal.test`
 
@@ -9598,7 +8662,7 @@
 - Upstream: `packages/chord/test/sync/node-files.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-sync-sync.test.ts.internal.test`
 
@@ -9606,7 +8670,7 @@
 - Upstream: `packages/chord/test/sync/sync.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-telemetry-ingest-facet.test.ts.internal.test`
 
@@ -9614,7 +8678,7 @@
 - Upstream: `packages/chord/test/telemetry-ingest/facet.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-telemetry-ingest-recorder.test.ts.internal.test`
 
@@ -9622,7 +8686,7 @@
 - Upstream: `packages/chord/test/telemetry-ingest/recorder.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-telemetry-ingest-sender.test.ts.internal.test`
 
@@ -9630,7 +8694,7 @@
 - Upstream: `packages/chord/test/telemetry-ingest/sender.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-telemetry-sqlite-node.test.ts.internal.test`
 
@@ -9638,7 +8702,7 @@
 - Upstream: `packages/chord/test/telemetry-sqlite-node.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-telemetry-sqlite-store.test.ts.internal.test`
 
@@ -9646,7 +8710,7 @@
 - Upstream: `packages/chord/test/telemetry-sqlite-store.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-telemetry-sqlite.test.ts.internal.test`
 
@@ -9654,7 +8718,7 @@
 - Upstream: `packages/chord/test/telemetry-sqlite.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-telemetry.test.ts.internal.test`
 
@@ -9662,7 +8726,7 @@
 - Upstream: `packages/chord/test/telemetry.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-tui-frames.test.ts.internal.test`
 
@@ -9670,7 +8734,7 @@
 - Upstream: `packages/chord/test/tui/frames.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-tui-scope.test.ts.internal.test`
 
@@ -9678,7 +8742,7 @@
 - Upstream: `packages/chord/test/tui/scope.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-watch.test.ts.internal.test`
 
@@ -9686,7 +8750,7 @@
 - Upstream: `packages/chord/test/watch.test.ts`
 - Dart: `pi_agent/lib/src/harness.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
+- Issue: `#arrrrny/pi#62`
 
 ### `ai.packages-ai-src-api-anthropic-messages.lazy.ts.anthropicMessagesApi.api`
 
@@ -11852,30 +10916,6 @@
 
 - Area: `ai`, kind: `api`
 - Upstream: `packages/ai/src/utils/json-parse.ts` → `repairJson`
-- Dart: `pi_agent/lib/src/llm_client.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `ai.packages-ai-src-utils-overflow.ts.getOverflowPatterns.api`
-
-- Area: `ai`, kind: `api`
-- Upstream: `packages/ai/src/utils/overflow.ts` → `getOverflowPatterns`
-- Dart: `pi_agent/lib/src/llm_client.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `ai.packages-ai-src-utils-overflow.ts.isContextOverflow.api`
-
-- Area: `ai`, kind: `api`
-- Upstream: `packages/ai/src/utils/overflow.ts` → `isContextOverflow`
-- Dart: `pi_agent/lib/src/llm_client.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `ai.packages-ai-src-utils-overflow.ts.isRecoverableLength.api`
-
-- Area: `ai`, kind: `api`
-- Upstream: `packages/ai/src/utils/overflow.ts` → `isRecoverableLength`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
 - Issue: _(missing)_
@@ -14272,310 +13312,6 @@
 - Divergence: Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.
 - Issue: `#arrrrny/pi#11`
 
-### `durable.packages-durable-src-env-index.ts.BinaryReader.api`
-
-- Area: `durable`, kind: `api`
-- Upstream: `packages/durable/src/env/index.ts` → `BinaryReader`
-- Dart: `pi_agent/lib/src/session.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `durable.packages-durable-src-env-index.ts.DirReader.api`
-
-- Area: `durable`, kind: `api`
-- Upstream: `packages/durable/src/env/index.ts` → `DirReader`
-- Dart: `pi_agent/lib/src/session.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `durable.packages-durable-src-env-index.ts.err.api`
-
-- Area: `durable`, kind: `api`
-- Upstream: `packages/durable/src/env/index.ts` → `err`
-- Dart: `pi_agent/lib/src/session.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `durable.packages-durable-src-env-index.ts.ExecutionEnv.api`
-
-- Area: `durable`, kind: `api`
-- Upstream: `packages/durable/src/env/index.ts` → `ExecutionEnv`
-- Dart: `pi_agent/lib/src/session.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `durable.packages-durable-src-env-index.ts.ExecutionError.api`
-
-- Area: `durable`, kind: `api`
-- Upstream: `packages/durable/src/env/index.ts` → `ExecutionError`
-- Dart: `pi_agent/lib/src/session.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `durable.packages-durable-src-env-index.ts.ExecutionErrorCode.api`
-
-- Area: `durable`, kind: `api`
-- Upstream: `packages/durable/src/env/index.ts` → `ExecutionErrorCode`
-- Dart: `pi_agent/lib/src/session.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `durable.packages-durable-src-env-index.ts.FileChange.api`
-
-- Area: `durable`, kind: `api`
-- Upstream: `packages/durable/src/env/index.ts` → `FileChange`
-- Dart: `pi_agent/lib/src/session.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `durable.packages-durable-src-env-index.ts.FileError.api`
-
-- Area: `durable`, kind: `api`
-- Upstream: `packages/durable/src/env/index.ts` → `FileError`
-- Dart: `pi_agent/lib/src/session.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `durable.packages-durable-src-env-index.ts.FileErrorCode.api`
-
-- Area: `durable`, kind: `api`
-- Upstream: `packages/durable/src/env/index.ts` → `FileErrorCode`
-- Dart: `pi_agent/lib/src/session.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `durable.packages-durable-src-env-index.ts.FileInfo.api`
-
-- Area: `durable`, kind: `api`
-- Upstream: `packages/durable/src/env/index.ts` → `FileInfo`
-- Dart: `pi_agent/lib/src/session.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `durable.packages-durable-src-env-index.ts.FileKind.api`
-
-- Area: `durable`, kind: `api`
-- Upstream: `packages/durable/src/env/index.ts` → `FileKind`
-- Dart: `pi_agent/lib/src/session.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `durable.packages-durable-src-env-index.ts.FileListEntry.api`
-
-- Area: `durable`, kind: `api`
-- Upstream: `packages/durable/src/env/index.ts` → `FileListEntry`
-- Dart: `pi_agent/lib/src/session.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `durable.packages-durable-src-env-index.ts.FileListing.api`
-
-- Area: `durable`, kind: `api`
-- Upstream: `packages/durable/src/env/index.ts` → `FileListing`
-- Dart: `pi_agent/lib/src/session.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `durable.packages-durable-src-env-index.ts.FileSystem.api`
-
-- Area: `durable`, kind: `api`
-- Upstream: `packages/durable/src/env/index.ts` → `FileSystem`
-- Dart: `pi_agent/lib/src/session.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `durable.packages-durable-src-env-index.ts.FileWatcher.api`
-
-- Area: `durable`, kind: `api`
-- Upstream: `packages/durable/src/env/index.ts` → `FileWatcher`
-- Dart: `pi_agent/lib/src/session.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `durable.packages-durable-src-env-index.ts.getOrThrow.api`
-
-- Area: `durable`, kind: `api`
-- Upstream: `packages/durable/src/env/index.ts` → `getOrThrow`
-- Dart: `pi_agent/lib/src/session.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `durable.packages-durable-src-env-index.ts.getOrUndefined.api`
-
-- Area: `durable`, kind: `api`
-- Upstream: `packages/durable/src/env/index.ts` → `getOrUndefined`
-- Dart: `pi_agent/lib/src/session.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `durable.packages-durable-src-env-index.ts.LineScan.api`
-
-- Area: `durable`, kind: `api`
-- Upstream: `packages/durable/src/env/index.ts` → `LineScan`
-- Dart: `pi_agent/lib/src/session.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `durable.packages-durable-src-env-index.ts.LineScanner.api`
-
-- Area: `durable`, kind: `api`
-- Upstream: `packages/durable/src/env/index.ts` → `LineScanner`
-- Dart: `pi_agent/lib/src/session.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `durable.packages-durable-src-env-index.ts.ListFilesOptions.api`
-
-- Area: `durable`, kind: `api`
-- Upstream: `packages/durable/src/env/index.ts` → `ListFilesOptions`
-- Dart: `pi_agent/lib/src/session.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `durable.packages-durable-src-env-index.ts.ok.api`
-
-- Area: `durable`, kind: `api`
-- Upstream: `packages/durable/src/env/index.ts` → `ok`
-- Dart: `pi_agent/lib/src/session.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `durable.packages-durable-src-env-index.ts.rangeDecoder.api`
-
-- Area: `durable`, kind: `api`
-- Upstream: `packages/durable/src/env/index.ts` → `rangeDecoder`
-- Dart: `pi_agent/lib/src/session.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `durable.packages-durable-src-env-index.ts.Result.api`
-
-- Area: `durable`, kind: `api`
-- Upstream: `packages/durable/src/env/index.ts` → `Result`
-- Dart: `pi_agent/lib/src/session.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `durable.packages-durable-src-env-index.ts.Shell.api`
-
-- Area: `durable`, kind: `api`
-- Upstream: `packages/durable/src/env/index.ts` → `Shell`
-- Dart: `pi_agent/lib/src/session.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `durable.packages-durable-src-env-index.ts.ShellExecOptions.api`
-
-- Area: `durable`, kind: `api`
-- Upstream: `packages/durable/src/env/index.ts` → `ShellExecOptions`
-- Dart: `pi_agent/lib/src/session.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `durable.packages-durable-src-env-index.ts.ShellExecResult.api`
-
-- Area: `durable`, kind: `api`
-- Upstream: `packages/durable/src/env/index.ts` → `ShellExecResult`
-- Dart: `pi_agent/lib/src/session.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `durable.packages-durable-src-env-index.ts.ShellOutputInfo.api`
-
-- Area: `durable`, kind: `api`
-- Upstream: `packages/durable/src/env/index.ts` → `ShellOutputInfo`
-- Dart: `pi_agent/lib/src/session.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `durable.packages-durable-src-env-index.ts.ShellOutputSkip.api`
-
-- Area: `durable`, kind: `api`
-- Upstream: `packages/durable/src/env/index.ts` → `ShellOutputSkip`
-- Dart: `pi_agent/lib/src/session.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `durable.packages-durable-src-env-index.ts.ShellOutputWindow.api`
-
-- Area: `durable`, kind: `api`
-- Upstream: `packages/durable/src/env/index.ts` → `ShellOutputWindow`
-- Dart: `pi_agent/lib/src/session.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `durable.packages-durable-src-env-index.ts.ShellSpillOptions.api`
-
-- Area: `durable`, kind: `api`
-- Upstream: `packages/durable/src/env/index.ts` → `ShellSpillOptions`
-- Dart: `pi_agent/lib/src/session.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `durable.packages-durable-src-env-index.ts.startsWithBom.api`
-
-- Area: `durable`, kind: `api`
-- Upstream: `packages/durable/src/env/index.ts` → `startsWithBom`
-- Dart: `pi_agent/lib/src/session.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `durable.packages-durable-src-env-index.ts.StreamDecoder.api`
-
-- Area: `durable`, kind: `api`
-- Upstream: `packages/durable/src/env/index.ts` → `StreamDecoder`
-- Dart: `pi_agent/lib/src/session.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `durable.packages-durable-src-env-index.ts.TextLine.api`
-
-- Area: `durable`, kind: `api`
-- Upstream: `packages/durable/src/env/index.ts` → `TextLine`
-- Dart: `pi_agent/lib/src/session.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `durable.packages-durable-src-env-index.ts.TextLineReader.api`
-
-- Area: `durable`, kind: `api`
-- Upstream: `packages/durable/src/env/index.ts` → `TextLineReader`
-- Dart: `pi_agent/lib/src/session.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `durable.packages-durable-src-env-index.ts.toError.api`
-
-- Area: `durable`, kind: `api`
-- Upstream: `packages/durable/src/env/index.ts` → `toError`
-- Dart: `pi_agent/lib/src/session.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `durable.packages-durable-src-env-index.ts.WatchTarget.api`
-
-- Area: `durable`, kind: `api`
-- Upstream: `packages/durable/src/env/index.ts` → `WatchTarget`
-- Dart: `pi_agent/lib/src/session.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `durable.packages-durable-src-env-node.ts.NodeExecutionEnv.api`
-
-- Area: `durable`, kind: `api`
-- Upstream: `packages/durable/src/env/node.ts` → `NodeExecutionEnv`
-- Dart: `pi_agent/lib/src/session.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `durable.packages-durable-src-env-node.ts.NodeWatchOptions.api`
-
-- Area: `durable`, kind: `api`
-- Upstream: `packages/durable/src/env/node.ts` → `NodeWatchOptions`
-- Dart: `pi_agent/lib/src/session.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
 ### `durable.packages-durable-src-errors.ts.errorMessage.api`
 
 - Area: `durable`, kind: `api`
@@ -15284,14 +14020,6 @@
 
 - Area: `durable`, kind: `test`
 - Upstream: `packages/durable/test/document-append-bench.ts`
-- Dart: `pi_agent/lib/src/session.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `durable.packages-durable-test-env-line-scan.test.ts.internal.test`
-
-- Area: `durable`, kind: `test`
-- Upstream: `packages/durable/test/env-line-scan.test.ts`
 - Dart: `pi_agent/lib/src/session.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
 - Issue: _(missing)_
@@ -17372,14 +16100,6 @@
 
 - Area: `mcp`, kind: `test`
 - Upstream: `packages/mcp/test/stdio.test.ts`
-- Dart: `pi_agent/lib/src/tools.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: _(missing)_
-
-### `mcp.packages-mcp-test-streamable-http.test.ts.internal.test`
-
-- Area: `mcp`, kind: `test`
-- Upstream: `packages/mcp/test/streamable-http.test.ts`
 - Dart: `pi_agent/lib/src/tools.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
 - Issue: _(missing)_
@@ -23786,4 +22506,6 @@
 
 ## Approved exclusions
 
-_None._
+- `durable.packages-durable-src-env-node.ts.NodeExecutionEnv.api`: Node.js execution environment (packages/durable/src/env/node.ts). The Dart port models durable behavior natively and ships no Node env: LocalExecutionEnv (pi_agent/lib/src/execution_env.dart) runs the host /bin/sh on the Linux/macOS pool hosts. The 2026-11-25 sync's only durable change here is Windows Git Bash discovery (findGitBashOfGitOnPath via `git var GIT_SHELL_PATH`), which has no Dart surface. Platform/scope exclusion per spec 004 (the port models, rather than ports, durable behavior).
+- `durable.packages-durable-src-env-node.ts.NodeWatchOptions.api`: Node.js file-watcher options (packages/durable/src/env/node.ts, NodeWatchOptions). The Dart port ships no Node file watcher and models durable behavior natively; the 2026-11-25 sync did not change NodeWatchOptions. Platform/scope exclusion per spec 004 (the port models, rather than ports, durable behavior).
+- `durable.packages-durable-test-env-line-scan.test.ts.internal.test`: Upstream NodeTextLineReader linear-time line-scan test (packages/durable/test/env-line-scan.test.ts). The Dart port has no streaming Node line reader; its JSONL and session readers use content.split('\n') and file.readAsLines() (pi_agent/lib/src/durable/storage/jsonl.dart, session_storage.dart), which are already linear-time, so the upstream quadratic-rescan fix has no Dart surface to port. Platform/scope exclusion per spec 004.

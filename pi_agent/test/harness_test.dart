@@ -19,7 +19,8 @@ LoopStreamFn scriptedStream(List<AgentEvent> Function(int turn) s) {
 
 AgentEvent _assistant(AssistantMessage m) => MessageEnd(message: m);
 
-AgentTool<dynamic, dynamic> _echoTool(void Function(String) onArgs) => AgentTool(
+AgentTool<dynamic, dynamic> _echoTool(void Function(String) onArgs) =>
+    AgentTool(
       name: 'echo',
       description: 'Echo the text back',
       parameters: {
@@ -32,7 +33,8 @@ AgentTool<dynamic, dynamic> _echoTool(void Function(String) onArgs) => AgentTool
       execute: (id, params, {onUpdate, isAborted}) async {
         final text = params['text'] as String? ?? '';
         onArgs(text);
-        return AgentToolResult(content: [TextBlock('echo:$text')], details: null);
+        return AgentToolResult(
+            content: [TextBlock('echo:$text')], details: null);
       },
     );
 
@@ -47,10 +49,10 @@ void main() {
         model: _model,
         systemPrompt: 'sys',
         loopStreamFn: scriptedStream((_) => [
-          _assistant(AssistantMessage(
-              content: [const TextBlock('hello')],
-              stopReason: StopReason.endTurn)),
-        ]),
+              _assistant(AssistantMessage(
+                  content: [const TextBlock('hello')],
+                  stopReason: StopReason.endTurn)),
+            ]),
       );
 
       await conv.prompt('hi');
@@ -65,8 +67,7 @@ void main() {
       expect(ctx.messages.last, isA<AssistantMessage>());
     });
 
-    test('JSONL round-trips full content and recovers after restart',
-        () async {
+    test('JSONL round-trips full content and recovers after restart', () async {
       final dir = await Directory.systemTemp.createTemp('pi_harness_');
       final path = '${dir.path}/session.jsonl';
       addTearDown(() => dir.delete(recursive: true));
@@ -82,7 +83,8 @@ void main() {
             return [
               _assistant(AssistantMessage(
                 content: [
-                  ToolCallBlock(id: 'c1', name: 'echo', arguments: {'text': 'hi'}),
+                  ToolCallBlock(
+                      id: 'c1', name: 'echo', arguments: {'text': 'hi'}),
                 ],
                 stopReason: StopReason.toolUse,
               )),
@@ -106,10 +108,10 @@ void main() {
         systemPrompt: 'sys',
         tools: [_echoTool((_) {})],
         loopStreamFn: scriptedStream((_) => [
-          _assistant(AssistantMessage(
-              content: [const TextBlock('unused')],
-              stopReason: StopReason.endTurn)),
-        ]),
+              _assistant(AssistantMessage(
+                  content: [const TextBlock('unused')],
+                  stopReason: StopReason.endTurn)),
+            ]),
       );
       addTearDown(resumed.close);
 
@@ -117,7 +119,11 @@ void main() {
       expect(messages, hasLength(4));
       expect(messages[0], isA<UserMessage>());
       expect(
-          (messages[0] as UserMessage).content.whereType<TextBlock>().single.text,
+          (messages[0] as UserMessage)
+              .content
+              .whereType<TextBlock>()
+              .single
+              .text,
           'go');
 
       final callMsg = messages[1] as AssistantMessage;
@@ -143,10 +149,10 @@ void main() {
         model: _model,
         systemPrompt: 'sys',
         loopStreamFn: scriptedStream((_) => [
-          _assistant(AssistantMessage(
-              content: [const TextBlock('first reply')],
-              stopReason: StopReason.endTurn)),
-        ]),
+              _assistant(AssistantMessage(
+                  content: [const TextBlock('first reply')],
+                  stopReason: StopReason.endTurn)),
+            ]),
       );
       await first.prompt('hello');
       await first.close();
@@ -185,10 +191,10 @@ void main() {
         storage,
         model: _model,
         loopStreamFn: scriptedStream((_) => [
-          _assistant(AssistantMessage(
-              content: [const TextBlock('r')],
-              stopReason: StopReason.endTurn)),
-        ]),
+              _assistant(AssistantMessage(
+                  content: [const TextBlock('r')],
+                  stopReason: StopReason.endTurn)),
+            ]),
       );
 
       await conv.prompt('one');
@@ -223,10 +229,10 @@ void main() {
         storage,
         systemPrompt: 'sys',
         loopStreamFn: scriptedStream((_) => [
-          _assistant(AssistantMessage(
-              content: [const TextBlock('resumed answer')],
-              stopReason: StopReason.endTurn)),
-        ]),
+              _assistant(AssistantMessage(
+                  content: [const TextBlock('resumed answer')],
+                  stopReason: StopReason.endTurn)),
+            ]),
       );
 
       expect(conv.hasPendingTurn, isTrue);
@@ -243,16 +249,16 @@ void main() {
       final storage = InMemorySessionStorage();
       final seed = Session(storage);
       await seed.appendMessage(UserMessage.text('q'));
-      await seed.appendMessage(
-          AssistantMessage(content: [const TextBlock('a')]));
+      await seed
+          .appendMessage(AssistantMessage(content: [const TextBlock('a')]));
 
       final conv = await Conversation.resume(
         storage,
         loopStreamFn: scriptedStream((_) => [
-          _assistant(AssistantMessage(
-              content: [const TextBlock('x')],
-              stopReason: StopReason.endTurn)),
-        ]),
+              _assistant(AssistantMessage(
+                  content: [const TextBlock('x')],
+                  stopReason: StopReason.endTurn)),
+            ]),
       );
 
       expect(conv.hasPendingTurn, isFalse);
@@ -274,10 +280,10 @@ void main() {
         JsonlSessionStorage(path),
         systemPrompt: 'sys',
         loopStreamFn: scriptedStream((_) => [
-          _assistant(AssistantMessage(
-              content: [const TextBlock('finished after restart')],
-              stopReason: StopReason.endTurn)),
-        ]),
+              _assistant(AssistantMessage(
+                  content: [const TextBlock('finished after restart')],
+                  stopReason: StopReason.endTurn)),
+            ]),
       );
       addTearDown(conv.close);
 

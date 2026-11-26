@@ -2,8 +2,9 @@
 ///
 /// Port of `packages/durable/src/storage/jsonl/` at upstream
 /// `780bf31fcaeb252fa9b68df3964c735eae75bde3`. The backend depends on a
-/// [FileSystem] capability, not on a process environment: the platform adapter
-/// supplies the file operations and this slice supplies an in-memory one.
+/// [JsonlFileSystem] capability, not on a process environment: the platform
+/// adapter supplies the file operations and this slice supplies an in-memory
+/// one.
 ///
 /// A commit appends one JSON line per batch to the log, so a crash mid-write
 /// leaves a torn trailing line that reopen discards; the decoded view is then
@@ -21,7 +22,7 @@ import 'memory.dart';
 import 'storage.dart';
 
 /// The file operations the JSONL backend needs.
-abstract interface class FileSystem {
+abstract interface class JsonlFileSystem {
   /// The file's content, or null when it does not exist.
   Future<String?> read(String path);
 
@@ -35,9 +36,9 @@ abstract interface class FileSystem {
   Future<void> remove(String path);
 }
 
-/// A [FileSystem] over the process's own files, for tests and hosts that have
-/// one.
-class InMemoryFileSystem implements FileSystem {
+/// A [JsonlFileSystem] over the process's own files, for tests and hosts that
+/// have one.
+class InMemoryFileSystem implements JsonlFileSystem {
   final Map<String, StringBuffer> _files = <String, StringBuffer>{};
 
   /// Every path this file system currently holds.
@@ -61,12 +62,12 @@ class InMemoryFileSystem implements FileSystem {
 /// A JSONL-backed storage: one append-only log of commits, replayed on open.
 class JsonlStorage implements Storage {
   /// Open the log at [path] through [files], replaying every intact commit.
-  JsonlStorage({required FileSystem files, required this.path})
+  JsonlStorage({required JsonlFileSystem files, required this.path})
       : _files = files;
 
-  final FileSystem _files;
+  final JsonlFileSystem _files;
 
-  /// The log's path in [FileSystem].
+  /// The log's path in [JsonlFileSystem].
   final String path;
 
   final MemoryStorage _state = MemoryStorage();

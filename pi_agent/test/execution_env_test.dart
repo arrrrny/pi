@@ -34,7 +34,8 @@ void main() {
 
     setUp(() async {
       env = LocalExecutionEnv();
-      tempDir = '${io.Directory.systemTemp.path}/pi_agent_env_test_${DateTime.now().microsecondsSinceEpoch}';
+      tempDir =
+          '${io.Directory.systemTemp.path}/pi_agent_env_test_${DateTime.now().microsecondsSinceEpoch}';
       await io.Directory(tempDir).create();
     });
 

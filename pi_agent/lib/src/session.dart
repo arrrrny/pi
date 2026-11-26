@@ -145,8 +145,8 @@ class Session {
         data: const {},
         display: compaction.summary,
       ));
-      final keptIndex = chronological
-          .indexWhere((e) => e.id == compaction.firstKeptEntryId);
+      final keptIndex =
+          chronological.indexWhere((e) => e.id == compaction.firstKeptEntryId);
       start = keptIndex >= 0 ? keptIndex : chronological.length;
     }
 

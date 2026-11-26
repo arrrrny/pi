@@ -65,23 +65,20 @@ void main() {
 
     group('appendThinkingLevelChange', () {
       test('appends thinking level entry', () async {
-        final id =
-            await session.appendThinkingLevelChange(ThinkingLevel.high);
+        final id = await session.appendThinkingLevelChange(ThinkingLevel.high);
         expect(id, isNotEmpty);
 
         final entries = await session.getEntries();
         expect(entries, hasLength(1));
         expect(entries.first, isA<ThinkingLevelChangeEntry>());
-        expect(
-            (entries.first as ThinkingLevelChangeEntry).level,
+        expect((entries.first as ThinkingLevelChangeEntry).level,
             ThinkingLevel.high);
       });
     });
 
     group('appendModelChange', () {
       test('appends model change entry', () async {
-        final id =
-            await session.appendModelChange('anthropic', 'claude-3');
+        final id = await session.appendModelChange('anthropic', 'claude-3');
         expect(id, isNotEmpty);
 
         final entries = await session.getEntries();
@@ -188,8 +185,7 @@ void main() {
       });
 
       test('returns entries in reverse chronological order', () async {
-        final id1 =
-            await session.appendMessage(UserMessage.text('first'));
+        final id1 = await session.appendMessage(UserMessage.text('first'));
         final secondId =
             await session.appendMessage(UserMessage.text('second'));
 
@@ -199,10 +195,8 @@ void main() {
       });
 
       test('returns entries from specific id', () async {
-        final id1 =
-            await session.appendMessage(UserMessage.text('first'));
-        final id2 =
-            await session.appendMessage(UserMessage.text('second'));
+        final id1 = await session.appendMessage(UserMessage.text('first'));
+        final id2 = await session.appendMessage(UserMessage.text('second'));
 
         final branch = await session.getBranch(fromId: id2);
         expect(branch, hasLength(2));
@@ -212,20 +206,18 @@ void main() {
     });
 
     group('moveTo', () {
-    test('moves leaf to specified entry', () async {
-      final id1 =
-          await session.appendMessage(UserMessage.text('first'));
-      await session.appendMessage(UserMessage.text('second'));
+      test('moves leaf to specified entry', () async {
+        final id1 = await session.appendMessage(UserMessage.text('first'));
+        await session.appendMessage(UserMessage.text('second'));
 
-      await session.moveTo(id1);
+        await session.moveTo(id1);
 
-      final branch = await session.getBranch();
-      expect(branch.first.id, id1);
-    });
+        final branch = await session.getBranch();
+        expect(branch.first.id, id1);
+      });
 
       test('creates branch summary when provided', () async {
-        final id1 =
-            await session.appendMessage(UserMessage.text('first'));
+        final id1 = await session.appendMessage(UserMessage.text('first'));
         final summary = await session.moveTo(id1, summary: 'branch point');
 
         expect(summary, 'branch point');
@@ -235,8 +227,7 @@ void main() {
       });
 
       test('returns null without summary', () async {
-        final id1 =
-            await session.appendMessage(UserMessage.text('first'));
+        final id1 = await session.appendMessage(UserMessage.text('first'));
         final summary = await session.moveTo(id1);
 
         expect(summary, isNull);

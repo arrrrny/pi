@@ -535,7 +535,10 @@ void main() {
         () => agentLoop(
           _context(),
           _config(),
-          streamFn: ({required context, required config, required apiKey,
+          streamFn: (
+                  {required context,
+                  required config,
+                  required apiKey,
                   required abortSignal}) =>
               Stream<AgentEvent>.error(Exception('loop body exploded')),
         ).toList(),
@@ -554,7 +557,10 @@ void main() {
       final stream = agentLoop(
         _context(),
         _config(),
-        streamFn: ({required context, required config, required apiKey,
+        streamFn: (
+                {required context,
+                required config,
+                required apiKey,
                 required abortSignal}) =>
             Stream<AgentEvent>.error(Exception('body exploded')),
       );

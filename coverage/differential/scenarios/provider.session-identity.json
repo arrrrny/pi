@@ -1,0 +1,115 @@
+{
+	"kind": "provider.session-identity",
+	"row_ids": [
+		"ai.packages-ai-src-utils-identity.ts.formatUserAgent.api",
+		"ai.packages-ai-src-utils-identity.ts.getAttributionHeaders.api",
+		"ai.packages-ai-src-utils-identity.ts.getIdentityHeaders.api",
+		"ai.packages-ai-src-utils-identity.ts.mergeClientIdentity.api",
+		"ai.packages-ai-src-utils-identity.ts.getOpenCodeSessionHeaders.api",
+		"ai.packages-ai-test-identity.test.ts.identity.test"
+	],
+	"provider": {
+		"kind": "scripted",
+		"turns": []
+	},
+	"requests": [
+		{
+			"target": {
+				"provider": "openrouter",
+				"base_url": "https://openrouter.ai/api/v1"
+			},
+			"identity": {
+				"attribution": {
+					"name": "pi",
+					"url": "https://pi.dev",
+					"categories": [
+						"cli-agent"
+					]
+				}
+			},
+			"runtime": {
+				"platform": "darwin",
+				"runtime": "node/v22.0.0",
+				"arch": "arm64"
+			}
+		},
+		{
+			"target": {
+				"provider": "nvidia",
+				"base_url": "https://integrate.api.nvidia.com/v1"
+			},
+			"identity": {
+				"attribution": {
+					"name": "pi",
+					"url": "https://pi.dev"
+				}
+			},
+			"runtime": {
+				"platform": "darwin",
+				"runtime": "node/v22.0.0",
+				"arch": "arm64"
+			}
+		},
+		{
+			"target": {
+				"provider": "opencode",
+				"base_url": "https://opencode.ai"
+			},
+			"identity": {
+				"attribution": {
+					"name": "pi",
+					"url": "https://pi.dev"
+				}
+			},
+			"session_id": "sess-42",
+			"runtime": {
+				"platform": "darwin",
+				"runtime": "node/v22.0.0",
+				"arch": "arm64"
+			}
+		},
+		{
+			"target": {
+				"provider": "anthropic",
+				"base_url": "https://api.anthropic.com"
+			},
+			"runtime": {
+				"platform": "darwin",
+				"runtime": "node/v22.0.0",
+				"arch": "arm64"
+			}
+		},
+		{
+			"target": {
+				"provider": "anthropic",
+				"base_url": "https://api.anthropic.com"
+			},
+			"identity": {
+				"user_agent": "short"
+			}
+		},
+		{
+			"target": {
+				"provider": "openai",
+				"base_url": "https://api.openai.com/v1"
+			},
+			"identity": {
+				"user_agent": "my-agent/1",
+				"version": "2.0.0"
+			},
+			"runtime": {
+				"platform": "darwin",
+				"runtime": "node/v22.0.0",
+				"arch": "arm64"
+			}
+		}
+	],
+	"schema_version": 1,
+	"name": "provider.session-identity",
+	"area": "ai",
+	"clock": {
+		"kind": "virtual",
+		"start": "2026-01-01T00:00:00Z"
+	},
+	"normalization_version": 1
+}

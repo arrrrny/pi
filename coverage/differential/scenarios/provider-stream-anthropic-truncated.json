@@ -1,0 +1,20 @@
+{
+	"kind": "provider-stream.anthropic",
+	"row_ids": [
+		"ai.packages-ai-src-api-anthropic-messages.lazy.ts.anthropicMessagesApi.api",
+		"ai.packages-ai-test-anthropic-sse-parsing.test.ts.anthropic-sse-parsing.test"
+	],
+	"provider": {
+		"kind": "cassette",
+		"cassette": "coverage/differential/scenarios/cassettes/anthropic-truncated.sse"
+	},
+	"schema_version": 1,
+	"name": "provider-stream-anthropic-truncated",
+	"area": "ai",
+	"clock": {
+		"kind": "virtual",
+		"start": "2026-01-01T00:00:00Z"
+	},
+	"normalization_version": 1,
+	"requested_model_id": "claude-x"
+}

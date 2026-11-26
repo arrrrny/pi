@@ -1,0 +1,5 @@
+{"seq":1,"type":"start"}
+{"contentIndex":0,"seq":2,"type":"text_start"}
+{"contentIndex":0,"delta":"Partial","seq":3,"type":"text_delta"}
+{"errorMessage":"Anthropic stream ended before message_stop","reason":"error","seq":4,"type":"error"}
+{"content":[{"text":"Partial","type":"text"}],"errorMessage":"Anthropic stream ended before message_stop","responseId":"msg_9","role":"assistant","seq":5,"stopReason":"error","type":"message","usage":{"cacheRead":0,"cacheWrite":0,"input":5,"output":1,"totalTokens":6}}

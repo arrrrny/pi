@@ -22,7 +22,8 @@ void main() {
 
   group('substituteArgs', () {
     test(r'substitutes positional args $1..$N', () {
-      final result = substituteArgs('Hello \$1, you are \$2', ['World', 'great']);
+      final result =
+          substituteArgs('Hello \$1, you are \$2', ['World', 'great']);
       expect(result, 'Hello World, you are great');
     });
 

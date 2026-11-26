@@ -1,0 +1,710 @@
+{
+  "schema_version": 1,
+  "description": "PI-PAR-009 (arrrrny/pi#47): evidence-backed TUI adaptation decisions. One entry per packages/tui behavior row in coverage/registry/behavior-registry.json. decision is port|adapt|not_applicable; owner is the approving maintainer; destination is the Dart package that adapts the behavior (port/adapt) or null (not_applicable, with an evidence reason). No full-parity claim is allowed while any TUI row lacks a decision here (enforced by scripts/coverage/check-release-evidence.mjs).",
+  "decisions": [
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-src-index.ts.Box.api",
+      "decision": "adapt",
+      "owner": "arrrrny",
+      "destination": "zuraffa_tui",
+      "evidence": "packages/tui/src/components/box.ts \u2014 box layout primitive; reimplemented as a zuraffa_tui widget"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-src-index.ts.CancellableLoader.api",
+      "decision": "adapt",
+      "owner": "arrrrny",
+      "destination": "zuraffa_tui",
+      "evidence": "packages/tui/src/components/cancellable-loader.ts \u2014 cancellable async loader; zuraffa_tui progress widget"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-src-index.ts.Editor.api",
+      "decision": "adapt",
+      "owner": "arrrrny",
+      "destination": "zuraffa_ui",
+      "evidence": "packages/tui/src/components/editor.ts \u2014 multiline editor; zuraffa_ui text input surface"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-src-index.ts.EditorComponent.api",
+      "decision": "adapt",
+      "owner": "arrrrny",
+      "destination": "zuraffa_ui",
+      "evidence": "packages/tui/src/editor-component.ts \u2014 editor contract; zuraffa_ui editor interface"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-src-index.ts.formatProgramStatus.api",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/src/program-status.ts \u2014 terminal program-status OSC query with no Dart terminal surface; the agent loop reports status through zuraffa_agent events instead"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-src-index.ts.fuzzyFilter.api",
+      "decision": "adapt",
+      "owner": "arrrrny",
+      "destination": "zuraffa_tui",
+      "evidence": "packages/tui/src/fuzzy.ts \u2014 fuzzy filter used by autocomplete; ported into the zuraffa_tui command palette"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-src-index.ts.fuzzyMatch.api",
+      "decision": "adapt",
+      "owner": "arrrrny",
+      "destination": "zuraffa_tui",
+      "evidence": "packages/tui/src/fuzzy.ts \u2014 fuzzy match primitive; zuraffa_tui command palette"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-src-index.ts.getNativeClipboard.api",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/src/native-platform.ts \u2014 native OS clipboard via a Node helper binary; the Dart port has no native clipboard surface and the zuraffa_ui desktop shell owns clipboard"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-src-index.ts.HStack.api",
+      "decision": "adapt",
+      "owner": "arrrrny",
+      "destination": "zuraffa_tui",
+      "evidence": "packages/tui/src/components/h-stack.ts \u2014 horizontal stack layout; zuraffa_tui row widget"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-src-index.ts.Input.api",
+      "decision": "adapt",
+      "owner": "arrrrny",
+      "destination": "zuraffa_ui",
+      "evidence": "packages/tui/src/components/input.ts \u2014 single-line input; zuraffa_ui text field"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-src-index.ts.isAppleTerminalSession.api",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/src/terminal.ts \u2014 Apple Terminal session detection; no Dart terminal session, the zuraffa_ui host shell detects its own environment"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-src-index.ts.Loader.api",
+      "decision": "adapt",
+      "owner": "arrrrny",
+      "destination": "zuraffa_tui",
+      "evidence": "packages/tui/src/components/loader.ts \u2014 spinner loader; zuraffa_tui progress indicator"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-src-index.ts.Markdown.api",
+      "decision": "adapt",
+      "owner": "arrrrny",
+      "destination": "zuraffa_ui",
+      "evidence": "packages/tui/src/components/markdown.ts \u2014 markdown renderer; zuraffa_ui markdown surface"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-src-index.ts.Marked.api",
+      "decision": "adapt",
+      "owner": "arrrrny",
+      "destination": "zuraffa_ui",
+      "evidence": "packages/tui/src/components/markdown.ts \u2014 marked renderer token; zuraffa_ui markdown surface"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-src-index.ts.MouseRegion.api",
+      "decision": "adapt",
+      "owner": "arrrrny",
+      "destination": "zuraffa_ui",
+      "evidence": "packages/tui/src/components/mouse-region.ts \u2014 mouse region; zuraffa_ui pointer region (desktop)"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-src-index.ts.oklabToOkhslLightness.api",
+      "decision": "adapt",
+      "owner": "arrrrny",
+      "destination": "zuraffa_tui",
+      "evidence": "packages/tui/src/oklab.ts \u2014 oklab/okhsl color conversion; zuraffa_tui color utils"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-src-index.ts.ProcessTerminal.api",
+      "decision": "adapt",
+      "owner": "arrrrny",
+      "destination": "zuraffa_tui",
+      "evidence": "packages/tui/src/terminal.ts \u2014 process-backed terminal; zuraffa_tui terminal adapter over the host pty"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-src-index.ts.renderLatex.api",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/src/latex.ts \u2014 LaTeX rendering via an external binary; no Dart surface, out of scope for the agent TUI"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-src-index.ts.SettingsList.api",
+      "decision": "adapt",
+      "owner": "arrrrny",
+      "destination": "zuraffa_ui",
+      "evidence": "packages/tui/src/components/settings-list.ts \u2014 settings list; zuraffa_ui settings surface"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-src-index.ts.Spacer.api",
+      "decision": "adapt",
+      "owner": "arrrrny",
+      "destination": "zuraffa_tui",
+      "evidence": "packages/tui/src/components/spacer.ts \u2014 spacer layout; zuraffa_tui spacer widget"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-src-index.ts.StdinBuffer.api",
+      "decision": "adapt",
+      "owner": "arrrrny",
+      "destination": "zuraffa_tui",
+      "evidence": "packages/tui/src/stdin-buffer.ts \u2014 stdin buffer; zuraffa_tui input buffer over the host stdin"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-src-index.ts.Text.api",
+      "decision": "adapt",
+      "owner": "arrrrny",
+      "destination": "zuraffa_tui",
+      "evidence": "packages/tui/src/components/text.ts \u2014 text widget; zuraffa_tui text widget"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-src-index.ts.TruncatedText.api",
+      "decision": "adapt",
+      "owner": "arrrrny",
+      "destination": "zuraffa_tui",
+      "evidence": "packages/tui/src/components/truncated-text.ts \u2014 truncated text widget; zuraffa_tui text widget"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-src-index.ts.TuiAltScreen.api",
+      "decision": "adapt",
+      "owner": "arrrrny",
+      "destination": "zuraffa_tui",
+      "evidence": "packages/tui/src/tui-alt-screen.ts \u2014 alternate-screen renderer; zuraffa_tui alt-screen renderer"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-src-index.ts.TuiMainScreen.api",
+      "decision": "adapt",
+      "owner": "arrrrny",
+      "destination": "zuraffa_tui",
+      "evidence": "packages/tui/src/tui-main-screen.ts \u2014 main-screen renderer; zuraffa_tui main-screen renderer"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-src-index.ts.WheelScrollLines.api",
+      "decision": "adapt",
+      "owner": "arrrrny",
+      "destination": "zuraffa_tui",
+      "evidence": "packages/tui/src/wheel-scroll.ts \u2014 wheel scroll lines; zuraffa_tui scroll accumulator"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-alt-screen-large-transcript-bench.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/alt-screen-large-transcript-bench.ts \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-autocomplete-skill-slash.test.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/autocomplete-skill-slash.test.ts \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-autocomplete.test.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/autocomplete.test.ts \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-bug-regression-isimageline-startswith-bug.test.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/bug-regression-isimageline-startswith-bug.test.ts \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-chat-simple.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/chat-simple.ts \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-colors.test.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/colors.test.ts \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-container.test.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/container.test.ts \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-editor-history-keybindings.test.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/editor-history-keybindings.test.ts \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-editor.test.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/editor.test.ts \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-exit-restore.test.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/exit-restore.test.ts \u2014 upstream Node/terminal-protocol test with no Dart surface; the corresponding behavior is covered by the zuraffa_tui/zuraffa_ui adapted suite"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-fixtures-clipboard-reader.cjs.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/fixtures/clipboard-reader.cjs \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-fixtures-clipboard-worker-test.c.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/fixtures/clipboard-worker-test.c \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-fixtures-clipboard-worker-test.cjs.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/fixtures/clipboard-worker-test.cjs \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-fixtures-clipboard-x11-test.c.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/fixtures/clipboard-x11-test.c \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-fixtures-exit-without-stop.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/fixtures/exit-without-stop.ts \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-fuzzy.test.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/fuzzy.test.ts \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-image-test.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/image-test.ts \u2014 upstream Node/terminal-protocol test with no Dart surface; the corresponding behavior is covered by the zuraffa_tui/zuraffa_ui adapted suite"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-input.test.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/input.test.ts \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-key-tester.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/key-tester.ts \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-keybindings.test.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/keybindings.test.ts \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-keys.test.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/keys.test.ts \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-latex.test.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/latex.test.ts \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-layout.test.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/layout.test.ts \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-markdown.test.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/markdown.test.ts \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-mouse-components.test.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/mouse-components.test.ts \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-native-clipboard-linux.test.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/native-clipboard-linux.test.ts \u2014 upstream Node/terminal-protocol test with no Dart surface; the corresponding behavior is covered by the zuraffa_tui/zuraffa_ui adapted suite"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-native-module-path.test.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/native-module-path.test.ts \u2014 upstream Node/terminal-protocol test with no Dart surface; the corresponding behavior is covered by the zuraffa_tui/zuraffa_ui adapted suite"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-native-platform.test.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/native-platform.test.ts \u2014 upstream Node/terminal-protocol test with no Dart surface; the corresponding behavior is covered by the zuraffa_tui/zuraffa_ui adapted suite"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-overlay-non-capturing.test.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/overlay-non-capturing.test.ts \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-overlay-options.test.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/overlay-options.test.ts \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-overlay-short-content.test.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/overlay-short-content.test.ts \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-overlay-terminal-image.test.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/overlay-terminal-image.test.ts \u2014 upstream Node/terminal-protocol test with no Dart surface; the corresponding behavior is covered by the zuraffa_tui/zuraffa_ui adapted suite"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-program-status.test.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/program-status.test.ts \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-regression-overlay-cjk-boundary.test.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/regression-overlay-cjk-boundary.test.ts \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-regression-regional-indicator-width.test.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/regression-regional-indicator-width.test.ts \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-regression-sigwinch-kill-eacces.test.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/regression-sigwinch-kill-eacces.test.ts \u2014 upstream Node/terminal-protocol test with no Dart surface; the corresponding behavior is covered by the zuraffa_tui/zuraffa_ui adapted suite"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-regression-slice-by-column-ansi-order.test.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/regression-slice-by-column-ansi-order.test.ts \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-render-churn-bench.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/render-churn-bench.ts \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-select-list.test.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/select-list.test.ts \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-settings-list.test.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/settings-list.test.ts \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-slice-graphemes.test.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/slice-graphemes.test.ts \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-stdin-buffer.test.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/stdin-buffer.test.ts \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-suspend-signal.test.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/suspend-signal.test.ts \u2014 upstream Node/terminal-protocol test with no Dart surface; the corresponding behavior is covered by the zuraffa_tui/zuraffa_ui adapted suite"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-tab-width.test.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/tab-width.test.ts \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-terminal-colors.test.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/terminal-colors.test.ts \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-terminal-image.test.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/terminal-image.test.ts \u2014 upstream Node/terminal-protocol test with no Dart surface; the corresponding behavior is covered by the zuraffa_tui/zuraffa_ui adapted suite"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-terminal.test.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/terminal.test.ts \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-test-themes.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/test-themes.ts \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-text.test.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/text.test.ts \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-truncate-to-width.test.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/truncate-to-width.test.ts \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-truncated-text.test.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/truncated-text.test.ts \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-tui-alt-screen.test.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/tui-alt-screen.test.ts \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-tui-cell-size-input.test.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/tui-cell-size-input.test.ts \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-tui-overlay-style-leak.test.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/tui-overlay-style-leak.test.ts \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-tui-render.test.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/tui-render.test.ts \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-tui-shrink.test.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/tui-shrink.test.ts \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-viewport-overwrite-repro.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/viewport-overwrite-repro.ts \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-virtual-terminal.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/virtual-terminal.ts \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-visible-width.test.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/visible-width.test.ts \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-wheel-scroll.test.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/wheel-scroll.test.ts \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-word-navigation.test.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/word-navigation.test.ts \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    },
+    {
+      "area": "tui",
+      "coordinate": "tui.packages-tui-test-wrap-ansi.test.ts.internal.test",
+      "decision": "not_applicable",
+      "owner": "arrrrny",
+      "destination": null,
+      "evidence": "packages/tui/test/wrap-ansi.test.ts \u2014 upstream TypeScript component test; its behavior is verified by the zuraffa_tui/zuraffa_ui test suite that adapts the component, not by a 1:1 Dart port of the TS test file"
+    }
+  ]
+}

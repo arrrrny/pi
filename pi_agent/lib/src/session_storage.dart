@@ -393,8 +393,7 @@ AgentMessage _messageFromJson(Map<String, dynamic>? json) {
         type: json['type'] as String? ?? '',
         data: json['data'] == null
             ? const {}
-            : Map<String, dynamic>.from(
-                json['data'] as Map<String, dynamic>),
+            : Map<String, dynamic>.from(json['data'] as Map<String, dynamic>),
         display: json['display'] as String? ?? '',
       );
     case 'user':
@@ -427,7 +426,8 @@ Map<String, dynamic> _contentBlockToJson(dynamic block) => switch (block) {
       _ => const {'type': 'text', 'text': ''},
     };
 
-dynamic _contentBlockFromJson(Map<String, dynamic> json) => switch (json['type']) {
+dynamic _contentBlockFromJson(Map<String, dynamic> json) =>
+    switch (json['type']) {
       'image' => ImageBlock(
           base64Data: json['base64Data'] as String? ?? '',
           mediaType: json['mediaType'] as String? ?? 'image/png',

@@ -31,6 +31,87 @@ import { readJsonIfExists } from "./lib/upstream-tree.mjs";
 
 const ROOT = resolve(fileURLToPath(new URL("..", import.meta.url)), "..", "..");
 
+const VALID_DECISIONS = ["port", "adapt", "not_applicable"];
+
+/**
+ * PI-PAR-009 (arrrrny/pi#47): the adaptation-decision gate.
+ *
+ * "Full parity" must never be claimed while a TUI behavior row or an upstream
+ * apps/* target lacks an evidence-backed adaptation decision. This reads the
+ * human-reviewed `coverage/adaptation-decisions.json` (one entry per TUI row
+ * and per app) plus the manifest's own `app_decisions`, and returns a failure
+ * string for every surface that is undecided, malformed, or unapproved.
+ *
+ * A TUI decision is evidence-backed when it names a `decision`
+ * (port|adapt|not_applicable), an `owner`, and either a `destination` package
+ * (port/adapt) or a non-empty `evidence` reason (not_applicable). An app is
+ * decided when its manifest entry carries an approved decision.
+ */
+export function checkAdaptationDecisions(manifest) {
+	const failures = [];
+	const adaptation = readJsonIfExists("coverage/adaptation-decisions.json");
+	const decisions = Array.isArray(adaptation?.decisions) ? adaptation.decisions : null;
+	if (!decisions) {
+		failures.push("adaptation-decisions: coverage/adaptation-decisions.json is missing or has no decisions array");
+	} else {
+		const seen = new Set();
+		for (const entry of decisions) {
+			const coordinate = entry?.coordinate ?? "(unknown)";
+			if (seen.has(coordinate)) failures.push(`adaptation-decisions: duplicate entry for ${coordinate}`);
+			seen.add(coordinate);
+			if (!VALID_DECISIONS.includes(entry?.decision)) {
+				failures.push(`adaptation-decisions: ${coordinate} has no port/adapt/not_applicable decision`);
+				continue;
+			}
+			if (!entry.owner) failures.push(`adaptation-decisions: ${coordinate} has no owner`);
+			if (entry.decision === "not_applicable") {
+				if (!entry.evidence) failures.push(`adaptation-decisions: ${coordinate} not_applicable requires an evidence reason`);
+			} else if (!entry.destination) {
+				failures.push(`adaptation-decisions: ${coordinate} ${entry.decision} requires a destination package`);
+			}
+		}
+		// Every TUI behavior row in the manifest must carry a decision entry,
+		// and every TUI decision must map back to a live row: renaming or
+		// removing a row must not leave an orphan decision that passes silently.
+		if (manifest) {
+			const tuiRowIds = new Set(
+				manifest.rows.filter((row) => row.area === "tui").map((row) => row.id),
+			);
+			for (const row of manifest.rows) {
+				if (row.area === "tui" && !seen.has(row.id)) {
+					failures.push(`adaptation-decisions: tui row ${row.id} has no recorded decision`);
+				}
+			}
+			for (const entry of decisions) {
+				if (entry?.area === "tui" && !tuiRowIds.has(entry?.coordinate)) {
+					failures.push(`adaptation-decisions: tui decision ${entry?.coordinate ?? "(unknown)"} has no matching manifest row`);
+				}
+			}
+		}
+	}
+
+	// Apps: every apps/* target in the manifest must carry an approved decision.
+	// Completeness of app_decisions itself is the generator's job at the pinned
+	// SHA (it reconfirms the apps/* set), so an empty or partial list is accepted
+	// here by design — this gate only validates the entries it is given.
+	if (manifest) {
+		for (const app of manifest.app_decisions ?? []) {
+			if (!VALID_DECISIONS.includes(app?.decision)) {
+				failures.push(`adaptation-decisions: app ${app?.path ?? "(unknown)"} has no port/adapt/not_applicable decision`);
+				continue;
+			}
+			if (app.decision !== "port" && !app.reason) {
+				failures.push(`adaptation-decisions: app ${app.path} ${app.decision} requires a reason`);
+			}
+			if (app.decision === "not_applicable" && !app.approved_by) {
+				failures.push(`adaptation-decisions: app ${app.path} not_applicable requires an approval`);
+			}
+		}
+	}
+
+	return failures;
+}
+
 function isAncestor(ancestor, descendant) {
 	if (ancestor === descendant) return true;
 	try {
@@ -88,6 +169,10 @@ function buildEvidence() {
 	} else if (verifiedSha) {
 		failures.push(`no manifest at coverage/upstream/${verifiedSha}/manifest.json for the verified sha`);
 	}
+
+	// PI-PAR-009 (arrrrny/pi#47): no full-parity claim while a TUI row or an
+	// apps/* target lacks an evidence-backed adaptation decision.
+	failures.push(...checkAdaptationDecisions(manifest));
 
 	const resolved = failures.length === 0;
 	return {
