@@ -21,7 +21,7 @@ LLM client.
 
 ```yaml
 dependencies:
-  pi: ^0.1.0
+  pi: ^0.2.0
 ```
 
 ## Install the CLI (`pidart`)
@@ -30,7 +30,7 @@ The package ships exactly one executable, `pidart`, a thin command-line front
 end over the agent loop. It is the only installed name — there is no `pi` or
 `pid` alias, so it never shadows the native TypeScript `pi` command.
 
-Install it hosted (once the package is published to pub.dev):
+Install it hosted from pub.dev (pin `0.2.0` or use `dart pub global activate pi` for the latest):
 
 ```sh
 dart pub global activate pi
@@ -61,6 +61,8 @@ Run it from a source checkout without installing, via the same entrypoint:
 ```sh
 dart run bin/pidart.dart --help      # from the package root (pi_agent/)
 ```
+
+For maintainer release and publish instructions, see [PUBLISH.md](PUBLISH.md).
 
 ### Usage
 
