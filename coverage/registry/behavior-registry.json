@@ -8652,7 +8652,7 @@
         "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
         "approved_by": null
       },
-      "issue": "arrrrny/pi#11",
+      "issue": "arrrrny/pi#87",
       "id": "chord.packages-chord-src-context-index.ts.awaitWithContext.api",
       "area": "chord",
       "upstream_path": "packages/chord/src/context/index.ts",
@@ -8684,7 +8684,7 @@
         "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
         "approved_by": null
       },
-      "issue": "arrrrny/pi#11",
+      "issue": "arrrrny/pi#87",
       "id": "chord.packages-chord-src-context-index.ts.BACKGROUND_CONTEXT.api",
       "area": "chord",
       "upstream_path": "packages/chord/src/context/index.ts",
@@ -8716,7 +8716,7 @@
         "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
         "approved_by": null
       },
-      "issue": "arrrrny/pi#11",
+      "issue": "arrrrny/pi#87",
       "id": "chord.packages-chord-src-context-index.ts.Context.api",
       "area": "chord",
       "upstream_path": "packages/chord/src/context/index.ts",
@@ -9725,7 +9725,7 @@
         "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
         "approved_by": null
       },
-      "issue": "arrrrny/pi#11",
+      "issue": "arrrrny/pi#87",
       "id": "chord.packages-chord-src-delta-index.ts.JsonValue.api",
       "area": "chord",
       "upstream_path": "packages/chord/src/delta/index.ts",
@@ -54651,7 +54651,7 @@
         "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
         "approved_by": null
       },
-      "issue": "arrrrny/pi#11",
+      "issue": "arrrrny/pi#80",
       "id": "durable.packages-durable-src-storage-memory.ts.PreparedMemoryCommit.api",
       "area": "durable",
       "upstream_path": "packages/durable/src/storage/memory.ts",
@@ -67213,7 +67213,7 @@
         "reason": "BranchSummaryDetails is the JSON shape stored on a branch_summary entry; the Dart BranchSummaryEntry carries no details field yet. Tracked in #44.",
         "approved_by": null
       },
-      "issue": "#44",
+      "issue": "arrrrny/pi#79",
       "id": "coding-agent.packages-coding-agent-src-core-compaction-branch-summarization.ts.BranchSummaryDetails.api",
       "area": "coding-agent",
       "upstream_path": "packages/coding-agent/src/core/compaction/branch-summarization.ts",
@@ -67242,7 +67242,7 @@
         "reason": "BranchSummaryResult is the provider-backed generateBranchSummary result; that model/stream path is a later slice. Tracked in #44.",
         "approved_by": null
       },
-      "issue": "#44",
+      "issue": "arrrrny/pi#79",
       "id": "coding-agent.packages-coding-agent-src-core-compaction-branch-summarization.ts.BranchSummaryResult.api",
       "area": "coding-agent",
       "upstream_path": "packages/coding-agent/src/core/compaction/branch-summarization.ts",
@@ -67361,7 +67361,7 @@
         "reason": "generateBranchSummary needs a model + stream (completeSummarization); deferred to a provider-backed slice. The pure prepareBranchEntries it builds on is ported. Tracked in #44.",
         "approved_by": null
       },
-      "issue": "#44",
+      "issue": "arrrrny/pi#79",
       "id": "coding-agent.packages-coding-agent-src-core-compaction-branch-summarization.ts.generateBranchSummary.api",
       "area": "coding-agent",
       "upstream_path": "packages/coding-agent/src/core/compaction/branch-summarization.ts",
@@ -67390,7 +67390,7 @@
         "reason": "GenerateBranchSummaryOptions configures the provider-backed generateBranchSummary; deferred with it to a later slice. Tracked in #44.",
         "approved_by": null
       },
-      "issue": "#44",
+      "issue": "arrrrny/pi#79",
       "id": "coding-agent.packages-coding-agent-src-core-compaction-branch-summarization.ts.GenerateBranchSummaryOptions.api",
       "area": "coding-agent",
       "upstream_path": "packages/coding-agent/src/core/compaction/branch-summarization.ts",
@@ -68208,7 +68208,7 @@
         "reason": "SUMMARIZATION_SYSTEM_PROMPT already has a Dart equivalent (summarizationSystemPrompt in src/compaction.dart); the coding-agent export is the same text, not re-exported here. Tracked in #44.",
         "approved_by": null
       },
-      "issue": "#44",
+      "issue": "arrrrny/pi#79",
       "id": "coding-agent.packages-coding-agent-src-core-compaction-utils.ts.SUMMARIZATION_SYSTEM_PROMPT.api",
       "area": "coding-agent",
       "upstream_path": "packages/coding-agent/src/core/compaction/utils.ts",
@@ -86412,7 +86412,7 @@
         "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
         "approved_by": null
       },
-      "issue": "arrrrny/pi#11",
+      "issue": "arrrrny/pi#80",
       "description": "Applies the compile-time record-kind brand to a number at a trust boundary."
     },
     {
@@ -86444,7 +86444,7 @@
         "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
         "approved_by": null
       },
-      "issue": "arrrrny/pi#11",
+      "issue": "arrrrny/pi#80",
       "description": "Applies the commit-sequence brand to a number at a trust boundary."
     },
     {
@@ -86476,7 +86476,7 @@
         "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
         "approved_by": null
       },
-      "issue": "arrrrny/pi#11",
+      "issue": "arrrrny/pi#80",
       "description": "Formats a thrown value without itself throwing."
     },
     {
@@ -86508,7 +86508,7 @@
         "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
         "approved_by": null
       },
-      "issue": "arrrrny/pi#11",
+      "issue": "arrrrny/pi#80",
       "description": "A transaction read a table after its first table write."
     },
     {
@@ -86540,7 +86540,7 @@
         "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
         "approved_by": null
       },
-      "issue": "arrrrny/pi#11",
+      "issue": "arrrrny/pi#80",
       "description": "A storage read failed as an invalid request, with no durable effect."
     },
     {
@@ -86572,7 +86572,7 @@
         "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
         "approved_by": null
       },
-      "issue": "arrrrny/pi#11",
+      "issue": "arrrrny/pi#80",
       "description": "The session failed; every later call rejects with the first cause."
     },
     {
@@ -86604,7 +86604,7 @@
         "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
         "approved_by": null
       },
-      "issue": "arrrrny/pi#11",
+      "issue": "arrrrny/pi#80",
       "description": "Defines a typed entry kind and refuses an empty kind."
     },
     {
@@ -86636,7 +86636,7 @@
         "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
         "approved_by": null
       },
-      "issue": "arrrrny/pi#11",
+      "issue": "arrrrny/pi#80",
       "description": "The built-in `pi.user` entry kind."
     },
     {
@@ -86668,7 +86668,7 @@
         "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
         "approved_by": null
       },
-      "issue": "arrrrny/pi#11",
+      "issue": "arrrrny/pi#80",
       "description": "The built-in `pi.assistant` entry kind."
     },
     {
@@ -86700,7 +86700,7 @@
         "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
         "approved_by": null
       },
-      "issue": "arrrrny/pi#11",
+      "issue": "arrrrny/pi#80",
       "description": "The built-in `pi.system` entry kind."
     },
     {
@@ -86732,7 +86732,7 @@
         "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
         "approved_by": null
       },
-      "issue": "arrrrny/pi#11",
+      "issue": "arrrrny/pi#80",
       "description": "The built-in `pi.tool-result` entry kind."
     },
     {
@@ -86764,7 +86764,7 @@
         "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
         "approved_by": null
       },
-      "issue": "arrrrny/pi#11",
+      "issue": "arrrrny/pi#80",
       "description": "The built-in `pi.reset` entry kind."
     },
     {
@@ -86796,7 +86796,7 @@
         "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
         "approved_by": null
       },
-      "issue": "arrrrny/pi#11",
+      "issue": "arrrrny/pi#80",
       "description": "The built-in `pi.compaction` entry kind."
     },
     {
@@ -86828,7 +86828,7 @@
         "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
         "approved_by": null
       },
-      "issue": "arrrrny/pi#11",
+      "issue": "arrrrny/pi#80",
       "description": "Defines and validates a singleton document definition (session, conversation, or task scope)."
     },
     {
@@ -86860,7 +86860,7 @@
         "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
         "approved_by": null
       },
-      "issue": "arrrrny/pi#11",
+      "issue": "arrrrny/pi#80",
       "description": "Defines and validates a keyed document family definition."
     },
     {
@@ -86892,7 +86892,7 @@
         "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
         "approved_by": null
       },
-      "issue": "arrrrny/pi#11",
+      "issue": "arrrrny/pi#80",
       "description": "Resolves a scan order and position; a cursor continues in its own order and a different order throws."
     },
     {
@@ -86924,7 +86924,7 @@
         "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
         "approved_by": null
       },
-      "issue": "arrrrny/pi#11",
+      "issue": "arrrrny/pi#80",
       "description": "Builds the continuation of a scan whose last returned item has an ID."
     },
     {
@@ -86956,7 +86956,7 @@
         "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
         "approved_by": null
       },
-      "issue": "arrrrny/pi#11",
+      "issue": "arrrrny/pi#80",
       "description": "The detached in-memory reference implementation of Storage, which the shared conformance suite validates."
     },
     {
@@ -86988,7 +86988,7 @@
         "reason": "Ported by pi#11 (spec 003 foundation slice). Evidence: the upstream-derived tests named in `dart_test`; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is `implemented_unverified`, not `verified`.",
         "approved_by": null
       },
-      "issue": "arrrrny/pi#11",
+      "issue": "arrrrny/pi#80",
       "description": "The shared storage conformance suite, registered once per backend and passed unchanged by all three."
     }
   ],
