@@ -11,6 +11,9 @@ topics:
 environment:
   sdk: ^3.0.0
 
+executables:
+  pidart: pidart
+
 dependencies:
   http: ^1.4.0
   yaml: ^3.1.3

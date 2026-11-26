@@ -24,6 +24,67 @@ dependencies:
   pi: ^0.1.0
 ```
 
+## Install the CLI (`pidart`)
+
+The package ships exactly one executable, `pidart`, a thin command-line front
+end over the agent loop. It is the only installed name — there is no `pi` or
+`pid` alias, so it never shadows the native TypeScript `pi` command.
+
+Install it hosted (once the package is published to pub.dev):
+
+```sh
+dart pub global activate pi
+```
+
+Upgrade to the latest published version:
+
+```sh
+dart pub global activate pi
+```
+
+Uninstall it:
+
+```sh
+dart pub global deactivate pi
+```
+
+`dart pub global activate` installs executables into the pub cache's `bin`
+directory. Add it to your `PATH` so `pidart` is callable (the line differs per
+shell; this is the common `~/.pub-cache/bin` location):
+
+```sh
+export PATH="$HOME/.pub-cache/bin:$PATH"
+```
+
+Run it from a source checkout without installing, via the same entrypoint:
+
+```sh
+dart run bin/pidart.dart --help      # from the package root (pi_agent/)
+```
+
+### Usage
+
+```sh
+pidart                 # interactive session, reads prompts from stdin
+pidart <prompt...>     # one-shot: run a single prompt and print the reply
+pidart --help, -h      # usage
+pidart --version, -v   # version
+```
+
+Both the interactive and the one-shot form run through one argument parser and
+one agent runtime. Configure the model through the environment:
+
+| Variable | Meaning |
+|----------|---------|
+| `PI_MODEL` | Model to run, as `provider/model` (e.g. `openai/gpt-4o`) or a bare id |
+| `PI_PROVIDER` | Provider when `PI_MODEL` is a bare id (default `openai`) |
+| `PI_BASE_URL` | Override the OpenAI-compatible endpoint |
+| `PI_CONTEXT_WINDOW` | Context window in tokens (default `128000`) |
+| `PI_API_KEY`, `<PROVIDER>_API_KEY` | Provider API key |
+
+A one-shot or interactive run with no `PI_MODEL` set exits non-zero with a
+config error on stderr; `--help` and `--version` need no configuration.
+
 ## Quick Start
 
 ```dart
