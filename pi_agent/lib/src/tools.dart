@@ -6,6 +6,7 @@ import 'dart:convert';
 
 import 'types.dart';
 
+export 'codemode_declarations.dart';
 export 'codemode_source.dart';
 
 /// A tool definition for the agent.
