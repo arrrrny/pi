@@ -81,6 +81,7 @@ const INDIVIDUAL_TEXT_MODELS = [
 	"qwen3.7-plus",
 	"qwen3.8-flash",
 	"qwen3.8-max",
+	"qwen4-max",
 ];
 
 const IMAGE_MODELS = ["qwen-image-2.0", "qwen-image-2.0-pro", "wan2.7-image", "wan2.7-image-pro"];
@@ -291,8 +292,7 @@ describe("Qwen Token Plan models", () => {
 	] as const)("omits retired models on %s", (provider) => {
 		const modelIds = getModels(provider).map((model) => model.id);
 		// #11773: deepseek-v3.2 and deepseek-v4-flash left the Token Plan model lists.
-		// qwen4-max-preview is deprecated on models.dev and filtered by skipDeprecated.
-		for (const retired of ["qwen3.8-max-preview", "deepseek-v3.2", "deepseek-v4-flash", "qwen4-max-preview"]) {
+		for (const retired of ["qwen3.8-max-preview", "deepseek-v3.2", "deepseek-v4-flash"]) {
 			expect(modelIds).not.toContain(retired);
 		}
 	});

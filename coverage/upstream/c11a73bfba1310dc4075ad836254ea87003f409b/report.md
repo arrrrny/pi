@@ -3,7 +3,7 @@
 - Upstream: `earendil-works/pi` at `c11a73bfba1310dc4075ad836254ea87003f409b`
 - Generator: `pi-coverage` v0.1.0 (node 20.19.2)
 - Registry version: `eac23310c3f9`
-- Rows: 2970 total — 232 verified, 24 implemented_unverified, 0 in_progress, 2711 unported, 3 not_applicable
+- Rows: 2970 total — 232 verified, 27 implemented_unverified, 0 in_progress, 2708 unported, 3 not_applicable
 
 ## Per-package status
 
@@ -1580,8 +1580,8 @@
 
 - Area: `chord`, kind: `api`
 - Upstream: `packages/chord/src/data/index.ts` → `broken`
-- Dart: `pi_agent/lib/src/harness.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
+- Dart: `pi_agent/lib/src/chord/failure.dart`
+- Divergence: Ported by pi#62 (PI-PAR-003, chord data slice): errors.dart and failure.dart port packages/chord/src/data/errors.ts and failure.ts. Evidence: the upstream-derived tests named in dart_test; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is implemented_unverified, not verified.
 - Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-src-data-index.ts.Principal.api`
@@ -3876,16 +3876,16 @@
 
 - Area: `chord`, kind: `test`
 - Upstream: `packages/chord/test/data/errors.test.ts`
-- Dart: `pi_agent/lib/src/harness.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
+- Dart: `pi_agent/lib/src/chord/errors.dart`
+- Divergence: Ported by pi#62 (PI-PAR-003, chord data slice): errors.dart and failure.dart port packages/chord/src/data/errors.ts and failure.ts. Evidence: the upstream-derived tests named in dart_test; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is implemented_unverified, not verified.
 - Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-data-failure.test.ts.internal.test`
 
 - Area: `chord`, kind: `test`
 - Upstream: `packages/chord/test/data/failure.test.ts`
-- Dart: `pi_agent/lib/src/harness.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
+- Dart: `pi_agent/lib/src/chord/failure.dart`
+- Divergence: Ported by pi#62 (PI-PAR-003, chord data slice): errors.dart and failure.dart port packages/chord/src/data/errors.ts and failure.ts. Evidence: the upstream-derived tests named in dart_test; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is implemented_unverified, not verified.
 - Issue: `#arrrrny/pi#62`
 
 ### `chord.packages-chord-test-data-params.test.ts.internal.test`
@@ -8758,7 +8758,7 @@
 - Upstream: `packages/ai/src/api/azure-openai-responses.lazy.ts` → `azureOpenAIResponsesApi`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: API transport (HTTP client, request building, provider quirks) is not ported; the Dart port streams no requests for this provider.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-api-bedrock-converse-stream.lazy.ts.bedrockConverseStreamApi.api`
 
@@ -8766,7 +8766,7 @@
 - Upstream: `packages/ai/src/api/bedrock-converse-stream.lazy.ts` → `bedrockConverseStreamApi`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: API transport (HTTP client, request building, provider quirks) is not ported; the Dart port streams no requests for this provider.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-api-bedrock-converse-stream.lazy.ts.setBedrockProviderLoader.api`
 
@@ -8774,7 +8774,7 @@
 - Upstream: `packages/ai/src/api/bedrock-converse-stream.lazy.ts` → `setBedrockProviderLoader`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: API transport (HTTP client, request building, provider quirks) is not ported; the Dart port streams no requests for this provider.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-api-bedrock-converse-stream.lazy.ts.setBedrockProviderModule.api`
 
@@ -8782,7 +8782,7 @@
 - Upstream: `packages/ai/src/api/bedrock-converse-stream.lazy.ts` → `setBedrockProviderModule`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: API transport (HTTP client, request building, provider quirks) is not ported; the Dart port streams no requests for this provider.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-api-google-generative-ai.lazy.ts.googleGenerativeAIApi.api`
 
@@ -8790,7 +8790,7 @@
 - Upstream: `packages/ai/src/api/google-generative-ai.lazy.ts` → `googleGenerativeAIApi`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: API transport (HTTP client, request building, provider quirks) is not ported; the Dart port streams no requests for this provider.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-api-google-vertex.lazy.ts.googleVertexApi.api`
 
@@ -8798,7 +8798,7 @@
 - Upstream: `packages/ai/src/api/google-vertex.lazy.ts` → `googleVertexApi`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: API transport (HTTP client, request building, provider quirks) is not ported; the Dart port streams no requests for this provider.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-api-lazy.ts.lazyApi.api`
 
@@ -8806,7 +8806,7 @@
 - Upstream: `packages/ai/src/api/lazy.ts` → `lazyApi`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: API transport (HTTP client, request building, provider quirks) is not ported; the Dart port streams no requests for this provider.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-api-lazy.ts.LazyApiCapabilities.api`
 
@@ -8814,7 +8814,7 @@
 - Upstream: `packages/ai/src/api/lazy.ts` → `LazyApiCapabilities`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: API transport (HTTP client, request building, provider quirks) is not ported; the Dart port streams no requests for this provider.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-api-lazy.ts.lazyStream.api`
 
@@ -8822,7 +8822,7 @@
 - Upstream: `packages/ai/src/api/lazy.ts` → `lazyStream`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: API transport (HTTP client, request building, provider quirks) is not ported; the Dart port streams no requests for this provider.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-api-lazy.ts.LazyStreamObserver.api`
 
@@ -8830,7 +8830,7 @@
 - Upstream: `packages/ai/src/api/lazy.ts` → `LazyStreamObserver`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: API transport (HTTP client, request building, provider quirks) is not ported; the Dart port streams no requests for this provider.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-api-openai-codex-responses.lazy.ts.openAICodexResponsesApi.api`
 
@@ -8838,7 +8838,7 @@
 - Upstream: `packages/ai/src/api/openai-codex-responses.lazy.ts` → `openAICodexResponsesApi`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: API transport (HTTP client, request building, provider quirks) is not ported; the Dart port streams no requests for this provider.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-api-openai-completions.lazy.ts.openAICompletionsApi.api`
 
@@ -8846,7 +8846,7 @@
 - Upstream: `packages/ai/src/api/openai-completions.lazy.ts` → `openAICompletionsApi`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: API transport (HTTP client, request building, provider quirks) is not ported; the Dart port streams no requests for this provider.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-api-openai-responses.lazy.ts.openAIResponsesApi.api`
 
@@ -8854,7 +8854,7 @@
 - Upstream: `packages/ai/src/api/openai-responses.lazy.ts` → `openAIResponsesApi`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: API transport (HTTP client, request building, provider quirks) is not ported; the Dart port streams no requests for this provider.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-api-pi-messages.lazy.ts.piMessagesApi.api`
 
@@ -8862,7 +8862,7 @@
 - Upstream: `packages/ai/src/api/pi-messages.lazy.ts` → `piMessagesApi`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: API transport (HTTP client, request building, provider quirks) is not ported; the Dart port streams no requests for this provider.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-auth-context.ts.defaultProviderAuthContext.api`
 
@@ -8870,7 +8870,7 @@
 - Upstream: `packages/ai/src/auth/context.ts` → `defaultProviderAuthContext`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Provider auth (OAuth flows, credential stores, federation) is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-auth-credential-store.ts.InMemoryCredentialStore.api`
 
@@ -8878,7 +8878,7 @@
 - Upstream: `packages/ai/src/auth/credential-store.ts` → `InMemoryCredentialStore`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Provider auth (OAuth flows, credential stores, federation) is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-auth-helpers.ts.envApiKeyAuth.api`
 
@@ -8886,7 +8886,7 @@
 - Upstream: `packages/ai/src/auth/helpers.ts` → `envApiKeyAuth`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Provider auth (OAuth flows, credential stores, federation) is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-auth-helpers.ts.lazyOAuth.api`
 
@@ -8894,7 +8894,7 @@
 - Upstream: `packages/ai/src/auth/helpers.ts` → `lazyOAuth`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Provider auth (OAuth flows, credential stores, federation) is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-auth-types.ts.ApiKeyAuth.api`
 
@@ -8902,7 +8902,7 @@
 - Upstream: `packages/ai/src/auth/types.ts` → `ApiKeyAuth`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Provider auth (OAuth flows, credential stores, federation) is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-auth-types.ts.ApiKeyCredential.api`
 
@@ -8910,7 +8910,7 @@
 - Upstream: `packages/ai/src/auth/types.ts` → `ApiKeyCredential`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Provider auth (OAuth flows, credential stores, federation) is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-auth-types.ts.AuthCheck.api`
 
@@ -8918,7 +8918,7 @@
 - Upstream: `packages/ai/src/auth/types.ts` → `AuthCheck`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Provider auth (OAuth flows, credential stores, federation) is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-auth-types.ts.AuthContext.api`
 
@@ -8926,7 +8926,7 @@
 - Upstream: `packages/ai/src/auth/types.ts` → `AuthContext`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Provider auth (OAuth flows, credential stores, federation) is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-auth-types.ts.AuthEvent.api`
 
@@ -8934,7 +8934,7 @@
 - Upstream: `packages/ai/src/auth/types.ts` → `AuthEvent`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Provider auth (OAuth flows, credential stores, federation) is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-auth-types.ts.AuthInfoLink.api`
 
@@ -8942,7 +8942,7 @@
 - Upstream: `packages/ai/src/auth/types.ts` → `AuthInfoLink`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Provider auth (OAuth flows, credential stores, federation) is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-auth-types.ts.AuthInteraction.api`
 
@@ -8950,7 +8950,7 @@
 - Upstream: `packages/ai/src/auth/types.ts` → `AuthInteraction`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Provider auth (OAuth flows, credential stores, federation) is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-auth-types.ts.AuthOperationOptions.api`
 
@@ -8958,7 +8958,7 @@
 - Upstream: `packages/ai/src/auth/types.ts` → `AuthOperationOptions`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Provider auth (OAuth flows, credential stores, federation) is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-auth-types.ts.AuthPrompt.api`
 
@@ -8966,7 +8966,7 @@
 - Upstream: `packages/ai/src/auth/types.ts` → `AuthPrompt`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Provider auth (OAuth flows, credential stores, federation) is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-auth-types.ts.AuthResult.api`
 
@@ -8974,7 +8974,7 @@
 - Upstream: `packages/ai/src/auth/types.ts` → `AuthResult`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Provider auth (OAuth flows, credential stores, federation) is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-auth-types.ts.AuthType.api`
 
@@ -8982,7 +8982,7 @@
 - Upstream: `packages/ai/src/auth/types.ts` → `AuthType`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Provider auth (OAuth flows, credential stores, federation) is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-auth-types.ts.Credential.api`
 
@@ -8990,7 +8990,7 @@
 - Upstream: `packages/ai/src/auth/types.ts` → `Credential`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Provider auth (OAuth flows, credential stores, federation) is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-auth-types.ts.CredentialInfo.api`
 
@@ -8998,7 +8998,7 @@
 - Upstream: `packages/ai/src/auth/types.ts` → `CredentialInfo`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Provider auth (OAuth flows, credential stores, federation) is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-auth-types.ts.CredentialStore.api`
 
@@ -9006,7 +9006,7 @@
 - Upstream: `packages/ai/src/auth/types.ts` → `CredentialStore`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Provider auth (OAuth flows, credential stores, federation) is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-auth-types.ts.LoginOptions.api`
 
@@ -9014,7 +9014,7 @@
 - Upstream: `packages/ai/src/auth/types.ts` → `LoginOptions`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Provider auth (OAuth flows, credential stores, federation) is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-auth-types.ts.ModelAuth.api`
 
@@ -9022,7 +9022,7 @@
 - Upstream: `packages/ai/src/auth/types.ts` → `ModelAuth`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Provider auth (OAuth flows, credential stores, federation) is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-auth-types.ts.OAuthAuth.api`
 
@@ -9030,7 +9030,7 @@
 - Upstream: `packages/ai/src/auth/types.ts` → `OAuthAuth`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Provider auth (OAuth flows, credential stores, federation) is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-auth-types.ts.OAuthCredential.api`
 
@@ -9038,7 +9038,7 @@
 - Upstream: `packages/ai/src/auth/types.ts` → `OAuthCredential`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Provider auth (OAuth flows, credential stores, federation) is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-auth-types.ts.OAuthCredentials.api`
 
@@ -9046,7 +9046,7 @@
 - Upstream: `packages/ai/src/auth/types.ts` → `OAuthCredentials`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Provider auth (OAuth flows, credential stores, federation) is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-auth-types.ts.ProviderAuth.api`
 
@@ -9054,7 +9054,7 @@
 - Upstream: `packages/ai/src/auth/types.ts` → `ProviderAuth`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Provider auth (OAuth flows, credential stores, federation) is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-auth-types.ts.ProviderAuthInteraction.api`
 
@@ -9062,7 +9062,7 @@
 - Upstream: `packages/ai/src/auth/types.ts` → `ProviderAuthInteraction`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Provider auth (OAuth flows, credential stores, federation) is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-cache-warming.ts.CACHE_WARMING_IDLE_CONTINUATION_PROBABILITY.api`
 
@@ -9070,7 +9070,7 @@
 - Upstream: `packages/ai/src/cache-warming.ts` → `CACHE_WARMING_IDLE_CONTINUATION_PROBABILITY`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Prompt-cache warming is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-cache-warming.ts.CACHE_WARMING_MAX_AGE_MS.api`
 
@@ -9078,7 +9078,7 @@
 - Upstream: `packages/ai/src/cache-warming.ts` → `CACHE_WARMING_MAX_AGE_MS`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Prompt-cache warming is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-cache-warming.ts.CACHE_WARMING_MAX_IDLE_AGE_MS.api`
 
@@ -9086,7 +9086,7 @@
 - Upstream: `packages/ai/src/cache-warming.ts` → `CACHE_WARMING_MAX_IDLE_AGE_MS`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Prompt-cache warming is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-cache-warming.ts.CACHE_WARMING_MINIMUM_EXPECTED_SAVINGS.api`
 
@@ -9094,7 +9094,7 @@
 - Upstream: `packages/ai/src/cache-warming.ts` → `CACHE_WARMING_MINIMUM_EXPECTED_SAVINGS`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Prompt-cache warming is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-cache-warming.ts.CacheWarmingAction.api`
 
@@ -9102,7 +9102,7 @@
 - Upstream: `packages/ai/src/cache-warming.ts` → `CacheWarmingAction`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Prompt-cache warming is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-cache-warming.ts.CacheWarmingDecision.api`
 
@@ -9110,7 +9110,7 @@
 - Upstream: `packages/ai/src/cache-warming.ts` → `CacheWarmingDecision`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Prompt-cache warming is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-cache-warming.ts.CacheWarmingPhase.api`
 
@@ -9118,7 +9118,7 @@
 - Upstream: `packages/ai/src/cache-warming.ts` → `CacheWarmingPhase`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Prompt-cache warming is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-cache-warming.ts.evaluateCacheWarming.api`
 
@@ -9126,7 +9126,7 @@
 - Upstream: `packages/ai/src/cache-warming.ts` → `evaluateCacheWarming`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Prompt-cache warming is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-cache-warming.ts.getCacheWarmingDelayMs.api`
 
@@ -9134,7 +9134,7 @@
 - Upstream: `packages/ai/src/cache-warming.ts` → `getCacheWarmingDelayMs`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Prompt-cache warming is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-cache-warming.ts.getCacheWarmingRequestOptions.api`
 
@@ -9142,7 +9142,7 @@
 - Upstream: `packages/ai/src/cache-warming.ts` → `getCacheWarmingRequestOptions`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Prompt-cache warming is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-cache-warming.ts.getPromptCacheTtlMs.api`
 
@@ -9150,7 +9150,7 @@
 - Upstream: `packages/ai/src/cache-warming.ts` → `getPromptCacheTtlMs`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Prompt-cache warming is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-cache-warming.ts.isCacheWarmingReplayable.api`
 
@@ -9158,7 +9158,7 @@
 - Upstream: `packages/ai/src/cache-warming.ts` → `isCacheWarmingReplayable`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Prompt-cache warming is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-cli.ts.internal.internal`
 
@@ -9166,7 +9166,7 @@
 - Upstream: `packages/ai/src/cli.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The pi-ai CLI surface is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-env-api-keys.ts.ANTHROPIC_API_KEY_ENV.api`
 
@@ -9174,7 +9174,7 @@
 - Upstream: `packages/ai/src/env-api-keys.ts` → `ANTHROPIC_API_KEY_ENV`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Environment API-key resolution is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-env-api-keys.ts.ANTHROPIC_AUTH_TOKEN_ENV.api`
 
@@ -9182,7 +9182,7 @@
 - Upstream: `packages/ai/src/env-api-keys.ts` → `ANTHROPIC_AUTH_TOKEN_ENV`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Environment API-key resolution is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-env-api-keys.ts.ANTHROPIC_FEDERATION_RULE_ID_ENV.api`
 
@@ -9190,7 +9190,7 @@
 - Upstream: `packages/ai/src/env-api-keys.ts` → `ANTHROPIC_FEDERATION_RULE_ID_ENV`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Environment API-key resolution is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-env-api-keys.ts.ANTHROPIC_IDENTITY_TOKEN_FILE_ENV.api`
 
@@ -9198,7 +9198,7 @@
 - Upstream: `packages/ai/src/env-api-keys.ts` → `ANTHROPIC_IDENTITY_TOKEN_FILE_ENV`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Environment API-key resolution is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-env-api-keys.ts.ANTHROPIC_OAUTH_TOKEN_ENV.api`
 
@@ -9206,7 +9206,7 @@
 - Upstream: `packages/ai/src/env-api-keys.ts` → `ANTHROPIC_OAUTH_TOKEN_ENV`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Environment API-key resolution is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-env-api-keys.ts.ANTHROPIC_ORGANIZATION_ID_ENV.api`
 
@@ -9214,7 +9214,7 @@
 - Upstream: `packages/ai/src/env-api-keys.ts` → `ANTHROPIC_ORGANIZATION_ID_ENV`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Environment API-key resolution is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-env-api-keys.ts.ANTHROPIC_SERVICE_ACCOUNT_ID_ENV.api`
 
@@ -9222,7 +9222,7 @@
 - Upstream: `packages/ai/src/env-api-keys.ts` → `ANTHROPIC_SERVICE_ACCOUNT_ID_ENV`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Environment API-key resolution is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-env-api-keys.ts.ANTHROPIC_WORKSPACE_ID_ENV.api`
 
@@ -9230,7 +9230,7 @@
 - Upstream: `packages/ai/src/env-api-keys.ts` → `ANTHROPIC_WORKSPACE_ID_ENV`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Environment API-key resolution is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-env-api-keys.ts.findEnvKeys.api`
 
@@ -9238,7 +9238,7 @@
 - Upstream: `packages/ai/src/env-api-keys.ts` → `findEnvKeys`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Environment API-key resolution is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-env-api-keys.ts.getEnvApiKey.api`
 
@@ -9246,7 +9246,7 @@
 - Upstream: `packages/ai/src/env-api-keys.ts` → `getEnvApiKey`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Environment API-key resolution is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-image-models.ts.BuiltinImageProvider.api`
 
@@ -9254,7 +9254,7 @@
 - Upstream: `packages/ai/src/image-models.ts` → `BuiltinImageProvider`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Image-model selection is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-image-models.ts.getImageModel.api`
 
@@ -9262,7 +9262,7 @@
 - Upstream: `packages/ai/src/image-models.ts` → `getImageModel`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Image-model selection is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-image-models.ts.getImageModels.api`
 
@@ -9270,7 +9270,7 @@
 - Upstream: `packages/ai/src/image-models.ts` → `getImageModels`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Image-model selection is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-image-models.ts.getImageProviders.api`
 
@@ -9278,7 +9278,7 @@
 - Upstream: `packages/ai/src/image-models.ts` → `getImageProviders`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Image-model selection is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-images-api-registry.ts.getImagesApiProvider.api`
 
@@ -9286,7 +9286,7 @@
 - Upstream: `packages/ai/src/images-api-registry.ts` → `getImagesApiProvider`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The image API registry is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-images-api-registry.ts.ImagesApiFunction.api`
 
@@ -9294,7 +9294,7 @@
 - Upstream: `packages/ai/src/images-api-registry.ts` → `ImagesApiFunction`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The image API registry is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-images-api-registry.ts.ImagesApiProvider.api`
 
@@ -9302,7 +9302,7 @@
 - Upstream: `packages/ai/src/images-api-registry.ts` → `ImagesApiProvider`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The image API registry is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-images-api-registry.ts.registerImagesApiProvider.api`
 
@@ -9310,7 +9310,7 @@
 - Upstream: `packages/ai/src/images-api-registry.ts` → `registerImagesApiProvider`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The image API registry is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-images.ts.generateImages.api`
 
@@ -9318,7 +9318,7 @@
 - Upstream: `packages/ai/src/images.ts` → `generateImages`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Image generation is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-index.ts.AnthropicEffort.api`
 
@@ -9326,7 +9326,7 @@
 - Upstream: `packages/ai/src/index.ts` → `AnthropicEffort`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Barrel exports beyond the ported slices are not surfaced by package:pi/ai.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-index.ts.AnthropicOptions.api`
 
@@ -9334,7 +9334,7 @@
 - Upstream: `packages/ai/src/index.ts` → `AnthropicOptions`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Barrel exports beyond the ported slices are not surfaced by package:pi/ai.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-index.ts.AnthropicThinkingDisplay.api`
 
@@ -9342,7 +9342,7 @@
 - Upstream: `packages/ai/src/index.ts` → `AnthropicThinkingDisplay`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Barrel exports beyond the ported slices are not surfaced by package:pi/ai.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-index.ts.AzureOpenAIResponsesOptions.api`
 
@@ -9350,7 +9350,7 @@
 - Upstream: `packages/ai/src/index.ts` → `AzureOpenAIResponsesOptions`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Barrel exports beyond the ported slices are not surfaced by package:pi/ai.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-index.ts.BedrockOptions.api`
 
@@ -9358,7 +9358,7 @@
 - Upstream: `packages/ai/src/index.ts` → `BedrockOptions`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Barrel exports beyond the ported slices are not surfaced by package:pi/ai.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-index.ts.BedrockThinkingDisplay.api`
 
@@ -9366,7 +9366,7 @@
 - Upstream: `packages/ai/src/index.ts` → `BedrockThinkingDisplay`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Barrel exports beyond the ported slices are not surfaced by package:pi/ai.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-index.ts.contentText.api`
 
@@ -9374,7 +9374,7 @@
 - Upstream: `packages/ai/src/index.ts` → `contentText`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Barrel exports beyond the ported slices are not surfaced by package:pi/ai.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-index.ts.getSystemMessageText.api`
 
@@ -9382,7 +9382,7 @@
 - Upstream: `packages/ai/src/index.ts` → `getSystemMessageText`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Barrel exports beyond the ported slices are not surfaced by package:pi/ai.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-index.ts.GoogleApiThinkingLevel.api`
 
@@ -9390,7 +9390,7 @@
 - Upstream: `packages/ai/src/index.ts` → `GoogleApiThinkingLevel`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Barrel exports beyond the ported slices are not surfaced by package:pi/ai.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-index.ts.GoogleOptions.api`
 
@@ -9398,7 +9398,7 @@
 - Upstream: `packages/ai/src/index.ts` → `GoogleOptions`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Barrel exports beyond the ported slices are not surfaced by package:pi/ai.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-index.ts.GoogleVertexOptions.api`
 
@@ -9406,7 +9406,7 @@
 - Upstream: `packages/ai/src/index.ts` → `GoogleVertexOptions`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Barrel exports beyond the ported slices are not surfaced by package:pi/ai.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-index.ts.MistralOptions.api`
 
@@ -9414,7 +9414,7 @@
 - Upstream: `packages/ai/src/index.ts` → `MistralOptions`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Barrel exports beyond the ported slices are not surfaced by package:pi/ai.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-index.ts.OpenAICodexResponsesOptions.api`
 
@@ -9422,7 +9422,7 @@
 - Upstream: `packages/ai/src/index.ts` → `OpenAICodexResponsesOptions`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Barrel exports beyond the ported slices are not surfaced by package:pi/ai.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-index.ts.OpenAICodexWebSocketDebugStats.api`
 
@@ -9430,7 +9430,7 @@
 - Upstream: `packages/ai/src/index.ts` → `OpenAICodexWebSocketDebugStats`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Barrel exports beyond the ported slices are not surfaced by package:pi/ai.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-index.ts.OpenAICompletionsOptions.api`
 
@@ -9438,7 +9438,7 @@
 - Upstream: `packages/ai/src/index.ts` → `OpenAICompletionsOptions`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Barrel exports beyond the ported slices are not surfaced by package:pi/ai.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-index.ts.OpenAIResponsesOptions.api`
 
@@ -9446,7 +9446,7 @@
 - Upstream: `packages/ai/src/index.ts` → `OpenAIResponsesOptions`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Barrel exports beyond the ported slices are not surfaced by package:pi/ai.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-index.ts.PI_AI_VERSION.api`
 
@@ -9454,7 +9454,7 @@
 - Upstream: `packages/ai/src/index.ts` → `PI_AI_VERSION`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Barrel exports beyond the ported slices are not surfaced by package:pi/ai.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-index.ts.PiMessagesEvent.api`
 
@@ -9462,7 +9462,7 @@
 - Upstream: `packages/ai/src/index.ts` → `PiMessagesEvent`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Barrel exports beyond the ported slices are not surfaced by package:pi/ai.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-index.ts.PiMessagesOptions.api`
 
@@ -9470,7 +9470,7 @@
 - Upstream: `packages/ai/src/index.ts` → `PiMessagesOptions`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Barrel exports beyond the ported slices are not surfaced by package:pi/ai.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-index.ts.PiMessagesRewriteImpact.api`
 
@@ -9478,7 +9478,7 @@
 - Upstream: `packages/ai/src/index.ts` → `PiMessagesRewriteImpact`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Barrel exports beyond the ported slices are not surfaced by package:pi/ai.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-index.ts.renderSystemMessageUpdate.api`
 
@@ -9486,7 +9486,7 @@
 - Upstream: `packages/ai/src/index.ts` → `renderSystemMessageUpdate`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Barrel exports beyond the ported slices are not surfaced by package:pi/ai.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-index.ts.ResolvedGoogleThinkingLevel.api`
 
@@ -9494,7 +9494,7 @@
 - Upstream: `packages/ai/src/index.ts` → `ResolvedGoogleThinkingLevel`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Barrel exports beyond the ported slices are not surfaced by package:pi/ai.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-index.ts.uuidv7.api`
 
@@ -9502,7 +9502,7 @@
 - Upstream: `packages/ai/src/index.ts` → `uuidv7`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Barrel exports beyond the ported slices are not surfaced by package:pi/ai.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-legacy-api-aliases.ts.streamAnthropic.api`
 
@@ -9510,7 +9510,7 @@
 - Upstream: `packages/ai/src/legacy-api-aliases.ts` → `streamAnthropic`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Legacy API aliases are not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-legacy-api-aliases.ts.streamAzureOpenAIResponses.api`
 
@@ -9518,7 +9518,7 @@
 - Upstream: `packages/ai/src/legacy-api-aliases.ts` → `streamAzureOpenAIResponses`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Legacy API aliases are not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-legacy-api-aliases.ts.streamGoogle.api`
 
@@ -9526,7 +9526,7 @@
 - Upstream: `packages/ai/src/legacy-api-aliases.ts` → `streamGoogle`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Legacy API aliases are not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-legacy-api-aliases.ts.streamGoogleVertex.api`
 
@@ -9534,7 +9534,7 @@
 - Upstream: `packages/ai/src/legacy-api-aliases.ts` → `streamGoogleVertex`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Legacy API aliases are not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-legacy-api-aliases.ts.streamMistral.api`
 
@@ -9542,7 +9542,7 @@
 - Upstream: `packages/ai/src/legacy-api-aliases.ts` → `streamMistral`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Legacy API aliases are not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-legacy-api-aliases.ts.streamOpenAICodexResponses.api`
 
@@ -9550,7 +9550,7 @@
 - Upstream: `packages/ai/src/legacy-api-aliases.ts` → `streamOpenAICodexResponses`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Legacy API aliases are not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-legacy-api-aliases.ts.streamOpenAICompletions.api`
 
@@ -9558,7 +9558,7 @@
 - Upstream: `packages/ai/src/legacy-api-aliases.ts` → `streamOpenAICompletions`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Legacy API aliases are not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-legacy-api-aliases.ts.streamOpenAIResponses.api`
 
@@ -9566,7 +9566,7 @@
 - Upstream: `packages/ai/src/legacy-api-aliases.ts` → `streamOpenAIResponses`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Legacy API aliases are not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-legacy-api-aliases.ts.streamSimpleAnthropic.api`
 
@@ -9574,7 +9574,7 @@
 - Upstream: `packages/ai/src/legacy-api-aliases.ts` → `streamSimpleAnthropic`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Legacy API aliases are not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-legacy-api-aliases.ts.streamSimpleAzureOpenAIResponses.api`
 
@@ -9582,7 +9582,7 @@
 - Upstream: `packages/ai/src/legacy-api-aliases.ts` → `streamSimpleAzureOpenAIResponses`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Legacy API aliases are not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-legacy-api-aliases.ts.streamSimpleGoogle.api`
 
@@ -9590,7 +9590,7 @@
 - Upstream: `packages/ai/src/legacy-api-aliases.ts` → `streamSimpleGoogle`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Legacy API aliases are not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-legacy-api-aliases.ts.streamSimpleGoogleVertex.api`
 
@@ -9598,7 +9598,7 @@
 - Upstream: `packages/ai/src/legacy-api-aliases.ts` → `streamSimpleGoogleVertex`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Legacy API aliases are not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-legacy-api-aliases.ts.streamSimpleMistral.api`
 
@@ -9606,7 +9606,7 @@
 - Upstream: `packages/ai/src/legacy-api-aliases.ts` → `streamSimpleMistral`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Legacy API aliases are not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-legacy-api-aliases.ts.streamSimpleOpenAICodexResponses.api`
 
@@ -9614,7 +9614,7 @@
 - Upstream: `packages/ai/src/legacy-api-aliases.ts` → `streamSimpleOpenAICodexResponses`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Legacy API aliases are not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-legacy-api-aliases.ts.streamSimpleOpenAICompletions.api`
 
@@ -9622,7 +9622,7 @@
 - Upstream: `packages/ai/src/legacy-api-aliases.ts` → `streamSimpleOpenAICompletions`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Legacy API aliases are not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-legacy-api-aliases.ts.streamSimpleOpenAIResponses.api`
 
@@ -9630,7 +9630,7 @@
 - Upstream: `packages/ai/src/legacy-api-aliases.ts` → `streamSimpleOpenAIResponses`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Legacy API aliases are not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-models-store.ts.InMemoryModelsStore.api`
 
@@ -9638,7 +9638,7 @@
 - Upstream: `packages/ai/src/models-store.ts` → `InMemoryModelsStore`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The model catalog store (resolution, refresh, auth wiring) is not ported; the Dart port carries only inline model descriptors.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-models-store.ts.ModelsStore.api`
 
@@ -9646,7 +9646,7 @@
 - Upstream: `packages/ai/src/models-store.ts` → `ModelsStore`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The model catalog store (resolution, refresh, auth wiring) is not ported; the Dart port carries only inline model descriptors.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-models-store.ts.ModelsStoreEntry.api`
 
@@ -9654,7 +9654,7 @@
 - Upstream: `packages/ai/src/models-store.ts` → `ModelsStoreEntry`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The model catalog store (resolution, refresh, auth wiring) is not ported; the Dart port carries only inline model descriptors.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-models-store.ts.ModelsStoreOperationOptions.api`
 
@@ -9662,7 +9662,7 @@
 - Upstream: `packages/ai/src/models-store.ts` → `ModelsStoreOperationOptions`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The model catalog store (resolution, refresh, auth wiring) is not ported; the Dart port carries only inline model descriptors.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-models.ts.AI_TELEMETRY_SCHEMA.api`
 
@@ -9670,7 +9670,7 @@
 - Upstream: `packages/ai/src/models.ts` → `AI_TELEMETRY_SCHEMA`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The model catalog (cost tiers, compat resolution, context limits) is not ported; the Dart port carries only inline model descriptors.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-models.ts.calculateCost.api`
 
@@ -9678,7 +9678,7 @@
 - Upstream: `packages/ai/src/models.ts` → `calculateCost`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The model catalog (cost tiers, compat resolution, context limits) is not ported; the Dart port carries only inline model descriptors.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-models.ts.clampThinkingLevel.api`
 
@@ -9686,7 +9686,7 @@
 - Upstream: `packages/ai/src/models.ts` → `clampThinkingLevel`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The model catalog (cost tiers, compat resolution, context limits) is not ported; the Dart port carries only inline model descriptors.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-models.ts.createModels.api`
 
@@ -9694,7 +9694,7 @@
 - Upstream: `packages/ai/src/models.ts` → `createModels`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The model catalog (cost tiers, compat resolution, context limits) is not ported; the Dart port carries only inline model descriptors.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-models.ts.CreateModelsOptions.api`
 
@@ -9702,7 +9702,7 @@
 - Upstream: `packages/ai/src/models.ts` → `CreateModelsOptions`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The model catalog (cost tiers, compat resolution, context limits) is not ported; the Dart port carries only inline model descriptors.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-models.ts.createProvider.api`
 
@@ -9710,7 +9710,7 @@
 - Upstream: `packages/ai/src/models.ts` → `createProvider`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The model catalog (cost tiers, compat resolution, context limits) is not ported; the Dart port carries only inline model descriptors.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-models.ts.CreateProviderOptions.api`
 
@@ -9718,7 +9718,7 @@
 - Upstream: `packages/ai/src/models.ts` → `CreateProviderOptions`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The model catalog (cost tiers, compat resolution, context limits) is not ported; the Dart port carries only inline model descriptors.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-models.ts.getModelType.api`
 
@@ -9726,7 +9726,7 @@
 - Upstream: `packages/ai/src/models.ts` → `getModelType`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The model catalog (cost tiers, compat resolution, context limits) is not ported; the Dart port carries only inline model descriptors.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-models.ts.getSupportedThinkingLevels.api`
 
@@ -9734,7 +9734,7 @@
 - Upstream: `packages/ai/src/models.ts` → `getSupportedThinkingLevels`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The model catalog (cost tiers, compat resolution, context limits) is not ported; the Dart port carries only inline model descriptors.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-models.ts.hasApi.api`
 
@@ -9742,7 +9742,7 @@
 - Upstream: `packages/ai/src/models.ts` → `hasApi`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The model catalog (cost tiers, compat resolution, context limits) is not ported; the Dart port carries only inline model descriptors.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-models.ts.isModelType.api`
 
@@ -9750,7 +9750,7 @@
 - Upstream: `packages/ai/src/models.ts` → `isModelType`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The model catalog (cost tiers, compat resolution, context limits) is not ported; the Dart port carries only inline model descriptors.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-models.ts.Models.api`
 
@@ -9758,7 +9758,7 @@
 - Upstream: `packages/ai/src/models.ts` → `Models`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The model catalog (cost tiers, compat resolution, context limits) is not ported; the Dart port carries only inline model descriptors.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-models.ts.ModelsApiStreamOptions.api`
 
@@ -9766,7 +9766,7 @@
 - Upstream: `packages/ai/src/models.ts` → `ModelsApiStreamOptions`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The model catalog (cost tiers, compat resolution, context limits) is not ported; the Dart port carries only inline model descriptors.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-models.ts.modelsAreEqual.api`
 
@@ -9774,7 +9774,7 @@
 - Upstream: `packages/ai/src/models.ts` → `modelsAreEqual`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The model catalog (cost tiers, compat resolution, context limits) is not ported; the Dart port carries only inline model descriptors.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-models.ts.ModelsClassifierOptions.api`
 
@@ -9782,7 +9782,7 @@
 - Upstream: `packages/ai/src/models.ts` → `ModelsClassifierOptions`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The model catalog (cost tiers, compat resolution, context limits) is not ported; the Dart port carries only inline model descriptors.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-models.ts.ModelsDeferredCancelOptions.api`
 
@@ -9790,7 +9790,7 @@
 - Upstream: `packages/ai/src/models.ts` → `ModelsDeferredCancelOptions`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The model catalog (cost tiers, compat resolution, context limits) is not ported; the Dart port carries only inline model descriptors.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-models.ts.ModelsDeferredFetchOptions.api`
 
@@ -9798,7 +9798,7 @@
 - Upstream: `packages/ai/src/models.ts` → `ModelsDeferredFetchOptions`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The model catalog (cost tiers, compat resolution, context limits) is not ported; the Dart port carries only inline model descriptors.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-models.ts.ModelsError.api`
 
@@ -9806,7 +9806,7 @@
 - Upstream: `packages/ai/src/models.ts` → `ModelsError`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The model catalog (cost tiers, compat resolution, context limits) is not ported; the Dart port carries only inline model descriptors.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-models.ts.ModelsImagesOptions.api`
 
@@ -9814,7 +9814,7 @@
 - Upstream: `packages/ai/src/models.ts` → `ModelsImagesOptions`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The model catalog (cost tiers, compat resolution, context limits) is not ported; the Dart port carries only inline model descriptors.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-models.ts.ModelsPublication.api`
 
@@ -9822,7 +9822,7 @@
 - Upstream: `packages/ai/src/models.ts` → `ModelsPublication`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The model catalog (cost tiers, compat resolution, context limits) is not ported; the Dart port carries only inline model descriptors.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-models.ts.ModelsRefreshOptions.api`
 
@@ -9830,7 +9830,7 @@
 - Upstream: `packages/ai/src/models.ts` → `ModelsRefreshOptions`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The model catalog (cost tiers, compat resolution, context limits) is not ported; the Dart port carries only inline model descriptors.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-models.ts.ModelsRefreshResult.api`
 
@@ -9838,7 +9838,7 @@
 - Upstream: `packages/ai/src/models.ts` → `ModelsRefreshResult`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The model catalog (cost tiers, compat resolution, context limits) is not ported; the Dart port carries only inline model descriptors.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-models.ts.ModelsRequestTransforms.api`
 
@@ -9846,7 +9846,7 @@
 - Upstream: `packages/ai/src/models.ts` → `ModelsRequestTransforms`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The model catalog (cost tiers, compat resolution, context limits) is not ported; the Dart port carries only inline model descriptors.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-models.ts.ModelsSimpleStreamOptions.api`
 
@@ -9854,7 +9854,7 @@
 - Upstream: `packages/ai/src/models.ts` → `ModelsSimpleStreamOptions`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The model catalog (cost tiers, compat resolution, context limits) is not ported; the Dart port carries only inline model descriptors.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-models.ts.MutableModels.api`
 
@@ -9862,7 +9862,7 @@
 - Upstream: `packages/ai/src/models.ts` → `MutableModels`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The model catalog (cost tiers, compat resolution, context limits) is not ported; the Dart port carries only inline model descriptors.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-models.ts.Provider.api`
 
@@ -9870,7 +9870,7 @@
 - Upstream: `packages/ai/src/models.ts` → `Provider`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The model catalog (cost tiers, compat resolution, context limits) is not ported; the Dart port carries only inline model descriptors.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-models.ts.RefreshModelsContext.api`
 
@@ -9878,7 +9878,7 @@
 - Upstream: `packages/ai/src/models.ts` → `RefreshModelsContext`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The model catalog (cost tiers, compat resolution, context limits) is not ported; the Dart port carries only inline model descriptors.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-oauth.ts.internal.internal`
 
@@ -9886,7 +9886,7 @@
 - Upstream: `packages/ai/src/oauth.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: OAuth device/authorization flows are not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-providers-faux.ts.createFauxCore.api`
 
@@ -9894,7 +9894,7 @@
 - Upstream: `packages/ai/src/providers/faux.ts` → `createFauxCore`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The faux test provider is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-providers-faux.ts.fauxAssistantMessage.api`
 
@@ -9902,7 +9902,7 @@
 - Upstream: `packages/ai/src/providers/faux.ts` → `fauxAssistantMessage`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The faux test provider is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-providers-faux.ts.FauxContentBlock.api`
 
@@ -9910,7 +9910,7 @@
 - Upstream: `packages/ai/src/providers/faux.ts` → `FauxContentBlock`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The faux test provider is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-providers-faux.ts.FauxModelDefinition.api`
 
@@ -9918,7 +9918,7 @@
 - Upstream: `packages/ai/src/providers/faux.ts` → `FauxModelDefinition`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The faux test provider is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-providers-faux.ts.fauxProvider.api`
 
@@ -9926,7 +9926,7 @@
 - Upstream: `packages/ai/src/providers/faux.ts` → `fauxProvider`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The faux test provider is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-providers-faux.ts.FauxProviderHandle.api`
 
@@ -9934,7 +9934,7 @@
 - Upstream: `packages/ai/src/providers/faux.ts` → `FauxProviderHandle`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The faux test provider is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-providers-faux.ts.FauxProviderRegistration.api`
 
@@ -9942,7 +9942,7 @@
 - Upstream: `packages/ai/src/providers/faux.ts` → `FauxProviderRegistration`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The faux test provider is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-providers-faux.ts.FauxProviderState.api`
 
@@ -9950,7 +9950,7 @@
 - Upstream: `packages/ai/src/providers/faux.ts` → `FauxProviderState`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The faux test provider is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-providers-faux.ts.FauxResponseFactory.api`
 
@@ -9958,7 +9958,7 @@
 - Upstream: `packages/ai/src/providers/faux.ts` → `FauxResponseFactory`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The faux test provider is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-providers-faux.ts.FauxResponseStep.api`
 
@@ -9966,7 +9966,7 @@
 - Upstream: `packages/ai/src/providers/faux.ts` → `FauxResponseStep`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The faux test provider is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-providers-faux.ts.fauxText.api`
 
@@ -9974,7 +9974,7 @@
 - Upstream: `packages/ai/src/providers/faux.ts` → `fauxText`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The faux test provider is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-providers-faux.ts.fauxThinking.api`
 
@@ -9982,7 +9982,7 @@
 - Upstream: `packages/ai/src/providers/faux.ts` → `fauxThinking`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The faux test provider is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-providers-faux.ts.fauxToolCall.api`
 
@@ -9990,7 +9990,7 @@
 - Upstream: `packages/ai/src/providers/faux.ts` → `fauxToolCall`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The faux test provider is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-providers-faux.ts.RegisterFauxProviderOptions.api`
 
@@ -9998,7 +9998,7 @@
 - Upstream: `packages/ai/src/providers/faux.ts` → `RegisterFauxProviderOptions`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The faux test provider is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-providers-images-register-builtins.ts.generateImagesOpenRouter.api`
 
@@ -10006,7 +10006,7 @@
 - Upstream: `packages/ai/src/providers/images/register-builtins.ts` → `generateImagesOpenRouter`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Image provider registration is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-providers-images-register-builtins.ts.registerBuiltInImagesApiProviders.api`
 
@@ -10014,7 +10014,7 @@
 - Upstream: `packages/ai/src/providers/images/register-builtins.ts` → `registerBuiltInImagesApiProviders`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Image provider registration is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-session-resources.ts.cleanupSessionResources.api`
 
@@ -10022,7 +10022,7 @@
 - Upstream: `packages/ai/src/session-resources.ts` → `cleanupSessionResources`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Session resources are not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-session-resources.ts.registerSessionResourceCleanup.api`
 
@@ -10030,7 +10030,7 @@
 - Upstream: `packages/ai/src/session-resources.ts` → `registerSessionResourceCleanup`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Session resources are not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-session-resources.ts.SessionResourceCleanup.api`
 
@@ -10038,7 +10038,7 @@
 - Upstream: `packages/ai/src/session-resources.ts` → `SessionResourceCleanup`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Session resources are not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.AnyModel.api`
 
@@ -10046,7 +10046,7 @@
 - Upstream: `packages/ai/src/types.ts` → `AnyModel`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.Api.api`
 
@@ -10054,7 +10054,7 @@
 - Upstream: `packages/ai/src/types.ts` → `Api`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.ApiOptionsMap.api`
 
@@ -10062,7 +10062,7 @@
 - Upstream: `packages/ai/src/types.ts` → `ApiOptionsMap`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.ApiStreamOptions.api`
 
@@ -10070,7 +10070,7 @@
 - Upstream: `packages/ai/src/types.ts` → `ApiStreamOptions`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.AssistantImages.api`
 
@@ -10078,7 +10078,7 @@
 - Upstream: `packages/ai/src/types.ts` → `AssistantImages`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.AssistantMessage.api`
 
@@ -10086,7 +10086,7 @@
 - Upstream: `packages/ai/src/types.ts` → `AssistantMessage`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.AssistantMessageEvent.api`
 
@@ -10094,7 +10094,7 @@
 - Upstream: `packages/ai/src/types.ts` → `AssistantMessageEvent`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.AssistantMessageEventStream.api`
 
@@ -10102,7 +10102,7 @@
 - Upstream: `packages/ai/src/types.ts` → `AssistantMessageEventStream`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.BaseModel.api`
 
@@ -10110,7 +10110,7 @@
 - Upstream: `packages/ai/src/types.ts` → `BaseModel`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.ClassifierAnswer.api`
 
@@ -10118,7 +10118,7 @@
 - Upstream: `packages/ai/src/types.ts` → `ClassifierAnswer`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.ClassifierApi.api`
 
@@ -10126,7 +10126,7 @@
 - Upstream: `packages/ai/src/types.ts` → `ClassifierApi`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.ClassifierBoolAnswer.api`
 
@@ -10134,7 +10134,7 @@
 - Upstream: `packages/ai/src/types.ts` → `ClassifierBoolAnswer`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.ClassifierBoolQuestion.api`
 
@@ -10142,7 +10142,7 @@
 - Upstream: `packages/ai/src/types.ts` → `ClassifierBoolQuestion`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.ClassifierChoiceAnswer.api`
 
@@ -10150,7 +10150,7 @@
 - Upstream: `packages/ai/src/types.ts` → `ClassifierChoiceAnswer`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.ClassifierChoiceQuestion.api`
 
@@ -10158,7 +10158,7 @@
 - Upstream: `packages/ai/src/types.ts` → `ClassifierChoiceQuestion`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.ClassifierContext.api`
 
@@ -10166,7 +10166,7 @@
 - Upstream: `packages/ai/src/types.ts` → `ClassifierContext`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.ClassifierFunction.api`
 
@@ -10174,7 +10174,7 @@
 - Upstream: `packages/ai/src/types.ts` → `ClassifierFunction`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.ClassifierModel.api`
 
@@ -10182,7 +10182,7 @@
 - Upstream: `packages/ai/src/types.ts` → `ClassifierModel`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.ClassifierOptions.api`
 
@@ -10190,7 +10190,7 @@
 - Upstream: `packages/ai/src/types.ts` → `ClassifierOptions`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.ClassifierQuestion.api`
 
@@ -10198,7 +10198,7 @@
 - Upstream: `packages/ai/src/types.ts` → `ClassifierQuestion`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.ClassifierResult.api`
 
@@ -10206,7 +10206,7 @@
 - Upstream: `packages/ai/src/types.ts` → `ClassifierResult`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.ClassifierScoreAnswer.api`
 
@@ -10214,7 +10214,7 @@
 - Upstream: `packages/ai/src/types.ts` → `ClassifierScoreAnswer`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.ClassifierScoreQuestion.api`
 
@@ -10222,7 +10222,7 @@
 - Upstream: `packages/ai/src/types.ts` → `ClassifierScoreQuestion`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.ClassifierStopReason.api`
 
@@ -10230,7 +10230,7 @@
 - Upstream: `packages/ai/src/types.ts` → `ClassifierStopReason`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.ConstrainedSamplingConfig.api`
 
@@ -10238,7 +10238,7 @@
 - Upstream: `packages/ai/src/types.ts` → `ConstrainedSamplingConfig`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.Context.api`
 
@@ -10246,7 +10246,7 @@
 - Upstream: `packages/ai/src/types.ts` → `Context`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.DeferredCancelOptions.api`
 
@@ -10254,7 +10254,7 @@
 - Upstream: `packages/ai/src/types.ts` → `DeferredCancelOptions`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.DeferredFetchOptions.api`
 
@@ -10262,7 +10262,7 @@
 - Upstream: `packages/ai/src/types.ts` → `DeferredFetchOptions`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.DeferredHandle.api`
 
@@ -10270,7 +10270,7 @@
 - Upstream: `packages/ai/src/types.ts` → `DeferredHandle`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.FetchFunction.api`
 
@@ -10278,7 +10278,7 @@
 - Upstream: `packages/ai/src/types.ts` → `FetchFunction`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.GrammarFormat.api`
 
@@ -10286,7 +10286,7 @@
 - Upstream: `packages/ai/src/types.ts` → `GrammarFormat`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.GrammarVariants.api`
 
@@ -10294,7 +10294,7 @@
 - Upstream: `packages/ai/src/types.ts` → `GrammarVariants`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.ImageApi.api`
 
@@ -10302,7 +10302,7 @@
 - Upstream: `packages/ai/src/types.ts` → `ImageApi`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.ImageContent.api`
 
@@ -10310,7 +10310,7 @@
 - Upstream: `packages/ai/src/types.ts` → `ImageContent`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.ImageModel.api`
 
@@ -10318,7 +10318,7 @@
 - Upstream: `packages/ai/src/types.ts` → `ImageModel`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.ImagesContext.api`
 
@@ -10326,7 +10326,7 @@
 - Upstream: `packages/ai/src/types.ts` → `ImagesContext`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.ImagesFunction.api`
 
@@ -10334,7 +10334,7 @@
 - Upstream: `packages/ai/src/types.ts` → `ImagesFunction`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.ImagesInputContent.api`
 
@@ -10342,7 +10342,7 @@
 - Upstream: `packages/ai/src/types.ts` → `ImagesInputContent`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.ImagesOptions.api`
 
@@ -10350,7 +10350,7 @@
 - Upstream: `packages/ai/src/types.ts` → `ImagesOptions`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.ImagesOutputContent.api`
 
@@ -10358,7 +10358,7 @@
 - Upstream: `packages/ai/src/types.ts` → `ImagesOutputContent`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.ImagesStopReason.api`
 
@@ -10366,7 +10366,7 @@
 - Upstream: `packages/ai/src/types.ts` → `ImagesStopReason`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.JsonObject.api`
 
@@ -10374,7 +10374,7 @@
 - Upstream: `packages/ai/src/types.ts` → `JsonObject`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.JsonRepresentation.api`
 
@@ -10382,7 +10382,7 @@
 - Upstream: `packages/ai/src/types.ts` → `JsonRepresentation`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.JsonValue.api`
 
@@ -10390,7 +10390,7 @@
 - Upstream: `packages/ai/src/types.ts` → `JsonValue`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.KnownApi.api`
 
@@ -10398,7 +10398,7 @@
 - Upstream: `packages/ai/src/types.ts` → `KnownApi`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.KnownClassifierApi.api`
 
@@ -10406,7 +10406,7 @@
 - Upstream: `packages/ai/src/types.ts` → `KnownClassifierApi`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.KnownImageApi.api`
 
@@ -10414,7 +10414,7 @@
 - Upstream: `packages/ai/src/types.ts` → `KnownImageApi`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.KnownProvider.api`
 
@@ -10422,7 +10422,7 @@
 - Upstream: `packages/ai/src/types.ts` → `KnownProvider`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.Message.api`
 
@@ -10430,7 +10430,7 @@
 - Upstream: `packages/ai/src/types.ts` → `Message`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.Model.api`
 
@@ -10438,7 +10438,7 @@
 - Upstream: `packages/ai/src/types.ts` → `Model`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.ModelType.api`
 
@@ -10446,7 +10446,7 @@
 - Upstream: `packages/ai/src/types.ts` → `ModelType`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.ModelTypeMap.api`
 
@@ -10454,7 +10454,7 @@
 - Upstream: `packages/ai/src/types.ts` → `ModelTypeMap`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.NestedToolCallRecord.api`
 
@@ -10462,7 +10462,7 @@
 - Upstream: `packages/ai/src/types.ts` → `NestedToolCallRecord`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.NestedToolCalls.api`
 
@@ -10470,7 +10470,7 @@
 - Upstream: `packages/ai/src/types.ts` → `NestedToolCalls`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.ProviderClassifier.api`
 
@@ -10478,7 +10478,7 @@
 - Upstream: `packages/ai/src/types.ts` → `ProviderClassifier`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.ProviderEnv.api`
 
@@ -10486,7 +10486,7 @@
 - Upstream: `packages/ai/src/types.ts` → `ProviderEnv`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.ProviderHeaders.api`
 
@@ -10494,7 +10494,7 @@
 - Upstream: `packages/ai/src/types.ts` → `ProviderHeaders`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.ProviderId.api`
 
@@ -10502,7 +10502,7 @@
 - Upstream: `packages/ai/src/types.ts` → `ProviderId`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.ProviderImages.api`
 
@@ -10510,7 +10510,7 @@
 - Upstream: `packages/ai/src/types.ts` → `ProviderImages`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.ProviderImagesOptions.api`
 
@@ -10518,7 +10518,7 @@
 - Upstream: `packages/ai/src/types.ts` → `ProviderImagesOptions`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.ProviderRequestOptions.api`
 
@@ -10526,7 +10526,7 @@
 - Upstream: `packages/ai/src/types.ts` → `ProviderRequestOptions`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.ProviderResponse.api`
 
@@ -10534,7 +10534,7 @@
 - Upstream: `packages/ai/src/types.ts` → `ProviderResponse`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.ProviderStreamOptions.api`
 
@@ -10542,7 +10542,7 @@
 - Upstream: `packages/ai/src/types.ts` → `ProviderStreamOptions`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.ProviderStreams.api`
 
@@ -10550,7 +10550,7 @@
 - Upstream: `packages/ai/src/types.ts` → `ProviderStreams`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.SamplingParams.api`
 
@@ -10558,7 +10558,7 @@
 - Upstream: `packages/ai/src/types.ts` → `SamplingParams`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.SamplingParamsByThinkingLevel.api`
 
@@ -10566,7 +10566,7 @@
 - Upstream: `packages/ai/src/types.ts` → `SamplingParamsByThinkingLevel`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.SimpleStreamOptions.api`
 
@@ -10574,7 +10574,7 @@
 - Upstream: `packages/ai/src/types.ts` → `SimpleStreamOptions`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.StopReason.api`
 
@@ -10582,7 +10582,7 @@
 - Upstream: `packages/ai/src/types.ts` → `StopReason`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.StreamFunction.api`
 
@@ -10590,7 +10590,7 @@
 - Upstream: `packages/ai/src/types.ts` → `StreamFunction`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.StreamOptions.api`
 
@@ -10598,7 +10598,7 @@
 - Upstream: `packages/ai/src/types.ts` → `StreamOptions`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.SystemMessage.api`
 
@@ -10606,7 +10606,7 @@
 - Upstream: `packages/ai/src/types.ts` → `SystemMessage`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.TextContent.api`
 
@@ -10614,7 +10614,7 @@
 - Upstream: `packages/ai/src/types.ts` → `TextContent`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.TextSignatureV1.api`
 
@@ -10622,7 +10622,7 @@
 - Upstream: `packages/ai/src/types.ts` → `TextSignatureV1`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.ThinkingBudgets.api`
 
@@ -10630,7 +10630,7 @@
 - Upstream: `packages/ai/src/types.ts` → `ThinkingBudgets`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.ThinkingContent.api`
 
@@ -10638,7 +10638,7 @@
 - Upstream: `packages/ai/src/types.ts` → `ThinkingContent`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.Tool.api`
 
@@ -10646,7 +10646,7 @@
 - Upstream: `packages/ai/src/types.ts` → `Tool`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.ToolCall.api`
 
@@ -10654,7 +10654,7 @@
 - Upstream: `packages/ai/src/types.ts` → `ToolCall`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.ToolChoice.api`
 
@@ -10662,7 +10662,7 @@
 - Upstream: `packages/ai/src/types.ts` → `ToolChoice`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.ToolReference.api`
 
@@ -10670,7 +10670,7 @@
 - Upstream: `packages/ai/src/types.ts` → `ToolReference`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.ToolResultMessage.api`
 
@@ -10678,7 +10678,7 @@
 - Upstream: `packages/ai/src/types.ts` → `ToolResultMessage`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.TranscriptContext.api`
 
@@ -10686,7 +10686,7 @@
 - Upstream: `packages/ai/src/types.ts` → `TranscriptContext`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.Transport.api`
 
@@ -10694,7 +10694,7 @@
 - Upstream: `packages/ai/src/types.ts` → `Transport`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.Usage.api`
 
@@ -10702,7 +10702,7 @@
 - Upstream: `packages/ai/src/types.ts` → `Usage`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-types.ts.UserMessage.api`
 
@@ -10710,7 +10710,7 @@
 - Upstream: `packages/ai/src/types.ts` → `UserMessage`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Type-level surface beyond the runtime subset the Dart port models in pi_agent/lib/src/types.dart.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-utils-diagnostics.ts.appendAssistantMessageDiagnostic.api`
 
@@ -10718,7 +10718,7 @@
 - Upstream: `packages/ai/src/utils/diagnostics.ts` → `appendAssistantMessageDiagnostic`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Provider diagnostics collection is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-utils-diagnostics.ts.AssistantMessageDiagnostic.api`
 
@@ -10726,7 +10726,7 @@
 - Upstream: `packages/ai/src/utils/diagnostics.ts` → `AssistantMessageDiagnostic`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Provider diagnostics collection is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-utils-diagnostics.ts.createAssistantMessageDiagnostic.api`
 
@@ -10734,7 +10734,7 @@
 - Upstream: `packages/ai/src/utils/diagnostics.ts` → `createAssistantMessageDiagnostic`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Provider diagnostics collection is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-utils-diagnostics.ts.DiagnosticErrorInfo.api`
 
@@ -10742,7 +10742,7 @@
 - Upstream: `packages/ai/src/utils/diagnostics.ts` → `DiagnosticErrorInfo`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Provider diagnostics collection is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-utils-diagnostics.ts.extractDiagnosticError.api`
 
@@ -10750,7 +10750,7 @@
 - Upstream: `packages/ai/src/utils/diagnostics.ts` → `extractDiagnosticError`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Provider diagnostics collection is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-utils-diagnostics.ts.formatThrownValue.api`
 
@@ -10758,7 +10758,7 @@
 - Upstream: `packages/ai/src/utils/diagnostics.ts` → `formatThrownValue`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Provider diagnostics collection is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-utils-identity.ts.withClientIdentity.api`
 
@@ -10766,7 +10766,7 @@
 - Upstream: `packages/ai/src/utils/identity.ts` → `withClientIdentity`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The withClientIdentity models wrapper is not ported: the Dart port has no Models facade to wrap.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-utils-json-parse.ts.parseStreamingJson.api`
 
@@ -10774,7 +10774,7 @@
 - Upstream: `packages/ai/src/utils/json-parse.ts` → `parseStreamingJson`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: The one-shot lax parse of partial JSON is not surfaced in Dart; the incremental machinery it shares is ported (StreamingJsonParser).
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-utils-string-enum.ts.StringEnum.api`
 
@@ -10782,7 +10782,7 @@
 - Upstream: `packages/ai/src/utils/string-enum.ts` → `StringEnum`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: String-enum helpers are not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-utils-transcript.ts.collapseSystemMessages.api`
 
@@ -10790,7 +10790,7 @@
 - Upstream: `packages/ai/src/utils/transcript.ts` → `collapseSystemMessages`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Transcript normalization (system collapsing, current-tool extraction) is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-utils-transcript.ts.createInitialSystemMessage.api`
 
@@ -10798,7 +10798,7 @@
 - Upstream: `packages/ai/src/utils/transcript.ts` → `createInitialSystemMessage`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Transcript normalization (system collapsing, current-tool extraction) is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-utils-transcript.ts.declarationsEqual.api`
 
@@ -10806,7 +10806,7 @@
 - Upstream: `packages/ai/src/utils/transcript.ts` → `declarationsEqual`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Transcript normalization (system collapsing, current-tool extraction) is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-utils-transcript.ts.getCurrentSystemMessage.api`
 
@@ -10814,7 +10814,7 @@
 - Upstream: `packages/ai/src/utils/transcript.ts` → `getCurrentSystemMessage`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Transcript normalization (system collapsing, current-tool extraction) is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-utils-transcript.ts.getCurrentSystemPrompt.api`
 
@@ -10822,7 +10822,7 @@
 - Upstream: `packages/ai/src/utils/transcript.ts` → `getCurrentSystemPrompt`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Transcript normalization (system collapsing, current-tool extraction) is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-utils-transcript.ts.getCurrentTools.api`
 
@@ -10830,7 +10830,7 @@
 - Upstream: `packages/ai/src/utils/transcript.ts` → `getCurrentTools`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Transcript normalization (system collapsing, current-tool extraction) is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-utils-transcript.ts.getDeclaredTools.api`
 
@@ -10838,7 +10838,7 @@
 - Upstream: `packages/ai/src/utils/transcript.ts` → `getDeclaredTools`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Transcript normalization (system collapsing, current-tool extraction) is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-utils-transcript.ts.getInitialSystemMessage.api`
 
@@ -10846,7 +10846,7 @@
 - Upstream: `packages/ai/src/utils/transcript.ts` → `getInitialSystemMessage`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Transcript normalization (system collapsing, current-tool extraction) is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-utils-transcript.ts.getToolStateChanges.api`
 
@@ -10854,7 +10854,7 @@
 - Upstream: `packages/ai/src/utils/transcript.ts` → `getToolStateChanges`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Transcript normalization (system collapsing, current-tool extraction) is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-utils-transcript.ts.hasNonAdditiveToolChanges.api`
 
@@ -10862,7 +10862,7 @@
 - Upstream: `packages/ai/src/utils/transcript.ts` → `hasNonAdditiveToolChanges`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Transcript normalization (system collapsing, current-tool extraction) is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-utils-transcript.ts.hasToolRedefinitions.api`
 
@@ -10870,7 +10870,7 @@
 - Upstream: `packages/ai/src/utils/transcript.ts` → `hasToolRedefinitions`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Transcript normalization (system collapsing, current-tool extraction) is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-utils-transcript.ts.normalizeContext.api`
 
@@ -10878,7 +10878,7 @@
 - Upstream: `packages/ai/src/utils/transcript.ts` → `normalizeContext`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Transcript normalization (system collapsing, current-tool extraction) is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-utils-transcript.ts.resolveTranscript.api`
 
@@ -10886,7 +10886,7 @@
 - Upstream: `packages/ai/src/utils/transcript.ts` → `resolveTranscript`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Transcript normalization (system collapsing, current-tool extraction) is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-utils-transcript.ts.resolveTranscriptTools.api`
 
@@ -10894,7 +10894,7 @@
 - Upstream: `packages/ai/src/utils/transcript.ts` → `resolveTranscriptTools`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Transcript normalization (system collapsing, current-tool extraction) is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-utils-transcript.ts.ToolStateChanges.api`
 
@@ -10902,7 +10902,7 @@
 - Upstream: `packages/ai/src/utils/transcript.ts` → `ToolStateChanges`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Transcript normalization (system collapsing, current-tool extraction) is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-utils-transcript.ts.toToolDeclaration.api`
 
@@ -10910,7 +10910,7 @@
 - Upstream: `packages/ai/src/utils/transcript.ts` → `toToolDeclaration`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Transcript normalization (system collapsing, current-tool extraction) is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-utils-transcript.ts.TranscriptMessages.api`
 
@@ -10918,7 +10918,7 @@
 - Upstream: `packages/ai/src/utils/transcript.ts` → `TranscriptMessages`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Transcript normalization (system collapsing, current-tool extraction) is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-utils-transcript.ts.TranscriptTools.api`
 
@@ -10926,7 +10926,7 @@
 - Upstream: `packages/ai/src/utils/transcript.ts` → `TranscriptTools`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Transcript normalization (system collapsing, current-tool extraction) is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-utils-transcript.ts.TranscriptToolSupport.api`
 
@@ -10934,7 +10934,7 @@
 - Upstream: `packages/ai/src/utils/transcript.ts` → `TranscriptToolSupport`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Transcript normalization (system collapsing, current-tool extraction) is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-utils-transcript.ts.withoutInitialSystemMessage.api`
 
@@ -10942,7 +10942,7 @@
 - Upstream: `packages/ai/src/utils/transcript.ts` → `withoutInitialSystemMessage`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Transcript normalization (system collapsing, current-tool extraction) is not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-utils-validation.ts.validateToolArguments.api`
 
@@ -10950,7 +10950,7 @@
 - Upstream: `packages/ai/src/utils/validation.ts` → `validateToolArguments`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Runtime validation helpers are not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-src-utils-validation.ts.validateToolCall.api`
 
@@ -10958,7 +10958,7 @@
 - Upstream: `packages/ai/src/utils/validation.ts` → `validateToolCall`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Runtime validation helpers are not ported.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-abort.test.ts.internal.test`
 
@@ -10966,7 +10966,7 @@
 - Upstream: `packages/ai/test/abort.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-anthropic-auth-token.test.ts.internal.test`
 
@@ -10974,7 +10974,7 @@
 - Upstream: `packages/ai/test/anthropic-auth-token.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-anthropic-cache-write-1h-cost.test.ts.internal.test`
 
@@ -10982,7 +10982,7 @@
 - Upstream: `packages/ai/test/anthropic-cache-write-1h-cost.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-anthropic-eager-tool-input-compat.test.ts.internal.test`
 
@@ -10990,7 +10990,7 @@
 - Upstream: `packages/ai/test/anthropic-eager-tool-input-compat.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-anthropic-eager-tool-input-e2e.test.ts.internal.test`
 
@@ -10998,7 +10998,7 @@
 - Upstream: `packages/ai/test/anthropic-eager-tool-input-e2e.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-anthropic-empty-thinking-signature-compat.test.ts.internal.test`
 
@@ -11006,7 +11006,7 @@
 - Upstream: `packages/ai/test/anthropic-empty-thinking-signature-compat.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-anthropic-error-tool-result-images.test.ts.internal.test`
 
@@ -11014,7 +11014,7 @@
 - Upstream: `packages/ai/test/anthropic-error-tool-result-images.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-anthropic-federation-sdk.test.ts.internal.test`
 
@@ -11022,7 +11022,7 @@
 - Upstream: `packages/ai/test/anthropic-federation-sdk.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-anthropic-federation.test.ts.internal.test`
 
@@ -11030,7 +11030,7 @@
 - Upstream: `packages/ai/test/anthropic-federation.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-anthropic-force-adaptive-thinking.test.ts.internal.test`
 
@@ -11038,7 +11038,7 @@
 - Upstream: `packages/ai/test/anthropic-force-adaptive-thinking.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-anthropic-long-cache-retention-e2e.test.ts.internal.test`
 
@@ -11046,7 +11046,7 @@
 - Upstream: `packages/ai/test/anthropic-long-cache-retention-e2e.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-anthropic-message-threads.test.ts.internal.test`
 
@@ -11054,7 +11054,7 @@
 - Upstream: `packages/ai/test/anthropic-message-threads.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-anthropic-mid-conversation-effort.test.ts.internal.test`
 
@@ -11062,7 +11062,7 @@
 - Upstream: `packages/ai/test/anthropic-mid-conversation-effort.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-anthropic-oauth.test.ts.internal.test`
 
@@ -11070,7 +11070,7 @@
 - Upstream: `packages/ai/test/anthropic-oauth.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-anthropic-opus-4-8-smoke.test.ts.internal.test`
 
@@ -11078,7 +11078,7 @@
 - Upstream: `packages/ai/test/anthropic-opus-4-8-smoke.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-anthropic-sse-parsing.test.ts.internal.test`
 
@@ -11086,7 +11086,7 @@
 - Upstream: `packages/ai/test/anthropic-sse-parsing.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-anthropic-strict-tool-fallback.test.ts.internal.test`
 
@@ -11094,7 +11094,7 @@
 - Upstream: `packages/ai/test/anthropic-strict-tool-fallback.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-anthropic-strict-tool-schema.test.ts.internal.test`
 
@@ -11102,7 +11102,7 @@
 - Upstream: `packages/ai/test/anthropic-strict-tool-schema.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-anthropic-temperature-compat.test.ts.internal.test`
 
@@ -11110,7 +11110,7 @@
 - Upstream: `packages/ai/test/anthropic-temperature-compat.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-anthropic-thinking-binding-e2e.test.ts.internal.test`
 
@@ -11118,7 +11118,7 @@
 - Upstream: `packages/ai/test/anthropic-thinking-binding-e2e.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-anthropic-thinking-disable.test.ts.internal.test`
 
@@ -11126,7 +11126,7 @@
 - Upstream: `packages/ai/test/anthropic-thinking-disable.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-anthropic-tool-name-normalization.test.ts.internal.test`
 
@@ -11134,7 +11134,7 @@
 - Upstream: `packages/ai/test/anthropic-tool-name-normalization.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-azure-models.test.ts.internal.test`
 
@@ -11142,7 +11142,7 @@
 - Upstream: `packages/ai/test/azure-models.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-azure-openai-base-url.test.ts.internal.test`
 
@@ -11150,7 +11150,7 @@
 - Upstream: `packages/ai/test/azure-openai-base-url.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-azure-openai-completions.test.ts.internal.test`
 
@@ -11158,7 +11158,7 @@
 - Upstream: `packages/ai/test/azure-openai-completions.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-azure-openai-responses-reasoning-replay.test.ts.internal.test`
 
@@ -11166,7 +11166,7 @@
 - Upstream: `packages/ai/test/azure-openai-responses-reasoning-replay.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-azure-openai-tool-choice.test.ts.internal.test`
 
@@ -11174,7 +11174,7 @@
 - Upstream: `packages/ai/test/azure-openai-tool-choice.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-azure-utils.ts.internal.test`
 
@@ -11182,7 +11182,7 @@
 - Upstream: `packages/ai/test/azure-utils.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-baseten-models.test.ts.internal.test`
 
@@ -11190,7 +11190,7 @@
 - Upstream: `packages/ai/test/baseten-models.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-bedrock-cache-write-1h-cost.test.ts.internal.test`
 
@@ -11198,7 +11198,7 @@
 - Upstream: `packages/ai/test/bedrock-cache-write-1h-cost.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-bedrock-convert-messages.test.ts.internal.test`
 
@@ -11206,7 +11206,7 @@
 - Upstream: `packages/ai/test/bedrock-convert-messages.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-bedrock-credentials.test.ts.internal.test`
 
@@ -11214,7 +11214,7 @@
 - Upstream: `packages/ai/test/bedrock-credentials.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-bedrock-custom-headers.test.ts.internal.test`
 
@@ -11222,7 +11222,7 @@
 - Upstream: `packages/ai/test/bedrock-custom-headers.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-bedrock-endpoint-resolution.test.ts.internal.test`
 
@@ -11230,7 +11230,7 @@
 - Upstream: `packages/ai/test/bedrock-endpoint-resolution.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-bedrock-error-metadata.test.ts.internal.test`
 
@@ -11238,7 +11238,7 @@
 - Upstream: `packages/ai/test/bedrock-error-metadata.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-bedrock-models.test.ts.internal.test`
 
@@ -11246,7 +11246,7 @@
 - Upstream: `packages/ai/test/bedrock-models.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-bedrock-proxy-credentials.test.ts.internal.test`
 
@@ -11254,7 +11254,7 @@
 - Upstream: `packages/ai/test/bedrock-proxy-credentials.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-bedrock-raw-stop-reason.test.ts.internal.test`
 
@@ -11262,7 +11262,7 @@
 - Upstream: `packages/ai/test/bedrock-raw-stop-reason.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-bedrock-redacted-reasoning.test.ts.internal.test`
 
@@ -11270,7 +11270,7 @@
 - Upstream: `packages/ai/test/bedrock-redacted-reasoning.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-bedrock-response-headers.test.ts.internal.test`
 
@@ -11278,7 +11278,7 @@
 - Upstream: `packages/ai/test/bedrock-response-headers.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-bedrock-stream-state.test.ts.internal.test`
 
@@ -11286,7 +11286,7 @@
 - Upstream: `packages/ai/test/bedrock-stream-state.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-bedrock-strict-tool-fallback.test.ts.internal.test`
 
@@ -11294,7 +11294,7 @@
 - Upstream: `packages/ai/test/bedrock-strict-tool-fallback.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-bedrock-thinking-payload.test.ts.internal.test`
 
@@ -11302,7 +11302,7 @@
 - Upstream: `packages/ai/test/bedrock-thinking-payload.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-bedrock-utils.ts.internal.test`
 
@@ -11310,7 +11310,7 @@
 - Upstream: `packages/ai/test/bedrock-utils.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-cache-retention.test.ts.internal.test`
 
@@ -11318,7 +11318,7 @@
 - Upstream: `packages/ai/test/cache-retention.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-catalog-generation-utils.ts.internal.test`
 
@@ -11326,7 +11326,7 @@
 - Upstream: `packages/ai/test/catalog-generation-utils.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-clamp-max-tokens.test.ts.internal.test`
 
@@ -11334,7 +11334,7 @@
 - Upstream: `packages/ai/test/clamp-max-tokens.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-classifier-images-live.test.ts.internal.test`
 
@@ -11342,7 +11342,7 @@
 - Upstream: `packages/ai/test/classifier-images-live.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-classifier-models.test.ts.internal.test`
 
@@ -11350,7 +11350,7 @@
 - Upstream: `packages/ai/test/classifier-models.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-cloudflare-ai-binding.test.ts.internal.test`
 
@@ -11358,7 +11358,7 @@
 - Upstream: `packages/ai/test/cloudflare-ai-binding.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-cloudflare-stream.test.ts.internal.test`
 
@@ -11366,7 +11366,7 @@
 - Upstream: `packages/ai/test/cloudflare-stream.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-cloudflare-utils.ts.internal.test`
 
@@ -11374,7 +11374,7 @@
 - Upstream: `packages/ai/test/cloudflare-utils.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-cloudflare-workers-ai-system-one.test.ts.internal.test`
 
@@ -11382,7 +11382,7 @@
 - Upstream: `packages/ai/test/cloudflare-workers-ai-system-one.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-codex-websocket-cached-probe.ts.internal.test`
 
@@ -11390,7 +11390,7 @@
 - Upstream: `packages/ai/test/codex-websocket-cached-probe.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-compat-env.test.ts.internal.test`
 
@@ -11398,7 +11398,7 @@
 - Upstream: `packages/ai/test/compat-env.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-compat-schema.test.ts.internal.test`
 
@@ -11406,7 +11406,7 @@
 - Upstream: `packages/ai/test/compat-schema.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-constrained-sampling.test.ts.internal.test`
 
@@ -11414,7 +11414,7 @@
 - Upstream: `packages/ai/test/constrained-sampling.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-context-estimate.test.ts.internal.test`
 
@@ -11422,7 +11422,7 @@
 - Upstream: `packages/ai/test/context-estimate.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-context-overflow.test.ts.internal.test`
 
@@ -11430,7 +11430,7 @@
 - Upstream: `packages/ai/test/context-overflow.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-cross-provider-handoff.test.ts.internal.test`
 
@@ -11438,7 +11438,7 @@
 - Upstream: `packages/ai/test/cross-provider-handoff.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-data-json-test-suite.json.internal.test`
 
@@ -11446,7 +11446,7 @@
 - Upstream: `packages/ai/test/data/json-test-suite.json`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-data-red-circle.png.internal.test`
 
@@ -11454,7 +11454,7 @@
 - Upstream: `packages/ai/test/data/red-circle.png`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-empty.test.ts.internal.test`
 
@@ -11462,7 +11462,7 @@
 - Upstream: `packages/ai/test/empty.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-env-api-keys.test.ts.internal.test`
 
@@ -11470,7 +11470,7 @@
 - Upstream: `packages/ai/test/env-api-keys.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-error-body.test.ts.internal.test`
 
@@ -11478,7 +11478,7 @@
 - Upstream: `packages/ai/test/error-body.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-event-stream.test.ts.internal.test`
 
@@ -11486,7 +11486,7 @@
 - Upstream: `packages/ai/test/event-stream.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-faux-provider.test.ts.internal.test`
 
@@ -11494,7 +11494,7 @@
 - Upstream: `packages/ai/test/faux-provider.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-fetch-option.test.ts.internal.test`
 
@@ -11502,7 +11502,7 @@
 - Upstream: `packages/ai/test/fetch-option.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-fireworks-model-generation.test.ts.internal.test`
 
@@ -11510,7 +11510,7 @@
 - Upstream: `packages/ai/test/fireworks-model-generation.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-fireworks-models.test.ts.internal.test`
 
@@ -11518,7 +11518,7 @@
 - Upstream: `packages/ai/test/fireworks-models.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-github-copilot-anthropic.test.ts.internal.test`
 
@@ -11526,7 +11526,7 @@
 - Upstream: `packages/ai/test/github-copilot-anthropic.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-github-copilot-oauth.test.ts.internal.test`
 
@@ -11534,7 +11534,7 @@
 - Upstream: `packages/ai/test/github-copilot-oauth.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-github-copilot-request-size-overflow.test.ts.internal.test`
 
@@ -11542,7 +11542,7 @@
 - Upstream: `packages/ai/test/github-copilot-request-size-overflow.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-google-raw-stop-reason.test.ts.internal.test`
 
@@ -11550,7 +11550,7 @@
 - Upstream: `packages/ai/test/google-raw-stop-reason.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-google-shared-convert-tools.test.ts.internal.test`
 
@@ -11558,7 +11558,7 @@
 - Upstream: `packages/ai/test/google-shared-convert-tools.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-google-shared-gemini3-unsigned-tool-call.test.ts.internal.test`
 
@@ -11566,7 +11566,7 @@
 - Upstream: `packages/ai/test/google-shared-gemini3-unsigned-tool-call.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-google-shared-image-tool-result-routing.test.ts.internal.test`
 
@@ -11574,7 +11574,7 @@
 - Upstream: `packages/ai/test/google-shared-image-tool-result-routing.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-google-shared-retry.test.ts.internal.test`
 
@@ -11582,7 +11582,7 @@
 - Upstream: `packages/ai/test/google-shared-retry.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-google-shared-signed-empty-blocks.test.ts.internal.test`
 
@@ -11590,7 +11590,7 @@
 - Upstream: `packages/ai/test/google-shared-signed-empty-blocks.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-google-stop-reason-continuation.test.ts.internal.test`
 
@@ -11598,7 +11598,7 @@
 - Upstream: `packages/ai/test/google-stop-reason-continuation.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-google-thinking-disable.test.ts.internal.test`
 
@@ -11606,7 +11606,7 @@
 - Upstream: `packages/ai/test/google-thinking-disable.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-google-thinking-level-map.test.ts.internal.test`
 
@@ -11614,7 +11614,7 @@
 - Upstream: `packages/ai/test/google-thinking-level-map.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-google-thinking-signature.test.ts.internal.test`
 
@@ -11622,7 +11622,7 @@
 - Upstream: `packages/ai/test/google-thinking-signature.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-google-vertex-api-key-resolution.test.ts.internal.test`
 
@@ -11630,7 +11630,7 @@
 - Upstream: `packages/ai/test/google-vertex-api-key-resolution.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-identity.test.ts.internal.test`
 
@@ -11638,7 +11638,7 @@
 - Upstream: `packages/ai/test/identity.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-image-model-data.test.ts.internal.test`
 
@@ -11646,7 +11646,7 @@
 - Upstream: `packages/ai/test/image-model-data.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-image-tool-result.test.ts.internal.test`
 
@@ -11654,7 +11654,7 @@
 - Upstream: `packages/ai/test/image-tool-result.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-images-models.test.ts.internal.test`
 
@@ -11662,7 +11662,7 @@
 - Upstream: `packages/ai/test/images-models.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-images.test.ts.internal.test`
 
@@ -11670,7 +11670,7 @@
 - Upstream: `packages/ai/test/images.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-interleaved-thinking.test.ts.internal.test`
 
@@ -11678,7 +11678,7 @@
 - Upstream: `packages/ai/test/interleaved-thinking.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-json-parse.test.ts.internal.test`
 
@@ -11686,7 +11686,7 @@
 - Upstream: `packages/ai/test/json-parse.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-kimi-coding-oauth.test.ts.internal.test`
 
@@ -11694,7 +11694,7 @@
 - Upstream: `packages/ai/test/kimi-coding-oauth.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-lax-message-content.test.ts.internal.test`
 
@@ -11702,7 +11702,7 @@
 - Upstream: `packages/ai/test/lax-message-content.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-lazy-module-load.test.ts.internal.test`
 
@@ -11710,7 +11710,7 @@
 - Upstream: `packages/ai/test/lazy-module-load.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-llama-cpp-classify.test.ts.internal.test`
 
@@ -11718,7 +11718,7 @@
 - Upstream: `packages/ai/test/llama-cpp-classify.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-max-thinking.test.ts.internal.test`
 
@@ -11726,7 +11726,7 @@
 - Upstream: `packages/ai/test/max-thinking.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-memory-helpers.ts.internal.test`
 
@@ -11734,7 +11734,7 @@
 - Upstream: `packages/ai/test/memory-helpers.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-message-types.test.ts.internal.test`
 
@@ -11742,7 +11742,7 @@
 - Upstream: `packages/ai/test/message-types.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-meta-oauth.test.ts.internal.test`
 
@@ -11750,7 +11750,7 @@
 - Upstream: `packages/ai/test/meta-oauth.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-mistral-http-transport.test.ts.internal.test`
 
@@ -11758,7 +11758,7 @@
 - Upstream: `packages/ai/test/mistral-http-transport.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-mistral-raw-stop-reason.test.ts.internal.test`
 
@@ -11766,7 +11766,7 @@
 - Upstream: `packages/ai/test/mistral-raw-stop-reason.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-mistral-reasoning-mode.test.ts.internal.test`
 
@@ -11774,7 +11774,7 @@
 - Upstream: `packages/ai/test/mistral-reasoning-mode.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-mistral-tool-schema.test.ts.internal.test`
 
@@ -11782,7 +11782,7 @@
 - Upstream: `packages/ai/test/mistral-tool-schema.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-model-catalog-types.test.ts.internal.test`
 
@@ -11790,7 +11790,7 @@
 - Upstream: `packages/ai/test/model-catalog-types.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-model-cost-tiers.test.ts.internal.test`
 
@@ -11798,7 +11798,7 @@
 - Upstream: `packages/ai/test/model-cost-tiers.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-model-data-validation.test.ts.internal.test`
 
@@ -11806,7 +11806,7 @@
 - Upstream: `packages/ai/test/model-data-validation.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-model-types.test.ts.internal.test`
 
@@ -11814,7 +11814,7 @@
 - Upstream: `packages/ai/test/model-types.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-models-entry.test.ts.internal.test`
 
@@ -11822,7 +11822,7 @@
 - Upstream: `packages/ai/test/models-entry.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-models-runtime.test.ts.internal.test`
 
@@ -11830,7 +11830,7 @@
 - Upstream: `packages/ai/test/models-runtime.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-node-http-proxy.test.ts.internal.test`
 
@@ -11838,7 +11838,7 @@
 - Upstream: `packages/ai/test/node-http-proxy.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-oauth-auth.test.ts.internal.test`
 
@@ -11846,7 +11846,7 @@
 - Upstream: `packages/ai/test/oauth-auth.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-oauth-callback-server.test.ts.internal.test`
 
@@ -11854,7 +11854,7 @@
 - Upstream: `packages/ai/test/oauth-callback-server.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-oauth-device-code.test.ts.internal.test`
 
@@ -11862,7 +11862,7 @@
 - Upstream: `packages/ai/test/oauth-device-code.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-oauth.ts.internal.test`
 
@@ -11870,7 +11870,7 @@
 - Upstream: `packages/ai/test/oauth.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-openai-chatgpt-oauth.test.ts.internal.test`
 
@@ -11878,7 +11878,7 @@
 - Upstream: `packages/ai/test/openai-chatgpt-oauth.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-openai-codex-cache-affinity-e2e.test.ts.internal.test`
 
@@ -11886,7 +11886,7 @@
 - Upstream: `packages/ai/test/openai-codex-cache-affinity-e2e.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-openai-codex-oauth.test.ts.internal.test`
 
@@ -11894,7 +11894,7 @@
 - Upstream: `packages/ai/test/openai-codex-oauth.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-openai-codex-stream.test.ts.internal.test`
 
@@ -11902,7 +11902,7 @@
 - Upstream: `packages/ai/test/openai-codex-stream.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-openai-completions-cache-control-format.test.ts.internal.test`
 
@@ -11910,7 +11910,7 @@
 - Upstream: `packages/ai/test/openai-completions-cache-control-format.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-openai-completions-empty-tools.test.ts.internal.test`
 
@@ -11918,7 +11918,7 @@
 - Upstream: `packages/ai/test/openai-completions-empty-tools.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-openai-completions-non-null-assistant-content.test.ts.internal.test`
 
@@ -11926,7 +11926,7 @@
 - Upstream: `packages/ai/test/openai-completions-non-null-assistant-content.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-openai-completions-prompt-cache.test.ts.internal.test`
 
@@ -11934,7 +11934,7 @@
 - Upstream: `packages/ai/test/openai-completions-prompt-cache.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-openai-completions-provider-stream-event.test.ts.internal.test`
 
@@ -11942,7 +11942,7 @@
 - Upstream: `packages/ai/test/openai-completions-provider-stream-event.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-openai-completions-raw-stop-reason.test.ts.internal.test`
 
@@ -11950,7 +11950,7 @@
 - Upstream: `packages/ai/test/openai-completions-raw-stop-reason.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-openai-completions-reasoning-details.test.ts.internal.test`
 
@@ -11958,7 +11958,7 @@
 - Upstream: `packages/ai/test/openai-completions-reasoning-details.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-openai-completions-response-model.test.ts.internal.test`
 
@@ -11966,7 +11966,7 @@
 - Upstream: `packages/ai/test/openai-completions-response-model.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-openai-completions-retry.test.ts.internal.test`
 
@@ -11974,7 +11974,7 @@
 - Upstream: `packages/ai/test/openai-completions-retry.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-openai-completions-thinking-as-text.test.ts.internal.test`
 
@@ -11982,7 +11982,7 @@
 - Upstream: `packages/ai/test/openai-completions-thinking-as-text.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-openai-completions-thinking-token-budget.test.ts.internal.test`
 
@@ -11990,7 +11990,7 @@
 - Upstream: `packages/ai/test/openai-completions-thinking-token-budget.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-openai-completions-tool-choice.test.ts.internal.test`
 
@@ -11998,7 +11998,7 @@
 - Upstream: `packages/ai/test/openai-completions-tool-choice.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-openai-completions-tool-result-images.test.ts.internal.test`
 
@@ -12006,7 +12006,7 @@
 - Upstream: `packages/ai/test/openai-completions-tool-result-images.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-openai-completions-vllm-priority.test.ts.internal.test`
 
@@ -12014,7 +12014,7 @@
 - Upstream: `packages/ai/test/openai-completions-vllm-priority.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-openai-decisions.test.ts.internal.test`
 
@@ -12022,7 +12022,7 @@
 - Upstream: `packages/ai/test/openai-decisions.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-openai-reasoning-replay-e2e.test.ts.internal.test`
 
@@ -12030,7 +12030,7 @@
 - Upstream: `packages/ai/test/openai-reasoning-replay-e2e.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-openai-responses-cache-affinity-e2e.test.ts.internal.test`
 
@@ -12038,7 +12038,7 @@
 - Upstream: `packages/ai/test/openai-responses-cache-affinity-e2e.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-openai-responses-chatgpt-sign-in.test.ts.internal.test`
 
@@ -12046,7 +12046,7 @@
 - Upstream: `packages/ai/test/openai-responses-chatgpt-sign-in.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-openai-responses-compat.test.ts.internal.test`
 
@@ -12054,7 +12054,7 @@
 - Upstream: `packages/ai/test/openai-responses-compat.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-openai-responses-empty-tool-result.test.ts.internal.test`
 
@@ -12062,7 +12062,7 @@
 - Upstream: `packages/ai/test/openai-responses-empty-tool-result.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-openai-responses-foreign-toolcall-id.test.ts.internal.test`
 
@@ -12070,7 +12070,7 @@
 - Upstream: `packages/ai/test/openai-responses-foreign-toolcall-id.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-openai-responses-input-transformations.test.ts.internal.test`
 
@@ -12078,7 +12078,7 @@
 - Upstream: `packages/ai/test/openai-responses-input-transformations.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-openai-responses-message-id.test.ts.internal.test`
 
@@ -12086,7 +12086,7 @@
 - Upstream: `packages/ai/test/openai-responses-message-id.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-openai-responses-mid-convo-effort.test.ts.internal.test`
 
@@ -12094,7 +12094,7 @@
 - Upstream: `packages/ai/test/openai-responses-mid-convo-effort.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-openai-responses-namespace.test.ts.internal.test`
 
@@ -12102,7 +12102,7 @@
 - Upstream: `packages/ai/test/openai-responses-namespace.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-openai-responses-partial-json-cleanup.test.ts.internal.test`
 
@@ -12110,7 +12110,7 @@
 - Upstream: `packages/ai/test/openai-responses-partial-json-cleanup.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-openai-responses-prompt-cache.test.ts.internal.test`
 
@@ -12118,7 +12118,7 @@
 - Upstream: `packages/ai/test/openai-responses-prompt-cache.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-openai-responses-reasoning-replay-e2e.test.ts.internal.test`
 
@@ -12126,7 +12126,7 @@
 - Upstream: `packages/ai/test/openai-responses-reasoning-replay-e2e.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-openai-responses-terminal-event.test.ts.internal.test`
 
@@ -12134,7 +12134,7 @@
 - Upstream: `packages/ai/test/openai-responses-terminal-event.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-openai-responses-tool-result-images.test.ts.internal.test`
 
@@ -12142,7 +12142,7 @@
 - Upstream: `packages/ai/test/openai-responses-tool-result-images.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-openai-responses-usage-limit.test.ts.internal.test`
 
@@ -12150,7 +12150,7 @@
 - Upstream: `packages/ai/test/openai-responses-usage-limit.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-opencode-model-generation.test.ts.internal.test`
 
@@ -12158,7 +12158,7 @@
 - Upstream: `packages/ai/test/opencode-model-generation.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-opencode-provider-headers.test.ts.internal.test`
 
@@ -12166,7 +12166,7 @@
 - Upstream: `packages/ai/test/opencode-provider-headers.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-openrouter-cache-write-repro.test.ts.internal.test`
 
@@ -12174,7 +12174,7 @@
 - Upstream: `packages/ai/test/openrouter-cache-write-repro.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-openrouter-cost.test.ts.internal.test`
 
@@ -12182,7 +12182,7 @@
 - Upstream: `packages/ai/test/openrouter-cost.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-openrouter-images.test.ts.internal.test`
 
@@ -12190,7 +12190,7 @@
 - Upstream: `packages/ai/test/openrouter-images.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-openrouter-oauth.test.ts.internal.test`
 
@@ -12198,7 +12198,7 @@
 - Upstream: `packages/ai/test/openrouter-oauth.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-openrouter-reasoning-options.test.ts.internal.test`
 
@@ -12206,7 +12206,7 @@
 - Upstream: `packages/ai/test/openrouter-reasoning-options.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-openrouter-user-models.test.ts.internal.test`
 
@@ -12214,7 +12214,7 @@
 - Upstream: `packages/ai/test/openrouter-user-models.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-overflow.test.ts.internal.test`
 
@@ -12222,7 +12222,7 @@
 - Upstream: `packages/ai/test/overflow.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-pi-messages.test.ts.internal.test`
 
@@ -12230,7 +12230,7 @@
 - Upstream: `packages/ai/test/pi-messages.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-pre-generation-error.test.ts.internal.test`
 
@@ -12238,7 +12238,7 @@
 - Upstream: `packages/ai/test/pre-generation-error.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-provider-error-body-passthrough.test.ts.internal.test`
 
@@ -12246,7 +12246,7 @@
 - Upstream: `packages/ai/test/provider-error-body-passthrough.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-provider-error-body-regression.test.ts.internal.test`
 
@@ -12254,7 +12254,7 @@
 - Upstream: `packages/ai/test/provider-error-body-regression.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-provider-retry.test.ts.internal.test`
 
@@ -12262,7 +12262,7 @@
 - Upstream: `packages/ai/test/provider-retry.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-providers.test.ts.internal.test`
 
@@ -12270,7 +12270,7 @@
 - Upstream: `packages/ai/test/providers.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-qwen-token-plan-models.test.ts.internal.test`
 
@@ -12278,7 +12278,7 @@
 - Upstream: `packages/ai/test/qwen-token-plan-models.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-radius-oauth.test.ts.internal.test`
 
@@ -12286,7 +12286,7 @@
 - Upstream: `packages/ai/test/radius-oauth.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-radius-provider.test.ts.internal.test`
 
@@ -12294,7 +12294,7 @@
 - Upstream: `packages/ai/test/radius-provider.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-radius-thinking-replay-e2e.test.ts.internal.test`
 
@@ -12302,7 +12302,7 @@
 - Upstream: `packages/ai/test/radius-thinking-replay-e2e.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-reasoning-options.test.ts.internal.test`
 
@@ -12310,7 +12310,7 @@
 - Upstream: `packages/ai/test/reasoning-options.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-responseid.test.ts.internal.test`
 
@@ -12318,7 +12318,7 @@
 - Upstream: `packages/ai/test/responseid.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-retry.test.ts.internal.test`
 
@@ -12326,7 +12326,7 @@
 - Upstream: `packages/ai/test/retry.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-sampling-options.test.ts.internal.test`
 
@@ -12334,7 +12334,7 @@
 - Upstream: `packages/ai/test/sampling-options.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-scratch.ts.internal.test`
 
@@ -12342,7 +12342,7 @@
 - Upstream: `packages/ai/test/scratch.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-stream.test.ts.internal.test`
 
@@ -12350,7 +12350,7 @@
 - Upstream: `packages/ai/test/stream.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-streaming-json.test.ts.internal.test`
 
@@ -12358,7 +12358,7 @@
 - Upstream: `packages/ai/test/streaming-json.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-streaming-tool-arguments.test.ts.internal.test`
 
@@ -12366,7 +12366,7 @@
 - Upstream: `packages/ai/test/streaming-tool-arguments.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-strict-tool-limits.test.ts.internal.test`
 
@@ -12374,7 +12374,7 @@
 - Upstream: `packages/ai/test/strict-tool-limits.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-supports-xhigh.test.ts.internal.test`
 
@@ -12382,7 +12382,7 @@
 - Upstream: `packages/ai/test/supports-xhigh.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-system-message-replay.test.ts.internal.test`
 
@@ -12390,7 +12390,7 @@
 - Upstream: `packages/ai/test/system-message-replay.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-telemetry-options.test.ts.internal.test`
 
@@ -12398,7 +12398,7 @@
 - Upstream: `packages/ai/test/telemetry-options.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-telemetry.test.ts.internal.test`
 
@@ -12406,7 +12406,7 @@
 - Upstream: `packages/ai/test/telemetry.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-text.test.ts.internal.test`
 
@@ -12414,7 +12414,7 @@
 - Upstream: `packages/ai/test/text.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-together-models.test.ts.internal.test`
 
@@ -12422,7 +12422,7 @@
 - Upstream: `packages/ai/test/together-models.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-tokens.test.ts.internal.test`
 
@@ -12430,7 +12430,7 @@
 - Upstream: `packages/ai/test/tokens.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-tool-call-id-normalization.test.ts.internal.test`
 
@@ -12438,7 +12438,7 @@
 - Upstream: `packages/ai/test/tool-call-id-normalization.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-tool-call-without-result.test.ts.internal.test`
 
@@ -12446,7 +12446,7 @@
 - Upstream: `packages/ai/test/tool-call-without-result.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-total-tokens.test.ts.internal.test`
 
@@ -12454,7 +12454,7 @@
 - Upstream: `packages/ai/test/total-tokens.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-transcript-tool-changes.test.ts.internal.test`
 
@@ -12462,7 +12462,7 @@
 - Upstream: `packages/ai/test/transcript-tool-changes.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-transform-messages-copilot-openai-to-anthropic.test.ts.internal.test`
 
@@ -12470,7 +12470,7 @@
 - Upstream: `packages/ai/test/transform-messages-copilot-openai-to-anthropic.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-transform-messages-cross-model-thinking.test.ts.internal.test`
 
@@ -12478,7 +12478,7 @@
 - Upstream: `packages/ai/test/transform-messages-cross-model-thinking.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-typesafe-system-one.test.ts.internal.test`
 
@@ -12486,7 +12486,7 @@
 - Upstream: `packages/ai/test/typesafe-system-one.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-unicode-surrogate.test.ts.internal.test`
 
@@ -12494,7 +12494,7 @@
 - Upstream: `packages/ai/test/unicode-surrogate.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-uuid.test.ts.internal.test`
 
@@ -12502,7 +12502,7 @@
 - Upstream: `packages/ai/test/uuid.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-validation-probes.test.ts.internal.test`
 
@@ -12510,7 +12510,7 @@
 - Upstream: `packages/ai/test/validation-probes.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-validation.test.ts.internal.test`
 
@@ -12518,7 +12518,7 @@
 - Upstream: `packages/ai/test/validation.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-xai-oauth.test.ts.internal.test`
 
@@ -12526,7 +12526,7 @@
 - Upstream: `packages/ai/test/xai-oauth.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-xai-responses.test.ts.internal.test`
 
@@ -12534,7 +12534,7 @@
 - Upstream: `packages/ai/test/xai-responses.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-xhigh.test.ts.internal.test`
 
@@ -12542,7 +12542,7 @@
 - Upstream: `packages/ai/test/xhigh.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-xiaomi-models.test.ts.internal.test`
 
@@ -12550,7 +12550,7 @@
 - Upstream: `packages/ai/test/xiaomi-models.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-xiaomi-token-plan-ams-anthropic-empty-signature-smoke.test.ts.internal.test`
 
@@ -12558,7 +12558,7 @@
 - Upstream: `packages/ai/test/xiaomi-token-plan-ams-anthropic-empty-signature-smoke.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-zai-coding-plan-models.test.ts.internal.test`
 
@@ -12566,7 +12566,7 @@
 - Upstream: `packages/ai/test/zai-coding-plan-models.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `ai.packages-ai-test-zen.test.ts.internal.test`
 
@@ -12574,7 +12574,7 @@
 - Upstream: `packages/ai/test/zen.test.ts`
 - Dart: `pi_agent/lib/src/llm_client.dart`
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
-- Issue: `##65`
+- Issue: `#65`
 
 ### `agent.packages-agent-examples-mcp-codemode-main.ts.internal.example`
 
@@ -12582,7 +12582,7 @@
 - Upstream: `packages/agent/examples/mcp-codemode/main.ts`
 - Dart: `pi_agent/lib/src/agent.dart`
 - Divergence: Example (examples/mcp-codemode/main.ts) is not ported; examples are out of the Dart package surface. Tracked in #71.
-- Issue: `##71`
+- Issue: `#71`
 
 ### `agent.packages-agent-examples-mcp-codemode-tools.ts.internal.example`
 
@@ -12590,7 +12590,7 @@
 - Upstream: `packages/agent/examples/mcp-codemode/tools.ts`
 - Dart: `pi_agent/lib/src/agent.dart`
 - Divergence: Example (examples/mcp-codemode/tools.ts) is not ported; examples are out of the Dart package surface. Tracked in #71.
-- Issue: `##71`
+- Issue: `#71`
 
 ### `agent.packages-agent-src-agent-loop.ts.AgentEventSink.api`
 
@@ -12598,7 +12598,7 @@
 - Upstream: `packages/agent/src/agent-loop.ts` → `AgentEventSink`
 - Dart: `pi_agent/lib/src/agent.dart`
 - Divergence: AgentEventSink is not a Dart export; the loop emits AgentEvent through a stream, not a sink interface. Tracked in #71.
-- Issue: `##71`
+- Issue: `#71`
 
 ### `agent.packages-agent-src-agent-loop.ts.DEFAULT_AGENT_IDENTITY.api`
 
@@ -12606,7 +12606,7 @@
 - Upstream: `packages/agent/src/agent-loop.ts` → `DEFAULT_AGENT_IDENTITY`
 - Dart: `pi_agent/lib/src/agent.dart`
 - Divergence: DEFAULT_AGENT_IDENTITY has no Dart equivalent; the port sets identity per request via client identity utils. Tracked in #71.
-- Issue: `##71`
+- Issue: `#71`
 
 ### `agent.packages-agent-src-agent-loop.ts.RunToolCallOptions.api`
 
@@ -12614,7 +12614,7 @@
 - Upstream: `packages/agent/src/agent-loop.ts` → `RunToolCallOptions`
 - Dart: `pi_agent/lib/src/agent.dart`
 - Divergence: RunToolCallOptions is not modeled; runToolCall takes explicit parameters in the port. Tracked in #71.
-- Issue: `##71`
+- Issue: `#71`
 
 ### `agent.packages-agent-src-agent-loop.ts.ToolCallHooks.api`
 
@@ -12622,7 +12622,7 @@
 - Upstream: `packages/agent/src/agent-loop.ts` → `ToolCallHooks`
 - Dart: `pi_agent/lib/src/agent.dart`
 - Divergence: ToolCallHooks is not a named Dart type; beforeToolCall/afterToolCall are passed on AgentLoopConfig. Tracked in #71.
-- Issue: `##71`
+- Issue: `#71`
 
 ### `agent.packages-agent-src-agent.ts.AgentInitialState.api`
 
@@ -12630,7 +12630,7 @@
 - Upstream: `packages/agent/src/agent.ts` → `AgentInitialState`
 - Dart: `pi_agent/lib/src/agent.dart`
 - Divergence: AgentInitialState is not ported; AgentState carries the initial state directly. Tracked in #71.
-- Issue: `##71`
+- Issue: `#71`
 
 ### `agent.packages-agent-src-index.ts.setDefaultStreamFn.api`
 
@@ -12638,7 +12638,7 @@
 - Upstream: `packages/agent/src/index.ts` → `setDefaultStreamFn`
 - Dart: `pi_agent/lib/src/agent.dart`
 - Divergence: setDefaultStreamFn (a global default) is not ported; the stream fn is wired per Agent. Tracked in #71.
-- Issue: `##71`
+- Issue: `#71`
 
 ### `agent.packages-agent-src-proxy.ts.ProxyAssistantMessageEvent.api`
 
@@ -12646,7 +12646,7 @@
 - Upstream: `packages/agent/src/proxy.ts` → `ProxyAssistantMessageEvent`
 - Dart: `pi_agent/lib/src/agent.dart`
 - Divergence: proxy.ts stream adapter is not ported to Dart. Tracked in #71.
-- Issue: `##71`
+- Issue: `#71`
 
 ### `agent.packages-agent-src-proxy.ts.ProxyStreamOptions.api`
 
@@ -12654,7 +12654,7 @@
 - Upstream: `packages/agent/src/proxy.ts` → `ProxyStreamOptions`
 - Dart: `pi_agent/lib/src/agent.dart`
 - Divergence: proxy.ts stream adapter is not ported to Dart. Tracked in #71.
-- Issue: `##71`
+- Issue: `#71`
 
 ### `agent.packages-agent-src-proxy.ts.streamProxy.api`
 
@@ -12662,7 +12662,7 @@
 - Upstream: `packages/agent/src/proxy.ts` → `streamProxy`
 - Dart: `pi_agent/lib/src/agent.dart`
 - Divergence: proxy.ts stream adapter is not ported to Dart. Tracked in #71.
-- Issue: `##71`
+- Issue: `#71`
 
 ### `agent.packages-agent-src-types.ts.AgentLoopTurnUpdate.api`
 
@@ -12670,7 +12670,7 @@
 - Upstream: `packages/agent/src/types.ts` → `AgentLoopTurnUpdate`
 - Dart: `pi_agent/lib/src/agent.dart`
 - Divergence: AgentLoopTurnUpdate is not ported; turn updates are AgentEvent variants. Tracked in #71.
-- Issue: `##71`
+- Issue: `#71`
 
 ### `agent.packages-agent-src-types.ts.AgentRequestUpdate.api`
 
@@ -12678,7 +12678,7 @@
 - Upstream: `packages/agent/src/types.ts` → `AgentRequestUpdate`
 - Dart: `pi_agent/lib/src/agent.dart`
 - Divergence: AgentRequestUpdate is not ported; the port has no request-update streaming type. Tracked in #71.
-- Issue: `##71`
+- Issue: `#71`
 
 ### `agent.packages-agent-src-types.ts.AgentToolCall.api`
 
@@ -12686,7 +12686,7 @@
 - Upstream: `packages/agent/src/types.ts` → `AgentToolCall`
 - Dart: `pi_agent/lib/src/agent.dart`
 - Divergence: AgentToolCall (TS tool-call shape) is not ported; the port uses ToolCallBlock. Tracked in #71.
-- Issue: `##71`
+- Issue: `#71`
 
 ### `agent.packages-agent-src-types.ts.AgentToolCallOutcome.api`
 
@@ -12694,7 +12694,7 @@
 - Upstream: `packages/agent/src/types.ts` → `AgentToolCallOutcome`
 - Dart: `pi_agent/lib/src/agent.dart`
 - Divergence: AgentToolCallOutcome is not ported; the loop uses an internal finalized-call record. Tracked in #71.
-- Issue: `##71`
+- Issue: `#71`
 
 ### `agent.packages-agent-src-types.ts.AgentToolParams.api`
 
@@ -12702,7 +12702,7 @@
 - Upstream: `packages/agent/src/types.ts` → `AgentToolParams`
 - Dart: `pi_agent/lib/src/agent.dart`
 - Divergence: AgentToolParams is not ported; tool parameters are a plain JSON map. Tracked in #71.
-- Issue: `##71`
+- Issue: `#71`
 
 ### `agent.packages-agent-src-types.ts.AgentToolUpdateCallback.api`
 
@@ -12710,7 +12710,7 @@
 - Upstream: `packages/agent/src/types.ts` → `AgentToolUpdateCallback`
 - Dart: `pi_agent/lib/src/agent.dart`
 - Divergence: AgentToolUpdateCallback is not a named Dart type; onUpdate is a closure parameter. Tracked in #71.
-- Issue: `##71`
+- Issue: `#71`
 
 ### `agent.packages-agent-src-types.ts.AgentTurnContext.api`
 
@@ -12718,7 +12718,7 @@
 - Upstream: `packages/agent/src/types.ts` → `AgentTurnContext`
 - Dart: `pi_agent/lib/src/agent.dart`
 - Divergence: AgentTurnContext is not ported; the loop passes ShouldStopAfterTurnContext instead. Tracked in #71.
-- Issue: `##71`
+- Issue: `#71`
 
 ### `agent.packages-agent-src-types.ts.AgentTurnDecision.api`
 
@@ -12726,7 +12726,7 @@
 - Upstream: `packages/agent/src/types.ts` → `AgentTurnDecision`
 - Dart: `pi_agent/lib/src/agent.dart`
 - Divergence: AgentTurnDecision is not ported; turn continuation is decided by the loop, not a returned decision. Tracked in #71.
-- Issue: `##71`
+- Issue: `#71`
 
 ### `agent.packages-agent-src-types.ts.CustomAgentMessages.api`
 
@@ -12734,7 +12734,7 @@
 - Upstream: `packages/agent/src/types.ts` → `CustomAgentMessages`
 - Dart: `pi_agent/lib/src/agent.dart`
 - Divergence: CustomAgentMessages is not ported; the port has a CustomMessage agent message. Tracked in #71.
-- Issue: `##71`
+- Issue: `#71`
 
 ### `agent.packages-agent-src-types.ts.FinishTurn.api`
 
@@ -12742,7 +12742,7 @@
 - Upstream: `packages/agent/src/types.ts` → `FinishTurn`
 - Dart: `pi_agent/lib/src/agent.dart`
 - Divergence: FinishTurn is not ported; the loop ends a turn on a terminal stop reason. Tracked in #71.
-- Issue: `##71`
+- Issue: `#71`
 
 ### `agent.packages-agent-src-types.ts.PrepareNextTurnContext.api`
 
@@ -12750,7 +12750,7 @@
 - Upstream: `packages/agent/src/types.ts` → `PrepareNextTurnContext`
 - Dart: `pi_agent/lib/src/agent.dart`
 - Divergence: PrepareNextTurnContext is not ported; the loop has no prepare-next-turn hook. Tracked in #71.
-- Issue: `##71`
+- Issue: `#71`
 
 ### `agent.packages-agent-src-types.ts.PrepareRequest.api`
 
@@ -12758,7 +12758,7 @@
 - Upstream: `packages/agent/src/types.ts` → `PrepareRequest`
 - Dart: `pi_agent/lib/src/agent.dart`
 - Divergence: PrepareRequest is not ported; the loop builds the request from AgentContext directly. Tracked in #71.
-- Issue: `##71`
+- Issue: `#71`
 
 ### `agent.packages-agent-src-types.ts.PrepareRequestContext.api`
 
@@ -12766,7 +12766,7 @@
 - Upstream: `packages/agent/src/types.ts` → `PrepareRequestContext`
 - Dart: `pi_agent/lib/src/agent.dart`
 - Divergence: PrepareRequestContext is not ported with PrepareRequest. Tracked in #71.
-- Issue: `##71`
+- Issue: `#71`
 
 ### `agent.packages-agent-src-types.ts.StreamFn.api`
 
@@ -12774,7 +12774,7 @@
 - Upstream: `packages/agent/src/types.ts` → `StreamFn`
 - Dart: `pi_agent/lib/src/agent.dart`
 - Divergence: StreamFn (TS provider stream signature) is not a named Dart type; the port uses LoopStreamFn. Tracked in #71.
-- Issue: `##71`
+- Issue: `#71`
 
 ### `agent.packages-agent-test-proxy.test.ts.internal.test`
 
@@ -12782,7 +12782,7 @@
 - Upstream: `packages/agent/test/proxy.test.ts`
 - Dart: `pi_agent/lib/src/agent.dart`
 - Divergence: proxy.test.ts has no Dart counterpart; the proxy stream adapter is not ported. Tracked in #71.
-- Issue: `##71`
+- Issue: `#71`
 
 ### `agent.packages-agent-test-utils-calculate.ts.internal.test`
 
@@ -12790,7 +12790,7 @@
 - Upstream: `packages/agent/test/utils/calculate.ts`
 - Dart: `pi_agent/lib/src/agent.dart`
 - Divergence: Test helper utils/calculate.ts is not ported (Dart tests compute inline). Tracked in #71.
-- Issue: `##71`
+- Issue: `#71`
 
 ### `agent.packages-agent-test-utils-get-current-time.ts.internal.test`
 
@@ -12798,7 +12798,7 @@
 - Upstream: `packages/agent/test/utils/get-current-time.ts`
 - Dart: `pi_agent/lib/src/agent.dart`
 - Divergence: Test helper utils/get-current-time.ts is not ported (Dart tests use a virtual clock). Tracked in #71.
-- Issue: `##71`
+- Issue: `#71`
 
 ### `agent.packages-agent-test-utils-wait-for-tick.ts.internal.test`
 
@@ -12806,7 +12806,7 @@
 - Upstream: `packages/agent/test/utils/wait-for-tick.ts`
 - Dart: `pi_agent/lib/src/agent.dart`
 - Divergence: Test helper utils/wait-for-tick.ts is not ported (Dart tests await microtasks directly). Tracked in #71.
-- Issue: `##71`
+- Issue: `#71`
 
 ### `durable.packages-durable-src-codemode-index.ts.DEFAULT_CODEMODE_INLINE_BUDGET.api`
 
