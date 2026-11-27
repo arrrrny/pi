@@ -15,6 +15,7 @@ executables:
   pidart: pidart
 
 dependencies:
+  crypto: ^3.0.0
   http: ^1.4.0
   yaml: ^3.1.3
 

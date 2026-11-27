@@ -3,7 +3,7 @@
 - Upstream: `earendil-works/pi` at `c11a73bfba1310dc4075ad836254ea87003f409b`
 - Generator: `pi-coverage` v0.1.0 (node 20.19.2)
 - Registry version: `eac23310c3f9`
-- Rows: 2970 total — 232 verified, 27 implemented_unverified, 0 in_progress, 2708 unported, 3 not_applicable
+- Rows: 2970 total — 247 verified, 27 implemented_unverified, 0 in_progress, 2668 unported, 28 not_applicable
 
 ## Per-package status
 
@@ -13,11 +13,11 @@
 | telemetry | `@earendil-works/pi-telemetry` | 1.6.0 | 72 | 55 | 55 | 0 | 0 |
 | chord | `@earendil-works/chord` | 1.6.0 | 1959 | 928 | 13 | 915 | 0 |
 | ai | `@earendil-works/pi-ai` | 1.6.0 | 1171 | 509 | 31 | 478 | 0 |
-| agent | `@earendil-works/pi-agent-core` | 1.6.0 | 91 | 54 | 25 | 29 | 0 |
+| agent | `@earendil-works/pi-agent-core` | 1.6.0 | 91 | 54 | 29 | 0 | 25 |
 | durable | `@earendil-works/pi-durable` | 1.6.0 | 738 | 306 | 36 | 267 | 3 |
 | codemode | `@earendil-works/pi-codemode` | 1.6.0 | 93 | 40 | 7 | 33 | 0 |
 | env | `@earendil-works/pi-env` | 1.6.0 | 50 | 19 | 0 | 19 | 0 |
-| mcp | `@earendil-works/pi-mcp` | 1.6.0 | 195 | 35 | 1 | 34 | 0 |
+| mcp | `@earendil-works/pi-mcp` | 1.6.0 | 195 | 35 | 12 | 23 | 0 |
 | coding-agent | `@earendil-works/pi-coding-agent` | 1.6.0 | 1545 | 705 | 15 | 690 | 0 |
 | tui | `@earendil-works/pi-tui` | 1.6.0 | 311 | 88 | 0 | 88 | 0 |
 | evals | `@earendil-works/pi-evals` | 1.6.0 | 42 | 7 | 0 | 7 | 0 |
@@ -12576,238 +12576,6 @@
 - Divergence: Upstream test behaviors not yet mirrored in the Dart suite; each lands with the slice that ports them.
 - Issue: `#65`
 
-### `agent.packages-agent-examples-mcp-codemode-main.ts.internal.example`
-
-- Area: `agent`, kind: `example`
-- Upstream: `packages/agent/examples/mcp-codemode/main.ts`
-- Dart: `pi_agent/lib/src/agent.dart`
-- Divergence: Example (examples/mcp-codemode/main.ts) is not ported; examples are out of the Dart package surface. Tracked in #71.
-- Issue: `#71`
-
-### `agent.packages-agent-examples-mcp-codemode-tools.ts.internal.example`
-
-- Area: `agent`, kind: `example`
-- Upstream: `packages/agent/examples/mcp-codemode/tools.ts`
-- Dart: `pi_agent/lib/src/agent.dart`
-- Divergence: Example (examples/mcp-codemode/tools.ts) is not ported; examples are out of the Dart package surface. Tracked in #71.
-- Issue: `#71`
-
-### `agent.packages-agent-src-agent-loop.ts.AgentEventSink.api`
-
-- Area: `agent`, kind: `api`
-- Upstream: `packages/agent/src/agent-loop.ts` → `AgentEventSink`
-- Dart: `pi_agent/lib/src/agent.dart`
-- Divergence: AgentEventSink is not a Dart export; the loop emits AgentEvent through a stream, not a sink interface. Tracked in #71.
-- Issue: `#71`
-
-### `agent.packages-agent-src-agent-loop.ts.DEFAULT_AGENT_IDENTITY.api`
-
-- Area: `agent`, kind: `api`
-- Upstream: `packages/agent/src/agent-loop.ts` → `DEFAULT_AGENT_IDENTITY`
-- Dart: `pi_agent/lib/src/agent.dart`
-- Divergence: DEFAULT_AGENT_IDENTITY has no Dart equivalent; the port sets identity per request via client identity utils. Tracked in #71.
-- Issue: `#71`
-
-### `agent.packages-agent-src-agent-loop.ts.RunToolCallOptions.api`
-
-- Area: `agent`, kind: `api`
-- Upstream: `packages/agent/src/agent-loop.ts` → `RunToolCallOptions`
-- Dart: `pi_agent/lib/src/agent.dart`
-- Divergence: RunToolCallOptions is not modeled; runToolCall takes explicit parameters in the port. Tracked in #71.
-- Issue: `#71`
-
-### `agent.packages-agent-src-agent-loop.ts.ToolCallHooks.api`
-
-- Area: `agent`, kind: `api`
-- Upstream: `packages/agent/src/agent-loop.ts` → `ToolCallHooks`
-- Dart: `pi_agent/lib/src/agent.dart`
-- Divergence: ToolCallHooks is not a named Dart type; beforeToolCall/afterToolCall are passed on AgentLoopConfig. Tracked in #71.
-- Issue: `#71`
-
-### `agent.packages-agent-src-agent.ts.AgentInitialState.api`
-
-- Area: `agent`, kind: `api`
-- Upstream: `packages/agent/src/agent.ts` → `AgentInitialState`
-- Dart: `pi_agent/lib/src/agent.dart`
-- Divergence: AgentInitialState is not ported; AgentState carries the initial state directly. Tracked in #71.
-- Issue: `#71`
-
-### `agent.packages-agent-src-index.ts.setDefaultStreamFn.api`
-
-- Area: `agent`, kind: `api`
-- Upstream: `packages/agent/src/index.ts` → `setDefaultStreamFn`
-- Dart: `pi_agent/lib/src/agent.dart`
-- Divergence: setDefaultStreamFn (a global default) is not ported; the stream fn is wired per Agent. Tracked in #71.
-- Issue: `#71`
-
-### `agent.packages-agent-src-proxy.ts.ProxyAssistantMessageEvent.api`
-
-- Area: `agent`, kind: `api`
-- Upstream: `packages/agent/src/proxy.ts` → `ProxyAssistantMessageEvent`
-- Dart: `pi_agent/lib/src/agent.dart`
-- Divergence: proxy.ts stream adapter is not ported to Dart. Tracked in #71.
-- Issue: `#71`
-
-### `agent.packages-agent-src-proxy.ts.ProxyStreamOptions.api`
-
-- Area: `agent`, kind: `api`
-- Upstream: `packages/agent/src/proxy.ts` → `ProxyStreamOptions`
-- Dart: `pi_agent/lib/src/agent.dart`
-- Divergence: proxy.ts stream adapter is not ported to Dart. Tracked in #71.
-- Issue: `#71`
-
-### `agent.packages-agent-src-proxy.ts.streamProxy.api`
-
-- Area: `agent`, kind: `api`
-- Upstream: `packages/agent/src/proxy.ts` → `streamProxy`
-- Dart: `pi_agent/lib/src/agent.dart`
-- Divergence: proxy.ts stream adapter is not ported to Dart. Tracked in #71.
-- Issue: `#71`
-
-### `agent.packages-agent-src-types.ts.AgentLoopTurnUpdate.api`
-
-- Area: `agent`, kind: `api`
-- Upstream: `packages/agent/src/types.ts` → `AgentLoopTurnUpdate`
-- Dart: `pi_agent/lib/src/agent.dart`
-- Divergence: AgentLoopTurnUpdate is not ported; turn updates are AgentEvent variants. Tracked in #71.
-- Issue: `#71`
-
-### `agent.packages-agent-src-types.ts.AgentRequestUpdate.api`
-
-- Area: `agent`, kind: `api`
-- Upstream: `packages/agent/src/types.ts` → `AgentRequestUpdate`
-- Dart: `pi_agent/lib/src/agent.dart`
-- Divergence: AgentRequestUpdate is not ported; the port has no request-update streaming type. Tracked in #71.
-- Issue: `#71`
-
-### `agent.packages-agent-src-types.ts.AgentToolCall.api`
-
-- Area: `agent`, kind: `api`
-- Upstream: `packages/agent/src/types.ts` → `AgentToolCall`
-- Dart: `pi_agent/lib/src/agent.dart`
-- Divergence: AgentToolCall (TS tool-call shape) is not ported; the port uses ToolCallBlock. Tracked in #71.
-- Issue: `#71`
-
-### `agent.packages-agent-src-types.ts.AgentToolCallOutcome.api`
-
-- Area: `agent`, kind: `api`
-- Upstream: `packages/agent/src/types.ts` → `AgentToolCallOutcome`
-- Dart: `pi_agent/lib/src/agent.dart`
-- Divergence: AgentToolCallOutcome is not ported; the loop uses an internal finalized-call record. Tracked in #71.
-- Issue: `#71`
-
-### `agent.packages-agent-src-types.ts.AgentToolParams.api`
-
-- Area: `agent`, kind: `api`
-- Upstream: `packages/agent/src/types.ts` → `AgentToolParams`
-- Dart: `pi_agent/lib/src/agent.dart`
-- Divergence: AgentToolParams is not ported; tool parameters are a plain JSON map. Tracked in #71.
-- Issue: `#71`
-
-### `agent.packages-agent-src-types.ts.AgentToolUpdateCallback.api`
-
-- Area: `agent`, kind: `api`
-- Upstream: `packages/agent/src/types.ts` → `AgentToolUpdateCallback`
-- Dart: `pi_agent/lib/src/agent.dart`
-- Divergence: AgentToolUpdateCallback is not a named Dart type; onUpdate is a closure parameter. Tracked in #71.
-- Issue: `#71`
-
-### `agent.packages-agent-src-types.ts.AgentTurnContext.api`
-
-- Area: `agent`, kind: `api`
-- Upstream: `packages/agent/src/types.ts` → `AgentTurnContext`
-- Dart: `pi_agent/lib/src/agent.dart`
-- Divergence: AgentTurnContext is not ported; the loop passes ShouldStopAfterTurnContext instead. Tracked in #71.
-- Issue: `#71`
-
-### `agent.packages-agent-src-types.ts.AgentTurnDecision.api`
-
-- Area: `agent`, kind: `api`
-- Upstream: `packages/agent/src/types.ts` → `AgentTurnDecision`
-- Dart: `pi_agent/lib/src/agent.dart`
-- Divergence: AgentTurnDecision is not ported; turn continuation is decided by the loop, not a returned decision. Tracked in #71.
-- Issue: `#71`
-
-### `agent.packages-agent-src-types.ts.CustomAgentMessages.api`
-
-- Area: `agent`, kind: `api`
-- Upstream: `packages/agent/src/types.ts` → `CustomAgentMessages`
-- Dart: `pi_agent/lib/src/agent.dart`
-- Divergence: CustomAgentMessages is not ported; the port has a CustomMessage agent message. Tracked in #71.
-- Issue: `#71`
-
-### `agent.packages-agent-src-types.ts.FinishTurn.api`
-
-- Area: `agent`, kind: `api`
-- Upstream: `packages/agent/src/types.ts` → `FinishTurn`
-- Dart: `pi_agent/lib/src/agent.dart`
-- Divergence: FinishTurn is not ported; the loop ends a turn on a terminal stop reason. Tracked in #71.
-- Issue: `#71`
-
-### `agent.packages-agent-src-types.ts.PrepareNextTurnContext.api`
-
-- Area: `agent`, kind: `api`
-- Upstream: `packages/agent/src/types.ts` → `PrepareNextTurnContext`
-- Dart: `pi_agent/lib/src/agent.dart`
-- Divergence: PrepareNextTurnContext is not ported; the loop has no prepare-next-turn hook. Tracked in #71.
-- Issue: `#71`
-
-### `agent.packages-agent-src-types.ts.PrepareRequest.api`
-
-- Area: `agent`, kind: `api`
-- Upstream: `packages/agent/src/types.ts` → `PrepareRequest`
-- Dart: `pi_agent/lib/src/agent.dart`
-- Divergence: PrepareRequest is not ported; the loop builds the request from AgentContext directly. Tracked in #71.
-- Issue: `#71`
-
-### `agent.packages-agent-src-types.ts.PrepareRequestContext.api`
-
-- Area: `agent`, kind: `api`
-- Upstream: `packages/agent/src/types.ts` → `PrepareRequestContext`
-- Dart: `pi_agent/lib/src/agent.dart`
-- Divergence: PrepareRequestContext is not ported with PrepareRequest. Tracked in #71.
-- Issue: `#71`
-
-### `agent.packages-agent-src-types.ts.StreamFn.api`
-
-- Area: `agent`, kind: `api`
-- Upstream: `packages/agent/src/types.ts` → `StreamFn`
-- Dart: `pi_agent/lib/src/agent.dart`
-- Divergence: StreamFn (TS provider stream signature) is not a named Dart type; the port uses LoopStreamFn. Tracked in #71.
-- Issue: `#71`
-
-### `agent.packages-agent-test-proxy.test.ts.internal.test`
-
-- Area: `agent`, kind: `test`
-- Upstream: `packages/agent/test/proxy.test.ts`
-- Dart: `pi_agent/lib/src/agent.dart`
-- Divergence: proxy.test.ts has no Dart counterpart; the proxy stream adapter is not ported. Tracked in #71.
-- Issue: `#71`
-
-### `agent.packages-agent-test-utils-calculate.ts.internal.test`
-
-- Area: `agent`, kind: `test`
-- Upstream: `packages/agent/test/utils/calculate.ts`
-- Dart: `pi_agent/lib/src/agent.dart`
-- Divergence: Test helper utils/calculate.ts is not ported (Dart tests compute inline). Tracked in #71.
-- Issue: `#71`
-
-### `agent.packages-agent-test-utils-get-current-time.ts.internal.test`
-
-- Area: `agent`, kind: `test`
-- Upstream: `packages/agent/test/utils/get-current-time.ts`
-- Dart: `pi_agent/lib/src/agent.dart`
-- Divergence: Test helper utils/get-current-time.ts is not ported (Dart tests use a virtual clock). Tracked in #71.
-- Issue: `#71`
-
-### `agent.packages-agent-test-utils-wait-for-tick.ts.internal.test`
-
-- Area: `agent`, kind: `test`
-- Upstream: `packages/agent/test/utils/wait-for-tick.ts`
-- Dart: `pi_agent/lib/src/agent.dart`
-- Divergence: Test helper utils/wait-for-tick.ts is not ported (Dart tests await microtasks directly). Tracked in #71.
-- Issue: `#71`
-
 ### `durable.packages-durable-src-codemode-index.ts.DEFAULT_CODEMODE_INLINE_BUDGET.api`
 
 - Area: `durable`, kind: `api`
@@ -15368,22 +15136,6 @@
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
 - Issue: `#arrrrny/pi#83`
 
-### `mcp.packages-mcp-src-index.ts.createMcpResultSchema.api`
-
-- Area: `mcp`, kind: `api`
-- Upstream: `packages/mcp/src/index.ts` → `createMcpResultSchema`
-- Dart: `pi_agent/lib/src/tools.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: `#arrrrny/pi#83`
-
-### `mcp.packages-mcp-src-index.ts.createMcpToolName.api`
-
-- Area: `mcp`, kind: `api`
-- Upstream: `packages/mcp/src/index.ts` → `createMcpToolName`
-- Dart: `pi_agent/lib/src/tools.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: `#arrrrny/pi#83`
-
 ### `mcp.packages-mcp-src-index.ts.McpClient.api`
 
 - Area: `mcp`, kind: `api`
@@ -15400,42 +15152,10 @@
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
 - Issue: `#arrrrny/pi#83`
 
-### `mcp.packages-mcp-src-index.ts.mcpNamespace.api`
-
-- Area: `mcp`, kind: `api`
-- Upstream: `packages/mcp/src/index.ts` → `mcpNamespace`
-- Dart: `pi_agent/lib/src/tools.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: `#arrrrny/pi#83`
-
-### `mcp.packages-mcp-src-index.ts.mcpServerSummary.api`
-
-- Area: `mcp`, kind: `api`
-- Upstream: `packages/mcp/src/index.ts` → `mcpServerSummary`
-- Dart: `pi_agent/lib/src/tools.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: `#arrrrny/pi#83`
-
-### `mcp.packages-mcp-src-index.ts.normalizeMcpInputSchema.api`
-
-- Area: `mcp`, kind: `api`
-- Upstream: `packages/mcp/src/index.ts` → `normalizeMcpInputSchema`
-- Dart: `pi_agent/lib/src/tools.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: `#arrrrny/pi#83`
-
 ### `mcp.packages-mcp-src-index.ts.StdioTransport.api`
 
 - Area: `mcp`, kind: `api`
 - Upstream: `packages/mcp/src/index.ts` → `StdioTransport`
-- Dart: `pi_agent/lib/src/tools.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: `#arrrrny/pi#83`
-
-### `mcp.packages-mcp-src-index.ts.toMcpModelContent.api`
-
-- Area: `mcp`, kind: `api`
-- Upstream: `packages/mcp/src/index.ts` → `toMcpModelContent`
 - Dart: `pi_agent/lib/src/tools.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
 - Issue: `#arrrrny/pi#83`
@@ -15504,14 +15224,6 @@
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
 - Issue: `#arrrrny/pi#83`
 
-### `mcp.packages-mcp-test-content.test.ts.internal.test`
-
-- Area: `mcp`, kind: `test`
-- Upstream: `packages/mcp/test/content.test.ts`
-- Dart: `pi_agent/lib/src/tools.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: `#arrrrny/pi#83`
-
 ### `mcp.packages-mcp-test-fixtures-exiting-parent-server.mjs.internal.test`
 
 - Area: `mcp`, kind: `test`
@@ -15544,14 +15256,6 @@
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
 - Issue: `#arrrrny/pi#83`
 
-### `mcp.packages-mcp-test-input-schema.test.ts.internal.test`
-
-- Area: `mcp`, kind: `test`
-- Upstream: `packages/mcp/test/input-schema.test.ts`
-- Dart: `pi_agent/lib/src/tools.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: `#arrrrny/pi#83`
-
 ### `mcp.packages-mcp-test-lines.test.ts.internal.test`
 
 - Area: `mcp`, kind: `test`
@@ -15564,22 +15268,6 @@
 
 - Area: `mcp`, kind: `test`
 - Upstream: `packages/mcp/test/loopback.test.ts`
-- Dart: `pi_agent/lib/src/tools.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: `#arrrrny/pi#83`
-
-### `mcp.packages-mcp-test-model-content.test.ts.internal.test`
-
-- Area: `mcp`, kind: `test`
-- Upstream: `packages/mcp/test/model-content.test.ts`
-- Dart: `pi_agent/lib/src/tools.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: `#arrrrny/pi#83`
-
-### `mcp.packages-mcp-test-naming.test.ts.internal.test`
-
-- Area: `mcp`, kind: `test`
-- Upstream: `packages/mcp/test/naming.test.ts`
 - Dart: `pi_agent/lib/src/tools.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
 - Issue: `#arrrrny/pi#83`
@@ -15604,14 +15292,6 @@
 
 - Area: `mcp`, kind: `test`
 - Upstream: `packages/mcp/test/pipe.test.ts`
-- Dart: `pi_agent/lib/src/tools.dart`
-- Divergence: Scaffolded by build-registry; not yet assessed for parity.
-- Issue: `#arrrrny/pi#83`
-
-### `mcp.packages-mcp-test-result-schema.test.ts.internal.test`
-
-- Area: `mcp`, kind: `test`
-- Upstream: `packages/mcp/test/result-schema.test.ts`
 - Dart: `pi_agent/lib/src/tools.dart`
 - Divergence: Scaffolded by build-registry; not yet assessed for parity.
 - Issue: `#arrrrny/pi#83`
@@ -21914,6 +21594,31 @@
 
 ## Approved exclusions
 
+- `agent.packages-agent-examples-mcp-codemode-main.ts.internal.example`: Example (packages/agent/examples/mcp-codemode/main.ts). Examples are outside the Dart package's library surface and are not ported.
+- `agent.packages-agent-examples-mcp-codemode-tools.ts.internal.example`: Example (packages/agent/examples/mcp-codemode/tools.ts). Examples are outside the Dart package's library surface and are not ported.
+- `agent.packages-agent-src-agent-loop.ts.AgentEventSink.api`: AgentEventSink type alias (packages/agent/src/agent-loop.ts). The Dart loop emits AgentEvent through a Stream and the Agent exposes subscribe(); there is no sink-interface export. The behavior is covered; the named alias is not a Dart export.
+- `agent.packages-agent-src-agent-loop.ts.DEFAULT_AGENT_IDENTITY.api`: DEFAULT_AGENT_IDENTITY const (packages/agent/src/agent-loop.ts). The Dart port carries no client-identity/attribution request metadata, so there is no identity constant to export.
+- `agent.packages-agent-src-agent-loop.ts.RunToolCallOptions.api`: RunToolCallOptions interface (packages/agent/src/agent-loop.ts). The Dart loop runs tool calls through the same internal preparation/execution path but exposes no standalone runToolCall option object.
+- `agent.packages-agent-src-agent-loop.ts.ToolCallHooks.api`: ToolCallHooks type alias (Pick of beforeToolCall/afterToolCall). The Dart AgentLoopConfig carries both hooks directly; there is no separate Pick export.
+- `agent.packages-agent-src-agent.ts.AgentInitialState.api`: AgentInitialState type (packages/agent/src/agent.ts). The Dart AgentState covers the initial state via AgentOptions/AgentState constructors; no separate partial-initial-state export exists.
+- `agent.packages-agent-src-index.ts.setDefaultStreamFn.api`: Global default stream function (packages/agent/src/stream-fn.ts setDefaultStreamFn). The Dart port wires the stream fn per Agent (AgentOptions.streamFn / loopStreamFn) and has no process-global default; a global mutable default is intentionally not modeled. Scope decision by the #71 author.
+- `agent.packages-agent-src-types.ts.AgentLoopTurnUpdate.api`: AgentLoopTurnUpdate interface (packages/agent/src/types.ts). Replacement runtime state for the unmodeled prepareRequest/prepareNextTurn callbacks; no Dart equivalent.
+- `agent.packages-agent-src-types.ts.AgentRequestUpdate.api`: AgentRequestUpdate type (packages/agent/src/types.ts). Return type of the unmodeled PrepareRequest callback; no Dart equivalent.
+- `agent.packages-agent-src-types.ts.AgentToolCall.api`: AgentToolCall type (packages/agent/src/types.ts). The Dart port models the tool-call content block as ToolCallBlock; the TS Extract alias has no Dart runtime equivalent.
+- `agent.packages-agent-src-types.ts.AgentToolCallOutcome.api`: AgentToolCallOutcome interface (packages/agent/src/types.ts). Internal tool-call finalization record; the Dart loop keeps an equivalent private _Finalized and exposes no public export.
+- `agent.packages-agent-src-types.ts.AgentToolParams.api`: AgentToolParams type (packages/agent/src/types.ts). Compile-time Static<TParameters> inference with no Dart runtime equivalent; Dart tools type parameters at the call site.
+- `agent.packages-agent-src-types.ts.AgentToolUpdateCallback.api`: AgentToolUpdateCallback type (packages/agent/src/types.ts). The Dart tool execute signature has no per-call partial-update callback export.
+- `agent.packages-agent-src-types.ts.AgentTurnContext.api`: AgentTurnContext interface (packages/agent/src/types.ts). The Dart loop does not model the finishTurn/prepareNextTurn callback context; no equivalent export.
+- `agent.packages-agent-src-types.ts.AgentTurnDecision.api`: AgentTurnDecision type (packages/agent/src/types.ts). Return type of the unmodeled FinishTurn callback; no Dart equivalent.
+- `agent.packages-agent-src-types.ts.CustomAgentMessages.api`: CustomAgentMessages interface (packages/agent/src/types.ts). TypeScript declaration-merging extension point; Dart has no declaration merging, so the empty interface has no equivalent.
+- `agent.packages-agent-src-types.ts.FinishTurn.api`: FinishTurn type (packages/agent/src/types.ts). The Dart loop ends turns by queue drain and stop-reason rules, not a FinishTurn callback; no equivalent export.
+- `agent.packages-agent-src-types.ts.PrepareNextTurnContext.api`: PrepareNextTurnContext interface (packages/agent/src/types.ts). Context for the unmodeled prepareNextTurn callback; no Dart equivalent.
+- `agent.packages-agent-src-types.ts.PrepareRequest.api`: PrepareRequest type (packages/agent/src/types.ts). The Dart loop has no prepareRequest callback; no equivalent export.
+- `agent.packages-agent-src-types.ts.PrepareRequestContext.api`: PrepareRequestContext interface (packages/agent/src/types.ts). Context for the unmodeled PrepareRequest callback; no Dart equivalent.
+- `agent.packages-agent-src-types.ts.StreamFn.api`: StreamFn type (packages/agent/src/types.ts). The Dart port names the provider stream signature LoopStreamFn; the TS alias is not a separate Dart type. Behavior covered by the verified loop rows.
+- `agent.packages-agent-test-utils-calculate.ts.internal.test`: Test helper (packages/agent/test/utils/calculate.ts). Dart tests compute inline; no shared test-helper module is ported.
+- `agent.packages-agent-test-utils-get-current-time.ts.internal.test`: Test helper (packages/agent/test/utils/get-current-time.ts). Dart tests compute inline; no shared test-helper module is ported.
+- `agent.packages-agent-test-utils-wait-for-tick.ts.internal.test`: Test helper (packages/agent/test/utils/wait-for-tick.ts). Dart tests use the test package's async helpers inline; no shared test-helper module is ported.
 - `durable.packages-durable-src-env-node.ts.NodeExecutionEnv.api`: Node.js execution environment (packages/durable/src/env/node.ts). The Dart port models durable behavior natively and ships no Node env: LocalExecutionEnv (pi_agent/lib/src/execution_env.dart) runs the host /bin/sh on the Linux/macOS pool hosts. The 2026-11-25 sync's only durable change here is Windows Git Bash discovery (findGitBashOfGitOnPath via `git var GIT_SHELL_PATH`), which has no Dart surface. Platform/scope exclusion per spec 004 (the port models, rather than ports, durable behavior).
 - `durable.packages-durable-src-env-node.ts.NodeWatchOptions.api`: Node.js file-watcher options (packages/durable/src/env/node.ts, NodeWatchOptions). The Dart port ships no Node file watcher and models durable behavior natively; the 2026-11-25 sync did not change NodeWatchOptions. Platform/scope exclusion per spec 004 (the port models, rather than ports, durable behavior).
 - `durable.packages-durable-test-env-line-scan.test.ts.internal.test`: Upstream NodeTextLineReader linear-time line-scan test (packages/durable/test/env-line-scan.test.ts). The Dart port has no streaming Node line reader; its JSONL and session readers use content.split('\n') and file.readAsLines() (pi_agent/lib/src/durable/storage/jsonl.dart, session_storage.dart), which are already linear-time, so the upstream quadratic-rescan fix has no Dart surface to port. Platform/scope exclusion per spec 004.
