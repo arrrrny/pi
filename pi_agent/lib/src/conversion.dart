@@ -3,6 +3,70 @@ library;
 
 import 'types.dart';
 
+/// Provider-facing request context shared by the direct LLM client and the
+/// proxy adapter.
+///
+/// Mirrors upstream `normalizeContext()` (packages/ai/src/utils/transcript.ts):
+/// the system prompt and the active tools are folded into the transcript, so a
+/// proxy-backed agent cannot silently run without its instructions or callable
+/// tools — the gap the review found at proxy.dart:104-110.
+class ProviderRequestContext {
+  /// Creates a request context from converted messages and tool declarations.
+  const ProviderRequestContext({
+    required this.messages,
+    required this.tools,
+  });
+
+  /// Converted messages with the system prompt prepended, when present.
+  final List<Map<String, dynamic>> messages;
+
+  /// Serialized declarations of the tools active in this context.
+  final List<Map<String, dynamic>> tools;
+
+  /// The wire shape the proxy's `context` field carries: a transcript whose
+  /// leading system message also declares the active tools (`toolsAdded`,
+  /// transcript.ts:11-33).
+  Map<String, dynamic> toWire() {
+    final messages = List<Map<String, dynamic>>.from(this.messages);
+    if (tools.isNotEmpty) {
+      final systemIndex = messages.indexWhere((m) => m['role'] == 'system');
+      if (systemIndex >= 0) {
+        messages[systemIndex] = <String, dynamic>{
+          ...messages[systemIndex],
+          'toolsAdded': tools,
+        };
+      } else {
+        messages.insert(0, <String, dynamic>{
+          'role': 'system',
+          'content': '',
+          'toolsAdded': tools,
+        });
+      }
+    }
+    return {'messages': messages};
+  }
+}
+
+/// Folds an [AgentContext] into the provider-facing request shape.
+///
+/// Both `streamLLM` and `streamProxy` build their requests from this helper,
+/// so the direct and proxy paths cannot drift apart (llm_client.dart:208-225).
+Future<ProviderRequestContext> normalizeProviderContext(
+  AgentContext context,
+  Future<List<Map<String, dynamic>>> Function(List<AgentMessage>) convertToLlm,
+) async {
+  final messages = <Map<String, dynamic>>[
+    if (context.systemPrompt.isNotEmpty)
+      {'role': 'system', 'content': context.systemPrompt},
+    ...(await convertToLlm(context.messages)),
+  ];
+  final tools = <Map<String, dynamic>>[
+    for (final tool in context.tools ?? const <dynamic>[])
+      tool.toApiFormat() as Map<String, dynamic>,
+  ];
+  return ProviderRequestContext(messages: messages, tools: tools);
+}
+
 /// Default message converter: filters agent messages to LLM-compatible format.
 ///
 /// Converts UserMessage, AssistantMessage, and ToolResultMessage to

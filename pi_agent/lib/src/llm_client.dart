@@ -6,6 +6,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
+import 'conversion.dart';
 import 'json_parse.dart';
 import 'types.dart';
 import 'sse_parser.dart';
@@ -205,24 +206,19 @@ Future<(Uri, Map<String, String>, String)> _buildRequest(
     ...?config.extraHeaders,
   };
 
-  final converted = await config.convertToLlm(context.messages);
-  final messages = <Map<String, dynamic>>[
-    if (context.systemPrompt.isNotEmpty)
-      {'role': 'system', 'content': context.systemPrompt},
-    ...converted,
-  ];
-
-  final tools = context.tools;
+  // Share normalization with the proxy adapter so neither path can drop the
+  // system prompt or the active tools (see review finding on proxy.dart).
+  final requestContext =
+      await normalizeProviderContext(context, config.convertToLlm);
   final body = jsonEncode({
     'model': config.model.modelId,
-    'messages': messages,
+    'messages': requestContext.messages,
     'stream': true,
     'stream_options': {'include_usage': true},
     if (config.maxTokens != null) 'max_tokens': config.maxTokens,
     if (config.temperature != null) 'temperature': config.temperature,
     if (config.topP != null) 'top_p': config.topP,
-    if (tools != null && tools.isNotEmpty)
-      'tools': tools.map((t) => t.toApiFormat()).toList(),
+    if (requestContext.tools.isNotEmpty) 'tools': requestContext.tools,
   });
 
   return (url, headers, body);
