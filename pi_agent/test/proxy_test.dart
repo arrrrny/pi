@@ -6,6 +6,7 @@ import 'package:test/test.dart';
 import 'package:pi/src/types.dart' hide AgentTool;
 import 'package:pi/src/conversion.dart';
 import 'package:pi/src/proxy.dart';
+import 'package:pi/src/tools.dart';
 
 /// A minimal proxy server for hermetic streamProxy tests.
 ///
@@ -177,6 +178,76 @@ void main() {
       expect((end.message as AssistantMessage).stopReason, StopReason.error);
       expect((end.message as AssistantMessage).errorMessage,
           contains('Proxy error'));
+    });
+
+    test('sends the system prompt and active tools in the request body',
+        () async {
+      final server = _FakeProxyServer([
+        '{"type":"start"}',
+        '{"type":"done","reason":"stop","usage":{"input":0,"output":0,"cacheRead":0,"cacheWrite":0,"totalTokens":0,"cost":{"input":0,"output":0,"cacheRead":0,"cacheWrite":0,"total":0}}}',
+      ]);
+      await server.start();
+      addTearDown(server.stop);
+
+      await streamProxy(
+        context: AgentContext(
+          systemPrompt: 'You are concise.',
+          messages: const [],
+          tools: [
+            AgentTool(
+              name: 'calc',
+              description: 'Calculate a value',
+              parameters: const {
+                'type': 'object',
+                'properties': {'x': {'type': 'number'}},
+              },
+              execute: (id, args, {onUpdate, isAborted}) async =>
+                  AgentToolResult(content: const [], details: const {}),
+            ),
+          ],
+        ),
+        config: makeConfig(makeModel()),
+        options: makeOptions(server.url),
+      ).toList();
+
+      // The proxy must receive the full normalized transcript, not just the
+      // converted messages (review finding at proxy.dart:104-110).
+      final bodyContext = server.lastBody!['context'] as Map<String, dynamic>;
+      final messages = bodyContext['messages'] as List<dynamic>;
+      final system = messages.first as Map<String, dynamic>;
+      expect(system['role'], 'system');
+      expect(system['content'], 'You are concise.');
+      final toolsAdded = system['toolsAdded'] as List<dynamic>;
+      expect(toolsAdded, hasLength(1));
+      expect((toolsAdded.first as Map<String, dynamic>)['function']['name'],
+          'calc');
+    });
+
+    test('emits partial tool arguments in MessageUpdate before toolcall_end',
+        () async {
+      final server = _FakeProxyServer([
+        '{"type":"start"}',
+        '{"type":"toolcall_start","contentIndex":0,"id":"call_1","toolName":"calc"}',
+        '{"type":"toolcall_delta","contentIndex":0,"delta":"{\\"x\\":"}',
+        '{"type":"toolcall_delta","contentIndex":0,"delta":"1}"}',
+        '{"type":"done","reason":"toolUse","usage":{"input":0,"output":0,"cacheRead":0,"cacheWrite":0,"totalTokens":0,"cost":{"input":0,"output":0,"cacheRead":0,"cacheWrite":0,"total":0}}}',
+      ]);
+      await server.start();
+      addTearDown(server.stop);
+
+      final events = await streamProxy(
+        context: const AgentContext(systemPrompt: '', messages: []),
+        config: makeConfig(makeModel()),
+        options: makeOptions(server.url),
+      ).toList();
+
+      // No toolcall_end arrived, so every update comes from a delta alone:
+      // live consumers must see the partial arguments, not an empty map
+      // (review finding at proxy.dart:263-268).
+      final updates = events.whereType<MessageUpdate>().toList();
+      expect(updates, isNotEmpty);
+      final last = updates.last.message as AssistantMessage;
+      expect(last.toolCalls.single.arguments, {'x': 1});
     });
   });
 }

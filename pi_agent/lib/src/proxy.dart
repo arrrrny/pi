@@ -14,6 +14,8 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
+import 'ai/streaming_json.dart';
+import 'conversion.dart';
 import 'sse_parser.dart';
 import 'types.dart';
 
@@ -106,7 +108,13 @@ Stream<AgentEvent> streamProxy({
           'provider': config.model.provider,
           'id': config.model.modelId,
         },
-        'context': await config.convertToLlm(context.messages),
+        // Fold the system prompt and active tools into the transcript exactly
+        // like the direct provider path, so a proxy-backed agent still has its
+        // instructions and callable tools (proxy.ts:148-156).
+        'context': (await normalizeProviderContext(
+          context,
+          config.convertToLlm,
+        )).toWire(),
         'options': options.toBody(),
       });
 
@@ -130,7 +138,10 @@ Stream<AgentEvent> streamProxy({
     }
 
     final partial = _ProxyPartial(config.model);
-    final toolArguments = <int, StringBuffer>{};
+    // Keep the raw argument text in the streaming helper, never on the
+    // content block, so every emitted update carries the parsed partial args
+    // (streaming_json.dart:584-630, proxy.ts:344-350).
+    final toolArguments = <int, ToolCallArgumentsStream>{};
     var sawTerminalEvent = false;
 
     await for (final event in parseSSE(response.stream)) {
@@ -216,7 +227,7 @@ class _ProxyPartial {
 bool? _processProxyEvent(
   Map<String, dynamic> event,
   _ProxyPartial partial,
-  Map<int, StringBuffer> toolArguments,
+  Map<int, ToolCallArgumentsStream> toolArguments,
 ) {
   switch (event['type']) {
     case 'start':
@@ -258,12 +269,23 @@ bool? _processProxyEvent(
           arguments: const {},
         ),
       );
-      toolArguments[event['contentIndex'] as int] = StringBuffer();
+      toolArguments[event['contentIndex'] as int] = ToolCallArgumentsStream();
       return true;
     case 'toolcall_delta':
-      final args = toolArguments[event['contentIndex'] as int];
-      if (args != null) {
-        args.write(event['delta'] as String);
+      final index = event['contentIndex'] as int;
+      final args = toolArguments[index];
+      final content = partial.contentAt(index);
+      if (args != null && content is ToolCallBlock) {
+        // A new block object, so reactive consumers see the partial args
+        // rather than an empty `{}` until toolcall_end.
+        partial.setContent(
+          index,
+          ToolCallBlock(
+            id: content.id,
+            name: content.name,
+            arguments: args.append(event['delta'] as String),
+          ),
+        );
         return true;
       }
       throw StateError('Received toolcall_delta for non-toolCall content');
