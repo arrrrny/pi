@@ -199,6 +199,24 @@ final RegExp _ipvFuture = RegExp(r'\[[vV][0-9a-fA-F]+\.[^\]]+\]');
 /// A bracketed IP-literal host (`//[...]`) in an authority.
 final RegExp _bracketedHost = RegExp(r'//\[[^\]]*\]');
 
+/// A dotted-decimal run (an embedded IPv4) inside a bracketed host.
+final RegExp _embeddedIpv4 = RegExp(r'\d+(?:\.\d+){3}');
+
+/// Whether [value] carries a bracketed IP-literal whose embedded IPv4 has an
+/// octet with a leading zero (e.g. `[::ffff:192.168.0.01]`). The WHATWG parser
+/// rejects such a literal; Dart's [Uri] is inconsistent across SDKs (3.9
+/// accepts it, 3.14 rejects it), so the rule is enforced explicitly here.
+bool _hasLeadingZeroEmbeddedIpv4(String value) {
+  for (final host in _bracketedHost.allMatches(value)) {
+    for (final ipv4 in _embeddedIpv4.allMatches(host.group(0)!)) {
+      for (final octet in ipv4.group(0)!.split('.')) {
+        if (octet.length > 1 && octet.startsWith('0')) return true;
+      }
+    }
+  }
+  return false;
+}
+
 /// Characters forbidden in an IRI reference (controls, space, DEL, backslash,
 /// plus malformed percent triplets).
 final RegExp _invalidIriRefChars =
@@ -244,6 +262,7 @@ bool isIdnEmail(String value) => _idnEmail.hasMatch(value);
 bool isIri(String value) {
   if (_invalidIriChars.hasMatch(value)) return false;
   if (_invalidPercentEncoding.hasMatch(value)) return false;
+  if (_hasLeadingZeroEmbeddedIpv4(value)) return false;
   final narrowed =
       value.length < 2048 ? value.replaceAll(_ipvFuture, '[::1]') : value;
   // A bracketed IP-literal is legal only as the authority host; a stray
@@ -258,6 +277,7 @@ bool isIri(String value) {
 bool isIriReference(String value) {
   if (_invalidIriRefChars.hasMatch(value)) return false;
   if (_malformedScheme.hasMatch(value)) return false;
+  if (_hasLeadingZeroEmbeddedIpv4(value)) return false;
   return Uri.tryParse(value) != null;
 }
 
