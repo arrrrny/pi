@@ -62182,16 +62182,17 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/tools.dart",
-      "dart_impl": "pi_agent/lib/src/tools.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/mcp.dart",
+      "dart_impl": "pi_agent/lib/src/mcp/result_schema.dart",
+      "dart_test": "pi_agent/test/mcp/result_schema_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/mcp/result_schema_test.dart",
+        "normalization_version": 1
       },
-      "issue": "arrrrny/pi#83",
+      "divergence": null,
+      "issue": null,
       "id": "mcp.packages-mcp-src-index.ts.createMcpResultSchema.api",
       "area": "mcp",
       "upstream_path": "packages/mcp/src/index.ts",
@@ -62211,16 +62212,17 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/tools.dart",
-      "dart_impl": "pi_agent/lib/src/tools.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/mcp.dart",
+      "dart_impl": "pi_agent/lib/src/mcp/naming.dart",
+      "dart_test": "pi_agent/test/mcp/naming_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/mcp/naming_test.dart",
+        "normalization_version": 1
       },
-      "issue": "arrrrny/pi#83",
+      "divergence": null,
+      "issue": null,
       "id": "mcp.packages-mcp-src-index.ts.createMcpToolName.api",
       "area": "mcp",
       "upstream_path": "packages/mcp/src/index.ts",
@@ -62298,16 +62300,17 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/tools.dart",
-      "dart_impl": "pi_agent/lib/src/tools.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/mcp.dart",
+      "dart_impl": "pi_agent/lib/src/mcp/naming.dart",
+      "dart_test": "pi_agent/test/mcp/naming_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/mcp/naming_test.dart",
+        "normalization_version": 1
       },
-      "issue": "arrrrny/pi#83",
+      "divergence": null,
+      "issue": null,
       "id": "mcp.packages-mcp-src-index.ts.mcpNamespace.api",
       "area": "mcp",
       "upstream_path": "packages/mcp/src/index.ts",
@@ -62327,16 +62330,17 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/tools.dart",
-      "dart_impl": "pi_agent/lib/src/tools.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/mcp.dart",
+      "dart_impl": "pi_agent/lib/src/mcp/naming.dart",
+      "dart_test": "pi_agent/test/mcp/naming_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/mcp/naming_test.dart",
+        "normalization_version": 1
       },
-      "issue": "arrrrny/pi#83",
+      "divergence": null,
+      "issue": null,
       "id": "mcp.packages-mcp-src-index.ts.mcpServerSummary.api",
       "area": "mcp",
       "upstream_path": "packages/mcp/src/index.ts",
@@ -62356,16 +62360,17 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/tools.dart",
-      "dart_impl": "pi_agent/lib/src/tools.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/mcp.dart",
+      "dart_impl": "pi_agent/lib/src/mcp/input_schema.dart",
+      "dart_test": "pi_agent/test/mcp/input_schema_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/mcp/input_schema_test.dart",
+        "normalization_version": 1
       },
-      "issue": "arrrrny/pi#83",
+      "divergence": null,
+      "issue": null,
       "id": "mcp.packages-mcp-src-index.ts.normalizeMcpInputSchema.api",
       "area": "mcp",
       "upstream_path": "packages/mcp/src/index.ts",
@@ -62414,16 +62419,17 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/tools.dart",
-      "dart_impl": "pi_agent/lib/src/tools.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/mcp.dart",
+      "dart_impl": "pi_agent/lib/src/mcp/model_content.dart",
+      "dart_test": "pi_agent/test/mcp/model_content_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/mcp/model_content_test.dart",
+        "normalization_version": 1
       },
-      "issue": "arrrrny/pi#83",
+      "divergence": null,
+      "issue": null,
       "id": "mcp.packages-mcp-src-index.ts.toMcpModelContent.api",
       "area": "mcp",
       "upstream_path": "packages/mcp/src/index.ts",
@@ -62675,16 +62681,17 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/tools.dart",
-      "dart_impl": "pi_agent/lib/src/tools.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/mcp.dart",
+      "dart_impl": "pi_agent/lib/src/mcp/protocol/content.dart",
+      "dart_test": "pi_agent/test/mcp/content_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/mcp/content_test.dart",
+        "normalization_version": 1
       },
-      "issue": "arrrrny/pi#83",
+      "divergence": null,
+      "issue": null,
       "id": "mcp.packages-mcp-test-content.test.ts.internal.test",
       "area": "mcp",
       "upstream_path": "packages/mcp/test/content.test.ts",
@@ -62820,16 +62827,17 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/tools.dart",
-      "dart_impl": "pi_agent/lib/src/tools.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/mcp.dart",
+      "dart_impl": "pi_agent/lib/src/mcp/input_schema.dart",
+      "dart_test": "pi_agent/test/mcp/input_schema_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/mcp/input_schema_test.dart",
+        "normalization_version": 1
       },
-      "issue": "arrrrny/pi#83",
+      "divergence": null,
+      "issue": null,
       "id": "mcp.packages-mcp-test-input-schema.test.ts.internal.test",
       "area": "mcp",
       "upstream_path": "packages/mcp/test/input-schema.test.ts",
@@ -62907,16 +62915,17 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/tools.dart",
-      "dart_impl": "pi_agent/lib/src/tools.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/mcp.dart",
+      "dart_impl": "pi_agent/lib/src/mcp/model_content.dart",
+      "dart_test": "pi_agent/test/mcp/model_content_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/mcp/model_content_test.dart",
+        "normalization_version": 1
       },
-      "issue": "arrrrny/pi#83",
+      "divergence": null,
+      "issue": null,
       "id": "mcp.packages-mcp-test-model-content.test.ts.internal.test",
       "area": "mcp",
       "upstream_path": "packages/mcp/test/model-content.test.ts",
@@ -62936,16 +62945,17 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/tools.dart",
-      "dart_impl": "pi_agent/lib/src/tools.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/mcp.dart",
+      "dart_impl": "pi_agent/lib/src/mcp/naming.dart",
+      "dart_test": "pi_agent/test/mcp/naming_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/mcp/naming_test.dart",
+        "normalization_version": 1
       },
-      "issue": "arrrrny/pi#83",
+      "divergence": null,
+      "issue": null,
       "id": "mcp.packages-mcp-test-naming.test.ts.internal.test",
       "area": "mcp",
       "upstream_path": "packages/mcp/test/naming.test.ts",
@@ -63052,16 +63062,17 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/tools.dart",
-      "dart_impl": "pi_agent/lib/src/tools.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/mcp.dart",
+      "dart_impl": "pi_agent/lib/src/mcp/result_schema.dart",
+      "dart_test": "pi_agent/test/mcp/result_schema_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/mcp/result_schema_test.dart",
+        "normalization_version": 1
       },
-      "issue": "arrrrny/pi#83",
+      "divergence": null,
+      "issue": null,
       "id": "mcp.packages-mcp-test-result-schema.test.ts.internal.test",
       "area": "mcp",
       "upstream_path": "packages/mcp/test/result-schema.test.ts",
