@@ -32,4 +32,5 @@ export 'src/execution_env.dart';
 export 'src/compaction.dart';
 export 'src/sse_parser.dart';
 export 'src/llm_client.dart';
+export 'src/proxy.dart';
 export 'src/conversion.dart';
