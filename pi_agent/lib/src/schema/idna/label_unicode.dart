@@ -17,13 +17,19 @@ bool _exceedsMaxALabelLength(String value) =>
 
 /// Whether [chars] breaks the hyphen rules (RFC 5891 §4.2.3.2): a leading or
 /// trailing hyphen, or `--` in the 3rd/4th code point positions.
+///
+/// An empty [chars] has no hyphen to break the rule, so the helper is total.
 bool _hasInvalidHyphens(List<String> chars) {
+  if (chars.isEmpty) return false;
   if (chars.first == '-' || chars.last == '-') return true;
   return chars.length > 2 && chars.sublist(2).join().startsWith('--');
 }
 
 /// Whether [value] is a valid U-label (a Unicode IDNA label).
 bool isUnicodeLabel(String value) {
+  // An empty string is not a valid label, and the checks below dereference
+  // `chars.first`; reject it up front so the helper is total.
+  if (value.isEmpty) return false;
   // RFC 5890 §2.3.2.1: maximum length.
   if (_exceedsMaxALabelLength(value)) return false;
   // RFC 5893: Bidi Rule (applies whenever this label itself is RTL).

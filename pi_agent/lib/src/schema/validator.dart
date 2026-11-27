@@ -528,8 +528,8 @@ class SchemaValidator {
     final pointer = ref.substring(1);
     if (pointer.isEmpty) return doc;
     if (pointer.startsWith('/')) return _resolvePointer(pointer, doc);
-    // A plain-name fragment is an `$anchor`/`$dynamicAnchor` lookup.
-    return _resolveAnchor(pointer, doc, dynamic: false);
+    // A plain-name fragment is an `$anchor` lookup.
+    return _resolveAnchor(pointer, doc);
   }
 
   Object? _resolveDynamicRef(String ref, Map<String, Object?> doc) {
@@ -537,7 +537,7 @@ class SchemaValidator {
     final pointer = ref.substring(1);
     if (pointer.isEmpty) return doc;
     if (pointer.startsWith('/')) return _resolvePointer(pointer, doc);
-    return _resolveAnchor(pointer, doc, dynamic: true);
+    return _resolveDynamicAnchor(pointer, doc);
   }
 
   Object? _resolvePointer(String pointer, Map<String, Object?> doc) {
@@ -561,11 +561,32 @@ class SchemaValidator {
     return current;
   }
 
-  Object? _resolveAnchor(String name, Map<String, Object?> doc,
-      {required bool dynamic}) {
-    final key = dynamic ? '\$dynamicAnchor' : '\$anchor';
-    final found = _findAnchor(doc, key, name);
+  /// Resolves a plain `$anchor` name fragment to the schema object carrying it.
+  ///
+  /// `$anchor` names are unique per schema resource, so the first static match
+  /// is exact.
+  Object? _resolveAnchor(String name, Map<String, Object?> doc) {
+    final found = _findAnchor(doc, '\$anchor', name);
     return found ?? _unresolvedRef;
+  }
+
+  /// Resolves a `$dynamicRef` name fragment to its `$dynamicAnchor` target.
+  ///
+  /// Known divergence from JSON Schema 2020-12 dynamic scope (pi#94 review):
+  /// a conforming implementation walks the referencing chain and rebinds to the
+  /// OUTERMOST in-scope schema carrying the same `$dynamicAnchor` name. This
+  /// port threads only the root document and has no scope chain, so it resolves
+  /// statically. That is exact for the non-shadowed case — exactly one
+  /// `$dynamicAnchor` of this name in the document, which is the recursive /
+  /// extended-schema case `$dynamicRef` exists for. When the name is SHADOWED
+  /// (defined in more than one in-scope schema) a static first-match could bind
+  /// the wrong schema and silently mis-validate, so the shadowed case is gated
+  /// to unresolved (the `$dynamicRef` applies no constraint) rather than
+  /// guessed. `anchor_dynamicref_test.dart` exercises the non-shadowed path.
+  Object? _resolveDynamicAnchor(String name, Map<String, Object?> doc) {
+    final matches = _findAnchors(doc, '\$dynamicAnchor', name);
+    if (matches.length != 1) return _unresolvedRef;
+    return matches.single;
   }
 
   Object? _findAnchor(Object? node, String key, String name) {
@@ -582,6 +603,27 @@ class SchemaValidator {
       }
     }
     return null;
+  }
+
+  /// Collects every node whose [key] equals [name], in document order.
+  List<Object?> _findAnchors(Object? node, String key, String name) {
+    final found = <Object?>[];
+    _collectAnchors(node, key, name, found);
+    return found;
+  }
+
+  void _collectAnchors(
+      Object? node, String key, String name, List<Object?> found) {
+    if (node is Map<String, Object?>) {
+      if (node[key] == name) found.add(node);
+      for (final child in node.values) {
+        _collectAnchors(child, key, name, found);
+      }
+    } else if (node is List<Object?>) {
+      for (final child in node) {
+        _collectAnchors(child, key, name, found);
+      }
+    }
   }
 }
 

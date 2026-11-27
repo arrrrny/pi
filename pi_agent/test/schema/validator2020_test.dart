@@ -117,7 +117,10 @@ void main() {
 
   test('remote-ref groups were skipped, not silently passed', () {
     // The local-only validator cannot resolve remote documents; the skip is
-    // reported here so the evidence is honest about what was NOT run.
-    expect(skippedRemote, greaterThanOrEqualTo(0));
+    // counted so the run never silently passes by exercising nothing. A real
+    // lower bound (mirroring formats2020_test.dart's `nfcDomainSkipped > 0`)
+    // guards the accounting: the covered fixtures carry remote-ref groups, so
+    // zero skips would mean the skip path itself regressed.
+    expect(skippedRemote, greaterThan(0));
   });
 }
