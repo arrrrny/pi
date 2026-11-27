@@ -40,6 +40,9 @@ test("renders a report with per-package status and not-verified section", async 
 	assert.match(report, /agent\.b/);
 	assert.match(report, /not started/);
 	assert.match(report, /#1/);
+	// A bare `#N` registry ref must render as `#1`, never `##1`.
+	assert.match(report, /Issue: `#1`/);
+	assert.doesNotMatch(report, /Issue: `##/);
 	assert.match(report, /## Approved exclusions/);
 	assert.match(report, /out of scope/);
 });

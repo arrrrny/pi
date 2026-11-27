@@ -16,6 +16,8 @@ library;
 
 export 'src/chord/context.dart';
 export 'src/chord/delta.dart';
+export 'src/chord/errors.dart';
+export 'src/chord/failure.dart';
 export 'src/chord/ids.dart';
 export 'src/chord/json.dart';
 export 'src/durable/entries.dart';

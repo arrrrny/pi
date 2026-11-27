@@ -9171,13 +9171,16 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/harness.dart",
-      "dart_impl": "pi_agent/lib/src/harness.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/chord/failure.dart",
+      "dart_test": "pi_agent/test/durable/chord_data_test.dart",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#62 (PI-PAR-003, chord data slice): errors.dart and failure.dart port packages/chord/src/data/errors.ts and failure.ts. Evidence: the upstream-derived tests named in dart_test; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is implemented_unverified, not verified."
+      },
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "Ported by pi#62 (PI-PAR-003, chord data slice): errors.dart and failure.dart port packages/chord/src/data/errors.ts and failure.ts. Evidence: the upstream-derived tests named in dart_test; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is implemented_unverified, not verified.",
         "approved_by": null
       },
       "issue": "arrrrny/pi#62",
@@ -17926,13 +17929,16 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/harness.dart",
-      "dart_impl": "pi_agent/lib/src/harness.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/chord/errors.dart",
+      "dart_test": "pi_agent/test/durable/chord_data_test.dart",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#62 (PI-PAR-003, chord data slice): errors.dart and failure.dart port packages/chord/src/data/errors.ts and failure.ts. Evidence: the upstream-derived tests named in dart_test; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is implemented_unverified, not verified."
+      },
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "Ported by pi#62 (PI-PAR-003, chord data slice): errors.dart and failure.dart port packages/chord/src/data/errors.ts and failure.ts. Evidence: the upstream-derived tests named in dart_test; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is implemented_unverified, not verified.",
         "approved_by": null
       },
       "issue": "arrrrny/pi#62",
@@ -17955,13 +17961,16 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/harness.dart",
-      "dart_impl": "pi_agent/lib/src/harness.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/chord/failure.dart",
+      "dart_test": "pi_agent/test/durable/chord_data_test.dart",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#62 (PI-PAR-003, chord data slice): errors.dart and failure.dart port packages/chord/src/data/errors.ts and failure.ts. Evidence: the upstream-derived tests named in dart_test; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is implemented_unverified, not verified."
+      },
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "Ported by pi#62 (PI-PAR-003, chord data slice): errors.dart and failure.dart port packages/chord/src/data/errors.ts and failure.ts. Evidence: the upstream-derived tests named in dart_test; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is implemented_unverified, not verified.",
         "approved_by": null
       },
       "issue": "arrrrny/pi#62",
@@ -43919,16 +43928,16 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/llm_client.dart",
-      "dart_impl": "pi_agent/lib/src/llm_client.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Transcript normalization (system collapsing, current-tool extraction) is not ported.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/ai.dart",
+      "dart_impl": "pi_agent/lib/src/ai/transcript.dart",
+      "dart_test": "pi_agent/test/ai/transcript_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/ai/transcript_test.dart"
       },
-      "issue": "#65",
+      "divergence": null,
+      "issue": null,
       "id": "ai.packages-ai-src-utils-transcript.ts.collapseSystemMessages.api",
       "area": "ai",
       "upstream_path": "packages/ai/src/utils/transcript.ts",
@@ -43948,16 +43957,16 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/llm_client.dart",
-      "dart_impl": "pi_agent/lib/src/llm_client.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Transcript normalization (system collapsing, current-tool extraction) is not ported.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/ai.dart",
+      "dart_impl": "pi_agent/lib/src/ai/transcript.dart",
+      "dart_test": "pi_agent/test/ai/transcript_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/ai/transcript_test.dart"
       },
-      "issue": "#65",
+      "divergence": null,
+      "issue": null,
       "id": "ai.packages-ai-src-utils-transcript.ts.createInitialSystemMessage.api",
       "area": "ai",
       "upstream_path": "packages/ai/src/utils/transcript.ts",
@@ -43977,16 +43986,16 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/llm_client.dart",
-      "dart_impl": "pi_agent/lib/src/llm_client.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Transcript normalization (system collapsing, current-tool extraction) is not ported.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/ai.dart",
+      "dart_impl": "pi_agent/lib/src/ai/transcript.dart",
+      "dart_test": "pi_agent/test/ai/transcript_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/ai/transcript_test.dart"
       },
-      "issue": "#65",
+      "divergence": null,
+      "issue": null,
       "id": "ai.packages-ai-src-utils-transcript.ts.declarationsEqual.api",
       "area": "ai",
       "upstream_path": "packages/ai/src/utils/transcript.ts",
@@ -44006,16 +44015,16 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/llm_client.dart",
-      "dart_impl": "pi_agent/lib/src/llm_client.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Transcript normalization (system collapsing, current-tool extraction) is not ported.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/ai.dart",
+      "dart_impl": "pi_agent/lib/src/ai/transcript.dart",
+      "dart_test": "pi_agent/test/ai/transcript_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/ai/transcript_test.dart"
       },
-      "issue": "#65",
+      "divergence": null,
+      "issue": null,
       "id": "ai.packages-ai-src-utils-transcript.ts.getCurrentSystemMessage.api",
       "area": "ai",
       "upstream_path": "packages/ai/src/utils/transcript.ts",
@@ -44035,16 +44044,16 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/llm_client.dart",
-      "dart_impl": "pi_agent/lib/src/llm_client.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Transcript normalization (system collapsing, current-tool extraction) is not ported.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/ai.dart",
+      "dart_impl": "pi_agent/lib/src/ai/transcript.dart",
+      "dart_test": "pi_agent/test/ai/transcript_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/ai/transcript_test.dart"
       },
-      "issue": "#65",
+      "divergence": null,
+      "issue": null,
       "id": "ai.packages-ai-src-utils-transcript.ts.getCurrentSystemPrompt.api",
       "area": "ai",
       "upstream_path": "packages/ai/src/utils/transcript.ts",
@@ -44064,16 +44073,16 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/llm_client.dart",
-      "dart_impl": "pi_agent/lib/src/llm_client.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Transcript normalization (system collapsing, current-tool extraction) is not ported.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/ai.dart",
+      "dart_impl": "pi_agent/lib/src/ai/transcript.dart",
+      "dart_test": "pi_agent/test/ai/transcript_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/ai/transcript_test.dart"
       },
-      "issue": "#65",
+      "divergence": null,
+      "issue": null,
       "id": "ai.packages-ai-src-utils-transcript.ts.getCurrentTools.api",
       "area": "ai",
       "upstream_path": "packages/ai/src/utils/transcript.ts",
@@ -44093,16 +44102,16 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/llm_client.dart",
-      "dart_impl": "pi_agent/lib/src/llm_client.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Transcript normalization (system collapsing, current-tool extraction) is not ported.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/ai.dart",
+      "dart_impl": "pi_agent/lib/src/ai/transcript.dart",
+      "dart_test": "pi_agent/test/ai/transcript_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/ai/transcript_test.dart"
       },
-      "issue": "#65",
+      "divergence": null,
+      "issue": null,
       "id": "ai.packages-ai-src-utils-transcript.ts.getDeclaredTools.api",
       "area": "ai",
       "upstream_path": "packages/ai/src/utils/transcript.ts",
@@ -44122,16 +44131,16 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/llm_client.dart",
-      "dart_impl": "pi_agent/lib/src/llm_client.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Transcript normalization (system collapsing, current-tool extraction) is not ported.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/ai.dart",
+      "dart_impl": "pi_agent/lib/src/ai/transcript.dart",
+      "dart_test": "pi_agent/test/ai/transcript_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/ai/transcript_test.dart"
       },
-      "issue": "#65",
+      "divergence": null,
+      "issue": null,
       "id": "ai.packages-ai-src-utils-transcript.ts.getInitialSystemMessage.api",
       "area": "ai",
       "upstream_path": "packages/ai/src/utils/transcript.ts",
@@ -44151,16 +44160,16 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/llm_client.dart",
-      "dart_impl": "pi_agent/lib/src/llm_client.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Transcript normalization (system collapsing, current-tool extraction) is not ported.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/ai.dart",
+      "dart_impl": "pi_agent/lib/src/ai/transcript.dart",
+      "dart_test": "pi_agent/test/ai/transcript_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/ai/transcript_test.dart"
       },
-      "issue": "#65",
+      "divergence": null,
+      "issue": null,
       "id": "ai.packages-ai-src-utils-transcript.ts.getToolStateChanges.api",
       "area": "ai",
       "upstream_path": "packages/ai/src/utils/transcript.ts",
@@ -44180,16 +44189,16 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/llm_client.dart",
-      "dart_impl": "pi_agent/lib/src/llm_client.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Transcript normalization (system collapsing, current-tool extraction) is not ported.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/ai.dart",
+      "dart_impl": "pi_agent/lib/src/ai/transcript.dart",
+      "dart_test": "pi_agent/test/ai/transcript_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/ai/transcript_test.dart"
       },
-      "issue": "#65",
+      "divergence": null,
+      "issue": null,
       "id": "ai.packages-ai-src-utils-transcript.ts.hasNonAdditiveToolChanges.api",
       "area": "ai",
       "upstream_path": "packages/ai/src/utils/transcript.ts",
@@ -44209,16 +44218,16 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/llm_client.dart",
-      "dart_impl": "pi_agent/lib/src/llm_client.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Transcript normalization (system collapsing, current-tool extraction) is not ported.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/ai.dart",
+      "dart_impl": "pi_agent/lib/src/ai/transcript.dart",
+      "dart_test": "pi_agent/test/ai/transcript_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/ai/transcript_test.dart"
       },
-      "issue": "#65",
+      "divergence": null,
+      "issue": null,
       "id": "ai.packages-ai-src-utils-transcript.ts.hasToolRedefinitions.api",
       "area": "ai",
       "upstream_path": "packages/ai/src/utils/transcript.ts",
@@ -44238,16 +44247,16 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/llm_client.dart",
-      "dart_impl": "pi_agent/lib/src/llm_client.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Transcript normalization (system collapsing, current-tool extraction) is not ported.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/ai.dart",
+      "dart_impl": "pi_agent/lib/src/ai/transcript.dart",
+      "dart_test": "pi_agent/test/ai/transcript_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/ai/transcript_test.dart"
       },
-      "issue": "#65",
+      "divergence": null,
+      "issue": null,
       "id": "ai.packages-ai-src-utils-transcript.ts.normalizeContext.api",
       "area": "ai",
       "upstream_path": "packages/ai/src/utils/transcript.ts",
@@ -44267,16 +44276,16 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/llm_client.dart",
-      "dart_impl": "pi_agent/lib/src/llm_client.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Transcript normalization (system collapsing, current-tool extraction) is not ported.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/ai.dart",
+      "dart_impl": "pi_agent/lib/src/ai/transcript.dart",
+      "dart_test": "pi_agent/test/ai/transcript_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/ai/transcript_test.dart"
       },
-      "issue": "#65",
+      "divergence": null,
+      "issue": null,
       "id": "ai.packages-ai-src-utils-transcript.ts.resolveTranscript.api",
       "area": "ai",
       "upstream_path": "packages/ai/src/utils/transcript.ts",
@@ -44296,16 +44305,16 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/llm_client.dart",
-      "dart_impl": "pi_agent/lib/src/llm_client.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Transcript normalization (system collapsing, current-tool extraction) is not ported.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/ai.dart",
+      "dart_impl": "pi_agent/lib/src/ai/transcript.dart",
+      "dart_test": "pi_agent/test/ai/transcript_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/ai/transcript_test.dart"
       },
-      "issue": "#65",
+      "divergence": null,
+      "issue": null,
       "id": "ai.packages-ai-src-utils-transcript.ts.resolveTranscriptTools.api",
       "area": "ai",
       "upstream_path": "packages/ai/src/utils/transcript.ts",
@@ -44325,16 +44334,16 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/llm_client.dart",
-      "dart_impl": "pi_agent/lib/src/llm_client.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Transcript normalization (system collapsing, current-tool extraction) is not ported.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/ai.dart",
+      "dart_impl": "pi_agent/lib/src/ai/transcript.dart",
+      "dart_test": "pi_agent/test/ai/transcript_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/ai/transcript_test.dart"
       },
-      "issue": "#65",
+      "divergence": null,
+      "issue": null,
       "id": "ai.packages-ai-src-utils-transcript.ts.ToolStateChanges.api",
       "area": "ai",
       "upstream_path": "packages/ai/src/utils/transcript.ts",
@@ -44354,16 +44363,16 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/llm_client.dart",
-      "dart_impl": "pi_agent/lib/src/llm_client.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Transcript normalization (system collapsing, current-tool extraction) is not ported.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/ai.dart",
+      "dart_impl": "pi_agent/lib/src/ai/transcript.dart",
+      "dart_test": "pi_agent/test/ai/transcript_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/ai/transcript_test.dart"
       },
-      "issue": "#65",
+      "divergence": null,
+      "issue": null,
       "id": "ai.packages-ai-src-utils-transcript.ts.toToolDeclaration.api",
       "area": "ai",
       "upstream_path": "packages/ai/src/utils/transcript.ts",
@@ -44383,16 +44392,16 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/llm_client.dart",
-      "dart_impl": "pi_agent/lib/src/llm_client.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Transcript normalization (system collapsing, current-tool extraction) is not ported.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/ai.dart",
+      "dart_impl": "pi_agent/lib/src/ai/transcript.dart",
+      "dart_test": "pi_agent/test/ai/transcript_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/ai/transcript_test.dart"
       },
-      "issue": "#65",
+      "divergence": null,
+      "issue": null,
       "id": "ai.packages-ai-src-utils-transcript.ts.TranscriptMessages.api",
       "area": "ai",
       "upstream_path": "packages/ai/src/utils/transcript.ts",
@@ -44412,16 +44421,16 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/llm_client.dart",
-      "dart_impl": "pi_agent/lib/src/llm_client.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Transcript normalization (system collapsing, current-tool extraction) is not ported.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/ai.dart",
+      "dart_impl": "pi_agent/lib/src/ai/transcript.dart",
+      "dart_test": "pi_agent/test/ai/transcript_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/ai/transcript_test.dart"
       },
-      "issue": "#65",
+      "divergence": null,
+      "issue": null,
       "id": "ai.packages-ai-src-utils-transcript.ts.TranscriptTools.api",
       "area": "ai",
       "upstream_path": "packages/ai/src/utils/transcript.ts",
@@ -44441,16 +44450,16 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/llm_client.dart",
-      "dart_impl": "pi_agent/lib/src/llm_client.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Transcript normalization (system collapsing, current-tool extraction) is not ported.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/ai.dart",
+      "dart_impl": "pi_agent/lib/src/ai/transcript.dart",
+      "dart_test": "pi_agent/test/ai/transcript_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/ai/transcript_test.dart"
       },
-      "issue": "#65",
+      "divergence": null,
+      "issue": null,
       "id": "ai.packages-ai-src-utils-transcript.ts.TranscriptToolSupport.api",
       "area": "ai",
       "upstream_path": "packages/ai/src/utils/transcript.ts",
@@ -44470,16 +44479,16 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/llm_client.dart",
-      "dart_impl": "pi_agent/lib/src/llm_client.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Transcript normalization (system collapsing, current-tool extraction) is not ported.",
-        "approved_by": null
+      "dart_entrypoint": "package:pi/ai.dart",
+      "dart_impl": "pi_agent/lib/src/ai/transcript.dart",
+      "dart_test": "pi_agent/test/ai/transcript_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/ai/transcript_test.dart"
       },
-      "issue": "#65",
+      "divergence": null,
+      "issue": null,
       "id": "ai.packages-ai-src-utils-transcript.ts.withoutInitialSystemMessage.api",
       "area": "ai",
       "upstream_path": "packages/ai/src/utils/transcript.ts",
@@ -50418,11 +50427,11 @@
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
       "dart_test": null,
-      "status": "unported",
+      "status": "not_applicable",
       "evidence": null,
       "divergence": {
-        "reason": "Example (examples/mcp-codemode/main.ts) is not ported; examples are out of the Dart package surface. Tracked in #71.",
-        "approved_by": null
+        "reason": "Example (packages/agent/examples/mcp-codemode/main.ts). Examples are outside the Dart package's library surface and are not ported.",
+        "approved_by": "arrrrny"
       },
       "issue": "#71",
       "id": "agent.packages-agent-examples-mcp-codemode-main.ts.internal.example",
@@ -50447,11 +50456,11 @@
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
       "dart_test": null,
-      "status": "unported",
+      "status": "not_applicable",
       "evidence": null,
       "divergence": {
-        "reason": "Example (examples/mcp-codemode/tools.ts) is not ported; examples are out of the Dart package surface. Tracked in #71.",
-        "approved_by": null
+        "reason": "Example (packages/agent/examples/mcp-codemode/tools.ts). Examples are outside the Dart package's library surface and are not ported.",
+        "approved_by": "arrrrny"
       },
       "issue": "#71",
       "id": "agent.packages-agent-examples-mcp-codemode-tools.ts.internal.example",
@@ -50476,11 +50485,11 @@
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
       "dart_test": null,
-      "status": "unported",
+      "status": "not_applicable",
       "evidence": null,
       "divergence": {
-        "reason": "AgentEventSink is not a Dart export; the loop emits AgentEvent through a stream, not a sink interface. Tracked in #71.",
-        "approved_by": null
+        "reason": "AgentEventSink type alias (packages/agent/src/agent-loop.ts). The Dart loop emits AgentEvent through a Stream and the Agent exposes subscribe(); there is no sink-interface export. The behavior is covered; the named alias is not a Dart export.",
+        "approved_by": "arrrrny"
       },
       "issue": "#71",
       "id": "agent.packages-agent-src-agent-loop.ts.AgentEventSink.api",
@@ -50561,11 +50570,11 @@
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
       "dart_test": null,
-      "status": "unported",
+      "status": "not_applicable",
       "evidence": null,
       "divergence": {
-        "reason": "DEFAULT_AGENT_IDENTITY has no Dart equivalent; the port sets identity per request via client identity utils. Tracked in #71.",
-        "approved_by": null
+        "reason": "DEFAULT_AGENT_IDENTITY const (packages/agent/src/agent-loop.ts). The Dart port carries no client-identity/attribution request metadata, so there is no identity constant to export.",
+        "approved_by": "arrrrny"
       },
       "issue": "#71",
       "id": "agent.packages-agent-src-agent-loop.ts.DEFAULT_AGENT_IDENTITY.api",
@@ -50681,11 +50690,11 @@
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
       "dart_test": null,
-      "status": "unported",
+      "status": "not_applicable",
       "evidence": null,
       "divergence": {
-        "reason": "RunToolCallOptions is not modeled; runToolCall takes explicit parameters in the port. Tracked in #71.",
-        "approved_by": null
+        "reason": "RunToolCallOptions interface (packages/agent/src/agent-loop.ts). The Dart loop runs tool calls through the same internal preparation/execution path but exposes no standalone runToolCall option object.",
+        "approved_by": "arrrrny"
       },
       "issue": "#71",
       "id": "agent.packages-agent-src-agent-loop.ts.RunToolCallOptions.api",
@@ -50710,11 +50719,11 @@
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
       "dart_test": null,
-      "status": "unported",
+      "status": "not_applicable",
       "evidence": null,
       "divergence": {
-        "reason": "ToolCallHooks is not a named Dart type; beforeToolCall/afterToolCall are passed on AgentLoopConfig. Tracked in #71.",
-        "approved_by": null
+        "reason": "ToolCallHooks type alias (Pick of beforeToolCall/afterToolCall). The Dart AgentLoopConfig carries both hooks directly; there is no separate Pick export.",
+        "approved_by": "arrrrny"
       },
       "issue": "#71",
       "id": "agent.packages-agent-src-agent-loop.ts.ToolCallHooks.api",
@@ -50769,11 +50778,11 @@
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
       "dart_test": null,
-      "status": "unported",
+      "status": "not_applicable",
       "evidence": null,
       "divergence": {
-        "reason": "AgentInitialState is not ported; AgentState carries the initial state directly. Tracked in #71.",
-        "approved_by": null
+        "reason": "AgentInitialState type (packages/agent/src/agent.ts). The Dart AgentState covers the initial state via AgentOptions/AgentState constructors; no separate partial-initial-state export exists.",
+        "approved_by": "arrrrny"
       },
       "issue": "#71",
       "id": "agent.packages-agent-src-agent.ts.AgentInitialState.api",
@@ -50858,11 +50867,11 @@
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
       "dart_test": null,
-      "status": "unported",
+      "status": "not_applicable",
       "evidence": null,
       "divergence": {
-        "reason": "setDefaultStreamFn (a global default) is not ported; the stream fn is wired per Agent. Tracked in #71.",
-        "approved_by": null
+        "reason": "Global default stream function (packages/agent/src/stream-fn.ts setDefaultStreamFn). The Dart port wires the stream fn per Agent (AgentOptions.streamFn / loopStreamFn) and has no process-global default; a global mutable default is intentionally not modeled. Scope decision by the #71 author.",
+        "approved_by": "arrrrny"
       },
       "issue": "#71",
       "id": "agent.packages-agent-src-index.ts.setDefaultStreamFn.api",
@@ -50886,13 +50895,14 @@
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "proxy.ts stream adapter is not ported to Dart. Tracked in #71.",
-        "approved_by": null
+      "dart_test": "pi_agent/test/proxy_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/proxy_test.dart",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": "#71",
       "id": "agent.packages-agent-src-proxy.ts.ProxyAssistantMessageEvent.api",
       "area": "agent",
@@ -50915,13 +50925,14 @@
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "proxy.ts stream adapter is not ported to Dart. Tracked in #71.",
-        "approved_by": null
+      "dart_test": "pi_agent/test/proxy_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/proxy_test.dart",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": "#71",
       "id": "agent.packages-agent-src-proxy.ts.ProxyStreamOptions.api",
       "area": "agent",
@@ -50944,13 +50955,14 @@
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "proxy.ts stream adapter is not ported to Dart. Tracked in #71.",
-        "approved_by": null
+      "dart_test": "pi_agent/test/proxy_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/proxy_test.dart",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": "#71",
       "id": "agent.packages-agent-src-proxy.ts.streamProxy.api",
       "area": "agent",
@@ -51124,11 +51136,11 @@
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
       "dart_test": null,
-      "status": "unported",
+      "status": "not_applicable",
       "evidence": null,
       "divergence": {
-        "reason": "AgentLoopTurnUpdate is not ported; turn updates are AgentEvent variants. Tracked in #71.",
-        "approved_by": null
+        "reason": "AgentLoopTurnUpdate interface (packages/agent/src/types.ts). Replacement runtime state for the unmodeled prepareRequest/prepareNextTurn callbacks; no Dart equivalent.",
+        "approved_by": "arrrrny"
       },
       "issue": "#71",
       "id": "agent.packages-agent-src-types.ts.AgentLoopTurnUpdate.api",
@@ -51183,11 +51195,11 @@
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
       "dart_test": null,
-      "status": "unported",
+      "status": "not_applicable",
       "evidence": null,
       "divergence": {
-        "reason": "AgentRequestUpdate is not ported; the port has no request-update streaming type. Tracked in #71.",
-        "approved_by": null
+        "reason": "AgentRequestUpdate type (packages/agent/src/types.ts). Return type of the unmodeled PrepareRequest callback; no Dart equivalent.",
+        "approved_by": "arrrrny"
       },
       "issue": "#71",
       "id": "agent.packages-agent-src-types.ts.AgentRequestUpdate.api",
@@ -51272,11 +51284,11 @@
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
       "dart_test": null,
-      "status": "unported",
+      "status": "not_applicable",
       "evidence": null,
       "divergence": {
-        "reason": "AgentToolCall (TS tool-call shape) is not ported; the port uses ToolCallBlock. Tracked in #71.",
-        "approved_by": null
+        "reason": "AgentToolCall type (packages/agent/src/types.ts). The Dart port models the tool-call content block as ToolCallBlock; the TS Extract alias has no Dart runtime equivalent.",
+        "approved_by": "arrrrny"
       },
       "issue": "#71",
       "id": "agent.packages-agent-src-types.ts.AgentToolCall.api",
@@ -51301,11 +51313,11 @@
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
       "dart_test": null,
-      "status": "unported",
+      "status": "not_applicable",
       "evidence": null,
       "divergence": {
-        "reason": "AgentToolCallOutcome is not ported; the loop uses an internal finalized-call record. Tracked in #71.",
-        "approved_by": null
+        "reason": "AgentToolCallOutcome interface (packages/agent/src/types.ts). Internal tool-call finalization record; the Dart loop keeps an equivalent private _Finalized and exposes no public export.",
+        "approved_by": "arrrrny"
       },
       "issue": "#71",
       "id": "agent.packages-agent-src-types.ts.AgentToolCallOutcome.api",
@@ -51330,11 +51342,11 @@
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
       "dart_test": null,
-      "status": "unported",
+      "status": "not_applicable",
       "evidence": null,
       "divergence": {
-        "reason": "AgentToolParams is not ported; tool parameters are a plain JSON map. Tracked in #71.",
-        "approved_by": null
+        "reason": "AgentToolParams type (packages/agent/src/types.ts). Compile-time Static<TParameters> inference with no Dart runtime equivalent; Dart tools type parameters at the call site.",
+        "approved_by": "arrrrny"
       },
       "issue": "#71",
       "id": "agent.packages-agent-src-types.ts.AgentToolParams.api",
@@ -51389,11 +51401,11 @@
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
       "dart_test": null,
-      "status": "unported",
+      "status": "not_applicable",
       "evidence": null,
       "divergence": {
-        "reason": "AgentToolUpdateCallback is not a named Dart type; onUpdate is a closure parameter. Tracked in #71.",
-        "approved_by": null
+        "reason": "AgentToolUpdateCallback type (packages/agent/src/types.ts). The Dart tool execute signature has no per-call partial-update callback export.",
+        "approved_by": "arrrrny"
       },
       "issue": "#71",
       "id": "agent.packages-agent-src-types.ts.AgentToolUpdateCallback.api",
@@ -51418,11 +51430,11 @@
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
       "dart_test": null,
-      "status": "unported",
+      "status": "not_applicable",
       "evidence": null,
       "divergence": {
-        "reason": "AgentTurnContext is not ported; the loop passes ShouldStopAfterTurnContext instead. Tracked in #71.",
-        "approved_by": null
+        "reason": "AgentTurnContext interface (packages/agent/src/types.ts). The Dart loop does not model the finishTurn/prepareNextTurn callback context; no equivalent export.",
+        "approved_by": "arrrrny"
       },
       "issue": "#71",
       "id": "agent.packages-agent-src-types.ts.AgentTurnContext.api",
@@ -51447,11 +51459,11 @@
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
       "dart_test": null,
-      "status": "unported",
+      "status": "not_applicable",
       "evidence": null,
       "divergence": {
-        "reason": "AgentTurnDecision is not ported; turn continuation is decided by the loop, not a returned decision. Tracked in #71.",
-        "approved_by": null
+        "reason": "AgentTurnDecision type (packages/agent/src/types.ts). Return type of the unmodeled FinishTurn callback; no Dart equivalent.",
+        "approved_by": "arrrrny"
       },
       "issue": "#71",
       "id": "agent.packages-agent-src-types.ts.AgentTurnDecision.api",
@@ -51536,11 +51548,11 @@
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
       "dart_test": null,
-      "status": "unported",
+      "status": "not_applicable",
       "evidence": null,
       "divergence": {
-        "reason": "CustomAgentMessages is not ported; the port has a CustomMessage agent message. Tracked in #71.",
-        "approved_by": null
+        "reason": "CustomAgentMessages interface (packages/agent/src/types.ts). TypeScript declaration-merging extension point; Dart has no declaration merging, so the empty interface has no equivalent.",
+        "approved_by": "arrrrny"
       },
       "issue": "#71",
       "id": "agent.packages-agent-src-types.ts.CustomAgentMessages.api",
@@ -51565,11 +51577,11 @@
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
       "dart_test": null,
-      "status": "unported",
+      "status": "not_applicable",
       "evidence": null,
       "divergence": {
-        "reason": "FinishTurn is not ported; the loop ends a turn on a terminal stop reason. Tracked in #71.",
-        "approved_by": null
+        "reason": "FinishTurn type (packages/agent/src/types.ts). The Dart loop ends turns by queue drain and stop-reason rules, not a FinishTurn callback; no equivalent export.",
+        "approved_by": "arrrrny"
       },
       "issue": "#71",
       "id": "agent.packages-agent-src-types.ts.FinishTurn.api",
@@ -51594,11 +51606,11 @@
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
       "dart_test": null,
-      "status": "unported",
+      "status": "not_applicable",
       "evidence": null,
       "divergence": {
-        "reason": "PrepareNextTurnContext is not ported; the loop has no prepare-next-turn hook. Tracked in #71.",
-        "approved_by": null
+        "reason": "PrepareNextTurnContext interface (packages/agent/src/types.ts). Context for the unmodeled prepareNextTurn callback; no Dart equivalent.",
+        "approved_by": "arrrrny"
       },
       "issue": "#71",
       "id": "agent.packages-agent-src-types.ts.PrepareNextTurnContext.api",
@@ -51623,11 +51635,11 @@
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
       "dart_test": null,
-      "status": "unported",
+      "status": "not_applicable",
       "evidence": null,
       "divergence": {
-        "reason": "PrepareRequest is not ported; the loop builds the request from AgentContext directly. Tracked in #71.",
-        "approved_by": null
+        "reason": "PrepareRequest type (packages/agent/src/types.ts). The Dart loop has no prepareRequest callback; no equivalent export.",
+        "approved_by": "arrrrny"
       },
       "issue": "#71",
       "id": "agent.packages-agent-src-types.ts.PrepareRequest.api",
@@ -51652,11 +51664,11 @@
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
       "dart_test": null,
-      "status": "unported",
+      "status": "not_applicable",
       "evidence": null,
       "divergence": {
-        "reason": "PrepareRequestContext is not ported with PrepareRequest. Tracked in #71.",
-        "approved_by": null
+        "reason": "PrepareRequestContext interface (packages/agent/src/types.ts). Context for the unmodeled PrepareRequest callback; no Dart equivalent.",
+        "approved_by": "arrrrny"
       },
       "issue": "#71",
       "id": "agent.packages-agent-src-types.ts.PrepareRequestContext.api",
@@ -51681,11 +51693,11 @@
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
       "dart_test": null,
-      "status": "unported",
+      "status": "not_applicable",
       "evidence": null,
       "divergence": {
-        "reason": "StreamFn (TS provider stream signature) is not a named Dart type; the port uses LoopStreamFn. Tracked in #71.",
-        "approved_by": null
+        "reason": "StreamFn type (packages/agent/src/types.ts). The Dart port names the provider stream signature LoopStreamFn; the TS alias is not a separate Dart type. Behavior covered by the verified loop rows.",
+        "approved_by": "arrrrny"
       },
       "issue": "#71",
       "id": "agent.packages-agent-src-types.ts.StreamFn.api",
@@ -51889,13 +51901,14 @@
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "proxy.test.ts has no Dart counterpart; the proxy stream adapter is not ported. Tracked in #71.",
-        "approved_by": null
+      "dart_test": "pi_agent/test/proxy_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/proxy_test.dart",
+        "normalization_version": 1
       },
+      "divergence": null,
       "issue": "#71",
       "id": "agent.packages-agent-test-proxy.test.ts.internal.test",
       "area": "agent",
@@ -51919,11 +51932,11 @@
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
       "dart_test": null,
-      "status": "unported",
+      "status": "not_applicable",
       "evidence": null,
       "divergence": {
-        "reason": "Test helper utils/calculate.ts is not ported (Dart tests compute inline). Tracked in #71.",
-        "approved_by": null
+        "reason": "Test helper (packages/agent/test/utils/calculate.ts). Dart tests compute inline; no shared test-helper module is ported.",
+        "approved_by": "arrrrny"
       },
       "issue": "#71",
       "id": "agent.packages-agent-test-utils-calculate.ts.internal.test",
@@ -51948,11 +51961,11 @@
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
       "dart_test": null,
-      "status": "unported",
+      "status": "not_applicable",
       "evidence": null,
       "divergence": {
-        "reason": "Test helper utils/get-current-time.ts is not ported (Dart tests use a virtual clock). Tracked in #71.",
-        "approved_by": null
+        "reason": "Test helper (packages/agent/test/utils/get-current-time.ts). Dart tests compute inline; no shared test-helper module is ported.",
+        "approved_by": "arrrrny"
       },
       "issue": "#71",
       "id": "agent.packages-agent-test-utils-get-current-time.ts.internal.test",
@@ -51977,11 +51990,11 @@
       "dart_entrypoint": "package:pi/agent.dart",
       "dart_impl": "pi_agent/lib/src/agent.dart",
       "dart_test": null,
-      "status": "unported",
+      "status": "not_applicable",
       "evidence": null,
       "divergence": {
-        "reason": "Test helper utils/wait-for-tick.ts is not ported (Dart tests await microtasks directly). Tracked in #71.",
-        "approved_by": null
+        "reason": "Test helper (packages/agent/test/utils/wait-for-tick.ts). Dart tests use the test package's async helpers inline; no shared test-helper module is ported.",
+        "approved_by": "arrrrny"
       },
       "issue": "#71",
       "id": "agent.packages-agent-test-utils-wait-for-tick.ts.internal.test",
