@@ -82,8 +82,9 @@ FailureCause waitingFor(String blocker, ChordError error) {
   final version = error.code == 'contract_mismatch' ||
       (error.code == 'unavailable' && error.reason == 'version');
   final wrapped = version
-      ? ChordError(code: 'unavailable', reason: 'version', message: message)
-      : ChordError(code: 'unavailable', message: message);
+      ? ChordError(
+          code: 'unavailable', reason: 'version', message: message, cause: error)
+      : ChordError(code: 'unavailable', message: message, cause: error);
   return FailureCause.waiting(wrapped);
 }
 
@@ -123,6 +124,9 @@ class BrokenOpen extends Error {
   /// The error's name.
   String get name => 'BrokenOpen';
 
-  /// The error message.
-  String get message => cause.toString();
+  /// The error message: the cause's message without a runtime type prefix.
+  String get message => chordErrorMessage(cause);
+
+  @override
+  String toString() => '$name: $message';
 }

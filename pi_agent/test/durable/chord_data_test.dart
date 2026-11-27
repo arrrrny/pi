@@ -33,6 +33,19 @@ void main() {
       );
     });
 
+    test('keeps an explicit null details through a JSON round-trip', () {
+      final back = chordErrorFromJson(<String, Object?>{
+        'code': 'gone',
+        'message': 'm',
+        'details': null,
+      });
+      expect(back.toJSON(), <String, Object?>{
+        'code': 'gone',
+        'message': 'm',
+        'details': null,
+      });
+    });
+
     test('keeps details by reference', () {
       final details = <String, Object?>{
         'large': <Object?>[1, 2, 3]
@@ -77,6 +90,8 @@ void main() {
       }, 'reason not allowed for unavailable');
       refuses(<String, Object?>{'code': 'gone', 'message': 1},
           'message is not a string');
+      refuses(<String, Object?>{'code': 'gone', 'reason': null, 'message': 'm'},
+          'reason not allowed for gone');
     });
   });
 
@@ -143,6 +158,11 @@ void main() {
       );
     });
 
+    test('stringifies as its name and message', () {
+      expect(invalid('member', 'no method').toString(),
+          'ChordError: no method');
+    });
+
     test('invalid builds an invalid error with its reason and details', () {
       final error = invalid(
           'params', 'params/a: missing', <String, Object?>{'path': '/a'});
@@ -160,10 +180,11 @@ void main() {
         () {
       final chord = invalid('cycle', 'c');
       expect(asChordError(chord, 'open'), same(chord));
-      final foreign = TypeError();
+      final foreign = FormatException('boom');
       final wrapped = asChordError(foreign, 'open notes');
       expect(wrapped.code, 'unavailable');
-      expect(wrapped.message, startsWith('open notes:'));
+      expect(wrapped.message, 'open notes: boom');
+      expect(wrapped.cause, same(foreign));
       expect(asChordError('text', 'open').message, 'open: text');
     });
   });
@@ -178,6 +199,11 @@ void main() {
       expect(error.details, <String, Object?>{'limit': 3});
       expect(PluginError('c', 'm').details, isNull);
     });
+
+    test('stringifies as its name and message', () {
+      expect(PluginError('quota', 'too many').toString(),
+          'PluginError: too many');
+    });
   });
 
   group('failure causes', () {
@@ -187,18 +213,20 @@ void main() {
       expect(transient.kind, 'transient');
       expect(transient.error.toJSON(), <String, Object?>{
         'code': 'unavailable',
-        'message': 'open notes: ${error.toString()}',
+        'message': 'open notes: network down',
       });
+      expect(transient.error.cause, same(error));
     });
 
     test(
         "broken() marks an open's failure as broken; its message is the cause's",
         () {
       final marked = broken(StateError('bad config'));
-      expect(marked.message, 'Bad state: bad config');
+      expect(marked.message, 'bad config');
+      expect(marked.toString(), 'BrokenOpen: bad config');
       final cause = openFailure(marked, 'open notes');
       expect(cause.kind, 'broken');
-      expect(cause.error.message, 'open notes: Bad state: bad config');
+      expect(cause.error.message, 'open notes: bad config');
     });
 
     test('the kind comes from the stage, never from the error code', () {
@@ -221,6 +249,7 @@ void main() {
         'code': 'unavailable',
         'message': 'waiting for app.chat(S1): app.catalog is not served here',
       });
+      expect(cause.error.cause, same(root));
       final chain = waitingFor('app.panel', cause.error);
       expect(chain.error.message,
           'waiting for app.panel: app.catalog is not served here');

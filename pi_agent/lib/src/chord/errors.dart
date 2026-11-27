@@ -45,6 +45,24 @@ const Map<String, List<String>> CHORD_ERROR_REASONS = <String, List<String>>{
   'aborted': <String>[],
 };
 
+/// The error's message without a Dart runtime type prefix: the upstream
+/// `error.message` this port cannot read off the base [Error] (Dart's [Error]
+/// has no `message`). The message-bearing errors are unwrapped; anything else
+/// falls back to `toString()`, as upstream does for a non-`Error` value.
+String chordErrorMessage(Object? error) {
+  if (error is StateError) return error.message;
+  if (error is ArgumentError) {
+    final message = error.message;
+    return message is String ? message : error.toString();
+  }
+  if (error is FormatException) return error.message;
+  return error.toString();
+}
+
+/// Distinguishes an omitted [details] from an explicit `null` at the
+/// [ChordError] boundary, where both would otherwise read as `null`.
+const Object _unsetDetails = Object();
+
 /// A Chord failure: a [code], an optional [reason] allowed for it, a [message],
 /// and JSON [details]. Narrowing on [code] narrows [reason].
 ///
@@ -52,13 +70,17 @@ const Map<String, List<String>> CHORD_ERROR_REASONS = <String, List<String>>{
 /// code/reason pairing fails to type; Dart cannot express that, so the pairing
 /// is a decided invariant the [chordErrorFromJson] boundary checks.
 class ChordError extends Error {
-  /// A failure with the given [code], optional [reason] and [details].
+  /// A failure with the given [code], optional [reason] and [details]. An
+  /// omitted [details] and an explicit `null` [details] differ on the wire and
+  /// are kept apart; [cause] is the wrapped error and never crosses a link.
   ChordError({
     required this.code,
     required this.message,
     this.reason,
-    this.details,
-  });
+    Object? details = _unsetDetails,
+    this.cause,
+  })  : _hasDetails = !identical(details, _unsetDetails),
+        details = details;
 
   /// The failure code.
   final String code;
@@ -69,8 +91,13 @@ class ChordError extends Error {
   /// A human-readable message; never a stack or a cause.
   final String message;
 
-  /// JSON details carried by reference.
+  /// JSON details carried by reference; `null` when the code carries none.
   final JsonValue details;
+
+  /// The wrapped error, for a failure built from another; never serialized.
+  final Object? cause;
+
+  final bool _hasDetails;
 
   /// The error's name.
   String get name => 'ChordError';
@@ -80,8 +107,11 @@ class ChordError extends Error {
         'code': code,
         if (reason != null) 'reason': reason,
         'message': message,
-        if (details != null) 'details': details,
+        if (_hasDetails) 'details': details,
       };
+
+  @override
+  String toString() => '$name: $message';
 }
 
 /// Whether [error] is a [ChordError], optionally with the given [code].
@@ -105,26 +135,34 @@ class PluginError extends Error {
 
   /// JSON details.
   final JsonValue details;
+
+  @override
+  String toString() => '$name: $message';
 }
 
 /// An `invalid` error with the given [reason]: a plugin throws it for arguments
 /// or params it refuses.
-ChordError invalid(String reason, String message, [JsonValue details]) =>
+ChordError invalid(String reason, String message,
+        [Object? details = _unsetDetails]) =>
     ChordError(
         code: 'invalid', reason: reason, message: message, details: details);
 
 /// A `forbidden` error without a reason: what a plugin or an `authorize` throws
 /// for a principal it refuses.
-ChordError forbidden(String message, [JsonValue details]) =>
+ChordError forbidden(String message, [Object? details = _unsetDetails]) =>
     ChordError(code: 'forbidden', message: message, details: details);
 
 /// [error] itself when it is a [ChordError], otherwise an `unavailable` error
-/// naming [label], with [error]'s message appended.
+/// naming [label], with [error]'s message appended and [error] kept as cause.
 ChordError asChordError(Object? error, String label) {
   if (error is ChordError) return error;
-  final message = error is Error ? error.toString() : error.toString();
-  return ChordError(code: 'unavailable', message: '$label: $message');
+  final message = chordErrorMessage(error);
+  return ChordError(
+      code: 'unavailable', message: '$label: $message', cause: error);
 }
+
+/// Distinguishes an omitted `reason` key from an explicit JSON `null` reason.
+const Object _unsetReason = Object();
 
 /// Rebuilds a [ChordError] from a link. Checks the envelope only: a known code,
 /// a reason allowed for it (required for `invalid`), a string message, no other
@@ -142,8 +180,11 @@ ChordError chordErrorFromJson(Object? raw) {
     throw const ChordErrorEnvelopeException('unknown code');
   }
   final reasons = CHORD_ERROR_REASONS[code]!;
-  final reason = raw['reason'];
-  if (reason == null) {
+  // An omitted reason and an explicit JSON null differ: `invalid` requires a
+  // reason, and a present reason must be one allowed for the code (so a null is
+  // rejected), matching the upstream `reason === undefined` check.
+  final reason = raw.containsKey('reason') ? raw['reason'] : _unsetReason;
+  if (identical(reason, _unsetReason)) {
     if (code == 'invalid') {
       throw const ChordErrorEnvelopeException('reason not allowed for invalid');
     }
@@ -156,9 +197,11 @@ ChordError chordErrorFromJson(Object? raw) {
   }
   return ChordError(
     code: code,
-    reason: reason as String?,
+    reason: identical(reason, _unsetReason) ? null : reason as String?,
     message: message,
-    details: raw['details'] as JsonValue,
+    details: raw.containsKey('details')
+        ? raw['details'] as JsonValue
+        : _unsetDetails,
   );
 }
 
