@@ -100,25 +100,46 @@ void main() {
     });
 
     test('reads a large streamed line in linear, not quadratic, time', () {
-      // WORKAROUND (pi#67): this wall-clock bound flakes on the shared forklift
-      // host under concurrent load (observed 12.2s against the 10s limit while
-      // the decoder code was untouched). Treat a red here as host contention,
-      // not a regression; verify decoder changes with the functional cases in
-      // this file. See https://github.com/arrrrny/pi/issues/67.
-      // A pre-#12451 reader that rescanned the whole pending buffer per chunk
-      // copies about (size / chunk) * size characters: 2 MiB in 256 B chunks is
-      // ~16 GB of copying and takes seconds. The linear decoder finishes far
-      // under the bound. The limit is generous so a shared host cannot flake
-      // it, while a reintroduced quadratic rescan still blows past it.
-      final payload = 'z' * (2 * 1024 * 1024);
-      final bytes = utf8.encode('data: $payload\n\n');
-      final sw = Stopwatch()..start();
-      final events = _decode(bytes, 256);
-      sw.stop();
-      expect(events, hasLength(1));
-      expect(events.single.data, payload);
-      expect(sw.elapsedMilliseconds, lessThan(10000),
-          reason: 'large line decode took ${sw.elapsedMilliseconds}ms');
+      // Ports the linear-time guarantee of upstream #12451: a pre-#12451 reader
+      // rescanned the whole pending buffer per chunk, so its cost grew with
+      // (size / chunk) * size — quadratic in the line size — while this decoder
+      // scans only the newly decoded text and grows linearly.
+      //
+      // The guard is a RATIO, not a wall-clock bound (pi#67): decode two sizes
+      // at a fixed chunk size and bound how much the time grows. Linear scaling
+      // makes the time ratio track the size ratio (here 8x); a quadratic rescan
+      // makes it track the square (64x). A ratio is dimensionless, so a slow or
+      // contended host scales both runs together and cannot flake it — the old
+      // absolute `elapsed < 10s` bound failed at 12.2s under load while the
+      // decoder was untouched. The threshold sits between the linear 8x and the
+      // quadratic 64x with headroom on both sides.
+      const chunk = 256;
+      const smallSize = 128 * 1024; // 512 chunks
+      const largeSize = 1024 * 1024; // 4096 chunks, 8x the data
+
+      // Best of three: a GC pause or a scheduling hiccup inflates one sample,
+      // and the minimum is the cleanest estimate of the work itself.
+      int bestMillis(int size) {
+        final bytes = utf8.encode('data: ${'z' * size}\n\n');
+        var best = -1;
+        for (var run = 0; run < 3; run++) {
+          final sw = Stopwatch()..start();
+          final events = _decode(bytes, chunk);
+          sw.stop();
+          expect(events, hasLength(1));
+          expect(events.single.data, hasLength(size));
+          final ms = sw.elapsedMilliseconds;
+          if (best < 0 || ms < best) best = ms;
+        }
+        return best;
+      }
+
+      bestMillis(32 * 1024); // warm up so first-call setup is not counted
+      final small = bestMillis(smallSize);
+      final large = bestMillis(largeSize);
+      expect(large, lessThan(small * 24 + 100),
+          reason: 'decode scaled to ${large}ms from ${small}ms for 8x the line '
+              'size — super-linear (quadratic) rescan suspected');
     });
   });
 }
