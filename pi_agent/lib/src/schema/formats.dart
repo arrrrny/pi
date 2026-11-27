@@ -6,6 +6,8 @@
 /// the JSON-Schema-Test-Suite optional/format fixtures.
 library;
 
+import 'package:pi/src/schema/idna/idn_hostname.dart';
+
 /// Whether [value] is a valid `ipv4` address (four octets 0-255, no leading
 /// zeros).
 bool isIpv4(String value) {
@@ -139,15 +141,144 @@ bool isHostname(String value) {
   return true;
 }
 
-/// Whether [value] is a valid `uri` (absolute URI with a scheme, no whitespace).
-bool isUri(String value) {
-  if (RegExp(r'\s').hasMatch(value)) return false;
-  // Brackets must balance (an IPv6 host is bracketed; stray `[` is not).
-  if ('['.allMatches(value).length != ']'.allMatches(value).length) {
-    return false;
+/// An IPv6 address (RFC 2373 §2.2), as a case-insensitive pattern.
+final RegExp _ipv6 = RegExp(
+    r"""^(?:(?:(?:[0-9a-f]{1,4}:){6}|::(?:[0-9a-f]{1,4}:){5}|(?:[0-9a-f]{1,4})?::(?:[0-9a-f]{1,4}:){4}|(?:(?:[0-9a-f]{1,4}:)?[0-9a-f]{1,4})?::(?:[0-9a-f]{1,4}:){3}|(?:(?:[0-9a-f]{1,4}:){0,2}[0-9a-f]{1,4})?::(?:[0-9a-f]{1,4}:){2}|(?:(?:[0-9a-f]{1,4}:){0,3}[0-9a-f]{1,4})?::[0-9a-f]{1,4}:|(?:(?:[0-9a-f]{1,4}:){0,4}[0-9a-f]{1,4})?::)(?:[0-9a-f]{1,4}:[0-9a-f]{1,4}|(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\.){3}(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d))|(?:(?:[0-9a-f]{1,4}:){0,5}[0-9a-f]{1,4})?::[0-9a-f]{1,4}|(?:(?:[0-9a-f]{1,4}:){0,6}[0-9a-f]{1,4})?::)$""",
+    caseSensitive: false);
+
+/// Maximum instance-string length accepted by the URI-family regexes.
+///
+/// The `uri` / `uri-reference` / `uri-template` patterns below carry nested
+/// quantifiers (`(?:…*)*`) that backtrack catastrophically on a long
+/// non-matching input. `checkFormat` runs them on untrusted instance data, so a
+/// shared length short-circuit (mirroring [isIri]'s cap) keeps a crafted value
+/// from pinning a worker. A URI longer than this is rejected rather than
+/// matched.
+const int _maxUriLength = 2048;
+
+/// A Uniform Resource Identifier (RFC 3986), absolute with a scheme.
+final RegExp _uri = RegExp(
+    r"""^[a-z][a-z0-9+\-.]*:(?:\/\/(?:(?:[-a-z0-9._~!$&'()*+,;=:]|%[0-9a-f]{2})*@)?(?:\[(?:(?:(?:[\da-f]{1,4}:){6}(?:[\da-f]{1,4}:[\da-f]{1,4}|(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\.){3}(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d))|::(?:[\da-f]{1,4}:){5}(?:[\da-f]{1,4}:[\da-f]{1,4}|(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\.){3}(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d))|(?:[\da-f]{1,4})?::(?:[\da-f]{1,4}:){4}(?:[\da-f]{1,4}:[\da-f]{1,4}|(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\.){3}(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d))|(?:(?:[\da-f]{1,4}:){0,1}[\da-f]{1,4})?::(?:[\da-f]{1,4}:){3}(?:[\da-f]{1,4}:[\da-f]{1,4}|(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\.){3}(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d))|(?:(?:[\da-f]{1,4}:){0,2}[\da-f]{1,4})?::(?:[\da-f]{1,4}:){2}(?:[\da-f]{1,4}:[\da-f]{1,4}|(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\.){3}(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d))|(?:(?:[\da-f]{1,4}:){0,3}[\da-f]{1,4})?::[\da-f]{1,4}:(?:[\da-f]{1,4}:[\da-f]{1,4}|(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\.){3}(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d))|(?:(?:[\da-f]{1,4}:){0,4}[\da-f]{1,4})?::(?:[\da-f]{1,4}:[\da-f]{1,4}|(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\.){3}(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d))|(?:(?:[\da-f]{1,4}:){0,5}[\da-f]{1,4})?::[\da-f]{1,4}|(?:(?:[\da-f]{1,4}:){0,6}[\da-f]{1,4})?::)|v[0-9a-f]+\.[-a-z0-9._~!$&'()*+,;=:]+)\]|(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\.){3}(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)|(?:[-a-z0-9._~!$&'()*+,;=]|%[0-9a-f]{2})*)(?::\d*)?(?:\/(?:[-a-z0-9._~!$&'()*+,;=:@]|%[0-9a-f]{2})*)*|\/(?:(?:[-a-z0-9._~!$&'()*+,;=:@]|%[0-9a-f]{2})+(?:\/(?:[-a-z0-9._~!$&'()*+,;=:@]|%[0-9a-f]{2})*)*)?|(?:[-a-z0-9._~!$&'()*+,;=:@]|%[0-9a-f]{2})+(?:\/(?:[-a-z0-9._~!$&'()*+,;=:@]|%[0-9a-f]{2})*)*)?(?:\?(?:[-a-z0-9._~!$&'()*+,;=:@/?]|%[0-9a-f]{2})*)?(?:#(?:[-a-z0-9._~!$&'()*+,;=:@/?]|%[0-9a-f]{2})*)?$""",
+    caseSensitive: false);
+
+/// A URI reference (RFC 3986): a URI, a relative reference, or empty.
+final RegExp _uriReference = RegExp(
+    r"""^(?:[a-z][a-z0-9+\-.]*:(?:\/\/(?:(?:[-a-z0-9._~!$&'()*+,;=:]|%[0-9a-f]{2})*@)?(?:\[(?:(?:(?:[\da-f]{1,4}:){6}(?:[\da-f]{1,4}:[\da-f]{1,4}|(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\.){3}(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d))|::(?:[\da-f]{1,4}:){5}(?:[\da-f]{1,4}:[\da-f]{1,4}|(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\.){3}(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d))|(?:[\da-f]{1,4})?::(?:[\da-f]{1,4}:){4}(?:[\da-f]{1,4}:[\da-f]{1,4}|(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\.){3}(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d))|(?:(?:[\da-f]{1,4}:){0,1}[\da-f]{1,4})?::(?:[\da-f]{1,4}:){3}(?:[\da-f]{1,4}:[\da-f]{1,4}|(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\.){3}(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d))|(?:(?:[\da-f]{1,4}:){0,2}[\da-f]{1,4})?::(?:[\da-f]{1,4}:){2}(?:[\da-f]{1,4}:[\da-f]{1,4}|(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\.){3}(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d))|(?:(?:[\da-f]{1,4}:){0,3}[\da-f]{1,4})?::[\da-f]{1,4}:(?:[\da-f]{1,4}:[\da-f]{1,4}|(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\.){3}(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d))|(?:(?:[\da-f]{1,4}:){0,4}[\da-f]{1,4})?::(?:[\da-f]{1,4}:[\da-f]{1,4}|(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\.){3}(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d))|(?:(?:[\da-f]{1,4}:){0,5}[\da-f]{1,4})?::[\da-f]{1,4}|(?:(?:[\da-f]{1,4}:){0,6}[\da-f]{1,4})?::)|v[0-9a-f]+\.[-a-z0-9._~!$&'()*+,;=:]+)\]|(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\.){3}(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)|(?:[-a-z0-9._~!$&'()*+,;=]|%[0-9a-f]{2})*)(?::\d*)?(?:\/(?:[-a-z0-9._~!$&'()*+,;=:@]|%[0-9a-f]{2})*)*|\/(?:(?:[-a-z0-9._~!$&'()*+,;=:@]|%[0-9a-f]{2})+(?:\/(?:[-a-z0-9._~!$&'()*+,;=:@]|%[0-9a-f]{2})*)*)?|(?:[-a-z0-9._~!$&'()*+,;=:@]|%[0-9a-f]{2})+(?:\/(?:[-a-z0-9._~!$&'()*+,;=:@]|%[0-9a-f]{2})*)*)?|(?:\/\/(?:(?:[-a-z0-9._~!$&'()*+,;=:]|%[0-9a-f]{2})*@)?(?:\[(?:(?:(?:[\da-f]{1,4}:){6}(?:[\da-f]{1,4}:[\da-f]{1,4}|(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\.){3}(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d))|::(?:[\da-f]{1,4}:){5}(?:[\da-f]{1,4}:[\da-f]{1,4}|(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\.){3}(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d))|(?:[\da-f]{1,4})?::(?:[\da-f]{1,4}:){4}(?:[\da-f]{1,4}:[\da-f]{1,4}|(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\.){3}(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d))|(?:(?:[\da-f]{1,4}:){0,1}[\da-f]{1,4})?::(?:[\da-f]{1,4}:){3}(?:[\da-f]{1,4}:[\da-f]{1,4}|(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\.){3}(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d))|(?:(?:[\da-f]{1,4}:){0,2}[\da-f]{1,4})?::(?:[\da-f]{1,4}:){2}(?:[\da-f]{1,4}:[\da-f]{1,4}|(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\.){3}(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d))|(?:(?:[\da-f]{1,4}:){0,3}[\da-f]{1,4})?::[\da-f]{1,4}:(?:[\da-f]{1,4}:[\da-f]{1,4}|(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\.){3}(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d))|(?:(?:[\da-f]{1,4}:){0,4}[\da-f]{1,4})?::(?:[\da-f]{1,4}:[\da-f]{1,4}|(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\.){3}(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d))|(?:(?:[\da-f]{1,4}:){0,5}[\da-f]{1,4})?::[\da-f]{1,4}|(?:(?:[\da-f]{1,4}:){0,6}[\da-f]{1,4})?::)|v[0-9a-f]+\.[-a-z0-9._~!$&'()*+,;=:]+)\]|(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\.){3}(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)|(?:[-a-z0-9._~!$&'()*+,;=]|%[0-9a-f]{2})*)(?::\d*)?(?:\/(?:[-a-z0-9._~!$&'()*+,;=:@]|%[0-9a-f]{2})*)*|\/(?:(?:[-a-z0-9._~!$&'()*+,;=:@]|%[0-9a-f]{2})+(?:\/(?:[-a-z0-9._~!$&'()*+,;=:@]|%[0-9a-f]{2})*)*)?|(?:[-a-z0-9._~!$&'()*+,;=@]|%[0-9a-f]{2})+(?:\/(?:[-a-z0-9._~!$&'()*+,;=:@]|%[0-9a-f]{2})*)*)?)(?:\?(?:[-a-z0-9._~!$&'()*+,;=:@/?]|%[0-9a-f]{2})*)?(?:#(?:[-a-z0-9._~!$&'()*+,;=:@/?]|%[0-9a-f]{2})*)?$""",
+    caseSensitive: false);
+
+/// A URI template (RFC 6570).
+final RegExp _uriTemplate = RegExp(
+    r"""^(?:(?:[^\x00-\x20"<>%\\^`{|}\x7f]|%[0-9a-f]{2})|\{[+#./;?&=,!@|]?(?:[a-z0-9_]|%[0-9a-f]{2})+(?:\.(?:[a-z0-9_]|%[0-9a-f]{2})+)*(?::[1-9]\d{0,3}|\*)?(?:,(?:[a-z0-9_]|%[0-9a-f]{2})+(?:\.(?:[a-z0-9_]|%[0-9a-f]{2})+)*(?::[1-9]\d{0,3}|\*)?)*\})*$""",
+    caseSensitive: false);
+
+/// A relative JSON pointer (RFC 6901 / draft 2020-12 `relative-json-pointer`).
+final RegExp _relativeJsonPointer =
+    RegExp(r'^(?:0|[1-9][0-9]*)(?:#|(?:\/(?:[^~/]|~0|~1)*)*)$');
+
+/// An ISO-8601 duration (RFC 3339 appendix A).
+final RegExp _duration = RegExp(
+    r'^P((\d+Y(\d+M(\d+D)?)?|\d+M(\d+D)?|\d+D)(T(\d+H(\d+M(\d+S)?)?|\d+M(\d+S)?|\d+S))?|T(\d+H(\d+M(\d+S)?)?|\d+M(\d+S)?|\d+S)|\d+W)$');
+
+/// An IDN email (RFC 4952): an internationalized local part and a U-label
+/// domain. The `u` flag is Dart's `unicode: true`; the lookbehind `(?<!-)`
+/// forbids a trailing hyphen on each domain label.
+final RegExp _idnEmail = RegExp(
+    r"""^(?:[A-Za-z0-9!#$%&'*+/=?^_`{|}~\u{0080}-\u{10FFFF}-]+(?:\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~\u{0080}-\u{10FFFF}-]+)*|"(?:[^"\\]|\\.)*")@[\p{L}\p{N}](?:[\p{L}\p{N}-]{0,62})(?<!-)(?:\.[\p{L}\p{N}](?:[\p{L}\p{N}-]{0,62})(?<!-))*$""",
+    caseSensitive: false, unicode: true);
+
+/// Characters forbidden in an IRI (unencoded whitespace, controls, and the
+/// ASCII delimiters `< > ^ ` { | } \`).
+final RegExp _invalidIriChars = RegExp(r'[\x00-\x20<>^`{|}\\]');
+
+/// A malformed percent-encoding triplet (a `%` not followed by two hex digits).
+final RegExp _invalidPercentEncoding = RegExp(r'%(?![0-9a-fA-F]{2})');
+
+/// An IPvFuture literal (`[v1.hex]`), which the WHATWG parser rejects.
+final RegExp _ipvFuture = RegExp(r'\[[vV][0-9a-fA-F]+\.[^\]]+\]');
+
+/// A bracketed IP-literal host (`//[...]`) in an authority.
+final RegExp _bracketedHost = RegExp(r'//\[[^\]]*\]');
+
+/// A dotted-decimal run (an embedded IPv4) inside a bracketed host.
+final RegExp _embeddedIpv4 = RegExp(r'\d+(?:\.\d+){3}');
+
+/// Whether [value] carries a bracketed IP-literal whose embedded IPv4 has an
+/// octet with a leading zero (e.g. `[::ffff:192.168.0.01]`). The WHATWG parser
+/// rejects such a literal; Dart's [Uri] is inconsistent across SDKs (3.9
+/// accepts it, 3.14 rejects it), so the rule is enforced explicitly here.
+bool _hasLeadingZeroEmbeddedIpv4(String value) {
+  for (final host in _bracketedHost.allMatches(value)) {
+    for (final ipv4 in _embeddedIpv4.allMatches(host.group(0)!)) {
+      for (final octet in ipv4.group(0)!.split('.')) {
+        if (octet.length > 1 && octet.startsWith('0')) return true;
+      }
+    }
   }
-  final match = RegExp(r'^[A-Za-z][A-Za-z0-9+.\-]*:').firstMatch(value);
-  return match != null;
+  return false;
+}
+
+/// Characters forbidden in an IRI reference (controls, space, DEL, backslash,
+/// plus malformed percent triplets).
+final RegExp _invalidIriRefChars =
+    RegExp(r'[\x00-\x20\x7f\\]|%(?![0-9a-fA-F]{2})');
+
+/// A scheme immediately followed by `//` (a malformed relative reference).
+final RegExp _malformedScheme = RegExp(r'^[a-zA-Z][a-zA-Z0-9+\-.]*\/\/');
+
+/// Whether [value] is a valid `ipv6` address (RFC 2373 §2.2).
+bool isIpv6(String value) => _ipv6.hasMatch(value);
+
+/// Whether [value] is a valid `uri` (RFC 3986, absolute with a scheme).
+bool isUri(String value) =>
+    value.length <= _maxUriLength && _uri.hasMatch(value);
+
+/// Whether [value] is a valid `uri-reference` (RFC 3986).
+bool isUriReference(String value) =>
+    value.length <= _maxUriLength && _uriReference.hasMatch(value);
+
+/// Whether [value] is a valid `uri-template` (RFC 6570).
+bool isUriTemplate(String value) =>
+    value.length <= _maxUriLength && _uriTemplate.hasMatch(value);
+
+/// Whether [value] is a valid `relative-json-pointer` (RFC 6901).
+bool isRelativeJsonPointer(String value) =>
+    _relativeJsonPointer.hasMatch(value);
+
+/// Whether [value] is a valid `duration` (ISO-8601, RFC 3339 appendix A).
+bool isDuration(String value) => _duration.hasMatch(value);
+
+/// Whether [value] is a valid `idn-email` (RFC 4952).
+///
+/// Upstream applies NFC before matching; Dart's core has no normalizer, so the
+/// check runs on the input as-is (the ported fixtures are already composed).
+bool isIdnEmail(String value) => _idnEmail.hasMatch(value);
+
+/// Whether [value] is a valid `iri` (RFC 3987, absolute).
+///
+/// Mirrors upstream: reject illegal characters and malformed percent triplets,
+/// substitute an IPvFuture literal for the WHATWG parser's benefit, reject a
+/// bracketed literal outside the authority, then require a parseable absolute
+/// URI. Dart's [Uri] stands in for WHATWG `URL.canParse`.
+bool isIri(String value) {
+  if (_invalidIriChars.hasMatch(value)) return false;
+  if (_invalidPercentEncoding.hasMatch(value)) return false;
+  if (_hasLeadingZeroEmbeddedIpv4(value)) return false;
+  final narrowed =
+      value.length < 2048 ? value.replaceAll(_ipvFuture, '[::1]') : value;
+  // A bracketed IP-literal is legal only as the authority host; a stray
+  // bracket (e.g. in the path) is a parse error.
+  final withoutHost = narrowed.replaceFirst(_bracketedHost, '');
+  if (withoutHost.contains('[') || withoutHost.contains(']')) return false;
+  final uri = Uri.tryParse(narrowed);
+  return uri != null && uri.hasScheme;
+}
+
+/// Whether [value] is a valid `iri-reference` (RFC 3987, relative allowed).
+bool isIriReference(String value) {
+  if (_invalidIriRefChars.hasMatch(value)) return false;
+  if (_malformedScheme.hasMatch(value)) return false;
+  if (_hasLeadingZeroEmbeddedIpv4(value)) return false;
+  return Uri.tryParse(value) != null;
 }
 
 /// Whether [value] is a valid `json-pointer` (RFC 6901).
@@ -182,6 +313,8 @@ bool? checkFormat(String name, String value) {
   switch (name) {
     case 'ipv4':
       return isIpv4(value);
+    case 'ipv6':
+      return isIpv6(value);
     case 'uuid':
       return isUuid(value);
     case 'date':
@@ -190,14 +323,30 @@ bool? checkFormat(String name, String value) {
       return isTime(value);
     case 'date-time':
       return isDateTime(value);
+    case 'duration':
+      return isDuration(value);
     case 'email':
       return isEmail(value);
+    case 'idn-email':
+      return isIdnEmail(value);
     case 'hostname':
       return isHostname(value);
+    case 'idn-hostname':
+      return isIdnHostname(value);
     case 'uri':
       return isUri(value);
+    case 'uri-reference':
+      return isUriReference(value);
+    case 'iri':
+      return isIri(value);
+    case 'iri-reference':
+      return isIriReference(value);
+    case 'uri-template':
+      return isUriTemplate(value);
     case 'json-pointer':
       return isJsonPointer(value);
+    case 'relative-json-pointer':
+      return isRelativeJsonPointer(value);
     case 'regex':
       return isRegex(value);
     default:

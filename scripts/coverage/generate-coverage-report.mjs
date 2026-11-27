@@ -77,7 +77,8 @@ function render(manifest) {
 			lines.push(`- Upstream: \`${row.upstream_path}\`${row.export ? ` → \`${row.export}\`` : ""}`);
 			lines.push(`- Dart: ${row.dart_impl ? `\`${row.dart_impl}\`` : "_(none)_"}`);
 			lines.push(`- Divergence: ${divergence ?? "_(missing)_"}`);
-			lines.push(`- Issue: ${row.issue ? `\`#${row.issue}\`` : "_(missing)_"}`);
+			// A bare `#N` registry ref already carries the hash; don't double it up.
+			lines.push(`- Issue: ${row.issue ? `\`#${String(row.issue).replace(/^#/, "")}\`` : "_(missing)_"}`);
 			lines.push("");
 		}
 	}

@@ -21,3 +21,4 @@ export 'src/ai/provider_retry.dart';
 export 'src/ai/provider_stop_reason.dart';
 export 'src/ai/sse_decoder.dart';
 export 'src/ai/streaming_json.dart';
+export 'src/ai/transcript.dart';
