@@ -13,8 +13,6 @@
 - Fixed Kitty images disappearing in Konsole in both regular and fullscreen mode: `allocateImageId()` now returns IDs that fit a signed 32-bit integer, which Konsole requires ([#12548](https://github.com/earendil-works/pi/issues/12548))
 - Fixed regular mode clearing the screen and scrollback whenever an appended Kitty image reached past the bottom of the screen ([#12548](https://github.com/earendil-works/pi/issues/12548))
 
-## [1.6.1] - 2026-11-25
-
 ### Fixed
 
 - Fixed `Editor.addToHistory()` storing a prompt again when it was already in history; it now moves the existing entry to the most recent position ([#12279](https://github.com/earendil-works/pi/issues/12279))

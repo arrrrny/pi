@@ -31,8 +31,6 @@
 - Fixed `openrouter-images`, `pi-image` and `pi-decision` usage dropping reasoning tokens: `usage.reasoning` is now set from OpenRouter's `completion_tokens_details.reasoning_tokens` and from the `pi-image` and `pi-decision` backends' `usage.reasoning`, as a subset of `output`
 - Fixed OpenRouter image models pricing image tokens at the text rate: the catalog took `cost.output` from OpenRouter's `completion` price and ignored `image_output`. The catalog now sets `cost.imageOutput` from `image_output`, and `openrouter-images` prices usage with `calculateCost()`, which also applies context tiers
 
-## [1.6.1] - 2026-11-25
-
 ### Added
 
 - Added `compat.supportsStrictMode` to the `google-generative-ai` and `google-vertex` APIs, so Gemini 3+ models served under IDs without the version can use strict tools (`VALIDATED` function calling); unset keeps the model ID detection ([#12321](https://github.com/earendil-works/pi/issues/12321))

@@ -42,6 +42,7 @@ Each `models` entry adds a model to the provider. An entry whose `id` matches an
 | `cost.output` | number |  | Required. Output cost in USD per million tokens. |
 | `cost.cacheRead` | number |  | Required. Cache-read cost in USD per million tokens. |
 | `cost.cacheWrite` | number |  | Required. Cache-write cost in USD per million tokens. |
+| `cost.imageOutput` | number |  | Image output cost in USD per million tokens, for models that generate images. Image output tokens use this rate and the rest of output (text and reasoning) uses `output`. Unset means image tokens cost `output`. |
 | `cost.tiers` | `object[]` |  | Request-wide pricing tiers. The highest matching input threshold applies to the full request. |
 | `cost.tiers[].inputTokensAbove` | number |  | Required. Use this tier when total request input exceeds this token count. |
 | `cost.tiers[].input` | number |  | Required. Input cost in USD per million tokens. |
@@ -72,6 +73,7 @@ Each `modelOverrides` key is the ID of a built-in or extension model. Unknown ID
 | `cost.output` | number |  | Output cost in USD per million tokens. |
 | `cost.cacheRead` | number |  | Cache-read cost in USD per million tokens. |
 | `cost.cacheWrite` | number |  | Cache-write cost in USD per million tokens. |
+| `cost.imageOutput` | number |  | Image output cost in USD per million tokens, for models that generate images. Image output tokens use this rate and the rest of output (text and reasoning) uses `output`. Unset means image tokens cost `output`. |
 | `cost.tiers` | `object[]` |  | Request-wide pricing tiers. The highest matching input threshold applies to the full request. |
 | `cost.tiers[].inputTokensAbove` | number |  | Required. Use this tier when total request input exceeds this token count. |
 | `cost.tiers[].input` | number |  | Required. Input cost in USD per million tokens. |
