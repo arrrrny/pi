@@ -38,7 +38,7 @@ final IOSink _out = stdout;
 
 void _writeFrame(int type, int id, Map<String, dynamic> json,
     [Uint8List? payload]) {
-  final body = Uint8List.fromList(jsonEncode(json).codeUnits);
+  final body = Uint8List.fromList(utf8.encode(jsonEncode(json)));
   final payloadBytes = payload ?? Uint8List(0);
   final length = 9 + body.length + payloadBytes.length;
   final frame = Uint8List(4 + length);

@@ -193,5 +193,19 @@ void main() {
       expect(frame.payload, isNotNull);
       expect(List<int>.from(frame.payload!), <int>[1, 2, 3]);
     });
+
+    // Regression: the encoder and decoder must agree on UTF-8. A non-ASCII
+    // byte in a path/env/argv/error corrupts or throws against the real
+    // daemon when the encoder truncates UTF-16 code units to bytes.
+    test('round-trips a frame with non-ASCII JSON', () {
+      final bytes = encodeFrame(REQUEST, 9, <String, dynamic>{
+        'op': 'process',
+        'cwd': '/tmp/日本語',
+        'argv': <String>['echo', 'héllo', '🌍'],
+      });
+      final frame = decodeFrame(bytes);
+      expect(frame.json['cwd'], '/tmp/日本語');
+      expect(frame.json['argv'], <String>['echo', 'héllo', '🌍']);
+    });
   });
 }

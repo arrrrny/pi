@@ -181,7 +181,10 @@ Future<RemoteTerminal> openTerminal(
           },
         ),
       )
-      .then((reply) => reply.json['exitCode'] as int);
+      .then((reply) {
+        final code = reply.json['exitCode'];
+        return code is num ? code.toInt() : int.parse('$code');
+      });
   exited.catchError((Object error, StackTrace st) {
     if (!started.isCompleted) started.completeError(error, st);
     return 0;

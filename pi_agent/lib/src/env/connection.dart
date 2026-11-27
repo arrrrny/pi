@@ -10,6 +10,7 @@ library;
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io' as io;
+import 'dart:math';
 import 'dart:typed_data';
 
 /// The request frame type: client to daemon, `json.op` names the operation.
@@ -66,7 +67,7 @@ class Frame {
 /// Encodes one frame with [type], [id], JSON [json] and optional [payload].
 Uint8List encodeFrame(int type, int id, Map<String, dynamic> json,
     [Uint8List? payload]) {
-  final body = Uint8List.fromList(jsonEncode(json).codeUnits);
+  final body = Uint8List.fromList(utf8.encode(jsonEncode(json)));
   final payloadBytes = payload ?? Uint8List(0);
   final length = 9 + body.length + payloadBytes.length;
   final frame = Uint8List(4 + length);
@@ -84,8 +85,17 @@ Uint8List encodeFrame(int type, int id, Map<String, dynamic> json,
 /// Decodes the first frame in [bytes], returning it and the number of bytes it
 /// occupies. Throws [FormatException] on a malformed header or JSON body.
 Frame decodeFrame(Uint8List bytes) {
+  if (bytes.length < 4) {
+    throw const FormatException('frame too short');
+  }
   final view = ByteData.view(bytes.buffer, bytes.offsetInBytes);
   final length = view.getUint32(0);
+  if (length < 9 || length > maxFrame) {
+    throw const FormatException('frame length out of range');
+  }
+  if (4 + length > bytes.length) {
+    throw const FormatException('frame truncated');
+  }
   final type = view.getUint8(4);
   final id = view.getUint32(5);
   final jsonLength = view.getUint32(9);
@@ -674,24 +684,12 @@ class Connection {
   }
 
   static String _randomToken() {
-    final bytes = Uint8List(16);
-    final random = _Random();
-    for (var i = 0; i < 16; i++) {
-      bytes[i] = random.nextInt(256);
-    }
+    final random = Random.secure();
     final buffer = StringBuffer();
-    for (final b in bytes) {
-      buffer.write(b.toRadixString(16).padLeft(2, '0'));
+    for (var i = 0; i < 16; i++) {
+      buffer.write(random.nextInt(256).toRadixString(16).padLeft(2, '0'));
     }
     return buffer.toString();
-  }
-}
-
-class _Random {
-  int _state = DateTime.now().microsecondsSinceEpoch & 0x7fffffff;
-  int nextInt(int max) {
-    _state = (_state * 1103515245 + 12345) & 0x7fffffff;
-    return _state % max;
   }
 }
 
