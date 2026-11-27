@@ -9171,13 +9171,16 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/harness.dart",
-      "dart_impl": "pi_agent/lib/src/harness.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/chord/failure.dart",
+      "dart_test": "pi_agent/test/durable/chord_data_test.dart",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#62 (PI-PAR-003, chord data slice): errors.dart and failure.dart port packages/chord/src/data/errors.ts and failure.ts. Evidence: the upstream-derived tests named in dart_test; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is implemented_unverified, not verified."
+      },
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "Ported by pi#62 (PI-PAR-003, chord data slice): errors.dart and failure.dart port packages/chord/src/data/errors.ts and failure.ts. Evidence: the upstream-derived tests named in dart_test; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is implemented_unverified, not verified.",
         "approved_by": null
       },
       "issue": "arrrrny/pi#62",
@@ -17926,13 +17929,16 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/harness.dart",
-      "dart_impl": "pi_agent/lib/src/harness.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/chord/errors.dart",
+      "dart_test": "pi_agent/test/durable/chord_data_test.dart",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#62 (PI-PAR-003, chord data slice): errors.dart and failure.dart port packages/chord/src/data/errors.ts and failure.ts. Evidence: the upstream-derived tests named in dart_test; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is implemented_unverified, not verified."
+      },
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "Ported by pi#62 (PI-PAR-003, chord data slice): errors.dart and failure.dart port packages/chord/src/data/errors.ts and failure.ts. Evidence: the upstream-derived tests named in dart_test; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is implemented_unverified, not verified.",
         "approved_by": null
       },
       "issue": "arrrrny/pi#62",
@@ -17955,13 +17961,16 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/harness.dart",
-      "dart_impl": "pi_agent/lib/src/harness.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/chord/failure.dart",
+      "dart_test": "pi_agent/test/durable/chord_data_test.dart",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#62 (PI-PAR-003, chord data slice): errors.dart and failure.dart port packages/chord/src/data/errors.ts and failure.ts. Evidence: the upstream-derived tests named in dart_test; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is implemented_unverified, not verified."
+      },
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "Ported by pi#62 (PI-PAR-003, chord data slice): errors.dart and failure.dart port packages/chord/src/data/errors.ts and failure.ts. Evidence: the upstream-derived tests named in dart_test; no differential scenario pins this behavior against the TypeScript oracle yet, so the row is implemented_unverified, not verified.",
         "approved_by": null
       },
       "issue": "arrrrny/pi#62",
