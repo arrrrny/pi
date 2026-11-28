@@ -12,10 +12,11 @@ import 'package:pi/src/durable/env/index.dart' show FileError, FileErrorCode;
 final String _daemonScript =
     '${io.Directory.current.path}/test/env/test_daemon.dart';
 
-List<String> _daemonCommand() => <String>[
-      io.Platform.resolvedExecutable,
-      _daemonScript,
-    ];
+final String? _daemonOverride = io.Platform.environment['PI_ENV_DAEMON'];
+
+List<String> _daemonCommand() => _daemonOverride != null
+    ? <String>[_daemonOverride!]
+    : <String>[io.Platform.resolvedExecutable, _daemonScript];
 
 void main() {
   group('nodePlatform', () {
