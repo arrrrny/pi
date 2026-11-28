@@ -60717,15 +60717,15 @@
       ],
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/tools.dart",
-      "dart_impl": "pi_agent/lib/src/tools.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_impl": "pi_agent/lib/src/codemode_declarations.dart",
+      "dart_test": "pi_agent/test/codemode_declarations_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/codemode_declarations_test.dart"
       },
-      "issue": "arrrrny/pi#84",
+      "divergence": null,
+      "issue": null,
       "id": "codemode.packages-codemode-src-declarations.ts.DEFAULT_INPUT_SCHEMA_MAX_CHARS.api",
       "area": "codemode",
       "upstream_path": "packages/codemode/src/declarations.ts",
@@ -60746,15 +60746,15 @@
       ],
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/tools.dart",
-      "dart_impl": "pi_agent/lib/src/tools.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_impl": "pi_agent/lib/src/codemode_declarations.dart",
+      "dart_test": "pi_agent/test/codemode_declarations_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/codemode_declarations_test.dart"
       },
-      "issue": "arrrrny/pi#84",
+      "divergence": null,
+      "issue": null,
       "id": "codemode.packages-codemode-src-declarations.ts.renderDeclarations.api",
       "area": "codemode",
       "upstream_path": "packages/codemode/src/declarations.ts",
@@ -60775,15 +60775,15 @@
       ],
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/tools.dart",
-      "dart_impl": "pi_agent/lib/src/tools.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_impl": "pi_agent/lib/src/codemode_declarations.dart",
+      "dart_test": "pi_agent/test/codemode_declarations_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/codemode_declarations_test.dart"
       },
-      "issue": "arrrrny/pi#84",
+      "divergence": null,
+      "issue": null,
       "id": "codemode.packages-codemode-src-declarations.ts.RenderDeclarationsOptions.api",
       "area": "codemode",
       "upstream_path": "packages/codemode/src/declarations.ts",
@@ -60804,15 +60804,15 @@
       ],
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/tools.dart",
-      "dart_impl": "pi_agent/lib/src/tools.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_impl": "pi_agent/lib/src/codemode_declarations.dart",
+      "dart_test": "pi_agent/test/codemode_declarations_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/codemode_declarations_test.dart"
       },
-      "issue": "arrrrny/pi#84",
+      "divergence": null,
+      "issue": null,
       "id": "codemode.packages-codemode-src-declarations.ts.renderToolOutputType.api",
       "area": "codemode",
       "upstream_path": "packages/codemode/src/declarations.ts",
@@ -60833,15 +60833,15 @@
       ],
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/tools.dart",
-      "dart_impl": "pi_agent/lib/src/tools.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_impl": "pi_agent/lib/src/codemode_declarations.dart",
+      "dart_test": "pi_agent/test/codemode_declarations_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/codemode_declarations_test.dart"
       },
-      "issue": "arrrrny/pi#84",
+      "divergence": null,
+      "issue": null,
       "id": "codemode.packages-codemode-src-declarations.ts.renderToolSample.api",
       "area": "codemode",
       "upstream_path": "packages/codemode/src/declarations.ts",
@@ -60862,15 +60862,15 @@
       ],
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/tools.dart",
-      "dart_impl": "pi_agent/lib/src/tools.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_impl": "pi_agent/lib/src/codemode_declarations.dart",
+      "dart_test": "pi_agent/test/codemode_declarations_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/codemode_declarations_test.dart"
       },
-      "issue": "arrrrny/pi#84",
+      "divergence": null,
+      "issue": null,
       "id": "codemode.packages-codemode-src-declarations.ts.renderToolSignature.api",
       "area": "codemode",
       "upstream_path": "packages/codemode/src/declarations.ts",
@@ -60891,15 +60891,15 @@
       ],
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/tools.dart",
-      "dart_impl": "pi_agent/lib/src/tools.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_impl": "pi_agent/lib/src/codemode_declarations.dart",
+      "dart_test": "pi_agent/test/codemode_declarations_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/codemode_declarations_test.dart"
       },
-      "issue": "arrrrny/pi#84",
+      "divergence": null,
+      "issue": null,
       "id": "codemode.packages-codemode-src-declarations.ts.resolveSchemaRef.api",
       "area": "codemode",
       "upstream_path": "packages/codemode/src/declarations.ts",
@@ -60920,15 +60920,15 @@
       ],
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/tools.dart",
-      "dart_impl": "pi_agent/lib/src/tools.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_impl": "pi_agent/lib/src/codemode_declarations.dart",
+      "dart_test": "pi_agent/test/codemode_declarations_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/codemode_declarations_test.dart"
       },
-      "issue": "arrrrny/pi#84",
+      "divergence": null,
+      "issue": null,
       "id": "codemode.packages-codemode-src-declarations.ts.schemaToType.api",
       "area": "codemode",
       "upstream_path": "packages/codemode/src/declarations.ts",
@@ -60949,15 +60949,15 @@
       ],
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/tools.dart",
-      "dart_impl": "pi_agent/lib/src/tools.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_impl": "pi_agent/lib/src/codemode_declarations.dart",
+      "dart_test": "pi_agent/test/codemode_declarations_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/codemode_declarations_test.dart"
       },
-      "issue": "arrrrny/pi#84",
+      "divergence": null,
+      "issue": null,
       "id": "codemode.packages-codemode-src-declarations.ts.toCodemodeIdentifier.api",
       "area": "codemode",
       "upstream_path": "packages/codemode/src/declarations.ts",
@@ -61384,15 +61384,15 @@
       ],
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/tools.dart",
-      "dart_impl": "pi_agent/lib/src/tools.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_impl": "pi_agent/lib/src/codemode_declarations.dart",
+      "dart_test": "pi_agent/test/codemode_declarations_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/codemode_declarations_test.dart"
       },
-      "issue": "arrrrny/pi#84",
+      "divergence": null,
+      "issue": null,
       "id": "codemode.packages-codemode-test-declarations.test.ts.internal.test",
       "area": "codemode",
       "upstream_path": "packages/codemode/test/declarations.test.ts",
