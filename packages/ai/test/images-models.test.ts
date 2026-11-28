@@ -394,7 +394,12 @@ describe("Models with image models", () => {
 		expect(provider.getModels().every((model) => isModelType(model, "chat"))).toBe(true);
 		expect(provider.getAllModels?.().some((model) => isModelType(model, "image"))).toBe(true);
 		expect(images.every((m) => m.type === "image" && m.api === "openrouter-images")).toBe(true);
-		expect(models.getModelsOfType("image").every((m) => m.provider === "openrouter")).toBe(true);
+		// Radius ships built-in image models too (5c0917b7a), so the cross-provider
+		// sweep guards the real contract: every image model's provider implements
+		// image generation, never a single hardcoded provider id.
+		expect(
+			models.getModelsOfType("image").every((m) => models.getProvider(m.provider)?.generateImages !== undefined),
+		).toBe(true);
 
 		// One upstream id can expose separate chat and image operations.
 		const chat = models.getModel("openrouter", "google/gemini-3-pro-image");
