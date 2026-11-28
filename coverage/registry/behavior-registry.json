@@ -8736,13 +8736,16 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/harness.dart",
-      "dart_impl": "pi_agent/lib/src/harness.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/chord/context.dart",
+      "dart_test": "pi_agent/test/durable/context_test.dart",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#62 (PI-PAR-003, Chord context slice): typed context keys and values, telemetry derivation, traceIn, combined/removable cancellation, and independent child cancellation. Evidence is the upstream-derived context_test.dart suite; no differential scenario pins this slice against the TypeScript oracle yet."
+      },
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "Runtime context API ported; no differential scenario pins this slice against the TypeScript oracle yet.",
         "approved_by": null
       },
       "issue": "arrrrny/pi#62",
@@ -8765,13 +8768,16 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/harness.dart",
-      "dart_impl": "pi_agent/lib/src/harness.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/chord/context.dart",
+      "dart_test": "pi_agent/test/durable/context_test.dart",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#62 (PI-PAR-003, Chord context slice): typed context keys and values, telemetry derivation, traceIn, combined/removable cancellation, and independent child cancellation. Evidence is the upstream-derived context_test.dart suite; no differential scenario pins this slice against the TypeScript oracle yet."
+      },
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "Runtime context API ported; no differential scenario pins this slice against the TypeScript oracle yet.",
         "approved_by": null
       },
       "issue": "arrrrny/pi#62",
@@ -8794,13 +8800,16 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/harness.dart",
-      "dart_impl": "pi_agent/lib/src/harness.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/chord/context.dart",
+      "dart_test": "pi_agent/test/durable/context_test.dart",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#62 (PI-PAR-003, Chord context slice): typed context keys and values, telemetry derivation, traceIn, combined/removable cancellation, and independent child cancellation. Evidence is the upstream-derived context_test.dart suite; no differential scenario pins this slice against the TypeScript oracle yet."
+      },
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "Runtime context API ported; no differential scenario pins this slice against the TypeScript oracle yet.",
         "approved_by": null
       },
       "issue": "arrrrny/pi#62",
@@ -8823,13 +8832,16 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/harness.dart",
-      "dart_impl": "pi_agent/lib/src/harness.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/chord/context.dart",
+      "dart_test": "pi_agent/test/durable/context_test.dart",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#62 (PI-PAR-003, Chord context slice): typed context keys and values, telemetry derivation, traceIn, combined/removable cancellation, and independent child cancellation. Evidence is the upstream-derived context_test.dart suite; no differential scenario pins this slice against the TypeScript oracle yet."
+      },
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "Runtime context API ported; no differential scenario pins this slice against the TypeScript oracle yet.",
         "approved_by": null
       },
       "issue": "arrrrny/pi#62",
@@ -8852,13 +8864,16 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/harness.dart",
-      "dart_impl": "pi_agent/lib/src/harness.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/chord/context.dart",
+      "dart_test": "pi_agent/test/durable/context_test.dart",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#62 (PI-PAR-003, Chord context slice): typed context keys and values, telemetry derivation, traceIn, combined/removable cancellation, and independent child cancellation. Evidence is the upstream-derived context_test.dart suite; no differential scenario pins this slice against the TypeScript oracle yet."
+      },
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "Runtime context API ported; no differential scenario pins this slice against the TypeScript oracle yet.",
         "approved_by": null
       },
       "issue": "arrrrny/pi#62",
@@ -8881,13 +8896,16 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/harness.dart",
-      "dart_impl": "pi_agent/lib/src/harness.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/chord/context.dart",
+      "dart_test": "pi_agent/test/durable/context_test.dart",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#62 (PI-PAR-003, Chord context slice): typed context keys and values, telemetry derivation, traceIn, combined/removable cancellation, and independent child cancellation. Evidence is the upstream-derived context_test.dart suite; no differential scenario pins this slice against the TypeScript oracle yet."
+      },
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "Runtime context API ported; no differential scenario pins this slice against the TypeScript oracle yet.",
         "approved_by": null
       },
       "issue": "arrrrny/pi#62",
@@ -8910,13 +8928,16 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/harness.dart",
-      "dart_impl": "pi_agent/lib/src/harness.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/chord/context.dart",
+      "dart_test": "pi_agent/test/durable/context_test.dart",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#62 (PI-PAR-003, Chord context slice): typed context keys and values, telemetry derivation, traceIn, combined/removable cancellation, and independent child cancellation. Evidence is the upstream-derived context_test.dart suite; no differential scenario pins this slice against the TypeScript oracle yet."
+      },
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "Runtime context API ported; no differential scenario pins this slice against the TypeScript oracle yet.",
         "approved_by": null
       },
       "issue": "arrrrny/pi#62",
@@ -8939,13 +8960,16 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/harness.dart",
-      "dart_impl": "pi_agent/lib/src/harness.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/chord/context.dart",
+      "dart_test": "pi_agent/test/durable/context_test.dart",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#62 (PI-PAR-003, Chord context slice): typed context keys and values, telemetry derivation, traceIn, combined/removable cancellation, and independent child cancellation. Evidence is the upstream-derived context_test.dart suite; no differential scenario pins this slice against the TypeScript oracle yet."
+      },
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "Runtime context API ported; no differential scenario pins this slice against the TypeScript oracle yet.",
         "approved_by": null
       },
       "issue": "arrrrny/pi#62",
@@ -8968,13 +8992,16 @@
         "vm"
       ],
       "adapter_requirements": [],
-      "dart_entrypoint": "package:pi/harness.dart",
-      "dart_impl": "pi_agent/lib/src/harness.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
+      "dart_entrypoint": "package:pi/durable.dart",
+      "dart_impl": "pi_agent/lib/src/chord/context.dart",
+      "dart_test": "pi_agent/test/durable/context_test.dart",
+      "status": "implemented_unverified",
+      "evidence": {
+        "kind": "test",
+        "note": "Ported by pi#62 (PI-PAR-003, Chord context slice): typed context keys and values, telemetry derivation, traceIn, combined/removable cancellation, and independent child cancellation. Evidence is the upstream-derived context_test.dart suite; no differential scenario pins this slice against the TypeScript oracle yet."
+      },
       "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
+        "reason": "Runtime context API ported; no differential scenario pins this slice against the TypeScript oracle yet.",
         "approved_by": null
       },
       "issue": "arrrrny/pi#62",
