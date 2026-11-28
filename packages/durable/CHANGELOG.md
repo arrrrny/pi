@@ -2,6 +2,14 @@
 
 ## [Unreleased]
 
+### Fixed
+
+- Fixed `codemode` silently returning results based on truncated text from schema-less tools. The model now sees a warning without changing the script's return value ([#12594](https://github.com/earendil-works/pi/issues/12594))
+
+## [1.7.0] - 2026-11-27
+
+## [1.6.1] - 2026-11-25
+
 ### Breaking Changes
 
 - Tool parks are tagged: `{ kind: "sleep", checkpoint?, until?, signals? }` and `{ kind: "wait", checkpoint?, on, policy }`, flat, in place of `{ sleep: { ... } }` and `{ wait: { ... } }`; a result has no `kind`. An object with another `kind` is an invalid park. Migration: return `{ kind: "sleep", ...sleep }` or `{ kind: "wait", ...wait }`, and tell a park from a result by `returned.kind`.
