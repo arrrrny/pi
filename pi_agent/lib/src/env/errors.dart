@@ -3,14 +3,20 @@
 // Port of `packages/env/src/errors.ts` at the pinned upstream SHA.
 library;
 
-import '../durable/env/index.dart' show FileError, FileErrorCode;
+import '../chord/context.dart' as chord;
+import '../durable/env/index.dart' show Err, FileError, FileErrorCode, Result;
 import 'connection.dart' show AbortSignal, RemoteError;
 
 /// A [FileError] for an aborted operation over [path], or null when [signal]
 /// is absent or not aborted.
-FileError? abortResult(Object? signal, [String? path]) {
-  if (signal is AbortSignal && signal.aborted) {
-    return FileError(FileErrorCode.aborted, 'aborted', path: path);
+Result<T, FileError>? abortResult<T>(Object? signal, [String? path]) {
+  final aborted = switch (signal) {
+    chord.AbortSignal(:final aborted) => aborted,
+    AbortSignal(:final aborted) => aborted,
+    _ => false,
+  };
+  if (aborted) {
+    return Err(FileError(FileErrorCode.aborted, 'aborted', path: path));
   }
   return null;
 }

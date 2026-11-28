@@ -168,8 +168,12 @@ class RemoteInfo {
         os = fields['os'] as String? ?? '',
         arch = fields['arch'] as String? ?? '',
         home = fields['home'] as String? ?? '',
+        tmpdir = fields['tmpdir'] as String? ?? '',
         separator = fields['separator'] as String? ?? '/',
         cwd = fields['cwd'] as String? ?? '',
+        driveCwds = fields['driveCwds'] is Map
+            ? Map<String, String>.from(fields['driveCwds'] as Map)
+            : const <String, String>{},
         pid = fields['pid'] as int? ?? 0,
         features = fields['features'] is List
             ? (fields['features'] as List).cast<String>()
@@ -193,11 +197,17 @@ class RemoteInfo {
   /// The remote home directory.
   final String home;
 
+  /// The remote temporary directory.
+  final String tmpdir;
+
   /// The remote path separator.
   final String separator;
 
   /// The daemon's working directory.
   final String cwd;
+
+  /// Windows drive-relative working directories keyed by upper-case drive.
+  final Map<String, String> driveCwds;
 
   /// The daemon's process id.
   final int pid;
@@ -276,6 +286,16 @@ class AbortSignal {
       return;
     }
     _listeners.add(listener);
+  }
+
+  /// Registers [listener] and returns how to remove it.
+  void Function() onAbort(void Function() listener) {
+    if (_aborted) {
+      listener();
+      return () {};
+    }
+    _listeners.add(listener);
+    return () => _removeListener(listener);
   }
 
   void _removeListener(void Function() listener) {
@@ -714,7 +734,14 @@ Future<T> _untilAborted<T>(Future<T> promise, AbortSignal? signal) {
   }
 
   signal._addListener(onAbort);
-  promise.then(completer.complete, onError: completer.completeError);
+  promise.then(
+    (value) {
+      if (!completer.isCompleted) completer.complete(value);
+    },
+    onError: (Object error, StackTrace stack) {
+      if (!completer.isCompleted) completer.completeError(error, stack);
+    },
+  );
   return completer.future.whenComplete(() => signal._removeListener(onAbort));
 }
 

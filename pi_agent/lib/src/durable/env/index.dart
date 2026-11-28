@@ -228,7 +228,7 @@ class FileInfo {
   final int size;
 
   /// The entry's modification time in milliseconds since the epoch.
-  final int mtimeMs;
+  final num mtimeMs;
 }
 
 /// One line of text and whether it was newline-terminated.
@@ -625,8 +625,8 @@ class ShellExecOptions {
   /// Whether the command inherits the environment's variables.
   final bool? inheritEnv;
 
-  /// The command's timeout in milliseconds.
-  final int? timeout;
+  /// The command's timeout in seconds.
+  final num? timeout;
 
   /// Every decoded chunk of stdout and stderr as it arrives, in arrival order.
   final void Function(String text, Context context, ShellOutputInfo info)?

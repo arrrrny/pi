@@ -61730,15 +61730,15 @@
       ],
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/execution_env.dart",
-      "dart_impl": "pi_agent/lib/src/execution_env.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_impl": "pi_agent/lib/src/env/remote_env.dart",
+      "dart_test": "pi_agent/test/env/remote_execution_env_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/env/remote_execution_env_test.dart"
       },
-      "issue": "arrrrny/pi#85",
+      "divergence": null,
+      "issue": null,
       "id": "env.packages-env-src-index.ts.RemoteExecutionEnv.api",
       "area": "env",
       "upstream_path": "packages/env/src/index.ts",
@@ -61817,15 +61817,15 @@
       ],
       "adapter_requirements": [],
       "dart_entrypoint": "package:pi/execution_env.dart",
-      "dart_impl": "pi_agent/lib/src/execution_env.dart",
-      "dart_test": null,
-      "status": "unported",
-      "evidence": null,
-      "divergence": {
-        "reason": "Scaffolded by build-registry; not yet assessed for parity.",
-        "approved_by": null
+      "dart_impl": "pi_agent/lib/src/env/watch.dart",
+      "dart_test": "pi_agent/test/env/remote_execution_env_test.dart",
+      "status": "verified",
+      "evidence": {
+        "kind": "dart_test",
+        "dart_test": "pi_agent/test/env/remote_execution_env_test.dart"
       },
-      "issue": "arrrrny/pi#85",
+      "divergence": null,
+      "issue": null,
       "id": "env.packages-env-src-index.ts.RemoteWatcher.api",
       "area": "env",
       "upstream_path": "packages/env/src/index.ts",
